@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.introductie, .contact, .company-info, .downloads-content, .apps-list, .payments-info {
+    padding: 2rem;
+}
+
+.app-item {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* --- Media Query voor mobiele apparaten --- */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Zet de knoppen onder elkaar */
+        align-items: center; /* Centreert de knoppen horizontaal */
+    }
+
+    nav ul li {
+        width: 100%; /* Maakt elke knop de volledige breedte */
+        margin: 5px 0; /* Voegt wat verticale ruimte toe tussen de knoppen */
+    }
+
+    nav ul li a {
+        padding: 10px; /* Geef de knoppen meer ruimte om aan te raken */
+        background-color: #555; /* Een iets donkerdere achtergrondkleur voor betere zichtbaarheid */
+        border-radius: 5px; /* Rond de hoeken van de knoppen af */
+    }
+}
