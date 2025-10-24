@@ -1,15 +1,16 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    /* Donkere achtergrondkleur van de foto's */
+    /* De donkere achtergrondkleur van de app-interface */
     background-color: #333333; 
     color: #f0f0f0; 
 }
 
 header {
     text-align: center;
-    padding: 20px 0 0 0; /* Minder padding aan de onderkant */
-    background-color: #333333; /* Zorg ervoor dat de header dezelfde kleur heeft als de body */
+    /* Extra padding bovenaan voor een 'header' gevoel */
+    padding: 30px 0 20px 0; 
+    background-color: #333333; 
 }
 
 h1 {
@@ -22,48 +23,43 @@ h1 {
 header p {
     font-size: 16px;
     color: #cccccc; 
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Ruimte tussen de subtitel en de knoppenbalk */
     padding: 0 20px;
 }
 
-/* Navigatie sectie */
+/* Navigatie sectie voor de strakke knoppen */
 nav {
-    /* Donkere balk net onder de header - optioneel, als je een subtiel kleurverschil wil */
-    background-color: #2e2e2e; 
-    padding: 10px 0; /* Ruimte boven en onder de knoppenlijst */
+    padding: 0;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0; /* Haalt alle standaard marges weg */
+    padding: 0 20px; /* Horizontale padding voor de knoppen om ze in te laten vallen */
+    margin: 0; 
 }
 
 nav li {
-    /* Belangrijk: Geen marge hier om de knoppen direct op elkaar te plaatsen */
     margin: 0; 
 }
 
 nav a {
     display: block;
-    /* Een grijs/donkergrijs om de knoppen eruit te laten zien als een blok */
+    /* De grijze kleur van de knoppen op de foto */
     background-color: #555555; 
     color: #ffffff; 
-    padding: 15px 20px; /* Bepaalt de hoogte van de knoppen */
+    padding: 18px 20px; /* Geeft de knoppen de juiste hoogte */
     text-decoration: none;
-    /* BELANGRIJK: Geen border-radius op de li's om ze naadloos te laten aansluiten */
     border-radius: 0; 
-    margin: 0 auto;
-    width: 100%; /* Knoppen over de volledige breedte */
-    max-width: 100%; /* Zorg dat het de maximale breedte binnen de parent pakt */
+    margin: 0;
+    width: 100%; 
     font-size: 18px;
     transition: background-color 0.1s ease;
-    text-align: left; /* Tekst links uitlijnen zoals op de foto */
-    /* Een dunne scheidingslijn, alleen aan de onderkant */
-    border-bottom: 1px solid #666666; 
+    text-align: left; /* Tekst links uitlijnen */
+    /* De subtiele scheiding tussen de knoppen is de donkere achtergrond */
+    border-bottom: 1px solid #444444; 
 }
 
-/* Rond de hoeken van de eerste en laatste knop af */
+/* Afgeronde hoeken voor de knoppengroep */
 nav ul li:first-child a {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -72,7 +68,8 @@ nav ul li:first-child a {
 nav ul li:last-child a {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border-bottom: none; /* De laatste knop heeft geen onderlijn nodig */
+    border-bottom: none; /* De laatste knop heeft geen scheidingslijn nodig */
+    margin-bottom: 30px; /* Ruimte onder de knoppengroep */
 }
 
 
@@ -81,20 +78,21 @@ nav a:hover {
 }
 
 main {
-    padding: 20px;
+    padding: 0; /* Geen padding hier, zodat de sectie helemaal tot de rand kan */
     max-width: 800px;
     margin: 0 auto;
     background-color: #333333; 
 }
 
+/* De witte content sectie onder de knoppen */
 section {
-    /* Lichte achtergrondkleur voor de inhoud onder de knoppen */
+    /* Witte achtergrond voor de inhoud, contrasterend met de donkere body */
     background-color: #ffffff; 
-    color: #333333;
+    color: #333333; /* Donkere tekst op witte achtergrond */
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0; /* Geen afronding aan de bovenkant, het vloeit over */
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.1); /* Subtiele schaduw om de scheiding te benadrukken */
 }
 
 h2 {
@@ -135,9 +133,8 @@ footer {
     margin-top: 20px;
 }
 
-/* Modal specifieke stijlen */
+/* Modal specifieke stijlen (niet te zien op de foto, maar behouden) */
 #modal {
-    /* (Modal stijlen blijven ongewijzigd) */
     display: none;
     position: fixed;
     z-index: 1000;
