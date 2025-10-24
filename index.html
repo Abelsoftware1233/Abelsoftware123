@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home- Abelsoftware123</title>
+    <title>Hacktools - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <h1>Home</h1>
-<p>Welkom bij abelsoftware123</p>
+
+    <header>
+        <h1>Hacktools</h1>
+        <p>Overzicht van onze tools en ethische hacking diensten.</p>
+        
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -28,28 +31,29 @@
             <button class="futuristic-button" data-content-target="setup">SETUP</button>
             <button class="futuristic-button" data-content-target="faq">FAQ</button>
         </div>
-    </header>
+        </header>
 
     <main>
-        <section class="introductie" id="introductie-content">
+        
+        <section class="introductie content-section" id="introductie-content">
             <h2>Onze Ethische Hacking Middelen</h2>
             <p>Hier vind je informatie over de **hack tools** die wij ontwikkelen en gebruiken. Wij zijn gespecialiseerd in het ontwikkelen van op maat gemaakte software die aan al uw behoeften voldoet. Onze missie is om iedereen een goede game/web plezier te geven. Uw wensen staan voorop! Download gratis onze nieuwe Abelsoftware123 App en koop uw apps/games/hacktools/website handig in de app!</p>
         </section>
         
         <section class="content-section" id="tools-content" style="display: none;">
             <h2>Onze Tools</h2>
-            <p>Hier vindt u een diepgaande beschrijving van de verschillende tools die Abelsoftware123 aanbiedt. Ontdek hoe elke tool werkt en welke voordelen het biedt.</p>
-            </section>
+            <p>Hier vindt u een diepgaande beschrijving van de verschillende tools die Abelsoftware123 aanbiedt. Ontdek hoe elke tool werkt en welke voordelen het biedt. Dit is de content voor TOOLS.</p>
+        </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
             <h2>Setup Gids</h2>
-            <p>Volg onze stapsgewijze handleiding om uw nieuwe tools of software eenvoudig te installeren en te configureren. Voor een vlotte start!</p>
-            </section>
+            <p>Volg onze stapsgewijze handleiding om uw nieuwe tools of software eenvoudig te installeren en te configureren. Voor een vlotte start! Dit is de content voor SETUP.</p>
+        </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
             <h2>Veelgestelde Vragen (FAQ)</h2>
-            <p>Heeft u vragen? Raadpleeg onze veelgestelde vragen sectie voor snelle antwoorden op de meest voorkomende onderwerpen.</p>
-            </section>
+            <p>Heeft u vragen? Raadpleeg onze veelgestelde vragen sectie voor snelle antwoorden op de meest voorkomende onderwerpen. Dit is de content voor FAQ.</p>
+        </section>
 
         <div style="text-align: center; margin-top: 20px;">
              <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
@@ -106,7 +110,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const futuristicButtons = document.querySelectorAll('.futuristic-button');
-            const contentSections = document.querySelectorAll('.content-section, #introductie-content'); // Inclusief de intro-sectie
+            const contentSections = document.querySelectorAll('.content-section');
 
             // Functie om alle contentsecties te verbergen
             function hideAllContentSections() {
@@ -127,7 +131,7 @@
             // Event listeners toevoegen aan de futuristische knoppen
             futuristicButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const target = this.dataset.contentTarget + '-content'; // Vormt de ID: "introductie-content"
+                    const target = this.dataset.contentTarget + '-content'; // Vormt de ID: "introductie-content", "tools-content", etc.
                     showContentSection(target);
                 });
             });
