@@ -1,82 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>welkom - abelsoftware123</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hacktools - Abelsoftware123</title>
+        <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-                <h1>Hacktools</h1>
+                <h1>Hacktools</h1>
         <p>Overzicht van onze tools en ethische hacking diensten.</p>
         
         <nav>
             <ul>
-                <li><a href="index.html">home</a></li>
-                <li><a href="company.html">abelsoftware123 company</a></li>
-                <li><a href="downloads.html">downloads</a></li>
-                <li><a href="payments.html">payments</a></li>
-                <li><a href="apps.html">list of apps</a></li>
-                <li><a href="hacktools.html">hacktools</a></li>
-                <li><a href="website.html">website</a></li>
-                <li><a href="domain.html">domeinnaam</a></li>
+                                <li><a href="index.html">Home</a></li>
+                <li><a href="company.html">Abelsoftware123 Company</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="apps.html">List of Apps</a></li>
+                <li><a href="hacktools.html">Hacktools</a></li>
+                <li><a href="website.html">Website</a></li>
+                <li><a href="domain.html">Domeinnaam</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="introductie">
+                <section class="introductie">
             <h2>Onze Ethische Hacking Middelen</h2>
-            <p>Hier vind je informatie over de **hack tools** die wij ontwikkelen en gebruiken. Wij zijn gespecialiseerd in het ontwikkelen van op maat gemaakte software die aan al uw behoeften voldoet. onze missie is om iedereen een goede game/web plezier te geven. uw wensen staan voorop! download gratis onze nieuwe abelsoftware123 app en koop uw apps/games/hacktools/website handig in de app!</p>
-       </section>
+                        <p>Hier vind je informatie over de **hack tools** die wij ontwikkelen en gebruiken. Wij zijn gespecialiseerd in het ontwikkelen van op maat gemaakte software die aan al uw behoeften voldoet. Onze missie is om iedereen een goede game/web plezier te geven. Uw wensen staan voorop! Download gratis onze nieuwe Abelsoftware123 App en koop uw apps/games/hacktools/website handig in de app!</p>
+        </section>
+        
         <div style="text-align: center; margin-top: 20px;">
              <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
-    <button class="groene-knop">abelsoftware123 android app</button>
-</a>
- </div>
+                <button class="groene-knop">Abelsoftware123 Android App</button>
+            </a>
+        </div>
+        
         <section class="contact">
-            <h2>neem contact op</h2>
-            <p>klik op de knop hieronder om contact met ons op te nemen als u website/app/hacktools/domeinnaam wilt bestellen. we reageren binnen 24uur. offerte is vrijblijvend en kosteloos.</p>
-            <button id="contact-knop" class="groene-knop">contact</button>
+            <h2>Neem Contact Op</h2>
+            <p>Klik op de knop hieronder om contact met ons op te nemen als u website/app/hacktools/domeinnaam wilt bestellen. We reageren binnen 24uur. Offerte is vrijblijvend en kosteloos.</p>
+            <button id="contact-knop" class="groene-knop">Contact</button>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2025 abelsoftware123. alle rechten voorbehouden.</p>
+        <p>&copy; 2025 Abelsoftware123. Alle rechten voorbehouden.</p>
     </footer>
+    
     <div id="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 8px;">
-            <span id="close-button" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
-            <p>bedankt voor uw interesse! stuur een e-mail naar abelsoftware123hotmail.com.</p>
+        <div style="background-color: #555555; margin: 15% auto; padding: 30px; border-radius: 12px; width: 80%; max-width: 500px; color: #ffffff; text-align: center;">
+            <span id="close-button" style="color: #ffffff; float: right; font-size: 32px; font-weight: bold; cursor: pointer;">&times;</span>
+            <p>Bedankt voor uw interesse! Stuur een e-mail naar abelsoftware123@hotmail.com.</p>
         </div>
     </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // selecteer de knoppen en de modal
-            const contactknop = document.getElementById('contact-knop');
+            const contactKnop = document.getElementById('contact-knop');
             const modal = document.getElementById('modal');
-            const sluitknop = document.getElementById('close-button');
-            // functie om de modal te openen
-            function openmodal() {
+            const sluitKnop = document.getElementById('close-button');
+
+            function openModal() {
                 modal.style.display = 'block';
             }
-            // functie om de modal te sluiten
-            function closemodal() {
+            function closeModal() {
                 modal.style.display = 'none';
             }
-            // voeg een 'klik'-gebeurtenis toe aan de contactknop
-            if (contactknop) {
-                contactknop.addEventListener('click', openmodal);
+
+            if (contactKnop) {
+                contactKnop.addEventListener('click', openModal);
             }
-            // voeg een 'klik'-gebeurtenis toe aan de sluitknop
-            if (sluitknop) {
-                sluitknop.addEventListener('click', closemodal);
+            if (sluitKnop) {
+                sluitKnop.addEventListener('click', closeModal);
             }
-            // sluit de modal als de gebruiker buiten het venster klikt
+
             window.addEventListener('click', function(event) {
                 if (event.target === modal) {
-                    closemodal();
+                    closeModal();
                 }
             });
         });
