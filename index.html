@@ -30,9 +30,61 @@
         <section class="introductie">
             <h2>Over Ons</h2>
             <p>We maken Games voor Android en PC.
-We maken websites in opdracht.</p>
-        </section>
-        </main>
-
-    </body>
+We maken websites in opdracht.
+We maken Android Apps in opdracht.
+we maken Domeinnaam aan in opdracht.
+we verkopen Cyber Security Hacktools.
+Wij zijn gespecialiseerd in het ontwikkelen van op maat gemaakte software die aan al uw behoeften voldoet. Onze missie is om iedereen een goede game/web plezier te geven. Uw wensen staan voorop! Download gratis onze nieuwe Abelsoftware123 App en koop uw apps/games/hacktools/website handig in de app!</p>
+       </section>
+        <div style="text-align: center; margin-top: 20px;">
+             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
+    <button class="groene-knop">Abelsoftware123 Android App</button>
+</a>
+ </div>
+        <section class="contact">
+            <h2>Neem Contact Op</h2>
+            <p>Klik op de knop hieronder om contact met ons op te nemen als u website/app/hacktools/domeinnaam wilt bestellen. We reageren binnen 24uur. Offerte is vrijblijvend en kosteloos.</p>
+            <button id="contact-knop" class="groene-knop">Contact</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Abelsoftware123. Alle rechten voorbehouden.</p>
+    </footer>
+    <div id="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 8px;">
+            <span id="close-button" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <p>Bedankt voor uw interesse! Stuur een e-mail naar abelsoftware123@hotmail.com.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selecteer de knoppen en de modal
+            const contactKnop = document.getElementById('contact-knop');
+            const modal = document.getElementById('modal');
+            const sluitKnop = document.getElementById('close-button');
+            // Functie om de modal te openen
+            function openModal() {
+                modal.style.display = 'block';
+            }
+            // Functie om de modal te sluiten
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+            // Voeg een 'klik'-gebeurtenis toe aan de contactknop
+            if (contactKnop) {
+                contactKnop.addEventListener('click', openModal);
+            }
+            // Voeg een 'klik'-gebeurtenis toe aan de sluitknop
+            if (sluitKnop) {
+                sluitKnop.addEventListener('click', closeModal);
+            }
+            // Sluit de modal als de gebruiker buiten het venster klikt
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
