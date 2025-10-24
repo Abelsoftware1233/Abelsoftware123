@@ -1,14 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    /* De donkere achtergrondkleur van de app-interface */
     background-color: #333333; 
     color: #f0f0f0; 
 }
 
 header {
     text-align: center;
-    /* Extra padding bovenaan voor een 'header' gevoel */
     padding: 30px 0 20px 0; 
     background-color: #333333; 
 }
@@ -23,18 +21,17 @@ h1 {
 header p {
     font-size: 16px;
     color: #cccccc; 
-    margin-bottom: 30px; /* Ruimte tussen de subtitel en de knoppenbalk */
+    margin-bottom: 30px; 
     padding: 0 20px;
 }
 
-/* Navigatie sectie voor de strakke knoppen */
 nav {
     padding: 0;
 }
 
 nav ul {
     list-style: none;
-    padding: 0 20px; /* Horizontale padding voor de knoppen om ze in te laten vallen */
+    padding: 0 20px; 
     margin: 0; 
 }
 
@@ -44,22 +41,19 @@ nav li {
 
 nav a {
     display: block;
-    /* De grijze kleur van de knoppen op de foto */
     background-color: #555555; 
     color: #ffffff; 
-    padding: 18px 20px; /* Geeft de knoppen de juiste hoogte */
+    padding: 18px 20px; 
     text-decoration: none;
     border-radius: 0; 
     margin: 0;
     width: 100%; 
     font-size: 18px;
     transition: background-color 0.1s ease;
-    text-align: left; /* Tekst links uitlijnen */
-    /* De subtiele scheiding tussen de knoppen is de donkere achtergrond */
+    text-align: left; 
     border-bottom: 1px solid #444444; 
 }
 
-/* Afgeronde hoeken voor de knoppengroep */
 nav ul li:first-child a {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -68,32 +62,46 @@ nav ul li:first-child a {
 nav ul li:last-child a {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border-bottom: none; /* De laatste knop heeft geen scheidingslijn nodig */
-    margin-bottom: 30px; /* Ruimte onder de knoppengroep */
+    border-bottom: none; 
+    margin-bottom: 30px; 
 }
-
 
 nav a:hover {
     background-color: #6a6a6a;
 }
 
 main {
-    padding: 0; /* Geen padding hier, zodat de sectie helemaal tot de rand kan */
+    padding: 0; 
     max-width: 800px;
     margin: 0 auto;
     background-color: #333333; 
 }
 
-/* De witte content sectie onder de knoppen */
+/* De algemene content sectie stijl voor zowel introductie als de nieuwe secties */
 section {
-    /* Witte achtergrond voor de inhoud, contrasterend met de donkere body */
     background-color: #ffffff; 
-    color: #333333; /* Donkere tekst op witte achtergrond */
+    color: #333333; 
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 0; /* Geen afronding aan de bovenkant, het vloeit over */
-    box-shadow: 0 -5px 10px rgba(0,0,0,0.1); /* Subtiele schaduw om de scheiding te benadrukken */
+    border-radius: 0; 
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.1); 
 }
+
+/* Specifieke stijl voor de introductie sectie (indien nodig, nu gelijk aan algemeen) */
+.introductie {
+    /* U kunt hier specifieke stijlen voor de introductie toevoegen indien gewenst */
+}
+
+/* Stijl voor de nieuwe content secties (TOOLS, SETUP, FAQ) */
+.content-section {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
+}
+
 
 h2 {
     font-size: 24px;
@@ -133,7 +141,6 @@ footer {
     margin-top: 20px;
 }
 
-/* Modal specifieke stijlen (niet te zien op de foto, maar behouden) */
 #modal {
     display: none;
     position: fixed;
@@ -171,4 +178,48 @@ footer {
     color: #cccccc;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* ========================================================= */
+/* === NIEUWE STIJL VOOR SUPER STRAKKE KNOPPEN (NEONBLAUW) === */
+/* ========================================================= */
+
+.control-panel {
+    display: flex;
+    justify-content: center; /* Centreert de knoppenbalk */
+    gap: 0px; 
+    
+    border: 2px solid #00f0ff; 
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); 
+    border-radius: 4px; 
+    overflow: hidden; 
+    
+    margin: 15px auto 30px auto; /* Ruimte boven en onder, gecentreerd */
+    max-width: fit-content; 
+}
+
+.futuristic-button {
+    background-color: #222222; 
+    color: #00f0ff; 
+    font-family: Arial, sans-serif; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    
+    border-right: 1px solid rgba(0, 240, 255, 0.3); 
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.futuristic-button:last-child {
+    border-right: none;
+}
+
+.futuristic-button:hover {
+    background-color: #00f0ff; 
+    color: #333333; 
+    box-shadow: 0 0 10px #00f0ff; 
+    z-index: 1; 
 }
