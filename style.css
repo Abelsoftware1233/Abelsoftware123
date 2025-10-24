@@ -1,12 +1,14 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
+    /* De donkere achtergrondkleur van de app-interface */
     background-color: #333333; 
     color: #f0f0f0; 
 }
 
 header {
     text-align: center;
+    /* Extra padding bovenaan voor een 'header' gevoel */
     padding: 30px 0 20px 0; 
     background-color: #333333; 
 }
@@ -21,17 +23,18 @@ h1 {
 header p {
     font-size: 16px;
     color: #cccccc; 
-    margin-bottom: 30px; 
+    margin-bottom: 30px; /* Ruimte tussen de subtitel en de knoppenbalk */
     padding: 0 20px;
 }
 
+/* Navigatie sectie voor de strakke knoppen */
 nav {
     padding: 0;
 }
 
 nav ul {
     list-style: none;
-    padding: 0 20px; 
+    padding: 0 20px; /* Horizontale padding voor de knoppen om ze in te laten vallen */
     margin: 0; 
 }
 
@@ -39,39 +42,57 @@ nav li {
     margin: 0; 
 }
 
+/* NEONBLAUWE STIJL VOOR DE VERTICALE NAVIGATIEKNOPPEN */
 nav a {
     display: block;
+    /* Donkergrijze achtergrond behouden */
     background-color: #555555; 
-    color: #ffffff; 
+    
+    /* Tekstkleur nu Neonblauw */
+    color: #00f0ff; 
+    
     padding: 18px 20px; 
     text-decoration: none;
     border-radius: 0; 
     margin: 0;
     width: 100%; 
     font-size: 18px;
-    transition: background-color 0.1s ease;
+    
+    /* Overgang voor het glow effect */
+    transition: background-color 0.1s ease, box-shadow 0.3s ease; 
+    
     text-align: left; 
-    border-bottom: 1px solid #444444; 
+    
+    /* Subtiele blauwe scheidingslijn in plaats van de donkere scheiding */
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2); 
 }
 
+/* Afgeronde hoeken en gloed voor de knoppengroep */
 nav ul li:first-child a {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    /* Lichte blauwe gloed bovenaan de knoppengroep */
+    box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3);
 }
 
 nav ul li:last-child a {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border-bottom: none; 
+    border-bottom: none; /* De laatste knop heeft geen scheidingslijn nodig */
     margin-bottom: 30px; 
+    /* Lichte blauwe gloed onderaan de knoppengroep */
+    box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3); 
 }
 
+
+/* Hover-effect: knop wordt iets donkerder en krijgt een intense blauwe gloed */
 nav a:hover {
-    background-color: #6a6a6a;
+    background-color: #4a4a4a; /* Iets donkerder bij hover */
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.8); /* Sterke neon gloed */
 }
 
 main {
-    padding: 0; 
+    padding: 0; /* Geen padding hier, zodat de sectie helemaal tot de rand kan */
     max-width: 800px;
     margin: 0 auto;
     background-color: #333333; 
@@ -87,11 +108,6 @@ section {
     box-shadow: 0 -5px 10px rgba(0,0,0,0.1); 
 }
 
-/* Specifieke stijl voor de introductie sectie (indien nodig, nu gelijk aan algemeen) */
-.introductie {
-    /* U kunt hier specifieke stijlen voor de introductie toevoegen indien gewenst */
-}
-
 /* Stijl voor de nieuwe content secties (TOOLS, SETUP, FAQ) */
 .content-section {
     background-color: #ffffff;
@@ -101,7 +117,6 @@ section {
     border-radius: 0;
     box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
 }
-
 
 h2 {
     font-size: 24px;
@@ -120,106 +135,3 @@ p {
     background-color: #4CAF50; 
     color: white;
     padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-.groene-knop:hover {
-    background-color: #45a049;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #cccccc;
-    font-size: 14px;
-    background-color: #222222; 
-    margin-top: 20px;
-}
-
-#modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6); 
-}
-
-#modal > div {
-    background-color: #555555; 
-    margin: 15% auto;
-    padding: 30px;
-    border-radius: 12px;
-    width: 80%;
-    max-width: 500px;
-    color: #ffffff;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-#close-button {
-    color: #ffffff; 
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#close-button:hover,
-#close-button:focus {
-    color: #cccccc;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* ========================================================= */
-/* === NIEUWE STIJL VOOR SUPER STRAKKE KNOPPEN (NEONBLAUW) === */
-/* ========================================================= */
-
-.control-panel {
-    display: flex;
-    justify-content: center; /* Centreert de knoppenbalk */
-    gap: 0px; 
-    
-    border: 2px solid #00f0ff; 
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); 
-    border-radius: 4px; 
-    overflow: hidden; 
-    
-    margin: 15px auto 30px auto; /* Ruimte boven en onder, gecentreerd */
-    max-width: fit-content; 
-}
-
-.futuristic-button {
-    background-color: #222222; 
-    color: #00f0ff; 
-    font-family: Arial, sans-serif; 
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 15px 20px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    
-    border-right: 1px solid rgba(0, 240, 255, 0.3); 
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-}
-
-.futuristic-button:last-child {
-    border-right: none;
-}
-
-.futuristic-button:hover {
-    background-color: #00f0ff; 
-    color: #333333; 
-    box-shadow: 0 0 10px #00f0ff; 
-    z-index: 1; 
-}
