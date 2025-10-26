@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,8 @@
 <body>
 
     <header>
-        <h1> Welkom</h1>
-        <p>Welkom bij Abelsoftware123</p>
+        <h1> Welcome</h1>
+        <p>Welcome to Abelsoftware123</p>
         
         <nav>
             <ul>
@@ -20,8 +20,8 @@
                 <li><a href="payments.html">Payments/Betalingen</a></li>
                 <li><a href="apps.html">Games List of Apps</a></li>
                 <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Website en Apps</a></li>
-                <li><a href="domain.html">Domeinnaam</a></li>
+                <li><a href="website.html">Website and Apps</a></li>
+                <li><a href="domain.html">Domain Name</a></li>
             </ul>
         </nav>
         
@@ -31,28 +31,28 @@
             <button class="futuristic-button" data-content-target="setup">SETUP</button>
             <button class="futuristic-button" data-content-target="faq">FAQ</button>
         </div>
-        </header>
+    </header>
 
     <main>
         
         <section class="introductie content-section" id="introductie-content">
-            <h2>Onze Ethische Hacking Middelen</h2>
-            <p>Hier vind je informatie over de **hack tools** die wij ontwikkelen en gebruiken. Wij zijn gespecialiseerd in het ontwikkelen van op maat gemaakte software die aan al uw behoeften voldoet. Onze missie is om iedereen een goede game/web plezier te geven. Uw wensen staan voorop! Download gratis onze nieuwe Abelsoftware123 App en koop uw apps/games/hacktools/website handig in de app!</p>
+            <h2>Our Ethical Hacking Resources</h2>
+            <p>Here you will find information about the **hack tools** we develop and use. We specialize in developing custom software that meets all your needs. Our mission is to give everyone a good gaming/web experience. Your wishes come first! Download our new Abelsoftware123 App for free and conveniently purchase your apps/games/hacktools/website within the app!</p>
         </section>
         
         <section class="content-section" id="tools-content" style="display: none;">
-            <h2>Onze Tools</h2>
-            <p>Hier vindt u een diepgaande beschrijving van de verschillende tools die Abelsoftware123 aanbiedt. Ontdek hoe elke tool werkt en welke voordelen het biedt.</p>
+            <h2>Our Tools</h2>
+            <p>Here you will find an in-depth description of the various tools offered by Abelsoftware123. Discover how each tool works and what benefits it offers.</p>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
-            <h2>Setup Gids</h2>
-            <p>Volg onze stapsgewijze handleiding om uw nieuwe tools of software eenvoudig te installeren en te configureren. Voor een vlotte start!</p>
+            <h2>Setup Guide</h2>
+            <p>Follow our step-by-step guide to easily install and configure your new tools or software. For a smooth start!</p>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
-            <h2>Veelgestelde Vragen (FAQ)</h2>
-            <p>Heeft u vragen? Raadpleeg onze veelgestelde vragen sectie voor snelle antwoorden op de meest voorkomende onderwerpen.</p>
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <p>Do you have questions? Consult our Frequently Asked Questions section for quick answers to the most common topics.</p>
         </section>
 
         <div style="text-align: center; margin-top: 20px;">
@@ -62,20 +62,20 @@
         </div>
         
         <section class="contact">
-            <h2>Neem Contact Op</h2>
-            <p>Klik op de knop hieronder om contact met ons op te nemen als u website/app/hacktools/domeinnaam wilt bestellen. We reageren binnen 24uur. Offerte is vrijblijvend en kosteloos.</p>
+            <h2>Contact Us</h2>
+            <p>Click the button below to contact us if you want to order a website/app/hacktools/domain name. We respond within 24 hours. Quotes are non-binding and free of charge.</p>
             <button id="contact-knop" class="groene-knop">Contact</button>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 Abelsoftware123. Alle rechten voorbehouden.</p>
+        <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
     </footer>
     
     <div id="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
         <div style="background-color: #555555; margin: 15% auto; padding: 30px; border-radius: 12px; width: 80%; max-width: 500px; color: #ffffff; text-align: center;">
             <span id="close-button" style="color: #ffffff; float: right; font-size: 32px; font-weight: bold; cursor: pointer;">&times;</span>
-            <p>Bedankt voor uw interesse! Stuur een e-mail naar abelsoftware123@hotmail.com.</p>
+            <p>Thank you for your interest! Send an email to abelsoftware123@hotmail.com.</p>
         </div>
     </div>
     
@@ -112,31 +112,31 @@
             const futuristicButtons = document.querySelectorAll('.futuristic-button');
             const contentSections = document.querySelectorAll('.content-section');
 
-            // Functie om alle contentsecties te verbergen
+            // Functie om alle contentsecties te verbergen (Function to hide all content sections)
             function hideAllContentSections() {
                 contentSections.forEach(section => {
                     section.style.display = 'none';
                 });
             }
 
-            // Functie om een specifieke contentsectie te tonen
+            // Functie om een specifieke contentsectie te tonen (Function to show a specific content section)
             function showContentSection(targetId) {
-                hideAllContentSections(); // Eerst alles verbergen
+                hideAllContentSections(); // Eerst alles verbergen (Hide everything first)
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
                     targetSection.style.display = 'block';
                 }
             }
 
-            // Event listeners toevoegen aan de futuristische knoppen
+            // Event listeners toevoegen aan de futuristische knoppen (Add event listeners to the futuristic buttons)
             futuristicButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const target = this.dataset.contentTarget + '-content'; // Vormt de ID: "introductie-content", "tools-content", etc.
+                    const target = this.dataset.contentTarget + '-content'; // Vormt de ID: "introductie-content", "tools-content", etc. (Forms the ID: "introductie-content", "tools-content", etc.)
                     showContentSection(target);
                 });
             });
 
-            // Toon de 'INFO' sectie standaard bij het laden van de pagina
+            // Toon de 'INFO' sectie standaard bij het laden van de pagina (Show the 'INFO' section by default when the page loads)
             showContentSection('introductie-content');
         });
     </script>
