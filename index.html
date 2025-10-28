@@ -62,14 +62,17 @@
 
         <div style="text-align: center; margin-top: 20px;">
              <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
-                <button class="groene-knop">Download Abelsoftware123 Android App</button>
+                <button class="groene-knop">Abelsoftware123 Android App</button>
             </a>
         </div>
         
         <section class="contact">
             <h2>Contact Us</h2>
             <p>Click the button below to contact us if you want to order a website/app/hacktools/domain name. We respond within 24 hours. Quotes are non-binding and free of charge.</p>
-            <button id="contact-knop" class="groene-knop">Contact</button>
+            
+            <a href="Send an email to:abelsoftware123@hotmail.com">
+                <button id="contact-knop" class="groene-knop">Contact</button>
+            </a>
         </section>
     </main>
     
@@ -77,41 +80,6 @@
         <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
     </footer>
     
-    <div id="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-        <div style="background-color: #555555; margin: 15% auto; padding: 30px; border-radius: 12px; width: 80%; max-width: 500px; color: #ffffff; text-align: center;">
-            <span id="close-button" style="color: #ffffff; float: right; font-size: 32px; font-weight: bold; cursor: pointer;">&times;</span>
-            <p>Thank you for your interest! Send an email to abelsoftware123@hotmail.com.</p>
-        </div>
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactKnop = document.getElementById('contact-knop');
-            const modal = document.getElementById('modal');
-            const sluitKnop = document.getElementById('close-button');
-
-            function openModal() {
-                modal.style.display = 'block';
-            }
-            function closeModal() {
-                modal.style.display = 'none';
-            }
-
-            if (contactKnop) {
-                contactKnop.addEventListener('click', openModal);
-            }
-            if (sluitKnop) {
-                sluitKnop.addEventListener('click', closeModal);
-            }
-
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
-        });
-    </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const futuristicButtons = document.querySelectorAll('.futuristic-button');
