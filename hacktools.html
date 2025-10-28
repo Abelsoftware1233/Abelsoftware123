@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacktools - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specifieke styling voor deze pagina om de afbeelding te centreren */
+        .hacktools-content {
+            background-color: white; /* Zorgt voor de witte achtergrond */
+            padding: 20px;
+            margin: 20px auto; /* Centreert het witte vak zelf */
+            max-width: 800px; /* Maximale breedte van het witte vak */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .image-center-container {
+            display: flex; /* Gebruik flexbox voor centreren */
+            justify-content: center; /* Centreert horizontaal */
+            margin-top: 20px; /* Ruimte boven de afbeelding */
+            margin-bottom: 20px; /* Ruimte onder de afbeelding */
+        }
+
+        .hacktools-image {
+            max-width: 100%; /* Afbeelding is nooit breder dan de parent container (het witte vak) */
+            height: auto; /* Behoudt de aspect ratio */
+            display: block; /* Verwijdert extra ruimte onder de afbeelding, belangrijk met flexbox */
+            border: 2px solid #ddd; /* Optionele lichte rand */
+            border-radius: 5px; /* Optionele lichte afronding */
+        }
+    </style>
 </head>
 <body>
 
@@ -49,7 +75,14 @@
 12. API Scanner 
 13. Wordpress scanner
 14. IP location tracker software------ Send an Email to order the Hacking software. You will then receive an invoice from us. After payment, the software will be emailed to you.</p>
-            <img src="https://steamlabs.co.th/wp-content/uploads/2021/09/Yellow-and-Blue-Colorful-Brushstroke-Art-Education-YouTube-Thumbnail-2.png" alt="Yellow and Blue Colorful Brushstroke Art Education YouTube Thumbnail">
+            
+            <div class="image-center-container">
+                <img 
+                    src="https://steamlabs.co.th/wp-content/uploads/2021/09/Yellow-and-Blue-Colorful-Brushstroke-Art-Education-YouTube-Thumbnail-2.png" 
+                    alt="Yellow and Blue Colorful Brushstroke Art Education YouTube Thumbnail"
+                    class="hacktools-image"
+                >
+            </div>
 
         </section>
     </main>
