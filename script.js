@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); 
             
             // Stelt de 'mailto' link in via JavaScript
-            window.location.href = 'mailto:abelsoftware123@hotmail.com';
+            window.location.href = 'Send an email to: abelsoftware123@hotmail.com';
         });
     }
 });
