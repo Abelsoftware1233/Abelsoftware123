@@ -6,7 +6,7 @@
     <title>Hacktools - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Specifieke styling voor deze pagina om de afbeelding te centreren */
+        /* Specifieke styling voor deze pagina om de afbeeldingen te centreren */
         .hacktools-content {
             background-color: white; /* Zorgt voor de witte achtergrond */
             padding: 20px;
@@ -17,18 +17,21 @@
         }
 
         .image-center-container {
-            display: flex; /* Gebruik flexbox voor centreren */
-            justify-content: center; /* Centreert horizontaal */
+            /* Gebruik flexbox om de inhoud van de div horizontaal te centreren */
+            display: flex; 
+            justify-content: center; 
             margin-top: 20px; /* Ruimte boven de afbeelding */
             margin-bottom: 20px; /* Ruimte onder de afbeelding */
         }
 
         .hacktools-image {
-            max-width: 100%; /* Afbeelding is nooit breder dan de parent container (het witte vak) */
-            height: auto; /* Behoudt de aspect ratio */
-            display: block; /* Verwijdert extra ruimte onder de afbeelding, belangrijk met flexbox */
-            border: 2px solid #ddd; /* Optionele lichte rand */
-            border-radius: 5px; /* Optionele lichte afronding */
+            /* Zorgt ervoor dat de afbeeldingen responsief zijn en niet vervormen */
+            max-width: 100%; 
+            height: auto; 
+            /* Algemene styling */
+            display: block; 
+            border: 2px solid #ddd; 
+            border-radius: 5px; 
         }
     </style>
 </head>
@@ -80,6 +83,14 @@
                 <img 
                     src="https://steamlabs.co.th/wp-content/uploads/2021/09/Yellow-and-Blue-Colorful-Brushstroke-Art-Education-YouTube-Thumbnail-2.png" 
                     alt="Yellow and Blue Colorful Brushstroke Art Education YouTube Thumbnail"
+                    class="hacktools-image"
+                >
+            </div>
+            
+            <div class="image-center-container">
+                <img 
+                    src="https://repository-images.githubusercontent.com/304629930/8a867980-1c8c-11eb-9372-0550867118ee" 
+                    alt="GitHub repository afbeelding van een logo of project"
                     class="hacktools-image"
                 >
             </div>
