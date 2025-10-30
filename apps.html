@@ -6,21 +6,162 @@
     <title>List of Apps - Abelsoftware123</title>
     
     <style>
-        /* Algemene styling voor de hoofdinhoud */
-        main {
-            padding: 20px;
-            max-width: 960px;
-            margin: 0 auto;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            /* De donkere achtergrondkleur van de app-interface */
+            background-color: #333333; 
+            color: #f0f0f0; 
         }
 
-        /* --- Stijlen voor de responsieve afbeeldingen --- */
+        header {
+            text-align: center;
+            /* Extra padding bovenaan voor een 'header' gevoel */
+            padding: 30px 0 20px 0; 
+            background-color: #333333; 
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #ffffff; 
+            padding: 0 20px;
+        }
+
+        header p {
+            font-size: 16px;
+            color: #cccccc; 
+            margin-bottom: 30px; /* Ruimte tussen de subtitel en de knoppenbalk */
+            padding: 0 20px;
+        }
+
+        /* Navigatie sectie voor de strakke knoppen */
+        nav {
+            padding: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0 20px; /* Horizontale padding voor de knoppen om ze in te laten vallen */
+            margin: 0; 
+        }
+
+        nav li {
+            margin: 0; 
+        }
+
+        /* NEONBLAUWE STIJL VOOR DE VERTICALE NAVIGATIEKNOPPEN */
+        nav a {
+            display: block;
+            /* Donkergrijze achtergrond behouden */
+            background-color: #555555; 
+            
+            /* Tekstkleur nu Neonblauw */
+            color: #00f0ff; 
+            
+            padding: 18px 20px; 
+            text-decoration: none;
+            border-radius: 0; 
+            margin: 0;
+            width: 100%; 
+            font-size: 18px;
+            
+            /* Overgang voor het glow effect */
+            transition: background-color 0.1s ease, box-shadow 0.3s ease; 
+            
+            text-align: left; 
+            
+            /* Subtiele blauwe scheidingslijn in plaats van de donkere scheiding */
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2); 
+        }
+
+        /* Afgeronde hoeken en gloed voor de knoppengroep */
+        nav ul li:first-child a {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            /* Lichte blauwe gloed bovenaan de knoppengroep */
+            box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3);
+        }
+
+        nav ul li:last-child a {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-bottom: none; /* De laatste knop heeft geen scheidingslijn nodig */
+            margin-bottom: 30px; 
+            /* Lichte blauwe gloed onderaan de knoppengroep */
+            box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3); 
+        }
+
+
+        /* Hover-effect: knop wordt iets donkerder en krijgt een intense blauwe gloed */
+        nav a:hover {
+            background-color: #4a4a4a; /* Iets donkerder bij hover */
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8); /* Sterke neon gloed */
+        }
+
+        main {
+            padding: 0; /* Geen padding hier, zodat de sectie helemaal tot de rand kan */
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #333333; 
+        }
+
+        /* De algemene content sectie stijl voor zowel introductie als de nieuwe secties */
+        .apps-list, .content-section {
+            /* Let op: Hier moet je de achtergrondkleur van de content-sectie aanpassen 
+               omdat de CSS een witte achtergrond (body: #ffffff) specificeerde.
+               Voor een donkere app-stijl is een donkerdere kleur beter. 
+               Ik stel een iets lichtere tint donkergrijs voor dan de body. */
+            background-color: #444444; 
+            color: #f0f0f0; /* Lichte tekstkleur voor de donkere achtergrond */
+            padding: 20px;
+            margin: 0 20px 20px 20px; /* Marges om het in te laten vallen, maar geen top/bottom padding in main */
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Donkere schaduw voor diepte */
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #00f0ff; /* Neonblauw voor titels in de secties */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cccccc; /* Lichtere tekstkleur */
+        }
+        
+        /* Stijlen voor de app-items */
+        .app-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #555555; /* Donkere scheidingslijn */
+        }
+        
+        .app-item:last-child {
+            border-bottom: none;
+        }
+        
+        .app-item h3 {
+            color: #ffffff; /* Witte titel voor de app-naam */
+            margin: 0 0 5px 0;
+        }
+        
+        .app-item p {
+            color: #cccccc;
+            margin: 0;
+        }
+        
+        /* Overige stijlen overgenomen uit de oorspronkelijke HTML-tekst */
+        
         .responsive-image {
             max-width: 100%;    /* Zorgt ervoor dat de afbeelding zich aanpast aan de container */
             height: auto;       /* Behoudt de beeldverhouding */
             display: block;
             margin: 20px auto;  /* Centreert de afbeelding en geeft ruimte */
             border-radius: 8px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Aangepaste schaduw voor donkere look */
         }
 
         .app-image-container {
@@ -31,13 +172,22 @@
         .app-image-container figcaption {
             margin-top: 10px;
             font-style: italic;
-            color: #555;
+            color: #00f0ff; /* Neonblauwe kleur voor bijschriften */
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #999999;
+            font-size: 14px;
+            background-color: #222222; /* Nog donkerder voor de footer */
+            margin-top: 20px;
         }
 
-        /* Let op: Eventuele andere styling die in je originele 'style.css' stond,
-           moet je mogelijk nog handmatig hier of in 'style.css' toevoegen. */
+        /* De groene knop stijl van de CSS-tekst is hier weggelaten 
+           omdat deze niet in de HTML-structuur wordt gebruikt. */
     </style>
-</head>
+    </head>
 <body>
     <header>
         <h1>List of Apps</h1>
