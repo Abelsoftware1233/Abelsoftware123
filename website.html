@@ -1,10 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website and App Development - Abelsoftware123</title>
-    </head>
+    <title>Abelsoftware123 - Website & App Development | Neon Theme</title>
+    
+    <style>
+        /* ================================================= */
+        /* == NEON BLAUW DARK THEME STIJLEN (Aangepast) == */
+        /* ================================================= */
+        
+        /* Algemene stijlen voor het donkere thema */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333333; /* De donkere achtergrondkleur van de app-interface */
+            color: #f0f0f0; 
+            min-height: 100vh; /* Zorgt voor volledige hoogte */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Responsive Afbeelding bovenaan - Vullen de breedte */
+        .header-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0 20px 0; /* Extra padding bovenaan */
+            background-color: #333333; 
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #ffffff; 
+            padding: 0 20px;
+        }
+
+        header p {
+            font-size: 16px;
+            color: #cccccc; 
+            margin-bottom: 30px; 
+            padding: 0 20px;
+        }
+
+        /* Navigatie sectie voor de strakke knoppen */
+        nav {
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto; /* Centreer de navigatie */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0 20px; 
+            margin: 0; 
+        }
+
+        nav li {
+            margin: 0; 
+        }
+
+        /* NEONBLAUWE STIJL VOOR DE VERTICALE NAVIGATIEKNOPPEN */
+        nav a {
+            display: block;
+            background-color: #555555; 
+            color: #00f0ff; /* Tekstkleur nu Neonblauw */
+            padding: 18px 20px; 
+            text-decoration: none;
+            border-radius: 0; 
+            margin: 0;
+            width: 100%; 
+            font-size: 18px;
+            transition: background-color 0.1s ease, box-shadow 0.3s ease; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2); /* Subtiele blauwe scheidingslijn */
+            box-sizing: border-box; /* Zorgt ervoor dat padding binnen de breedte blijft */
+        }
+
+        /* Afgeronde hoeken en gloed voor de knoppengroep */
+        nav ul li:first-child a {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3), 0 1px 0 rgba(0, 240, 255, 0.2); 
+        }
+
+        nav ul li:last-child a {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-bottom: none; 
+            margin-bottom: 30px; 
+            box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3), 0 -1px 0 rgba(0, 240, 255, 0.2); 
+        }
+
+        /* Hover-effect: knop wordt iets donkerder en krijgt een intense blauwe gloed */
+        nav a:hover {
+            background-color: #4a4a4a; 
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 5px rgba(0, 240, 255, 0.8); 
+        }
+
+        main {
+            padding: 0 20px; /* Padding om de secties in te laten vallen */
+            max-width: 800px;
+            margin: 0 auto;
+            flex-grow: 1; /* Zorgt ervoor dat main de beschikbare ruimte inneemt */
+        }
+
+        /* De algemene content sectie stijl */
+        .content-section {
+            background-color: #1a1a1a; /* Donkergrijs/zwart voor contrast */
+            color: #f0f0f0; 
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px; /* Afgeronde hoeken voor de content secties */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtiele schaduw */
+            border: 1px solid rgba(0, 240, 255, 0.3); /* Neon rand */
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #00f0ff; /* Neonblauw voor titels */
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); /* Neon gloed op de titel */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .content-section ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #f0f0f0;
+        }
+        
+        .content-section ul li::before {
+            content: '»'; /* Gebruik een opvallend teken als opsommingsteken */
+            color: #00f0ff; /* Neonblauw opsommingsteken */
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+
+        .groene-knop {
+            /* DEZE KLASSE WAS NIET IN DE HTML, MAAR HIER VOOR DE VOLLEDIGHEID IN DARK THEME */
+            background-color: #4CAF50; 
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .groene-knop:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #222222; 
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        /* Media Query voor kleinere schermen (optioneel, maar goed voor responsiviteit) */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px;
+            }
+            header p {
+                font-size: 14px;
+            }
+            nav ul {
+                padding: 0 10px;
+            }
+            main {
+                padding: 0 10px;
+            }
+            .content-section {
+                padding: 15px;
+            }
+        }
+        
+        /* Oude, ongebruikte CSS classes uit de prompt zijn hierboven verwijderd of vervangen door de Dark/Neon-stijl */
+
+    </style>
+</head>
 <body>
 
     <img src="https://img-cdn.inc.com/image/upload/f_webp,c_fit,w_1920,q_auto/images/panoramic/getty_503426092_342208.jpg" alt="Afbeelding van iemand die op een laptop werkt" class="header-image">
@@ -28,7 +236,7 @@
     </header>
 
     <main>
-        <section class="website-content">
+        <section class="content-section">
             <h2>Custom Websites and Apps</h2>
             <p>We design and build **responsive websites and apps** that look good on every device. Whether you need a simple landing page or a complex webshop, we deliver custom solutions.</p>
 
@@ -40,99 +248,25 @@
                 <li>Testing and delivery.</li>
             </ul>
         </section>
+        
+        <section class="content-section">
+            <h2>🔥 Neon Technologies</h2>
+            <p>Our work is powered by the latest, most efficient **frontend and backend technologies**, ensuring your application is fast, secure, and scalable.</p>
+
+            <h3>Key Tools</h3>
+            <ul>
+                <li>**Frontend:** React, Vue.js, NeonBlue CSS Framework</li>
+                <li>**Backend:** Node.js, Python/Django, Serverless Architectures</li>
+                <li>**Database:** MongoDB, PostgreSQL (with a focus on speed)</li>
+            </ul>
+            <a href="contact.html" class="groene-knop">Start Your Project</a>
+        </section>
+        
     </main>
 
     <footer>
         <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
     </footer>
 
-    <style>
-        /* ================================================= */
-        /* == Responsieve CSS-stijlen voor mobiele schermen == */
-        /* ================================================= */
-
-        /* Algemene reset en basisstijlen */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* Afbeelding responsief maken */
-        .header-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Header stijlen */
-        header {
-            background-color: #f4f4f4;
-            padding: 1rem 1.5rem;
-            text-align: center;
-        }
-
-        header h1 {
-            margin-top: 0;
-            font-size: 2.5em;
-        }
-
-        header p {
-            font-size: 1.1em;
-            margin-bottom: 1rem;
-        }
-
-        /* Navigatie stijlen */
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #007bff;
-            padding: 0.5rem 1rem;
-            border: 1px solid #007bff;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            display: block;
-        }
-
-        nav ul li a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        /* Main content stijlen */
-        main {
-            padding: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .website-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .website-content h2, .website-content h3 {
-            color: #007bff;
-        }
-
-        .website-content ul {
-            list-style: disc;
-            margin-left: 20px;
-        }
-
-        /* Footer stijlen */
-        footer {
-            background-color:
+</body>
+</html>
