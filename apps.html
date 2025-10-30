@@ -4,8 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Apps - Abelsoftware123</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    
+    <style>
+        /* Algemene styling voor de hoofdinhoud */
+        main {
+            padding: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* --- Stijlen voor de responsieve afbeelding --- */
+        .responsive-image {
+            max-width: 100%;    /* Zorgt ervoor dat de afbeelding zich aanpast aan de container */
+            height: auto;       /* Behoudt de beeldverhouding */
+            display: block;
+            margin: 20px auto;  /* Centreert de afbeelding en geeft ruimte */
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        }
+
+        .app-image-container {
+            text-align: center; /* Centreert de afbeelding en de figcaption */
+            margin-bottom: 30px; 
+        }
+
+        .app-image-container figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Let op: Eventuele andere styling die in je originele 'style.css' stond,
+           moet je mogelijk nog handmatig hier of in 'style.css' toevoegen. */
+    </style>
+    </head>
 <body>
     <header>
         <h1>List of Apps</h1>
@@ -27,6 +59,12 @@
     <main>
         <section class="apps-list">
             <h2>Our Applications</h2>
+            
+            <figure class="app-image-container">
+                <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Game Icon" class="responsive-image">
+                <figcaption>Featured Game Icon</figcaption>
+            </figure>
+
             <div class="app-item">
                 <h3>WMWario Happy The Game Android App</h3>
                 <p>adventure game with pipes and wmwarios greatest game app 2025.</p>
@@ -44,7 +82,7 @@
                 <p>the one and only tweety blocks that avoids pipes.</p>
             </div>
             <div class="app-item">
-                <h3>SlotMoji Android App</h3>
+                <h3>SlotMoji Android App
                 <p>The most fun emoji slot machine game of the year 2025.</p>
             </div>
             <div class="app-item">
@@ -56,7 +94,7 @@
                 <h3>WMWario Crush Saga Android App</h3>
                 <p>The most fun WMWario Crush game of the year 2025.</p>
             </div>
-</div>
+
             <div class="app-item">
                 <h3>Kross and Zero Android App</h3>
                 <p>the best Classic Game re-released in 2025 with a futuristic design.</p>
@@ -73,7 +111,7 @@
         
           </div>
           
-</section>
+        </section>
     </main>
 
     <footer>
