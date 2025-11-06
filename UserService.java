@@ -40,3 +40,24 @@ public class UserService {
         return userRepository.save(newUser);
     }
 }
+// Binnen src/main/java/com/jouwgamedomein/registratie/service/UserService.java
+
+// ... (Bestand begint met imports en de class definitie) ...
+
+public boolean verifyLogin(String username, String rawPassword) {
+    
+    // 1. Zoek de gebruiker op basis van de gebruikersnaam
+    Optional<User> userOptional = userRepository.findByUsername(username);
+
+    if (userOptional.isEmpty()) {
+        return false; // Gebruiker bestaat niet
+    }
+
+    User user = userOptional.get();
+    
+    // 2. Vergelijk het ingevoerde wachtwoord met de opgeslagen hash
+    // Dit is de veilige manier om in te loggen!
+    return passwordEncoder.matches(rawPassword, user.getPasswordHash());
+}
+
+// ... (Rest van de UserService, inclusief registerNewUser, blijft hetzelfde) ...
