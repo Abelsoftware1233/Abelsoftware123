@@ -30,3 +30,28 @@ public class SecurityConfig {
         return http.build();
     }
 }
+// Binnen SecurityConfig.java
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        // ... (Vorige instellingen blijven gelijk) ...
+        .authorizeRequests()
+        .antMatchers("/api/registreer", "/api/login", "/register.html", "/login.html").permitAll() // Openbare pagina's
+        .antMatchers("/profiel", "/profiel.html").authenticated() // ⬅️ NIEUW: Profiel vereist inloggen!
+        .anyRequest().authenticated()
+        
+        // Voeg de Spring Security login functionaliteit toe:
+        .and()
+        .formLogin()
+            .loginPage("/login.html") // Gebruik je eigen inlogpagina
+            .loginProcessingUrl("/perform_login") // Waar het formulier naartoe POST't (standaard Spring pad)
+            .defaultSuccessUrl("/profiel", true) // Stuur naar profiel na succesvol inloggen
+            .failureUrl("/login.html?error=true")
+            
+        .and()
+        .logout()
+            .logoutUrl("/perform_logout")
+            .logoutSuccessUrl("/login.html?logout=true");
+
+    return http.build();
+}
