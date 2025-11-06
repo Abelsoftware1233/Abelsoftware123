@@ -17,3 +17,31 @@
         <scope>runtime</scope>
     </dependency>
 </dependencies>
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mijn Profiel | Jouw Gamesite</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background-color: #007bff; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .logout-btn { float: right; padding: 8px 15px; background-color: #ffc107; color: #333; border: none; border-radius: 4px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 th:text="'Welkom, ' + ${username} + '!'">Welkom, Gebruiker!</h1>
+        
+        <a th:href="@{/perform_logout}" class="logout-btn">Uitloggen</a>
+    </div>
+
+    <h2>Mijn Highscores</h2>
+    <p>Hier komen straks je beste scores en statistieken te staan.</p>
+
+    <h2>Account Details</h2>
+    <ul>
+        <li>**Gebruikersnaam:** <span th:text="${username}"></span></li>
+        <li>**Status:** Actief</li>
+    </ul>
+</body>
+</html>
