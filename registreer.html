@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gebruikersregistratie | Abelsoftware123</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Zorgt ervoor dat padding binnen de breedte valt */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎮 Registreer je Profiel</h2>
+        
+        <form id="registratieForm" action="/api/registreer" method="POST">
+            
+            <label for="gebruikersnaam">Gebruikersnaam:</label>
+            <input type="text" id="gebruikersnaam" name="gebruikersnaam" required minlength="3">
+            
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="wachtwoord">Wachtwoord:</label>
+            <input type="password" id="wachtwoord" name="wachtwoord" required minlength="8">
+
+            <label for="wachtwoord_herhaal">Herhaal Wachtwoord:</label>
+            <input type="password" id="wachtwoord_herhaal" name="wachtwoord_herhaal" required minlength="8">
+            
+            <button type="submit">Account Aanmaken</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registratieForm').addEventListener('submit', function(e) {
+            const wachtwoord = document.getElementById('wachtwoord').value;
+            const herhaal = document.getElementById('wachtwoord_herhaal').value;
+
+            if (wachtwoord !== herhaal) {
+                e.preventDefault(); // Voorkom dat het formulier wordt verstuurd
+                alert("De ingevoerde wachtwoorden komen niet overeen!");
+            }
+        });
+    </script>
+</body>
+</html>
