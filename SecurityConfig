@@ -1,0 +1,32 @@
+package com.jouwgamedomein.registratie.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    // Deze Bean is essentieel voor het hashen van wachtwoorden in UserService
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(); 
+    }
+
+    // Dit is een simpele configuratie om Spring Security niet overal in de weg te laten zitten
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable() // Schakel CSRF uit voor nu (vereenvoudigt API tests)
+            .authorizeRequests()
+            .antMatchers("/api/registreer", "/api/login", "/register.html", "/login.html").permitAll() // Sta toegang toe tot registratie en login
+            .anyRequest().authenticated(); // Alle andere requests vereisen inloggen
+
+        return http.build();
+    }
+}
