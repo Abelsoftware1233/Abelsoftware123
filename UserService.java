@@ -1,7 +1,7 @@
-package com.jouwgamedomein.registratie.service;
+package com.abelsoftware123.registratie.service;
 
-import com.jouwgamedomein.registratie.model.User;
-import com.jouwgamedomein.registratie.repository.UserRepository;
+import com.abelsoftware123.registratie.model.User;
+import com.abelsoftware123.registratie.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
