@@ -1,4 +1,4 @@
-package com.jouwgamedomein.registratie.model;
+package com. abelsoftware123.registratie.model;
 
 import javax.persistence.*;
 
