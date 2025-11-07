@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inloggen | Jouw Gamesite</title>
+    <title>Login | Your Gaming Site</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
         .container { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 350px; }
@@ -15,20 +15,20 @@
 </head>
 <body>
     <div class="container">
-        <h2>🔑 Log In op je Account</h2>
+        <h2>🔑 Log In to Your Account</h2>
         
         <form action="/api/login" method="POST">
             
-            <label for="gebruikersnaam">Gebruikersnaam:</label>
-            <input type="text" id="gebruikersnaam" name="gebruikersnaam" required>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
             
-            <label for="wachtwoord">Wachtwoord:</label>
-            <input type="password" id="wachtwoord" name="wachtwoord" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
             
-            <button type="submit">Inloggen</button>
+            <button type="submit">Login</button>
             
             <p style="text-align: center; margin-top: 15px;">
-                Nog geen account? <a href="register.html">Registreer hier</a>
+                No account yet? <a href="register.html">Register here</a>
             </p>
         </form>
     </div>
