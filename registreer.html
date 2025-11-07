@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gebruikersregistratie | Abelsoftware123</title>
+    <title>User Registration | Abelsoftware123</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,7 +40,7 @@
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box; /* Zorgt ervoor dat padding binnen de breedte valt */
+            box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
         }
         button {
             width: 100%;
@@ -60,34 +60,34 @@
 </head>
 <body>
     <div class="container">
-        <h2>🎮 Registreer je Profiel</h2>
+        <h2>🎮 Register Your Profile</h2>
         
-        <form id="registratieForm" action="/api/registreer" method="POST">
+        <form id="registrationForm" action="/api/register" method="POST">
             
-            <label for="gebruikersnaam">Gebruikersnaam:</label>
-            <input type="text" id="gebruikersnaam" name="gebruikersnaam" required minlength="3">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="3">
             
-            <label for="email">E-mail:</label>
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             
-            <label for="wachtwoord">Wachtwoord:</label>
-            <input type="password" id="wachtwoord" name="wachtwoord" required minlength="8">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="8">
 
-            <label for="wachtwoord_herhaal">Herhaal Wachtwoord:</label>
-            <input type="password" id="wachtwoord_herhaal" name="wachtwoord_herhaal" required minlength="8">
+            <label for="password_confirm">Confirm Password:</label>
+            <input type="password" id="password_confirm" name="password_confirm" required minlength="8">
             
-            <button type="submit">Account Aanmaken</button>
+            <button type="submit">Create Account</button>
         </form>
     </div>
 
     <script>
-        document.getElementById('registratieForm').addEventListener('submit', function(e) {
-            const wachtwoord = document.getElementById('wachtwoord').value;
-            const herhaal = document.getElementById('wachtwoord_herhaal').value;
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('password_confirm').value;
 
-            if (wachtwoord !== herhaal) {
-                e.preventDefault(); // Voorkom dat het formulier wordt verstuurd
-                alert("De ingevoerde wachtwoorden komen niet overeen!");
+            if (password !== confirm) {
+                e.preventDefault(); // Prevent form submission
+                alert("The entered passwords do not match!");
             }
         });
     </script>
