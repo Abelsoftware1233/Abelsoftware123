@@ -6,6 +6,47 @@
     <title>Hacktools - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* CSS voor de neonblauwe knoppen en hun positionering */
+        header {
+            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        }
+
+        .header-controls {
+            position: absolute; /* Absolute positionering in de header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* Witte tekst */
+            background-color: transparent; /* Transparante achtergrond */
+            /* Neon blauw effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
+            border: 2px solid #00FFFF; /* Neon blauwe rand */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Zwarte tekst bij hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+        }
+
         /* Specifieke styling voor deze pagina om de afbeeldingen te centreren */
         .hacktools-content {
             background-color: white; /* Zorgt voor de witte achtergrond */
@@ -36,116 +77,28 @@
     </style>
 </head>
 <body>
-<header style="position: relative;"> <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
-        </div>
+<header> <div class="header-controls">
+        <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
+        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+    </div>
         
+    <h1>Hacktools</h1>
+    <p>Overview of our tools and ethical hacking services.</p>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+            <li><a href="payments.html">Payments Games</a></li>
+            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="hacktools.html">Hacktools</a></li>
+            <li><a href="website.html">Order Your Own Website and Apps</a></li>
+            <li><a href="domain.html">Order Your Own Domain Name</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <header>
-        <h1>Hacktools</h1>
-        <p>Overview of our tools and ethical hacking services.</p>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments Games</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hacktools-content">
-            <h2>Our Ethical Hacking Resources</h2>
-            <p>Here you will find information about the **hack tools** we develop and use. We specialize in testing security vulnerabilities to make systems more robust (ethical hacking).</p>
-            
-            <h3>Safety First</h3>
-            <p>All our tools are intended for legal and ethical purposes, such als penetration testing and security audits, with the explicit permission of the system owner.</p>
-            
-            <h4>List of Hacktools: Linux-Kali -Android</h4>
-            <p>1. Spyware Software
-2. DDoS-Attack Software 
-3. SQL-Map Software 
-4. Phishing Software
-5. Pentest Software
-6. Metasploit Framework Software
-7. Sniffing and Spoofing Software 
-8. Network Scanner Software 
-9. Password Attacks Software 
-10. SQL-Injection Software
-11. People Hunt Software 
-12. API Scanner 
-13. Wordpress scanner
-14. IP location tracker software
-15. Stresstest Software 
-16.Forensics Tools Software 
-17.Information Gathering Software 
-18. Web Hacking Software 
-19.Vulnerability Scanner Software 
-20.Web Servers Software 
-21.Nmap Software---------------------
-Send an Email to order the Hacking software. You will then receive an invoice from us. After payment, the software will be emailed to you.</p>
-            
-            <div class="image-center-container">
-                <img 
-                    src="https://steamlabs.co.th/wp-content/uploads/2021/09/Yellow-and-Blue-Colorful-Brushstroke-Art-Education-YouTube-Thumbnail-2.png" 
-                    alt="Yellow and Blue Colorful Brushstroke Art Education YouTube Thumbnail"
-                    class="hacktools-image"
-                >
-            </div>
-            
-            <div class="image-center-container">
-                <img 
-                    src="https://repository-images.githubusercontent.com/304629930/8a867980-1c8c-11eb-9372-0550867118ee" 
-                    alt="GitHub repository afbeelding van een logo of project"
-                    class="hacktools-image"
-                >
-            </div>
-
-            <div class="image-center-container">
-                <img 
-                    src="https://sqlmap.org/images/screenshot.png" 
-                    alt="SQLmap screenshot"
-                    class="hacktools-image"
-                >
-            </div>
-            
-            <div class="image-center-container">
-                <img 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOlcmVsywVQCoAVOsBf8swR18DaklEED4jNPq_ll14Qg1o-bYENByzAWk&s=10" 
-                    alt="Gerelateerde afbeelding van Google"
-                    class="hacktools-image"
-                >
-            </div>
-            
-            <div class="image-center-container">
-                <img 
-                    src="https://docs.rapid7.com/images/metasploit/msf-console.png" 
-                    alt="Metasploit console screenshot"
-                    class="hacktools-image"
-                >
-            </div>
-
-            <div class="image-center-container">
-                <img 
-                    src="https://www.simplilearn.com/ice9/free_resources_article_thumb/nmap_demo_7.PNG" 
-                    alt="Nmap demo screenshot"
-                    class="hacktools-image"
-                >
-            </div>
-
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
+<main>
+    <section class="hacktools-content">
+        <h2>
