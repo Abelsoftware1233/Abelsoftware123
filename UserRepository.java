@@ -1,7 +1,7 @@
 // UserRepository.java (moet in een 'repository' pakket)
-package com.jouwgamedomein.registratie.repository;
+package com.abelsoftware123.registratie.repository;
 
-import com.jouwgamedomein.registratie.model.User;
+import com.abelsoftware123.registratie.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
