@@ -5,10 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add this internal style block for the new buttons and positioning */
+        .header-controls {
+            position: absolute; /* Allows precise positioning relative to the header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; /* Space between the buttons */
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* White text */
+            background-color: transparent; /* Transparent background */
+            /* Neon blue effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Outer glow */
+            border: 2px solid #00FFFF; /* Neon blue border */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Black text on hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Brighter glow on hover */
+        }
+    </style>
 </head>
 <body>
 
-    <header>
+    <header style="position: relative;"> <div class="header-controls">
+            <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
+            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+        </div>
+        
         <h1> Abelsoftware123</h1>
         <p>Welcome to Abelsoftware123</p>
         
