@@ -1,6 +1,6 @@
-package com.jouwgamedomein.registratie.controller;
+package com.abelsoftware123.registratie.controller;
 
-import com.jouwgamedomein.registratie.service.UserService;
+import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
