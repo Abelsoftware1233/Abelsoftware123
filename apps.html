@@ -6,17 +6,61 @@
     <title>List of Apps - Abelsoftware123</title>
     
     <style>
+        /* ================================================= */
+        /* == NEON KNOPPEN STIJL (toegevoegd voor consistentie) == */
+        /* ================================================= */
+        header {
+            position: relative; /* Zorgt ervoor dat de header een positioneringscontext is */
+        }
+
+        .header-controls {
+            position: absolute; /* Absolute positionering in de header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* Witte tekst */
+            background-color: transparent; /* Transparante achtergrond */
+            /* Neon blauw effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
+            border: 2px solid #00FFFF; /* Neon blauwe rand */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Zwarte tekst bij hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+        }
+        /* ================================================= */
+        /* == ORIGINELE PAGINA STIJLEN == */
+        /* ================================================= */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            /* De donkere achtergrondkleur van de app-interface */
             background-color: #333333; 
             color: #f0f0f0; 
         }
 
+        /* De header-stijl wordt nu gecombineerd met de position: relative van hierboven */
         header {
             text-align: center;
-            /* Extra padding bovenaan voor een 'header' gevoel */
             padding: 30px 0 20px 0; 
             background-color: #333333; 
         }
@@ -31,18 +75,17 @@
         header p {
             font-size: 16px;
             color: #cccccc; 
-            margin-bottom: 30px; /* Ruimte tussen de subtitel en de knoppenbalk */
+            margin-bottom: 30px; 
             padding: 0 20px;
         }
 
-        /* Navigatie sectie voor de strakke knoppen */
         nav {
             padding: 0;
         }
 
         nav ul {
             list-style: none;
-            padding: 0 20px; /* Horizontale padding voor de knoppen om ze in te laten vallen */
+            padding: 0 20px; 
             margin: 0; 
         }
 
@@ -50,79 +93,60 @@
             margin: 0; 
         }
 
-        /* NEONBLAUWE STIJL VOOR DE VERTICALE NAVIGATIEKNOPPEN */
         nav a {
             display: block;
-            /* Donkergrijze achtergrond behouden */
             background-color: #555555; 
-            
-            /* Tekstkleur nu Neonblauw */
             color: #00f0ff; 
-            
             padding: 18px 20px; 
             text-decoration: none;
             border-radius: 0; 
             margin: 0;
             width: 100%; 
             font-size: 18px;
-            
-            /* Overgang voor het glow effect */
             transition: background-color 0.1s ease, box-shadow 0.3s ease; 
-            
             text-align: left; 
-            
-            /* Subtiele blauwe scheidingslijn in plaats van de donkere scheiding */
             border-bottom: 1px solid rgba(0, 240, 255, 0.2); 
         }
 
-        /* Afgeronde hoeken en gloed voor de knoppengroep */
         nav ul li:first-child a {
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
-            /* Lichte blauwe gloed bovenaan de knoppengroep */
             box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3);
         }
 
         nav ul li:last-child a {
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
-            border-bottom: none; /* De laatste knop heeft geen scheidingslijn nodig */
+            border-bottom: none; 
             margin-bottom: 30px; 
-            /* Lichte blauwe gloed onderaan de knoppengroep */
             box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3); 
         }
 
 
-        /* Hover-effect: knop wordt iets donkerder en krijgt een intense blauwe gloed */
         nav a:hover {
-            background-color: #4a4a4a; /* Iets donkerder bij hover */
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8); /* Sterke neon gloed */
+            background-color: #4a4a4a; 
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8); 
         }
 
         main {
-            padding: 0; /* Geen padding hier, zodat de sectie helemaal tot de rand kan */
+            padding: 0; 
             max-width: 800px;
             margin: 0 auto;
             background-color: #333333; 
         }
 
-        /* De algemene content sectie stijl voor zowel introductie als de nieuwe secties */
         .apps-list, .content-section {
-            /* Let op: Hier moet je de achtergrondkleur van de content-sectie aanpassen 
-               omdat de CSS een witte achtergrond (body: #ffffff) specificeerde.
-               Voor een donkere app-stijl is een donkerdere kleur beter. 
-               Ik stel een iets lichtere tint donkergrijs voor dan de body. */
             background-color: #444444; 
-            color: #f0f0f0; /* Lichte tekstkleur voor de donkere achtergrond */
+            color: #f0f0f0; 
             padding: 20px;
-            margin: 0 20px 20px 20px; /* Marges om het in te laten vallen, maar geen top/bottom padding in main */
+            margin: 0 20px 20px 20px; 
             border-radius: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Donkere schaduw voor diepte */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
         }
 
         h2 {
             font-size: 24px;
-            color: #00f0ff; /* Neonblauw voor titels in de secties */
+            color: #00f0ff; 
             margin-top: 0;
             margin-bottom: 15px;
         }
@@ -130,13 +154,12 @@
         p {
             font-size: 16px;
             line-height: 1.6;
-            color: #cccccc; /* Lichtere tekstkleur */
+            color: #cccccc; 
         }
         
-        /* Stijlen voor de app-items */
         .app-item {
             padding: 15px 0;
-            border-bottom: 1px solid #555555; /* Donkere scheidingslijn */
+            border-bottom: 1px solid #555555; 
         }
         
         .app-item:last-child {
@@ -144,7 +167,7 @@
         }
         
         .app-item h3 {
-            color: #ffffff; /* Witte titel voor de app-naam */
+            color: #ffffff; 
             margin: 0 0 5px 0;
         }
         
@@ -153,26 +176,24 @@
             margin: 0;
         }
         
-        /* Overige stijlen overgenomen uit de oorspronkelijke HTML-tekst */
-        
         .responsive-image {
-            max-width: 100%;    /* Zorgt ervoor dat de afbeelding zich aanpast aan de container */
-            height: auto;       /* Behoudt de beeldverhouding */
+            max-width: 100%;    
+            height: auto;       
             display: block;
-            margin: 20px auto;  /* Centreert de afbeelding en geeft ruimte */
+            margin: 20px auto;  
             border-radius: 8px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Aangepaste schaduw voor donkere look */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
         }
 
         .app-image-container {
-            text-align: center; /* Centreert de afbeelding en de figcaption */
+            text-align: center; 
             margin-bottom: 30px; 
         }
 
         .app-image-container figcaption {
             margin-top: 10px;
             font-style: italic;
-            color: #00f0ff; /* Neonblauwe kleur voor bijschriften */
+            color: #00f0ff; 
         }
         
         footer {
@@ -180,128 +201,124 @@
             padding: 20px;
             color: #999999;
             font-size: 14px;
-            background-color: #222222; /* Nog donkerder voor de footer */
+            background-color: #222222; 
             margin-top: 20px;
         }
-
-        /* De groene knop stijl van de CSS-tekst is hier weggelaten 
-           omdat deze niet in de HTML-structuur wordt gebruikt. */
     </style>
-    </head>
+</head>
 <body>
-<header style="position: relative;"> <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+<header> <div class="header-controls">
+        <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
+        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+    </div>
+        
+    <h1>List of Apps</h1>
+    <p>Discover our full range of offerings.</p>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+            <li><a href="payments.html">Payments Games</a></li>
+            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="hacktools.html">Hacktools</a></li>
+            <li><a href="website.html">Order Your Own Website and Apps</a></li>
+            <li><a href="domain.html">Order Your Own Domain Name</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="apps-list">
+        <h2>Our Applications</h2>
+        
+        <figure class="app-image-container">
+            <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Game Icon 1" class="responsive-image">
+            <figcaption>Featured Game Icon</figcaption>
+        </figure>
+
+        <figure class="app-image-container">
+            <img src="https://img.itch.zone/aW1hZ2UvNjc1NTc4LzQzODYxNDQucG5n/original/SA0WYW.png" alt="Featured Game Icon 2" class="responsive-image">
+            <figcaption>Additional Game Image</figcaption>
+        </figure>
+
+        <div class="app-item">
+            <h3>WMWario Happy The Game Android App</h3>
+            <p>adventure game with pipes and wmwarios greatest game app 2025.</p>
         </div>
-        
-    <header>
-        <h1>List of Apps</h1>
-        <p>Discover our full range of offerings.</p>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments Games</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="apps-list">
-            <h2>Our Applications</h2>
-            
-            <figure class="app-image-container">
-                <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Game Icon 1" class="responsive-image">
-                <figcaption>Featured Game Icon</figcaption>
-            </figure>
+        <div class="app-item">
+            <h3>WMWario Slotpipes Android App</h3>
+            <p>Gamble app of the year 2025. adventure wmwario slot</p>
+        </div>
+        <div class="app-item">
+            <h3>YF Arrows The Game Android App</h3>
+            <p>The newest addition to our collection, available now.</p>
+        </div>
+        <div class="app-item">
+            <h3>Fluppy Burd Blocks Android App</h3>
+            <p>the one and only tweety blocks that avoids pipes.</p>
+        </div>
+        <div class="app-item">
+            <h3>SlotMoji Android App</h3>
+            <p>The most fun emoji slot machine game of the year 2025.</p>
+        </div>
+        <div class="app-item">
+            <h3>WMWario Happy World 3 PC/Laptop Webserver Game</h3>
+            <p>the biggest adventure game of 2026, with many levels and level editors, you can create or modify your own levels. </p>
+    
+        </div>
+        <div class="app-item">
+            <h3>WMWario Crush Saga Android App</h3>
+            <p>The most fun WMWario Crush game of the year 2025.</p>
+        </div>
 
-            <figure class="app-image-container">
-                <img src="https://img.itch.zone/aW1hZ2UvNjc1NTc4LzQzODYxNDQucG5n/original/SA0WYW.png" alt="Featured Game Icon 2" class="responsive-image">
-                <figcaption>Additional Game Image</figcaption>
-            </figure>
+        <div class="app-item">
+            <h3>Kross and Zero Android App</h3>
+            <p>the best Classic Game re-released in 2025 with a futuristic design.</p>
+    
+        </div>
+        <div class="app-item">
+            <h3>Abels Roullette 18+ Game Android App</h3>
+            <p>The best Gamble Game of the year 2025-2026 available in the webshop or app! Released for Android devices, you pay a one-time fee for the game and can then gamble unlimitedly.</p>
+    
+        </div>
+        <div class="app-item">
+            <h3>Flying Dutchman The Game Android App</h3>
+            <p>Flying Dutchman tap the gold bar and many other power ups to score as many points as possible! a beautiful game in a futuristic design.</p>
+    
+        </div>
 
-            <div class="app-item">
-                <h3>WMWario Happy The Game Android App</h3>
-                <p>adventure game with pipes and wmwarios greatest game app 2025.</p>
-            </div>
-            <div class="app-item">
-                <h3>WMWario Slotpipes Android App</h3>
-                <p>Gamble app of the year 2025. adventure wmwario slot</p>
-            </div>
-            <div class="app-item">
-                <h3>YF Arrows The Game Android App</h3>
-                <p>The newest addition to our collection, available now.</p>
-            </div>
-            <div class="app-item">
-                <h3>Fluppy Burd Blocks Android App</h3>
-                <p>the one and only tweety blocks that avoids pipes.</p>
-            </div>
-            <div class="app-item">
-                <h3>SlotMoji Android App</h3>
-                <p>The most fun emoji slot machine game of the year 2025.</p>
-            </div>
-            <div class="app-item">
-                <h3>WMWario Happy World 3 PC/Laptop Webserver Game</h3>
-                <p>the biggest adventure game of 2026, with many levels and level editors, you can create or modify your own levels. </p>
-        
-            </div>
-            <div class="app-item">
-                <h3>WMWario Crush Saga Android App</h3>
-                <p>The most fun WMWario Crush game of the year 2025.</p>
-            </div>
+        <div class="app-item">
+            <h3>WMWario Happy World 1 Webserver PC/Laptop Game</h3>
+            <p>WMWario Happy World 1! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
+    
+        </div>
+        <div class="app-item">
+            <h3>Coming Soon! WMWario Happy World 2 Webserver PC/Laptop Game</h3>
+            <p>Coming Soon! WMWario Happy World 2! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
+    
+        </div>
+        <div class="app-item">
+            <h3>Coming Soon! WMWario Happy World 4 Webserver PC/Laptop Game</h3>
+            <p>Coming Soon! WMWario Happy World 4! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
+    
+        </div>
+        <div class="app-item">
+            <h3>Coming Soon! Moon Race Surface Android App</h3>
+            <p>Coming Soon! Moon Race Surface. Drive with the mooncar. get points to buy Specials. best arcade game of 2025-2026</p>
+    
+        </div>
+        <figure 
+        class="app-image-container">
+            <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Laatste Game Video Preview" class="responsive-image">
+            <figcaption>Best Sneak Preview</figcaption>
+        </figure>
+      
+    </section>
+</main>
 
-            <div class="app-item">
-                <h3>Kross and Zero Android App</h3>
-                <p>the best Classic Game re-released in 2025 with a futuristic design.</p>
-        
-            </div>
-            <div class="app-item">
-                <h3>Abels Roullette 18+ Game Android App</h3>
-                <p>The best Gamble Game of the year 2025-2026 available in the webshop or app! Released for Android devices, you pay a one-time fee for the game and can then gamble unlimitedly.</p>
-        
-            </div>
-            <div class="app-item">
-                <h3>Flying Dutchman The Game Android App</h3>
-                <p>Flying Dutchman tap the gold bar and many other power ups to score as many points as possible! a beautiful game in a futuristic design.</p>
-        
-            </div>
-</div>
-            <div class="app-item">
-                <h3>WMWario Happy World 1 Webserver PC/Laptop Game</h3>
-                <p>WMWario Happy World 1! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
-        
-            </div>
-<div class="app-item">
-                <h3>Coming Soon! WMWario Happy World 2 Webserver PC/Laptop Game</h3>
-                <p>Coming Soon! WMWario Happy World 2! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
-        
-            </div>
-            <div class="app-item">
-                <h3>Coming Soon! WMWario Happy World 4 Webserver PC/Laptop Game</h3>
-                <p>Coming Soon! WMWario Happy World 4! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
-        
-            </div>
-           <div class="app-item">
-                <h3>Coming Soon! Moon Race Surface Android App</h3>
-                <p>Coming Soon! Moon Race Surface. Drive with the mooncar. get points to buy Specials. best arcade game of 2025-2026</p>
-        
-            </div>
-<figure 
-class="app-image-container">
-                <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Laatste Game Video Preview" class="responsive-image">
-                <figcaption>Best Sneak Preview</figcaption>
-            </figure>
-          
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
+</footer>
 </body>
 </html>
