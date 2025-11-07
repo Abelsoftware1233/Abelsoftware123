@@ -1,10 +1,11 @@
+// RegistrationController.java
 package com.abelsoftware123.registratie.controller;
 
 import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody; // <-- Nieuwe Import
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,18 +18,19 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    // Dit is het endpoint dat het HTML formulier aanroept (action="/api/registreer")
-    @PostMapping("/api/registreer")
+    // Aangepast om:
+    // 1. Te luisteren naar /api/register (komt overeen met de HTML form action)
+    // 2. JSON data te ontvangen via @RequestBody
+    @PostMapping("/api/register")
     public ResponseEntity<String> registerUser(
-            @RequestParam("gebruikersnaam") String username, 
-            @RequestParam("email") String email,
-            @RequestParam("wachtwoord") String password) { // 'wachtwoord' is de naam van het input veld
+            @RequestBody RegistrationRequest request) { // Ontvangt JSON als een Request object
 
         try {
-            userService.registerNewUser(username, email, password);
+            // Roep de UserService aan met de gegevens uit het Request object
+            userService.registerNewUser(request.getUsername(), request.getEmail(), request.getPassword());
             return ResponseEntity.ok("✅ Registratie succesvol! Je kunt nu inloggen.");
         } catch (RuntimeException e) {
-            // Geeft de foutmelding (bijv. "Gebruikersnaam bestaat al") terug aan de gebruiker
+            // Geeft de foutmelding terug als een slechte aanvraag (HTTP 400)
             return ResponseEntity.badRequest().body("❌ Registratie mislukt: " + e.getMessage());
         }
     }
