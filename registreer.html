@@ -40,7 +40,7 @@
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+            box-sizing: border-box;
         }
         button {
             width: 100%;
@@ -56,6 +56,12 @@
         button:hover {
             background-color: #0056b3;
         }
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -63,6 +69,8 @@
         <h2>🎮 Register Your Profile</h2>
         
         <form id="registrationForm" action="/api/register" method="POST">
+            
+            <div id="statusMessage" class="error-message" style="display: none;"></div>
             
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required minlength="3">
@@ -77,19 +85,13 @@
             <input type="password" id="password_confirm" name="password_confirm" required minlength="8">
             
             <button type="submit">Create Account</button>
+            
+            <p style="text-align: center; margin-top: 15px;">
+                Already have an account? <a href="login.html">Log in here</a>
+            </p>
         </form>
     </div>
 
-    <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            const password = document.getElementById('password').value;
-            const confirm = document.getElementById('password_confirm').value;
-
-            if (password !== confirm) {
-                e.preventDefault(); // Prevent form submission
-                alert("The entered passwords do not match!");
-            }
-        });
-    </script>
+    <script src="script.js"></script> 
 </body>
 </html>
