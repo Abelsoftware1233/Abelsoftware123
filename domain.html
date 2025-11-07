@@ -5,49 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domain Name Registration - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* START VAN DE BENODIGDE CSS VOOR DE NEON KNOPPEN */
+        header {
+            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        }
+
+        .header-controls {
+            position: absolute; /* Absolute positionering in de header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* Witte tekst */
+            background-color: transparent; /* Transparante achtergrond */
+            /* Neon blauw effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
+            border: 2px solid #00FFFF; /* Neon blauwe rand */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Zwarte tekst bij hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+        }
+        /* EINDE VAN DE BENODIGDE CSS */
+    </style>
 </head>
 <body>
-<header style="position: relative;"> <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
-        </div>
-        
-     <header>
-        <h1>Domain Name and Hosting</h1>
-        <p>Assistance with registration, management, and hosting.</p>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments Games</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section class="domain-info">
-            <h2>Your Online Identity</h2>
-            <p>A **domain name** is essential for your online presence. We offer advice and assistance with registering, transferring, and managing your domain name, including the associated web hosting.</p>
-            
-            <h3>Our Domain Name Services</h3>
-            <ol>
-                <li>Advice on the best domain name choice.</li>
-                <li>Fast registration of various extensions (.nl, .com, .be, etc.).</li>
-                <li>Professional, secure hosting packages.</li>
-                <li>Creating an email address linked to your domain.</li>
-            </ol>
-        </section>
-    </main>
+<header> 
+    <div class="header-controls">
+        <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
+        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+    </div>
+        
+    <h1>Domain Name and Hosting</h1>
+    <p>Assistance with registration, management, and hosting.</p>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+            <li><a href="payments.html">Payments Games</a></li>
+            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="hacktools.html">Hacktools</a></li>
+            <li><a href="website.html">Order Your Own Website and Apps</a></li>
+            <li><a href="domain.html">Order Your Own Domain Name</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <footer>
-        <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
-    </footer>
+<main>
+    <section class="domain-info">
+        <h2>Your Online Identity</h2>
+        <p>A **domain name** is essential for your online presence. We offer advice and assistance with registering, transferring, and managing your domain name, including the associated web hosting.</p>
+        
+        <h3>Our Domain Name Services</h3>
+        <ol>
+            <li>Advice on the best domain name choice.</li>
+            <li>Fast registration of various extensions (.nl, .com, .be, etc.).</li>
+            <li>Professional, secure hosting packages.</li>
+            <li>Creating an email address linked to your domain.</li>
+        </ol>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
