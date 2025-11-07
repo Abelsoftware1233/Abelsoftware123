@@ -32,17 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
     showContentSection('introductie-content');
 
 
-    // === NIEUWE Logica voor de 'Contact' knop ===
+    // === OPGELOST: Logica voor de 'Contact' knop ===
+    // Zorg ervoor dat de HTML-knop de ID 'contact-knop' heeft.
     const contactKnop = document.getElementById('contact-knop');
-    
+    const emailAdres = 'abelsoftware123@hotmail.com'; // Definieer het e-mailadres
+
     if (contactKnop) {
         // Voeg een event listener toe aan de knop
         contactKnop.addEventListener('click', function(event) {
             // Dit voorkomt de standaard navigatie van de <a>-tag in de HTML
             event.preventDefault(); 
             
-            // Stelt de 'mailto' link in via JavaScript
-            window.location.href = 'Send an email to: abelsoftware123@hotmail.com';
+            // Gebruik de correcte 'mailto:' syntax
+            window.location.href = 'mailto:' + emailAdres;
+
+            // OPTIONEEL: Om te debuggen
+            console.log('Contact knop geklikt. E-mailadres:', emailAdres);
         });
+    } else {
+        console.error("De knop met ID 'contact-knop' is niet gevonden.");
     }
 });
