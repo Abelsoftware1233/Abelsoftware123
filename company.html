@@ -7,7 +7,52 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Specifieke styling voor deze pagina om de afbeeldingen te centreren */
+        /* ================================================= */
+        /* == NEON KNOPPEN STIJL (toegevoegd voor consistentie) == */
+        /* ================================================= */
+        header {
+            position: relative; /* Zorgt ervoor dat de header een positioneringscontext is */
+        }
+
+        .header-controls {
+            position: absolute; /* Absolute positionering in de header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* Witte tekst */
+            background-color: transparent; /* Transparante achtergrond */
+            /* Neon blauw effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
+            border: 2px solid #00FFFF; /* Neon blauwe rand */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Zwarte tekst bij hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+        }
+        
+        /* ================================================= */
+        /* == PAGINA SPECIFIEKE STIJL (Origineel van de gebruiker) == */
+        /* ================================================= */
         .hacktools-content {
             background-color: white; /* Zorgt voor de witte achtergrond */
             padding: 20px;
@@ -18,73 +63,65 @@
         }
 
         .image-center-container {
-            /* Gebruik flexbox om de inhoud van de div horizontaal te centreren */
             display: flex; 
             justify-content: center; 
-            margin-top: 20px; /* Ruimte boven de afbeelding */
-            margin-bottom: 20px; /* Ruimte onder de afbeelding */
+            margin-top: 20px; 
+            margin-bottom: 20px; 
         }
 
         .hacktools-image {
-            /* Zorgt ervoor dat de afbeeldingen responsief zijn en niet vervormen */
             max-width: 100%; 
             height: auto; 
-            /* Algemene styling */
             display: block; 
             border: 2px solid #ddd; 
             border-radius: 5px; 
         } 
         
-        /* NIEUWE STIJL VOOR RESPONSIEF LOGO */
         .responsive-logo {
-            max-width: 100%; /* Essentieel: Maakt de afbeelding nooit breder dan de container */
-            height: auto;    /* Essentieel: Behoudt de beeldverhouding */
+            max-width: 100%; 
+            height: auto;    
             display: block;
-            margin: 0 auto;  /* Centreert het logo horizontaal */
+            margin: 0 auto;  
         }
-        
-        /* DE STIJLTAG MOET HIER AFGESLOTEN WORDEN, ZELFS ZONDER MEER STIJL */
     </style>
 </head>
 <body>
-<header style="position: relative;"> <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
-        </div>
+<header> <div class="header-controls">
+        <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
+        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+    </div>
         
-    <header>
-        <img src="logo.png" alt="Abelsoftware123 Logo" class="responsive-logo">
-        
+    <img src="logo.png" alt="Abelsoftware123 Logo" class="responsive-logo">
+    
+    <h1>Abelsoftware123 Company</h1>
+    <p>Our history and vision.</p>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="company.html">Abelsoftware123 company</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+            <li><a href="payments.html">Payments Games</a></li>
+            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="hacktools.html">Hacktools</a></li>
+            <li><a href="website.html">Order Your Own Websites and Apps</a></li>
+            <li><a href="domain.html">Order Your Own Domain Name</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <h1>Abelsoftware123 Company</h1>
-        <p>Our history and vision.</p>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments Games</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Order Your Own Websites and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-            </ul>
-        </nav>
-    </header>
+<main>
+    <section class="company-info">
+        <h2>Our Company History</h2>
+        <p>Since our founding in 2024, Abelsoftware123 has grown into a leader in the software industry. We are proud of our commitment to innovation and customer satisfaction. We are located in the Netherlands.Contact us on email: abelsoftware123@hotmail.com</p>
+        <h3>Our Mission</h3>
+        <p>To deliver high-quality Games- Android Software Applications, and to supply Websites - PC Software - Cyber Hacktools - Domain Names. You can find all our Games on page Payments Games. Contact: Send an email to abelsoftware123@hotmail.com</p>
+  </section>
+</main>
 
-    <main>
-        <section class="company-info">
-            <h2>Our Company History</h2>
-            <p>Since our founding in 2024, Abelsoftware123 has grown into a leader in the software industry. We are proud of our commitment to innovation and customer satisfaction. We are located in the Netherlands.Contact us on email: abelsoftware123@hotmail.com</p>
-            <h3>Our Mission</h3>
-            <p>To deliver high-quality Games- Android Software Applications, and to supply Websites - PC Software - Cyber Hacktools - Domain Names. You can find all our Games on page Payments Games. Contact: Send an email to abelsoftware123@hotmail.com</p>
-      </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
