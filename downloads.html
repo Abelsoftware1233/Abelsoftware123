@@ -5,122 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Downloads - Abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS voor de neonblauwe knoppen en hun positionering */
+        header {
+            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        }
+
+        .header-controls {
+            position: absolute; /* Absolute positionering in de header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* Witte tekst */
+            background-color: transparent; /* Transparante achtergrond */
+            /* Neon blauw effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
+            border: 2px solid #00FFFF; /* Neon blauwe rand */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Zwarte tekst bij hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+        }
+    </style>
 </head>
 <body>
-<header style="position: relative;"> <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+<header> 
+    <div class="header-controls">
+        <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
+        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+    </div>
+        
+    <h1>Downloads</h1>
+    <p>Download our newest software and applications here.</p>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+            <li><a href="payments.html">Payments Games</a></li>
+            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="hacktools.html">Hacktools</a></li>
+            <li><a href="website.html">Order Your Own Website and Apps</a></li>
+            <li><a href="domain.html">Order Your Own Domain Name</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section class="downloads-content">
+        <h2>Available Downloads</h2>
+        <p>Below you will find a list of software you can download directly:</p>
+
+        <div class="app-item">
+            <h3>Abel Game Launcher & WMWario Happy The Game (Android App)</h3>
+            <p>With the Abel Game Launcher, you have access to all our games in one place. The game launcher will only start working after purchasing apps/software via PayPal. You will be automatically redirected, and you can download your app/software.</p>
+            <a href="https://www.dropbox.com/scl/fi/kan1xfr4plcfy8flmnbmt/_Happy_Mario_19141767.apk?rlkey=pm42mvizbqckncrqc6dp18k4n&st=rou7d80m&dl=0" download>
+                <button>Download WmWario The Game Launcher Android App</button>
+            </a>
+        </div>
+
+        <div class="app-item">
+            <h3>WMWario Slotpipes (Android App)</h3>
+            <p>A complete gamble game slot machine, best gamble game of the year 2025.</p>
+            <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" download>
+                <button>Download WMWario Slotpipes The Game Launcher</button>
+            </a>
+        </div>
+
+        <div class="app-item">
+            <h3>YF Arrows The Game (Android App)</h3>
+            <p>Best arrow and bow game of the year 2025.</p>
+            <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&st=058p9guv&dl=0" download>
+                <button>Download YF Arrows The Game Launcher</button>
+            </a>
+        </div>
+
+        <div class="app-item">
+            <h3>Slotmoji The Game (Android App)</h3>
+            <p>Best gamble game of the year 2026, full of funny emoji</p>
+            <a href="https://www.dropbox.com/scl/fi/izywurlhbrvmcdzat6tpg/_SlotMoji_19141773.apk?rlkey=cqgzkldieeyg51au3u3qkcny6&st=4430u5pl&dl=0" download>
+                <button>Download Slotmoji The Game Launcher</button>
+            </a>
+        </div>
+
+        <div class="app-item">
+            <h3>WMWario Happy World 3 The Game (PC/Laptop Webserver Game)</h3>
+            <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-3-The-Game-/" download>
+                <button>Download WMWario Happy World 3 The Game Launcher</button>
+            </a>
         </div>
         
-    <header>
-        <h1>Downloads</h1>
-        <p>Download our newest software and applications here.</p>
+        <div class="app-item">
+            <h3>WMWario Happy World 1 The Game (PC/Laptop Webserver Game)</h3>
+            <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-1-The-Game/" download>
+                <button>Download WMWario Happy World 1 The Game Launcher</button>
+            </a>
+        </div>
         
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments Games</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="downloads-content">
-            <h2>Available Downloads</h2>
-            <p>Below you will find a list of software you can download directly:</p>
+        <div class="app-item">
+            <h3>Fluppy Burd Blocks The Game (Android App)</h3>
+            <p>Fluppy Burd Blocks The Game, The Best old school classic from the 2010s, re-released in the year 2025!</p>
+            <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" download>
+                <button>Download Fluppy Burd Blocks The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>WMWario Crush Saga The Game (Android App)</h3>
+            <p>best puzzle game of the year 2025. with many possibilities and features, this is the game for young and old.</p>
+            <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" download>
+                <button>Download WMWario Crush Saga The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>Kross and Zero The Game (Android App)</h3>
+            <p>Kross and Zero re-released in 2025 with a futuristic design.</p>
+            <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" download>
+                <button>Download Kross and Zero The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>Abels Roullette 18+ The Game (Android App)</h3>
+            <p>The best Gamble Game of the year 2025-2026! You pay a one-time fee for the app and can gamble unlimitedly. the game is in a modern design, with many chances to win.</p>
+            <a href="https://www.dropbox.com/scl/fi/jkc013uz0atfub36vryva/_Abels_Roullette_19141814.apk?rlkey=qri8l821qcazebppl7spllg5u&st=6e10q8sn&dl=0" download>
+                <button>Download Abels Roullette 18+ The Game Launcher</button>
+            </a>
+        </div>
 
-            <div class="app-item">
-                <h3>Abel Game Launcher & WMWario Happy The Game (Android App)</h3>
-                <p>With the Abel Game Launcher, you have access to all our games in one place. The game launcher will only start working after purchasing apps/software via PayPal. You will be automatically redirected, and you can download your app/software.</p>
-                <a href="https://www.dropbox.com/scl/fi/kan1xfr4plcfy8flmnbmt/_Happy_Mario_19141767.apk?rlkey=pm42mvizbqckncrqc6dp18k4n&st=rou7d80m&dl=0" download>
-                    <button>Download WmWario The Game Launcher Android App</button>
-                </a>
-            </div>
-
-            <div class="app-item">
-                <h3>WMWario Slotpipes (Android App)</h3>
-                <p>A complete gamble game slot machine, best gamble game of the year 2025.</p>
-                <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" download>
-                    <button>Download WMWario Slotpipes The Game Launcher</button>
-                </a>
-            </div>
-
-            <div class="app-item">
-                <h3>YF Arrows The Game (Android App)</h3>
-                <p>Best arrow and bow game of the year 2025.</p>
-                <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&st=058p9guv&dl=0" download>
-                    <button>Download YF Arrows The Game Launcher</button>
-                </a>
-            </div>
-
-            <div class="app-item">
-                <h3>Slotmoji The Game (Android App)</h3>
-                <p>Best gamble game of the year 2026, full of funny emoji</p>
-                <a href="https://www.dropbox.com/scl/fi/izywurlhbrvmcdzat6tpg/_SlotMoji_19141773.apk?rlkey=cqgzkldieeyg51au3u3qkcny6&st=4430u5pl&dl=0" download>
-                    <button>Download Slotmoji The Game Launcher</button>
-                </a>
-            </div>
-
-            <div class="app-item">
-                <h3>WMWario Happy World 3 The Game (PC/Laptop Webserver Game)</h3>
-                <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
-                <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-3-The-Game-/" download>
-                    <button>Download WMWario Happy World 3 The Game Launcher</button>
-                </a>
-            </div>
-<div class="app-item">
-                <h3>WMWario Happy World 1 The Game (PC/Laptop Webserver Game)</h3>
-                <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
-                <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-1-The-Game/" download>
-                    <button>Download WMWario Happy World 1 The Game Launcher</button>
-                </a>
-            </div>
-            
-             <div class="app-item">
-                <h3>Fluppy Burd Blocks The Game (Android App)</h3>
-                <p>Fluppy Burd Blocks The Game, The Best old school classic from the 2010s, re-released in the year 2025!</p>
-                <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" download>
-                    <button>Download Fluppy Burd Blocks The Game Launcher</button>
-                </a>
-            </div>
-            
-            <div class="app-item">
-                <h3>WMWario Crush Saga The Game (Android App)</h3>
-                <p>best puzzle game of the year 2025. with many possibilities and features, this is the game for young and old.</p>
-                <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" download>
-                    <button>Download WMWario Crush Saga The Game Launcher</button>
-                </a>
-            </div>
-            
-            <div class="app-item">
-                <h3>Kross and Zero The Game (Android App)</h3>
-                <p>Kross and Zero re-released in 2025 with a futuristic design.</p>
-                <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" download>
-                    <button>Download Kross and Zero The Game Launcher</button>
-                </a>
-            </div>
-            
-            <div class="app-item">
-                <h3>Abels Roullette 18+ The Game (Android App)</h3>
-                <p>The best Gamble Game of the year 2025-2026! You pay a one-time fee for the app and can gamble unlimitedly. the game is in a modern design, with many chances to win.</p>
-                <a href="https://www.dropbox.com/scl/fi/jkc013uz0atfub36vryva/_Abels_Roullette_19141814.apk?rlkey=qri8l821qcazebppl7spllg5u&st=6e10q8sn&dl=0" download>
-                    <button>Download Abels Roullette 18+ The Game Launcher</button>
-                </a>
-            </div>
-   
-            <div class="app-item">
-                <h3>Flying Dutchman The Game (Android App)</h3>
-                <p>The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades.</p>    
-                <a href="https://www.dropbox.com/scl/fi/zdgqu2yma6ld1szvojqs7/_Flying_Dutchman_19177548.apk?rlkey=87y4e3yifn8wr9lsyc4plifw6&st=lretx7nw&dl=0" download>
-                    <button>Download Flying Dutchman The Game Launcher</button>
-                </a>
-            </div>
-        </section>
-    </main>
+        <div class="app-item">
+            <h3>Flying Dutchman The Game (Android App)</h3>
+            <p>The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades.</p>    
+            <a href="https://www.dropbox.com/scl/fi/zdgqu2yma6ld1szvojqs7/_Flying_Dutchman_19177548.apk?rlkey=87y4e3yifn8wr9lsyc4plifw6&st=lretx7nw&dl=0" download>
+                <button>Download Flying Dutchman The Game Launcher</button>
+            </a>
+        </div>
+    </section>
+</main>
 </body>
 </html>
