@@ -1,10 +1,11 @@
+// LoginController.java
 package com.abelsoftware123.registration.controller;
 
 import com.abelsoftware123.registration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody; // Cruciale import
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,23 +23,19 @@ public class LoginController {
 
     /**
      * Endpoint for user login.
-     * Maps POST requests to /api/login and verifies user credentials.
-     *
-     * @param username The user's username (expected from the form field 'username').
-     * @param password The user's password (expected from the form field 'password').
-     * @return A ResponseEntity indicating the result of the login attempt.
+     * Maps POST requests to /api/login and verifies user credentials using JSON data.
      */
     @PostMapping("/api/login")
     public ResponseEntity<String> loginUser(
-            @RequestParam("username") String username, 
-            @RequestParam("password") String password) {
+            @RequestBody LoginRequest request) { // Ontvangt JSON body
 
-        if (userService.verifyLogin(username, password)) {
-            // In a real application, you would start a JWT (token) or Spring Security session here
-            return ResponseEntity.ok("🔑 Login successful! Welcome back " + username + ".");
+        // Gebruik de gegevens uit het Request object
+        if (userService.verifyLogin(request.getUsername(), request.getPassword())) {
+            // Success: Stuur een token of succesboodschap
+            return ResponseEntity.ok("🔑 Login successful! Welcome back " + request.getUsername() + ".");
         } else {
+            // Failure
             return ResponseEntity.badRequest().body("❌ Invalid username or password.");
         }
     }
 }
-
