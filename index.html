@@ -80,6 +80,17 @@
             margin: 0 5px; /* ruimte tussen de knoppen */
         }
 
+        /* *** NIEUWE CSS: Stijl voor de actieve knop *** */
+        .neon-red-button.active {
+            background-color: #ff00ff; /* Krijgt de glow-kleur */
+            color: #000; /* Zwarte tekst op actieve knop */
+            box-shadow: 0 0 5px #ff00ff, 
+                        0 0 10px #ff00ff, 
+                        0 0 20px #ff00ff, 
+                        0 0 60px #ff00ff; /* Heldere gloed */
+        }
+        /* ********************************************* */
+
         .neon-red-button:hover {
             background-color: #ff00ff; /* gloeit rood op hover */
             color: #000; /* zwarte tekst op hover */
@@ -159,24 +170,54 @@
             
             <p>here you will find information about the **games and legal hack tools**website and apps**domain name** we develop and use. we specialize in developing custom software that meets all your needs. our mission is to give everyone a good gaming/web/hack/app/domain name experience. your wishes come first! download our new abelsoftware123 app for free and conveniently purchase your apps/games/hacktools/website within the app! click on the green button below to  download abelsoftware123 free app!!!</p>
 
-<h3>new!!! on abelsoftware123</h3>
-<p>register your account on abelsoftware123. and buy our software/games/hacktools/apps in your own account!--->Follow Us On Instagram and TikTok!</p>
+            <h3>new!!! on abelsoftware123</h3>
+            <p>register your account on abelsoftware123. and buy our software/games/hacktools/apps in your own account!--->Follow Us On Instagram and TikTok!</p>
        
- </section>
+        </section>
         
         <section class="content-section" id="tools-content" style="display: none;">
-            <h2>our tools</h2>
-            <p>here you will find an in-depth description of the various tools offered by abelsoftware123. discover how each tool works and what benefits it offers.</p>
+            <h2>🛠️ Our Tools and Software Library</h2>
+            <p>Hier vindt u een diepgaande beschrijving van de verschillende tools die Abelsoftware123 aanbiedt. Ontdek hoe elke tool werkt en welke voordelen het biedt. Dit is het gedeelte dat nu verschijnt wanneer u op de 'TOOLS'-knop klikt. U kunt hier alle productinformatie plaatsen.</p>
+            
+            <h3>Featured Tools</h3>
+            <ul>
+                <li>**Web Design Kit:** Complete set van templates en scripts voor het bouwen van uw eigen site.</li>
+                <li>**App Builder:** Een intuïtieve tool om snel mobiele apps te creëren zonder diepgaande code kennis.</li>
+                <li>**Secure Domain Checker:** Controleer de beschikbaarheid en beveiligingsstatus van uw gewenste domeinnaam.</li>
+                <li>**Ethical Penetration Kit:** Legale, educatieve tools voor het leren van netwerkbeveiliging en ethisch hacken.</li>
+            </ul>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
-            <h2>setup guide</h2>
-            <p>follow our step-by-step guide to easily install and configure your new tools or software. for a smooth start!</p>
+            <h2>⚙️ Setup & Installation Guide</h2>
+            <p>Volg onze stapsgewijze handleiding om eenvoudig uw nieuwe tools of software te installeren en configureren. Dit zorgt voor een vlekkeloze start! Dit is de inhoud voor de 'SETUP'-knop.</p>
+            
+            <h3>Stappenplan: Algemene Installatie</h3>
+            <ol>
+                <li>**Download de APK:** Klik op de groene knop om de nieuwste Abelsoftware123 Android App te downloaden.</li>
+                <li>**Schakel Onbekende Bronnen in:** Ga naar uw Android-instellingen > Beveiliging en schakel 'Installeren van onbekende bronnen' in.</li>
+                <li>**Installeer de App:** Zoek het gedownloade `.apk` bestand en tik erop om de installatie te starten.</li>
+                <li>**Start de App:** Open de Abelsoftware123 App, log in of registreer, en krijg toegang tot al onze producten!</li>
+            </ol>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
-            <h2>frequently asked questions (faq)</h2>
-            <p>do you have questions? consult our frequently asked questions section for quick answers to the most common topics.</p>
+            <h2>❓ Frequently Asked Questions (FAQ)</h2>
+            <p>Heeft u vragen? Raadpleeg onze veelgestelde vragen sectie voor snelle antwoorden op de meest voorkomende onderwerpen. Dit is de inhoud voor de 'FAQ'-knop.</p>
+
+            <h3>Veelgestelde Vragen</h3>
+            <details>
+                <summary>**Is de Abelsoftware123 App gratis?**</summary>
+                <p>Ja, de download en het gebruik van de app is gratis. U betaalt alleen voor de aangeschafte games, software of domeinnamen.</p>
+            </details>
+            <details>
+                <summary>**Hoe lang duurt het voordat ik een offerte ontvang?**</summary>
+                <p>We streven ernaar om binnen 24 uur te reageren op alle offerteaanvragen voor websites, apps, of domeinnamen.</p>
+            </details>
+            <details>
+                <summary>**Zijn de hacktools legaal?**</summary>
+                <p>Al onze 'hacktools' zijn uitsluitend bedoeld voor **ethische, educatieve doeleinden** en netwerkbeveiligingstesten op systemen waarvoor u uitdrukkelijke toestemming heeft.</p>
+            </details>
         </section>
 
         <div style="text-align: center; margin-top: 20px;">
@@ -201,7 +242,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const futuristicbuttons = document.querySelectorAll('.neon-red-button'); // Klasse aangepast
+            const futuristicbuttons = document.querySelectorAll('.neon-red-button'); 
             const contentsections = document.querySelectorAll('.content-section');
 
             // functie om alle contentsecties te verbergen (function to hide all content sections)
@@ -211,25 +252,41 @@
                 });
             }
 
-            // functie om een specifieke contentsectie te tonen (function to show a specific content section)
-            function showcontentsection(targetid) {
-                hideallcontentsections(); // eerst alles verbergen (hide everything first)
+            // functie om alle knoppen de-activeren (removes the 'active' class)
+            function deactivateallbuttons() {
+                futuristicbuttons.forEach(button => {
+                    button.classList.remove('active');
+                });
+            }
+
+            // functie om een specifieke contentsectie te tonen en knop te markeren
+            function showcontentsection(targetid, clickedbutton) {
+                hideallcontentsections(); 
+                deactivateallbuttons(); // Deactiveer eerst alle knoppen
+                
                 const targetsection = document.getElementById(targetid);
                 if (targetsection) {
                     targetsection.style.display = 'block';
                 }
+                
+                // Voeg de 'active' class toe aan de aangeklikte knop
+                if (clickedbutton) {
+                    clickedbutton.classList.add('active');
+                }
             }
 
-            // event listeners toevoegen aan de futuristische knoppen (add event listeners to the futuristic buttons)
+            // event listeners toevoegen aan de futuristische knoppen
             futuristicbuttons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const target = this.dataset.contenttarget + '-content'; // vormt de id: "introductie-content", "tools-content", etc. (forms the id: "introductie-content", "tools-content", etc.)
-                    showcontentsection(target);
+                    const target = this.dataset.contenttarget + '-content'; 
+                    // Geef de aangeklikte knop mee aan de functie
+                    showcontentsection(target, this); 
                 });
             });
 
-            // toon de 'info' sectie standaard bij het laden van de pagina (show the 'info' section by default when the page loads)
-            showcontentsection('introductie-content');
+            // toon de 'info' sectie en markeer de 'info' knop als actief bij het laden van de pagina
+            const infoButton = document.querySelector('.neon-red-button[data-content-target="introductie"]');
+            showcontentsection('introductie-content', infoButton); 
         });
     </script>
 </body>
