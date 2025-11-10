@@ -1,18 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Abelsoftware123</title>
+    <title>welcome - abelsoftware123</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Add this internal style block for the new buttons and positioning */
+        /* add this internal style block for the new buttons and positioning */
         .header-controls {
-            position: absolute; /* Allows precise positioning relative to the header */
+            position: absolute; /* allows precise positioning relative to the header */
             top: 10px;
             right: 10px;
             display: flex;
-            gap: 10px; /* Space between the buttons */
+            gap: 10px; /* space between the buttons */
         }
         
         .neon-blue-button {
@@ -22,139 +22,153 @@
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* White text */
-            background-color: transparent; /* Transparent background */
-            /* Neon blue effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Outer glow */
-            border: 2px solid #00FFFF; /* Neon blue border */
+            color: #fff; /* white text */
+            background-color: transparent; /* transparent background */
+            /* neon blue effect */
+            box-shadow: 0 0 5px #00ffff, 
+                        0 0 10px #00ffff, 
+                        0 0 20px #00ffff, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* outer glow */
+            border: 2px solid #00ffff; /* neon blue border */
             transition: all 0.3s ease-in-out;
         }
 
         .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Black text on hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Brighter glow on hover */
+            background-color: #00ffff;
+            color: #000; /* black text on hover */
+            box-shadow: 0 0 5px #00ffff, 
+                        0 0 10px #00ffff, 
+                        0 0 20px #00ffff, 
+                        0 0 60px #00ffff; /* brighter glow on hover */
+        }
+
+        /* New style for the main title */
+        .neon-title {
+            color: #00ffff; /* Neon blue color */
+            text-shadow: 0 0 7px #00ffff,
+                         0 0 10px #00ffff,
+                         0 0 21px #00ffff,
+                         0 0 42px rgba(0, 255, 255, 0.8),
+                         0 0 82px rgba(0, 255, 255, 0.6),
+                         0 0 92px rgba(0, 255, 255, 0.4),
+                         0 0 102px rgba(0, 255, 255, 0.2),
+                         0 0 151px rgba(0, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
 
-    <header style="position: relative;"> <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='registreer.html'">Register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+    <header style="position: relative;"> 
+        <div class="header-controls">
+            <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
+            <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
         </div>
         
-        <h1>Abelsoftware123</h1>
-        <p>Welcome to Abelsoftware123</p>
+        <h1 class="neon-title">abelsoftware123</h1>
+        <p>welcome to abelsoftware123</p>
         
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments Games</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
+                <li><a href="index.html">home</a></li>
+                <li><a href="company.html">abelsoftware123 company</a></li>
+                <li><a href="downloads.html">downloads</a></li>
+                <li><a href="payments.html">payments games</a></li>
+                <li><a href="apps.html">games list of apps</a></li>
+                <li><a href="hacktools.html">hacktools</a></li>
+                <li><a href="website.html">order your own website and apps</a></li>
+                <li><a href="domain.html">order your own domain name</a></li>
             </ul>
         </nav>
         
         <div class="control-panel">
-            <button class="futuristic-button" data-content-target="introductie">INFO</button>
-            <button class="futuristic-button" data-content-target="tools">TOOLS</button>
-            <button class="futuristic-button" data-content-target="setup">SETUP</button>
-            <button class="futuristic-button" data-content-target="faq">FAQ</button>
+            <button class="futuristic-button" data-content-target="introductie">info</button>
+            <button class="futuristic-button" data-content-target="tools">tools</button>
+            <button class="futuristic-button" data-content-target="setup">setup</button>
+            <button class="futuristic-button" data-content-target="faq">faq</button>
         </div>
     </header>
 
     <main>
         
         <section class="introductie content-section" id="introductie-content">
-            <h2>💻Our Ethical Hacking Resources🖥️</h2>
+            <h2>💻our ethical hacking resources🖥️</h2>
             
-            <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="Matrix Neo Cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+            <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
             <br>
             
-            <p>Here you will find information about the **Games and Legal Hack Tools**Website and Apps**Domain Name** We develop and use. We specialize in developing custom software that meets all your needs. Our mission is to give everyone a good Gaming/Web/Hack/App/Domain Name experience. Your wishes come first! Download our new Abelsoftware123 App for free and conveniently purchase your apps/games/hacktools/website within the app! Click on the green button below to  Download Abelsoftware123 FREE App!!!</p>
+            <p>here you will find information about the **games and legal hack tools**website and apps**domain name** we develop and use. we specialize in developing custom software that meets all your needs. our mission is to give everyone a good gaming/web/hack/app/domain name experience. your wishes come first! download our new abelsoftware123 app for free and conveniently purchase your apps/games/hacktools/website within the app! click on the green button below to  download abelsoftware123 free app!!!</p>
 
-<h3>New!!! on Abelsoftware123</h3>
-<p>Register your account on Abelsoftware123. And buy our Software/Games/Hacktools/Apps in your own account!</p>
+<h3>new!!! on abelsoftware123</h3>
+<p>register your account on abelsoftware123. and buy our software/games/hacktools/apps in your own account!</p>
        
  </section>
         
         <section class="content-section" id="tools-content" style="display: none;">
-            <h2>Our Tools</h2>
-            <p>Here you will find an in-depth description of the various tools offered by Abelsoftware123. Discover how each tool works and what benefits it offers.</p>
+            <h2>our tools</h2>
+            <p>here you will find an in-depth description of the various tools offered by abelsoftware123. discover how each tool works and what benefits it offers.</p>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
-            <h2>Setup Guide</h2>
-            <p>Follow our step-by-step guide to easily install and configure your new tools or software. For a smooth start!</p>
+            <h2>setup guide</h2>
+            <p>follow our step-by-step guide to easily install and configure your new tools or software. for a smooth start!</p>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
-            <h2>Frequently Asked Questions (FAQ)</h2>
-            <p>Do you have questions? Consult our Frequently Asked Questions section for quick answers to the most common topics.</p>
+            <h2>frequently asked questions (faq)</h2>
+            <p>do you have questions? consult our frequently asked questions section for quick answers to the most common topics.</p>
         </section>
 
         <div style="text-align: center; margin-top: 20px;">
              <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
-                <button class="groene-knop">Abelsoftware123 Android App</button>
+                <button class="groene-knop">abelsoftware123 android app</button>
             </a>
         </div>
         
         <section class="contact">
-            <h2>Contact Us</h2>
-            <p>Click the button below to contact us if you want to order a website/app/hacktools/domain name. We respond within 24 hours. Quotes are non-binding and free of charge. Send an email to us, Click on the contact button.</p>
+            <h2>contact us</h2>
+            <p>click the button below to contact us if you want to order a website/app/hacktools/domain name. we respond within 24 hours. quotes are non-binding and free of charge. send an email to us, click on the contact button.</p>
             
-             <a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
-                <button id="contact-knop" class="groene-knop">Contact</button>
+             <a href="mailto:abelsoftware123hotmail.com" id="contact-link">
+                <button id="contact-knop" class="groene-knop">contact</button>
             </a>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 Abelsoftware123. All rights reserved.</p>
+        <p>&copy; 2025 abelsoftware123. all rights reserved.</p>
     </footer>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const futuristicButtons = document.querySelectorAll('.futuristic-button');
-            const contentSections = document.querySelectorAll('.content-section');
+        document.addeventlistener('domcontentloaded', function() {
+            const futuristicbuttons = document.queryselectorall('.futuristic-button');
+            const contentsections = document.queryselectorall('.content-section');
 
-            // Functie om alle contentsecties te verbergen (Function to hide all content sections)
-            function hideAllContentSections() {
-                contentSections.forEach(section => {
+            // functie om alle contentsecties te verbergen (function to hide all content sections)
+            function hideallcontentsections() {
+                contentsections.foreach(section => {
                     section.style.display = 'none';
                 });
             }
 
-            // Functie om een specifieke contentsectie te tonen (Function to show a specific content section)
-            function showContentSection(targetId) {
-                hideAllContentSections(); // Eerst alles verbergen (Hide everything first)
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
+            // functie om een specifieke contentsectie te tonen (function to show a specific content section)
+            function showcontentsection(targetid) {
+                hideallcontentsections(); // eerst alles verbergen (hide everything first)
+                const targetsection = document.getelementbyid(targetid);
+                if (targetsection) {
+                    targetsection.style.display = 'block';
                 }
             }
 
-            // Event listeners toevoegen aan de futuristische knoppen (Add event listeners to the futuristic buttons)
-            futuristicButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const target = this.dataset.contentTarget + '-content'; // Vormt de ID: "introductie-content", "tools-content", etc. (Forms the ID: "introductie-content", "tools-content", etc.)
-                    showContentSection(target);
+            // event listeners toevoegen aan de futuristische knoppen (add event listeners to the futuristic buttons)
+            futuristicbuttons.foreach(button => {
+                button.addeventlistener('click', function() {
+                    const target = this.dataset.contenttarget + '-content'; // vormt de id: "introductie-content", "tools-content", etc. (forms the id: "introductie-content", "tools-content", etc.)
+                    showcontentsection(target);
                 });
             });
 
-            // Toon de 'INFO' sectie standaard bij het laden van de pagina (Show the 'INFO' section by default when the page loads)
-            showContentSection('introductie-content');
+            // toon de 'info' sectie standaard bij het laden van de pagina (show the 'info' section by default when the page loads)
+            showcontentsection('introductie-content');
         });
     </script>
 </body>
