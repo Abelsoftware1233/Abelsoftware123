@@ -8,14 +8,16 @@
     
     <style>
         /* ================================================= */
-        /* == NEON KNOPPEN STIJL (toegevoegd voor consistentie) == */
+        /* == PAGINA SPECIFIEKE STIJL EN OVERRIDES == */
         /* ================================================= */
+        
+        /* Neon Knoppen Stijl voor "Register" en "Log in" (header controls) */
         header {
-            position: relative; /* Zorgt ervoor dat de header een positioneringscontext is */
+            position: relative; 
         }
 
         .header-controls {
-            position: absolute; /* Absolute positionering in de header */
+            position: absolute; 
             top: 10px;
             right: 10px;
             display: flex;
@@ -30,52 +32,68 @@
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
+            color: #fff; 
+            background-color: transparent; 
             /* Neon blauw effect */
             box-shadow: 0 0 5px #00FFFF, 
                         0 0 10px #00FFFF, 
                         0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
+                        0 0 40px rgba(0, 255, 255, 0.5); 
+            border: 2px solid #00FFFF; 
             transition: all 0.3s ease-in-out;
         }
 
         .neon-blue-button:hover {
             background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
+            color: #000; 
             box-shadow: 0 0 5px #00FFFF, 
                         0 0 10px #00FFFF, 
                         0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+                        0 0 60px #00FFFF; 
         }
         
-        /* ================================================= */
-        /* == PAGINA SPECIFIEKE STIJL (Origineel van de gebruiker) == */
-        /* ================================================= */
-        .hacktools-content {
-            background-color: white; /* Zorgt voor de witte achtergrond */
-            padding: 20px;
-            margin: 20px auto; /* Centreert het witte vak zelf */
-            max-width: 800px; /* Maximale breedte van het witte vak */
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        /* Overrides om H1 en P in de header NEON te maken */
+        header h1 {
+            color: #fff !important; 
+            text-shadow: 0 0 5px #00FFFF, 
+                         0 0 10px #00FFFF, 
+                         0 0 15px rgba(0, 255, 255, 0.7); 
         }
 
-        .image-center-container {
-            display: flex; 
-            justify-content: center; 
-            margin-top: 20px; 
-            margin-bottom: 20px; 
+        header p {
+            text-shadow: 0 0 2px #00FFFF; 
         }
 
-        .hacktools-image {
-            max-width: 100%; 
-            height: auto; 
-            display: block; 
-            border: 2px solid #ddd; 
-            border-radius: 5px; 
-        } 
+        /* Stijl voor de content secties om ze eruit te laten zien als je .content-section */
+        .company-info, .education-offerings {
+            /* De 'section' stijl van je style.css wordt hier overgenomen, 
+               maar we forceren de afmetingen en achtergrondkleur van de main content box */
+            max-width: 800px;
+            margin: 20px auto; 
+            background-color: #ffffff; /* Wit zoals in de style.css */
+            border-radius: 8px; /* Optionele lichte afronding */
+        }
+        
+        /* Stijl voor de nieuwe educatie sectie */
+        .education-offerings {
+            margin-top: 30px;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+
+        .education-offerings ul {
+            list-style-type: none; 
+            padding: 0;
+        }
+
+        .education-offerings ul li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-left: 5px solid #00FFFF; /* Neon blauwe accentrand */
+            border-radius: 4px;
+            font-size: 1.1em;
+        }
         
         .responsive-logo {
             max-width: 100%; 
@@ -86,7 +104,8 @@
     </style>
 </head>
 <body>
-<header> <div class="header-controls">
+<header> 
+    <div class="header-controls">
         <button class="neon-blue-button" onclick="location.href='register.html'">Register</button>
         <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
     </div>
@@ -113,13 +132,25 @@
 <main>
     <section class="company-info">
         <h2>Our Company History</h2>
-        <p>Since our founding in 2024, Abelsoftware123 has grown into a leader in the software industry. We are proud of our commitment to innovation and customer satisfaction. We are located in the Netherlands.Contact us on email, Click on the contact button below.</p>
+        <p>Since our founding in 2024, Abelsoftware123 has grown into a leader in the software industry. We are proud of our commitment to innovation and customer satisfaction. We are located in the Netherlands. Contact us via email, click on the contact button below.</p>
+        
         <h3>Our Mission</h3>
-        <p>To deliver high-quality Games- Android Software Applications, and to supply Websites - PC Software - Cyber Hacktools - Domain Names. You can find all our Games on page Payments Games. Contact: Send an email, Click on the contact button below.</p>
- <a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
-                <button id="contact-knop" class="groene-knop">Contact</button>
-            </a>
- </section>
+        <p>To deliver high-quality Games, Android Software Applications, and to supply Websites, PC Software, Cyber Hacktools, and Domain Names. You can find all our Games on the 'Payments Games' page. Contact: Send an email, click on the contact button below.</p>
+ 
+        <a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
+            <button id="contact-knop" class="groene-knop">Contact</button>
+        </a>
+    </section>
+    
+    <section class="education-offerings">
+        <h2>Educational Learning Methods</h2>
+        <p>Enhance your skills with our specialized cybersecurity courses:</p>
+        <ul>
+            <li>**Ethical Hacking Course:** Beginner and Professional levels available.</li>
+            <li>**Cyber Defence Security:** Courses tailored for Beginners and Professionals.</li>
+        </ul>
+        <p>For more information on curriculum and registration, please contact us.</p>
+    </section>
 </main>
 
 <footer>
