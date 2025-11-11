@@ -57,39 +57,39 @@
 
         /* Styles for the control-panel buttons (info, tools, setup, faq) */
         .control-panel {
-            text-align: center; /* Centrer de knoppen */
+            text-align: center; /* Center the buttons */
             margin-top: 20px;
         }
 
         .neon-red-button {
             padding: 10px 20px;
             border: none;
-            border-radius: 8px; /* iets rondere hoeken */
+            border-radius: 8px; /* slightly rounder corners */
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* witte tekst */
-            background-color: transparent; /* transparante achtergrond */
-            /* neon rood effect */
-            box-shadow: 0 0 5px #ff00ff, /* magenta-achtig rood */
-                        0 0 10px #ff00ff, 
-                        0 0 20px #ff00ff, 
-                        0 0 40px rgba(255, 0, 255, 0.5); /* buitenste gloed */
-            border: 2px solid #ff00ff; /* neon rood rand */
-            transition: all 0.3s ease-in-out;
-            margin: 0 5px; /* ruimte tussen de knoppen */
-        }
-
-        .neon-red-button:hover {
-            background-color: #ff00ff; /* gloeit rood op hover */
-            color: #000; /* zwarte tekst op hover */
+            color: #fff; /* white text */
+            background-color: transparent; /* transparent background */
+            /* neon red/magenta effect */
             box-shadow: 0 0 5px #ff00ff, 
                         0 0 10px #ff00ff, 
                         0 0 20px #ff00ff, 
-                        0 0 60px #ff00ff; /* helderdere gloed op hover */
+                        0 0 40px rgba(255, 0, 255, 0.5); /* outer glow */
+            border: 2px solid #ff00ff; /* neon red/magenta border */
+            transition: all 0.3s ease-in-out;
+            margin: 0 5px; /* space between buttons */
         }
 
-        /* Update de groene knoppen voor consistentie */
+        .neon-red-button:hover {
+            background-color: #ff00ff; /* glows red/magenta on hover */
+            color: #000; /* black text on hover */
+            box-shadow: 0 0 5px #ff00ff, 
+                        0 0 10px #ff00ff, 
+                        0 0 20px #ff00ff, 
+                        0 0 60px #ff00ff; /* brighter glow on hover */
+        }
+
+        /* Update the green buttons for consistency */
         .groene-knop {
             padding: 10px 20px;
             border: none;
@@ -151,7 +151,7 @@
 
     <main>
         
-        <section class="introductie content-section" id="introductie-content">
+        <section class="introductie content-section" id="introductie-content" style="display: none;"> 
             <h2>💻our ethical hacking resources🖥️</h2>
             
             <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
@@ -162,7 +162,7 @@
 <h3>new!!! on abelsoftware123</h3>
 <p>register your account on abelsoftware123. and buy our software/games/hacktools/apps in your own account!--->Follow Us On Instagram and TikTok!</p>
        
- </section>
+        </section>
         
         <section class="content-section" id="tools-content" style="display: none;">
             <h2>our tools</h2>
@@ -201,34 +201,35 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const futuristicbuttons = document.querySelectorAll('.neon-red-button'); // Klasse aangepast
+            const futuristicbuttons = document.querySelectorAll('.neon-red-button'); 
             const contentsections = document.querySelectorAll('.content-section');
 
-            // functie om alle contentsecties te verbergen (function to hide all content sections)
+            // Function to hide all content sections
             function hideallcontentsections() {
                 contentsections.forEach(section => {
                     section.style.display = 'none';
                 });
             }
 
-            // functie om een specifieke contentsectie te tonen (function to show a specific content section)
+            // Function to show a specific content section
             function showcontentsection(targetid) {
-                hideallcontentsections(); // eerst alles verbergen (hide everything first)
+                hideallcontentsections(); // Hide everything first
                 const targetsection = document.getElementById(targetid);
                 if (targetsection) {
-                    targetsection.style.display = 'block';
+                    targetsection.style.display = 'block'; // Or 'flex' if needed
                 }
             }
 
-            // event listeners toevoegen aan de futuristische knoppen (add event listeners to the futuristic buttons)
+            // Add event listeners to the futuristic buttons
             futuristicbuttons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const target = this.dataset.contenttarget + '-content'; // vormt de id: "introductie-content", "tools-content", etc. (forms the id: "introductie-content", "tools-content", etc.)
+                    // Forms the id: "introductie-content", "tools-content", etc.
+                    const target = this.dataset.contenttarget + '-content'; 
                     showcontentsection(target);
                 });
             });
 
-            // toon de 'info' sectie standaard bij het laden van de pagina (show the 'info' section by default when the page loads)
+            // Show the 'info' section by default when the page loads
             showcontentsection('introductie-content');
         });
     </script>
