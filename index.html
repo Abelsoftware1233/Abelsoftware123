@@ -15,7 +15,6 @@
             gap: 10px; /* space between the buttons */
         }
         
-        /* OORSPRONKELIJKE CSS MET color: #fff; */
         .neon-blue-button {
             padding: 8px 15px;
             border: none;
@@ -23,7 +22,7 @@
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* Wit, zoals gevraagd */
+            color: #fff; /* white text */
             background-color: transparent; /* transparent background */
             /* neon blue effect */
             box-shadow: 0 0 5px #00ffff, 
@@ -43,7 +42,25 @@
                         0 0 60px #00ffff; /* brighter glow on hover */
         }
 
-        /* OORSPRONKELIJKE CSS MET color: #fff; */
+        /* New style for the main title */
+        .neon-title {
+            color: #00ffff; /* Neon blue color */
+            text-shadow: 0 0 7px #00ffff,
+                         0 0 10px #00ffff,
+                         0 0 21px #00ffff,
+                         0 0 42px rgba(0, 255, 255, 0.8),
+                         0 0 82px rgba(0, 255, 255, 0.6),
+                         0 0 92px rgba(0, 255, 255, 0.4),
+                         0 0 102px rgba(0, 255, 255, 0.2),
+                         0 0 151px rgba(0, 255, 255, 0.1);
+        }
+
+        /* Styles for the control-panel buttons (info, tools, setup, faq) */
+        .control-panel {
+            text-align: center; /* Center the buttons */
+            margin-top: 20px;
+        }
+
         .neon-red-button {
             padding: 10px 20px;
             border: none;
@@ -51,7 +68,7 @@
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* Wit, zoals gevraagd */
+            color: #fff; /* white text */
             background-color: transparent; /* transparent background */
             /* neon red/magenta effect */
             box-shadow: 0 0 5px #ff00ff, 
@@ -70,29 +87,6 @@
                         0 0 10px #ff00ff, 
                         0 0 20px #ff00ff, 
                         0 0 60px #ff00ff; /* brighter glow on hover */
-        }
-        
-        /* NIEUWE STIJL VOOR DE INGEVOEGDE SPAN: geeft een donkere achtergrond aan de tekst */
-        .button-text-bg {
-            /* De kleine donkere achtergrond lost het contrastprobleem op */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparant zwart */
-            padding: 2px 4px; 
-            border-radius: 3px;
-            line-height: 1; /* Zorgt ervoor dat de achtergrond niet te hoog is */
-            display: inline-block;
-        }
-
-        /* New style for the main title */
-        .neon-title {
-            color: #00ffff; /* Neon blue color */
-            text-shadow: 0 0 7px #00ffff,
-                         0 0 10px #00ffff,
-                         0 0 21px #00ffff,
-                         0 0 42px rgba(0, 255, 255, 0.8),
-                         0 0 82px rgba(0, 255, 255, 0.6),
-                         0 0 92px rgba(0, 255, 255, 0.4),
-                         0 0 102px rgba(0, 255, 255, 0.2),
-                         0 0 151px rgba(0, 255, 255, 0.1);
         }
 
         /* Update the green buttons for consistency */
@@ -127,8 +121,8 @@
 
     <header style="position: relative;"> 
         <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='registreer.html'"><span class="button-text-bg">register</span></button>
-            <button class="neon-blue-button" onclick="location.href='login.html'"><span class="button-text-bg">log in</span></button>
+            <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
+            <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
         </div>
         
         <h1 class="neon-title">Abelsoftware123</h1>
@@ -148,10 +142,10 @@
         </nav>
         
         <div class="control-panel">
-            <button class="neon-red-button" data-content-target="introductie"><span class="button-text-bg">info</span></button>
-            <button class="neon-red-button" data-content-target="tools"><span class="button-text-bg">tools</span></button>
-            <button class="neon-red-button" data-content-target="setup"><span class="button-text-bg">setup</span></button>
-            <button class="neon-red-button" data-content-target="faq"><span class="button-text-bg">faq</span></button>
+            <button class="neon-red-button" data-content-target="introductie">info</button>
+            <button class="neon-red-button" data-content-target="tools">tools</button>
+            <button class="neon-red-button" data-content-target="setup">setup</button>
+            <button class="neon-red-button" data-content-target="faq">faq</button>
         </div>
     </header>
 
@@ -165,56 +159,24 @@
             
             <p>here you will find information about the **games and legal hack tools**website and apps**domain name** we develop and use. we specialize in developing custom software that meets all your needs. our mission is to give everyone a good gaming/web/hack/app/domain name experience. your wishes come first! download our new abelsoftware123 app for free and conveniently purchase your apps/games/hacktools/website within the app! click on the green button below to  download abelsoftware123 free app!!!</p>
 
-            <h3>new!!! on abelsoftware123</h3>
-            <p>register your account on abelsoftware123. and buy our software/games/hacktools/apps in your own account!--->Follow Us On Instagram and TikTok!</p>
+<h3>new!!! on abelsoftware123</h3>
+<p>register your account on abelsoftware123. and buy our software/games/hacktools/apps in your own account!--->Follow Us On Instagram and TikTok!</p>
        
         </section>
         
         <section class="content-section" id="tools-content" style="display: none;">
             <h2>our tools</h2>
-            <p>Here you will find an in-depth description of the various tools offered by abelsoftware123. Discover how each tool works and what benefits it offers. Our tools are designed for both **security enthusiasts** and **ethical hacking professionals**.</p>
-            
-            <h3>Key Tool Categories:</h3>
-            <ul>
-                <li>**Network Analyzers:** Tools for inspecting network traffic and identifying potential vulnerabilities.</li>
-                <li>**Penetration Testing Kits:** Customized software packages for ethical hacking simulations.</li>
-                <li>**Web App Scanners:** Automated systems to check your website or app for common security flaws.</li>
-                <li>**Custom Game/App Development Frameworks:** Frameworks we use to quickly and securely develop your personalized apps and games.</li>
-            </ul>
-            
-            <p>For detailed documentation on a specific tool, please visit our <a href="downloads.html">Downloads</a> page.</p>
+            <p>here you will find an in-depth description of the various tools offered by abelsoftware123. discover how each tool works and what benefits it offers.</p>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
             <h2>setup guide</h2>
-            <p>Follow our simple step-by-step guide to easily install and configure your new tools or software. This guide ensures a smooth and secure start!</p>
-
-            <h3>Installation Steps (General Guide):</h3>
-            <ol>
-                <li>**Download:** Go to the <a href="downloads.html">Downloads</a> page and select the software you wish to install.</li>
-                <li>**Extract:** If the file is compressed (e.g., a `.zip` or `.rar`), extract the contents to a new folder on your computer.</li>
-                <li>**Installation Wizard:** Double-click the `setup.exe` or `install.sh` file to start the installation. Follow the on-screen prompts.</li>
-                <li>**Configuration:** After installation, open the application. You may be asked to enter your **license key** or perform initial configuration (e.g., defining local network settings).</li>
-                <li>**Testing:** Run a quick test function (if available) to ensure the software is working correctly.</li>
-            </ol>
-            
-            <p class="note"><strong>Note:</strong> Always ensure you have the necessary administrative rights to install software on your operating system.</p>
+            <p>follow our step-by-step guide to easily install and configure your new tools or software. for a smooth start!</p>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
             <h2>frequently asked questions (faq)</h2>
-            <p>Do you have questions? Consult our frequently asked questions section for quick answers to the most common topics regarding our software, services, and policies.</p>
-            
-            <h3>Common Questions:</h3>
-            
-            <h4>Q: Are your hacktools legal?</h4>
-            <p>A: Yes, all our tools are developed for **ethical and educational purposes** (ethical hacking) or for use on systems for which you have explicit permission. You are responsible for the legal use of our software.</p>
-            
-            <h4>Q: How long does it take to develop a custom website/app?</h4>
-            <p>A: The development time depends heavily on the complexity and scope of the project. Simple projects can be completed within a few weeks, while large applications may take several months. We always provide a clear timeline in our quote.</p>
-            
-            <h4>Q: How can I contact you for a quote?</h4>
-            <p>A: You can easily contact us by clicking the **'contact' button** at the bottom of the page or by sending an email to our provided email address. Quotes are non-binding and free of charge.</p>
+            <p>do you have questions? consult our frequently asked questions section for quick answers to the most common topics.</p>
         </section>
 
         <div style="text-align: center; margin-top: 20px;">
