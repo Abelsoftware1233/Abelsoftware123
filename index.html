@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* add this internal style block for the new buttons and positioning */
+        
+        /* 1. Knoppen in de header (REGISTER/LOG IN) - Blijven neon blauw */
         .header-controls {
-            position: absolute; /* allows precise positioning relative to the header */
+            position: absolute; 
             top: 10px;
             right: 10px;
             display: flex;
-            gap: 10px; /* space between the buttons */
+            gap: 10px; 
         }
         
         .neon-blue-button {
@@ -22,29 +24,28 @@
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* white text */
-            background-color: transparent; /* transparent background */
-            /* neon blue effect */
+            color: #fff; 
+            background-color: transparent; 
             box-shadow: 0 0 5px #00ffff, 
                         0 0 10px #00ffff, 
                         0 0 20px #00ffff, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* outer glow */
-            border: 2px solid #00ffff; /* neon blue border */
+                        0 0 40px rgba(0, 255, 255, 0.5); 
+            border: 2px solid #00ffff; 
             transition: all 0.3s ease-in-out;
         }
 
         .neon-blue-button:hover {
             background-color: #00ffff;
-            color: #000; /* black text on hover */
+            color: #000; 
             box-shadow: 0 0 5px #00ffff, 
                         0 0 10px #00ffff, 
                         0 0 20px #00ffff, 
-                        0 0 60px #00ffff; /* brighter glow on hover */
+                        0 0 60px #00ffff; 
         }
 
-        /* New style for the main title */
+        /* Nieuwe stijl voor de hoofdtitel - Blijft neon blauw */
         .neon-title {
-            color: #00ffff; /* Neon blue color */
+            color: #00ffff; 
             text-shadow: 0 0 7px #00ffff,
                          0 0 10px #00ffff,
                          0 0 21px #00ffff,
@@ -55,41 +56,39 @@
                          0 0 151px rgba(0, 255, 255, 0.1);
         }
 
-        /* Styles for the control-panel buttons (info, tools, setup, faq) */
+        /* 2. Styles voor de control-panel buttons (INFO, TOOLS, SETUP, FAQ) */
         .control-panel {
-            text-align: center; /* Center the buttons */
+            text-align: center; 
             margin-top: 20px;
         }
 
-        .neon-red-button {
+        /* VERNIEUWDE STIJL: Galant Rood met Zachte Gloed */
+        .galant-red-button {
             padding: 10px 20px;
             border: none;
-            border-radius: 8px; /* slightly rounder corners */
+            border-radius: 8px; 
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* white text */
-            background-color: transparent; /* transparent background */
-            /* neon red/magenta effect */
-            box-shadow: 0 0 5px #ff00ff, 
-                        0 0 10px #ff00ff, 
-                        0 0 20px #ff00ff, 
-                        0 0 40px rgba(255, 0, 255, 0.5); /* outer glow */
-            border: 2px solid #ff00ff; /* neon red/magenta border */
+            color: #fff; /* Witte tekst */
+            background-color: #8b0000; /* Donkerrood als basis */
+            /* Zachte rode gloed */
+            box-shadow: 0 0 5px #ff4500, 
+                        0 0 10px rgba(255, 69, 0, 0.7); 
+            border: 2px solid #ff4500; /* Oranjerood voor de rand */
             transition: all 0.3s ease-in-out;
-            margin: 0 5px; /* space between buttons */
+            margin: 0 5px; 
         }
 
-        .neon-red-button:hover {
-            background-color: #ff00ff; /* glows red/magenta on hover */
-            color: #000; /* black text on hover */
-            box-shadow: 0 0 5px #ff00ff, 
-                        0 0 10px #ff00ff, 
-                        0 0 20px #ff00ff, 
-                        0 0 60px #ff00ff; /* brighter glow on hover */
+        .galant-red-button:hover {
+            background-color: #ff4500; /* Oranjerood op hover */
+            color: #000; /* Zwarte tekst op hover */
+            /* Zachte gloed wordt iets sterker */
+            box-shadow: 0 0 5px #ff4500, 
+                        0 0 15px #ff4500; 
         }
 
-        /* Update the green buttons for consistency */
+        /* Update de groene knoppen voor consistentie - Blijven neon groen */
         .groene-knop {
             padding: 10px 20px;
             border: none;
@@ -114,6 +113,34 @@
                         0 0 10px #00ff00,
                         0 0 20px #00ff00,
                         0 0 60px #00ff00;
+        }
+        
+        /* Standaard donkere achtergrond voor het thema (indien nog niet in style.css) */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Stijl voor de navigatie links */
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        nav li a {
+            color: #00ffff; /* Neon blauwe tekst */
+            text-decoration: none;
+            display: block;
+            padding: 10px 0;
+            margin: 5px 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            transition: color 0.3s ease;
+        }
+        
+        nav li a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #00ffff;
         }
     </style>
 </head>
@@ -145,16 +172,16 @@ href="website.html">Order Your Own Website and Apps</a></li>
         </nav>
         
         <div class="control-panel">
-            <button class="neon-red-button" data-content-target="introductie">info</button>
-            <button class="neon-red-button" data-content-target="tools">tools</button>
-            <button class="neon-red-button" data-content-target="setup">setup</button>
-            <button class="neon-red-button" data-content-target="faq">faq</button>
+            <button class="galant-red-button" data-content-target="introductie">info</button>
+            <button class="galant-red-button" data-content-target="tools">tools</button>
+            <button class="galant-red-button" data-content-target="setup">setup</button>
+            <button class="galant-red-button" data-content-target="faq">faq</button>
         </div>
     </header>
 
     <main>
         
-        <section class="introductie content-section" id="introductie-content" style="display: none;"> 
+        <section class="introductie content-section" id="introductie-content"> 
             <h2>💻 Our Ethical Hacking Resources🖥️</h2>
             
             <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
@@ -176,21 +203,19 @@ href="website.html">Order Your Own Website and Apps</a></li>
 <a href="ai.html" class="groene-knop">AI Software Page</a>
     </section>
        
-        </section>
-        
         <section class="content-section" id="tools-content" style="display: none;">
-            <h2>our tools</h2>
-            <p>here you will find an in-depth description of the various tools offered by abelsoftware123. discover how each tool works and what benefits it offers.</p>
+            <h2>🛠️ Onze Tools 🛠️</h2>
+            <p>Hier vind je een diepgaande beschrijving van de verschillende tools die Abelsoftware123 aanbiedt. Ontdek hoe elke tool werkt en welke voordelen het biedt. Dit is de tekst die nu zichtbaar wordt als je op TOOLS klikt.</p>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
-            <h2>setup guide</h2>
-            <p>follow our step-by-step guide to easily install and configure your new tools or software. for a smooth start!</p>
+            <h2>⚙️ Installatiegids ⚙️</h2>
+            <p>Volg onze stapsgewijze handleiding om je nieuwe tools of software eenvoudig te installeren en configureren. Voor een soepele start! Dit is de tekst die nu zichtbaar wordt als je op SETUP klikt.</p>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
-            <h2>frequently asked questions (faq)</h2>
-            <p>do you have questions? consult our frequently asked questions section for quick answers to the most common topics.</p>
+            <h2>❓ Veelgestelde Vragen (FAQ) ❓</h2>
+            <p>Heb je vragen? Raadpleeg onze veelgestelde vragen sectie voor snelle antwoorden op de meest voorkomende onderwerpen. Dit is de tekst die nu zichtbaar wordt als je op FAQ klikt.</p>
         </section>
 
         <div style="text-align: center; margin-top: 20px;">
@@ -218,35 +243,39 @@ href="website.html">Order Your Own Website and Apps</a></li>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const futuristicbuttons = document.querySelectorAll('.neon-red-button'); 
+            // Let op: De selector is nu `.galant-red-button`
+            const futuristicbuttons = document.querySelectorAll('.galant-red-button'); 
             const contentsections = document.querySelectorAll('.content-section');
 
-            // Function to hide all content sections
+            // Functie om alle contentsecties te verbergen
             function hideallcontentsections() {
                 contentsections.forEach(section => {
                     section.style.display = 'none';
                 });
             }
 
-            // Function to show a specific content section
+            // Functie om een specifieke contentsectie te tonen
             function showcontentsection(targetid) {
-                hideallcontentsections(); // Hide everything first
+                hideallcontentsections(); // Verberg alles eerst
                 const targetsection = document.getElementById(targetid);
                 if (targetsection) {
-                    targetsection.style.display = 'block'; // Or 'flex' if needed
+                    // Gebruik 'block' of 'flex' afhankelijk van hoe je de layout wilt
+                    targetsection.style.display = 'block'; 
                 }
             }
 
-            // Add event listeners to the futuristic buttons
+            // Voeg event listeners toe aan de galante rode knoppen
             futuristicbuttons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Forms the id: "introductie-content", "tools-content", etc.
+                    // Haalt de ID op uit het data-attribuut en voegt '-content' toe
+                    // Bv: 'tools' wordt 'tools-content'
                     const target = this.dataset.contenttarget + '-content'; 
                     showcontentsection(target);
                 });
             });
 
-            // Show the 'info' section by default when the page loads
+            // Toon de 'info' sectie standaard wanneer de pagina laadt
+            // Dit moet aan het einde, zodat de event listeners eerst zijn ingesteld.
             showcontentsection('introductie-content');
         });
     </script>
