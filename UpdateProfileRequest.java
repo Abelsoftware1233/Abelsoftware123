@@ -1,16 +1,20 @@
-// UpdateProfileRequest.java (voor de POST /api/profile/update body)
+// UpdateProfileRequest.java
 package com.abelsoftware123.registratie.dto;
 
-// Dit zijn de gegevens die de frontend (script.js) naar de server stuurt
 public class UpdateProfileRequest {
     private String email;
     private String firstName;
     private String lastName;
-    private String newPassword; // Kan null zijn als wachtwoord niet wordt gewijzigd
+    private String newPassword; 
 
-    // Voeg hier de Getters en Setters toe
-    
+    // Getters en Setters
+
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    // ... en zo verder voor firstName, lastName, newPassword
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public String getNewPassword() { return newPassword; }
+    public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
 }
