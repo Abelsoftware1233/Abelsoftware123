@@ -1,70 +1,78 @@
 // ProfileController.java
-package com.abelsoftware123.registration.controller;
+package com.abelsoftware123.registratie.controller;
 
-import com.abelsoftware123.registration.model.User; // Zorg dat dit pad klopt!
-import com.abelsoftware123.registration.service.UserService;
+import com.abelsoftware123.registratie.dto.UserProfileDTO; // Nodig om gebruikersgegevens terug te geven
+import com.abelsoftware123.registratie.dto.UpdateProfileRequest; // Nodig om update-gegevens te ontvangen
+import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/profile") // Basispad voor profiel API
+@RequestMapping("/api/profile") // Alle methoden beginnen met /api/profile
 public class ProfileController {
 
-    @Autowired
-    private UserService userService;
-    
-    // Zorg ervoor dat de ProfileUpdateRequest klasse bestaat in dezelfde map of correct is geïmporteerd.
+    private final UserService userService;
 
-    /**
-     * Endpoint 1: Haalt de profielgegevens van de ingelogde gebruiker op. (GET /api/profile/me)
-     */
-    @GetMapping("/me")
-    public ResponseEntity<ProfileUpdateRequest> getProfile(@AuthenticationPrincipal UserDetails userDetails) {
-        // Gebruik de username van de beveiligde context om de gebruiker te vinden
-        User user = userService.findByUsername(userDetails.getUsername());
-        
-        // Converteer de User Entity naar het DTO-formaat dat de frontend verwacht
-        ProfileUpdateRequest responseDto = new ProfileUpdateRequest();
-        responseDto.setEmail(user.getEmail());
-        responseDto.setFirstName(user.getFirstName()); // Vereist dat deze velden bestaan in je User.java
-        responseDto.setLastName(user.getLastName());
-        
-        // Stuur geen wachtwoorden terug!
-        
-        return ResponseEntity.ok(responseDto);
+    @Autowired
+    public ProfileController(UserService userService) {
+        this.userService = userService;
     }
 
     /**
-     * Endpoint 2: Werkt de profielgegevens van de ingelogde gebruiker bij. (POST /api/profile/update)
+     * 1. GET /api/profile
+     * Haalt de gegevens van de ingelogde gebruiker op.
      */
-    @PostMapping("/update")
-    public ResponseEntity<String> updateProfile(
-            @AuthenticationPrincipal UserDetails userDetails, 
-            @RequestBody ProfileUpdateRequest request) { // Ontvangt JSON body van de frontend
-        
-        // 1. Zoek de bestaande gebruiker
-        User existingUser = userService.findByUsername(userDetails.getUsername());
+    @GetMapping 
+    public ResponseEntity<?> getProfile() {
+        // --- START PLAATSVERVANGENDE LOGICA ---
+        // In een echte applicatie zou je hier Spring Security gebruiken om de ingelogde gebruiker te vinden.
+        // Bijv: String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        String currentUsername = "HUIDIGE_INGELOGDE_GEBRUIKER"; // Placeholder
+        // --- EINDE PLAATSVERVANGENDE LOGICA ---
 
-        // 2. Valideer de wachtwoorden aan de backend (veiligheidscheck)
-        if (request.getNewPassword() != null && !request.getNewPassword().isEmpty()) {
-            if (!request.getNewPassword().equals(request.getConfirmPassword())) {
-                return ResponseEntity.badRequest().body("New passwords do not match!");
+        try {
+            // Haal de volledige profielgegevens op uit de database
+            UserProfileDTO profileData = userService.getUserProfile(currentUsername);
+
+            if (profileData == null) {
+                return ResponseEntity.status(404).body("Gebruiker niet gevonden.");
             }
-            // Roep de service aan om alleen het wachtwoord bij te werken (hash!)
-            userService.updatePassword(existingUser, request.getNewPassword());
+            
+            // Geef de gegevens als JSON terug aan de frontend (script.js)
+            return ResponseEntity.ok(profileData);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Fout bij het ophalen van het profiel: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 2. POST /api/profile/update
+     * Slaat de gewijzigde profielgegevens op.
+     */
+    @PostMapping("/update") // Wordt /api/profile/update
+    public ResponseEntity<String> updateProfile(@RequestBody UpdateProfileRequest request) {
+        // --- START PLAATSVERVANGENDE LOGICA ---
+        String currentUsername = "HUIDIGE_INGELOGDE_GEBRUIKER"; // Placeholder
+        // --- EINDE PLAATSVERVANGENDE LOGICA ---
+        
+        // Optionele basis validatie
+        if (request.getEmail() == null || request.getEmail().isEmpty()) {
+            return ResponseEntity.badRequest().body("E-mail mag niet leeg zijn.");
         }
 
-        // 3. Werk de andere velden bij
-        existingUser.setEmail(request.getEmail());
-        existingUser.setFirstName(request.getFirstName());
-        existingUser.setLastName(request.getLastName());
+        try {
+            // Roep de UserService aan om de gegevens op te slaan
+            userService.updateUserProfile(currentUsername, request);
 
-        // 4. Sla de bijgewerkte gebruiker op
-        userService.save(existingUser);
+            return ResponseEntity.ok("✅ Profiel succesvol bijgewerkt!");
 
-        return ResponseEntity.ok("Profile successfully updated!");
+        } catch (RuntimeException e) {
+            // Fout bij het opslaan (bijv. e-mail is al in gebruik)
+            return ResponseEntity.status(400).body("❌ Update mislukt: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("❌ Interne serverfout bij opslaan.");
+        }
     }
 }
