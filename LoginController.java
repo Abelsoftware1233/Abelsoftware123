@@ -1,16 +1,15 @@
 // LoginController.java
-package com.abelsoftware123.registration.controller;
+package com.abelsoftware123.registratie.controller;
 
-import com.abelsoftware123.registration.service.UserService;
+import com.abelsoftware123.registratie.dto.LoginRequest;
+import com.abelsoftware123.registratie.dto.LoginResponse; // Nieuw DTO!
+import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody; // Cruciale import
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * REST Controller for handling user login requests.
- */
 @RestController
 public class LoginController {
 
@@ -22,20 +21,24 @@ public class LoginController {
     }
 
     /**
-     * Endpoint for user login.
-     * Maps POST requests to /api/login and verifies user credentials using JSON data.
+     * POST /api/login: Verwerkt de inlogaanvraag.
      */
     @PostMapping("/api/login")
-    public ResponseEntity<String> loginUser(
-            @RequestBody LoginRequest request) { // Ontvangt JSON body
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-        // Gebruik de gegevens uit het Request object
-        if (userService.verifyLogin(request.getUsername(), request.getPassword())) {
-            // Success: Stuur een token of succesboodschap
-            return ResponseEntity.ok("🔑 Login successful! Welcome back " + request.getUsername() + ".");
-        } else {
-            // Failure
-            return ResponseEntity.badRequest().body("❌ Invalid username or password.");
+        try {
+            // Roep de UserService aan om de gebruiker te authenticeren en een token te genereren
+            String token = userService.authenticateAndGenerateToken(
+                request.getUsernameOrEmail(), 
+                request.getPassword()
+            );
+
+            // Stuur het token terug naar de frontend (script.js)
+            return ResponseEntity.ok(new LoginResponse(token, "Inloggen succesvol!"));
+
+        } catch (RuntimeException e) {
+            // Authenticatie mislukt (bijv. verkeerd wachtwoord)
+            return ResponseEntity.status(401).body(new LoginResponse(null, e.getMessage()));
         }
     }
 }
