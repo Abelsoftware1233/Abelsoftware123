@@ -1,101 +1,105 @@
-// script.js
+// script.js (Aangepast voor zowel Registratie als Login)
+
 document.addEventListener('DOMContentLoaded', () => {
-    const profileForm = document.getElementById('profileForm');
-    const usernameInput = document.getElementById('username');
-    const emailInput = document.getElementById('email');
-    const firstNameInput = document.getElementById('firstName');
-    const lastNameInput = document.getElementById('lastName');
-    const newPasswordInput = document.getElementById('newPassword');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
     
-    // Functie om de gebruikersgegevens op te halen en in te vullen
-    async function loadUserProfile() {
-        try {
-            // 1. Haal de gegevens van de ingelogde gebruiker op
-            const response = await fetch('/api/profile', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // BELANGRIJK: Hier moet je eventueel een authenticatie token toevoegen
-                    // 'Authorization': 'Bearer ' + localStorage.getItem('authToken') 
-                }
-            });
+    // Functie om statusboodschappen te tonen (gebruikt op beide pagina's)
+    const showStatus = (statusElement, message, isError) => {
+        statusElement.textContent = message;
+        statusElement.style.color = isError ? 'red' : 'green';
+        statusElement.style.display = 'block';
+    };
 
-            if (response.ok) {
-                const user = await response.json(); // De server stuurt de gebruikersgegevens (JSON)
-                
-                // 2. Vul de HTML-velden in met de ontvangen gegevens
-                usernameInput.value = user.username || '';
-                emailInput.value = user.email || '';
-                firstNameInput.value = user.firstName || '';
-                lastNameInput.value = user.lastName || '';
-                
-                // Optioneel: Update de profielfoto als de API deze linkt
-                // document.querySelector('img').src = user.profilePictureUrl || 'default.png';
+    // --- LOGICA VOOR REGISTRATIE (registreer.html) ---
+    const registrationForm = document.getElementById('registrationForm');
+    if (registrationForm) {
+        const statusMessage = document.getElementById('statusMessage');
 
-            } else {
-                // Als de server een fout geeft (bijv. 401 Unauthorized), stuur dan naar login
-                console.error('Fout bij het laden van profiel:', response.statusText);
-                alert('❌ Fout bij het laden van profielgegevens. Log opnieuw in.');
-                // window.location.href = 'login.html';
+        registrationForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+            showStatus(statusMessage, '', false); 
+
+            const password = registrationForm.password.value;
+            const passwordConfirm = registrationForm.password_confirm.value;
+            
+            if (password !== passwordConfirm) {
+                showStatus(statusMessage, '❌ Wachtwoorden komen niet overeen. Probeer het opnieuw.', true);
+                return; 
             }
-        } catch (error) {
-            console.error('Netwerkfout:', error);
-            alert('❌ Kan geen verbinding maken met de server om profiel op te halen.');
-        }
+            
+            const registrationData = {
+                username: registrationForm.username.value,
+                email: registrationForm.email.value,
+                password: password
+            };
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(registrationData)
+                });
+
+                const resultText = await response.text();
+
+                if (response.ok) {
+                    showStatus(statusMessage, resultText, false); 
+                    registrationForm.reset(); 
+                    setTimeout(() => {
+                        window.location.href = 'login.html'; 
+                    }, 3000);
+                } else {
+                    showStatus(statusMessage, resultText, true);
+                }
+            } catch (error) {
+                showStatus(statusMessage, '❌ Er is een netwerkfout opgetreden.', true);
+            }
+        });
     }
 
-    // Roep de functie aan zodra de pagina geladen is
-    loadUserProfile();
 
+    // --- LOGICA VOOR INLOGGEN (login.html) ---
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        const statusMessage = document.getElementById('statusMessage');
 
-    // Functie om de wijzigingen op te slaan
-    profileForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Voorkom standaard formulier verzending
-        
-        const newPassword = newPasswordInput.value;
-        const confirmPassword = confirmPasswordInput.value;
-        
-        // 1. Validatie van wachtwoord wijziging
-        if (newPassword && newPassword !== confirmPassword) {
-            alert('❌ Het nieuwe wachtwoord en de bevestiging komen niet overeen.');
-            confirmPasswordInput.focus();
-            return;
-        }
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+            showStatus(statusMessage, '', false); 
 
-        // 2. Maak het data-object voor de POST-aanvraag
-        const updateData = {
-            email: emailInput.value,
-            firstName: firstNameInput.value,
-            lastName: lastNameInput.value,
-            // Stuur het nieuwe wachtwoord alleen mee als het is ingevuld
-            newPassword: newPassword || null 
-        };
+            const loginData = {
+                usernameOrEmail: loginForm.usernameOrEmail.value,
+                password: loginForm.password.value
+            };
 
-        // 3. Stuur de data naar de server
-        try {
-            const response = await fetch('/api/profile/update', {
-                method: 'POST', // Dit komt overeen met action="/api/profile/update" method="POST"
-                headers: {
-                    'Content-Type': 'application/json',
-                    // BELANGRIJK: Vergeet de authenticatie token niet!
-                    // 'Authorization': 'Bearer ' + localStorage.getItem('authToken')
-                },
-                body: JSON.stringify(updateData)
-            });
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(loginData)
+                });
 
-            if (response.ok) {
-                alert('✅ Profiel succesvol bijgewerkt!');
-                // Maak de wachtwoordvelden leeg na succesvolle update
-                newPasswordInput.value = '';
-                confirmPasswordInput.value = '';
-            } else {
-                const errorText = await response.text();
-                alert('❌ Update mislukt: ' + errorText);
+                const result = await response.json(); // We verwachten nu een JSON object
+
+                if (response.ok) {
+                    // 1. Inloggen succesvol! Sla de token op.
+                    // Dit token is nodig voor de profielpagina
+                    localStorage.setItem('authToken', result.token); 
+                    
+                    showStatus(statusMessage, '✅ Succesvol ingelogd! U wordt doorgestuurd...', false); 
+                    loginForm.reset();
+                    
+                    // 2. Stuur door naar de profielpagina
+                    setTimeout(() => {
+                        window.location.href = 'profile.html'; 
+                    }, 1500);
+
+                } else {
+                    // Inloggegevens zijn onjuist
+                    showStatus(statusMessage, '❌ Login mislukt: ' + (result.message || 'Onjuiste inloggegevens.'), true);
+                }
+            } catch (error) {
+                showStatus(statusMessage, '❌ Er is een netwerkfout opgetreden bij het inloggen.', true);
             }
-        } catch (error) {
-            console.error('Netwerkfout bij opslaan:', error);
-            alert('❌ Kan de wijzigingen niet opslaan. Probeer het later opnieuw.');
-        }
-    });
+        });
+    }
 });
