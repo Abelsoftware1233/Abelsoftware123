@@ -1,60 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Profile | Your Gaming Site</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        /* Stijlen voor de container overgenomen en aangepast voor een profiel */
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px 0; }
-        .container { background: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 600px; /* Groter voor profielinformatie */ }
-        h2 { text-align: center; color: #333; margin-bottom: 30px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease; }
-        button:hover { background-color: #0056b3; }
-        .profile-actions { display: flex; justify-content: space-between; margin-top: 20px; }
-        .profile-actions .btn-save { background-color: #28a745; }
-        .profile-actions .btn-save:hover { background-color: #1e7e34; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>🎮 My Profile</h2>
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    const profileForm = document.getElementById('profileForm');
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    const newPasswordInput = document.getElementById('newPassword');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    
+    // Functie om de gebruikersgegevens op te halen en in te vullen
+    async function loadUserProfile() {
+        try {
+            // 1. Haal de gegevens van de ingelogde gebruiker op
+            const response = await fetch('/api/profile', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // BELANGRIJK: Hier moet je eventueel een authenticatie token toevoegen
+                    // 'Authorization': 'Bearer ' + localStorage.getItem('authToken') 
+                }
+            });
+
+            if (response.ok) {
+                const user = await response.json(); // De server stuurt de gebruikersgegevens (JSON)
+                
+                // 2. Vul de HTML-velden in met de ontvangen gegevens
+                usernameInput.value = user.username || '';
+                emailInput.value = user.email || '';
+                firstNameInput.value = user.firstName || '';
+                lastNameInput.value = user.lastName || '';
+                
+                // Optioneel: Update de profielfoto als de API deze linkt
+                // document.querySelector('img').src = user.profilePictureUrl || 'default.png';
+
+            } else {
+                // Als de server een fout geeft (bijv. 401 Unauthorized), stuur dan naar login
+                console.error('Fout bij het laden van profiel:', response.statusText);
+                alert('❌ Fout bij het laden van profielgegevens. Log opnieuw in.');
+                // window.location.href = 'login.html';
+            }
+        } catch (error) {
+            console.error('Netwerkfout:', error);
+            alert('❌ Kan geen verbinding maken met de server om profiel op te halen.');
+        }
+    }
+
+    // Roep de functie aan zodra de pagina geladen is
+    loadUserProfile();
+
+
+    // Functie om de wijzigingen op te slaan
+    profileForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Voorkom standaard formulier verzending
         
-        <form id="profileForm" action="/api/profile/update" method="POST">
-            
-            <div style="text-align: center; margin-bottom: 30px;">
-                <img src="logo.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff;">
-                <p><a href="#" id="changePicLink">Change Profile Picture</a></p>
-            </div>
-            
-            <label for="username">Username (Cannot be changed):</label>
-            <input type="text" id="username" name="username" value="CurrentUsername" readonly>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="user@example.com" required>
+        const newPassword = newPasswordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        
+        // 1. Validatie van wachtwoord wijziging
+        if (newPassword && newPassword !== confirmPassword) {
+            alert('❌ Het nieuwe wachtwoord en de bevestiging komen niet overeen.');
+            confirmPasswordInput.focus();
+            return;
+        }
 
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="John">
+        // 2. Maak het data-object voor de POST-aanvraag
+        const updateData = {
+            email: emailInput.value,
+            firstName: firstNameInput.value,
+            lastName: lastNameInput.value,
+            // Stuur het nieuwe wachtwoord alleen mee als het is ingevuld
+            newPassword: newPassword || null 
+        };
 
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="Doe">
-            
-            <h3 style="margin-top: 30px; color: #555;">Change Password</h3>
-            
-            <label for="newPassword">New Password:</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current password">
-            
-            <label for="confirmPassword">Confirm New Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat new password">
-            
-            <div class="profile-actions">
-                <button type="submit" class="btn-save">Save Changes</button>
-                <button type="button" onclick="window.location.href='index.html'">Go to Homepage</button>
-            </div>
-        </form>
-    </div>
+        // 3. Stuur de data naar de server
+        try {
+            const response = await fetch('/api/profile/update', {
+                method: 'POST', // Dit komt overeen met action="/api/profile/update" method="POST"
+                headers: {
+                    'Content-Type': 'application/json',
+                    // BELANGRIJK: Vergeet de authenticatie token niet!
+                    // 'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+                },
+                body: JSON.stringify(updateData)
+            });
 
-    <script src="script.js"></script> 
-</body>
-</html>
+            if (response.ok) {
+                alert('✅ Profiel succesvol bijgewerkt!');
+                // Maak de wachtwoordvelden leeg na succesvolle update
+                newPasswordInput.value = '';
+                confirmPasswordInput.value = '';
+            } else {
+                const errorText = await response.text();
+                alert('❌ Update mislukt: ' + errorText);
+            }
+        } catch (error) {
+            console.error('Netwerkfout bij opslaan:', error);
+            alert('❌ Kan de wijzigingen niet opslaan. Probeer het later opnieuw.');
+        }
+    });
+});
