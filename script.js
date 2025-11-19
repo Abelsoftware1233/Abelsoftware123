@@ -1,3 +1,4 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registrationForm');
     const statusMessage = document.getElementById('statusMessage');
@@ -5,66 +6,63 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functie om de statusboodschap te tonen
     const showStatus = (message, isError) => {
         statusMessage.textContent = message;
-        statusMessage.style.color = isError ? 'red' : 'green';
+        // Gebruik de kleur die je hebt gedefinieerd in de CSS, of gebruik groen/rood
+        statusMessage.style.color = isError ? 'red' : 'green'; 
         statusMessage.style.display = 'block';
     };
 
     form.addEventListener('submit', async (event) => {
-        // Stop de standaard formulier actie (zodat we het met JavaScript kunnen doen)
-        event.preventDefault(); 
+        event.preventDefault(); // Standaard actie stoppen
         
         statusMessage.style.display = 'none'; // Verberg vorige melding
 
-        const username = form.username.value;
-        const email = form.email.value;
         const password = form.password.value;
         const passwordConfirm = form.password_confirm.value;
 
-        // **STAP 1: Wachtwoorden Vergelijken (Client-Side Validatie)**
+        // **1. Wachtwoorden Vergelijken**
         if (password !== passwordConfirm) {
             showStatus('❌ Wachtwoorden komen niet overeen. Probeer het opnieuw.', true);
             form.password.focus();
-            return; // Stop het verzenden
+            return;
         }
         
-        // **STAP 2: Maak het data-object aan voor de server**
-        // BELANGRIJK: Hier wordt 'password_confirm' NIET meegestuurd!
+        // **2. Maak het JSON-object aan**
         const registrationData = {
-            username: username,
-            email: email,
-            password: password
+            username: form.username.value,
+            email: form.email.value,
+            password: password // Alleen het 'password' veld sturen!
         };
 
-        // **STAP 3: Stuur de data naar de server (POST /api/register)**
+        // **3. Stuur data naar de server**
         try {
             const response = await fetch('/api/register', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' // We versturen JSON
+                    'Content-Type': 'application/json' 
                 },
-                body: JSON.stringify(registrationData) // De gegevens als JSON string
+                body: JSON.stringify(registrationData)
             });
 
             const resultText = await response.text();
 
             if (response.ok) {
-                // HTTP 200 OK - Registratie is gelukt
+                // Succes! Stuur door naar de login pagina
                 showStatus(resultText, false); 
-                form.reset(); // Maak het formulier leeg
+                form.reset(); 
                 
-                // Optioneel: Stuur de gebruiker door naar de inlogpagina na 3 seconden
+                // Stuur de gebruiker door na 3 seconden
                 setTimeout(() => {
                     window.location.href = 'login.html'; 
                 }, 3000);
 
             } else {
-                // HTTP 400 Bad Request of andere fout
+                // Fout van de server (bijv. gebruiker bestaat al)
                 showStatus(resultText, true);
             }
         } catch (error) {
-            // Fout bij de netwerkverbinding of de server reageert niet
-            console.error('Fout bij registratie:', error);
-            showStatus('❌ Er is een netwerkfout opgetreden. Controleer de verbinding.', true);
+            // Netwerkfout
+            console.error('Netwerkfout bij registratie:', error);
+            showStatus('❌ Er is een netwerkfout opgetreden. Server niet bereikbaar.', true);
         }
     });
 });
