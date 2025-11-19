@@ -6,6 +6,7 @@ import com.abelsoftware123.registratie.dto.UpdateProfileRequest;
 import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder; // Belangrijke import!
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,11 +20,19 @@ public class ProfileController {
         this.userService = userService;
     }
 
-    // 1. GET /api/profile
+    // Functie om de gebruikersnaam van de ingelogde gebruiker op te halen
+    private String getCurrentUsername() {
+        // Haalt de gebruikersnaam op uit het token dat door Spring Security is gevalideerd
+        return SecurityContextHolder.getContext().getAuthentication().getName(); 
+    }
+
+    /**
+     * 1. GET /api/profile
+     */
     @GetMapping 
     public ResponseEntity<?> getProfile() {
-        // Vang de gebruikersnaam op na inloggen (vervang deze placeholder)
-        String currentUsername = "HUIDIGE_INGELOGDE_GEBRUIKER"; 
+        
+        String currentUsername = getCurrentUsername(); 
 
         try {
             UserProfileDTO profileData = userService.getUserProfile(currentUsername);
@@ -34,15 +43,19 @@ public class ProfileController {
             
             return ResponseEntity.ok(profileData);
 
+        } catch (RuntimeException e) { // Vang de fouten op uit de UserService
+             return ResponseEntity.status(400).body("Fout: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Fout bij het ophalen van het profiel: " + e.getMessage());
+            return ResponseEntity.status(500).body("Interne serverfout.");
         }
     }
 
-    // 2. POST /api/profile/update
+    /**
+     * 2. POST /api/profile/update
+     */
     @PostMapping("/update")
     public ResponseEntity<String> updateProfile(@RequestBody UpdateProfileRequest request) {
-        String currentUsername = "HUIDIGE_INGELOGDE_GEBRUIKER"; // Vervang deze placeholder
+        String currentUsername = getCurrentUsername();
         
         if (request.getEmail() == null || request.getEmail().isEmpty()) {
             return ResponseEntity.badRequest().body("E-mail mag niet leeg zijn.");
