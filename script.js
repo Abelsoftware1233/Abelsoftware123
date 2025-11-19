@@ -1,94 +1,70 @@
-// script.js (Deel van je gedeelde script.js file)
-
 document.addEventListener('DOMContentLoaded', () => {
-    const profileForm = document.getElementById('profileForm');
-    const statusMessage = document.getElementById('profileStatusMessage'); // Voeg dit element toe aan je HTML
+    const form = document.getElementById('registrationForm');
+    const statusMessage = document.getElementById('statusMessage');
 
-    // --- Functie om profielgegevens te laden bij het openen van de pagina ---
-    function loadProfile() {
-        fetch('/api/profile/me', {
-            method: 'GET',
-            headers: {
-                // Vervang dit door de daadwerkelijke token van de ingelogde gebruiker
-                'Authorization': 'Bearer YOUR_AUTH_TOKEN' 
-            }
-        })
-        .then(response => {
-            if (response.status === 401) { // Ongeautoriseerd
-                throw new Error('You must be logged in to view this profile.');
-            }
-            if (!response.ok) {
-                throw new Error('Failed to load profile data.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Vul de formulier velden
-            document.getElementById('username').value = data.username || '';
-            document.getElementById('email').value = data.email || '';
-            document.getElementById('firstName').value = data.firstName || '';
-            document.getElementById('lastName').value = data.lastName || '';
-        })
-        .catch(error => {
-            console.error('Error loading profile:', error);
-            if (statusMessage) {
-                statusMessage.textContent = error.message;
-                statusMessage.style.display = 'block';
-            } else {
-                alert(error.message);
-            }
-        });
-    }
+    // Functie om de statusboodschap te tonen
+    const showStatus = (message, isError) => {
+        statusMessage.textContent = message;
+        statusMessage.style.color = isError ? 'red' : 'green';
+        statusMessage.style.display = 'block';
+    };
 
-    // --- Functie om het profiel op te slaan ---
-    if (profileForm) {
-        profileForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+    form.addEventListener('submit', async (event) => {
+        // Stop de standaard formulier actie (zodat we het met JavaScript kunnen doen)
+        event.preventDefault(); 
+        
+        statusMessage.style.display = 'none'; // Verberg vorige melding
 
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
+        const username = form.username.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const passwordConfirm = form.password_confirm.value;
 
-            if (newPassword !== confirmPassword) {
-                alert('New passwords do not match!');
-                return;
-            }
+        // **STAP 1: Wachtwoorden Vergelijken (Client-Side Validatie)**
+        if (password !== passwordConfirm) {
+            showStatus('❌ Wachtwoorden komen niet overeen. Probeer het opnieuw.', true);
+            form.password.focus();
+            return; // Stop het verzenden
+        }
+        
+        // **STAP 2: Maak het data-object aan voor de server**
+        // BELANGRIJK: Hier wordt 'password_confirm' NIET meegestuurd!
+        const registrationData = {
+            username: username,
+            email: email,
+            password: password
+        };
 
-            // Data verzamelen voor de API (als JSON)
-            const formData = {
-                email: document.getElementById('email').value,
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                newPassword: newPassword,
-                confirmPassword: confirmPassword // Hoewel de backend dit ook valideert, is dit consistent met de DTO
-            };
-
-            fetch('/api/profile/update', {
+        // **STAP 3: Stuur de data naar de server (POST /api/register)**
+        try {
+            const response = await fetch('/api/register', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // CRUCIAAL voor de Java Controller
-                    'Authorization': 'Bearer YOUR_AUTH_TOKEN'
+                    'Content-Type': 'application/json' // We versturen JSON
                 },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Profile successfully updated!');
-                    // Wachtwoord velden leegmaken na succesvolle update
-                    document.getElementById('newPassword').value = '';
-                    document.getElementById('confirmPassword').value = '';
-                } else {
-                    return response.text().then(errorMessage => {
-                        throw new Error(errorMessage || 'Failed to update profile.');
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error updating profile:', error);
-                alert(`Error: ${error.message}`);
+                body: JSON.stringify(registrationData) // De gegevens als JSON string
             });
-        });
 
-        // Start het laden van het profiel zodra het script wordt uitgevoerd
-        loadProfile();
-    }
+            const resultText = await response.text();
+
+            if (response.ok) {
+                // HTTP 200 OK - Registratie is gelukt
+                showStatus(resultText, false); 
+                form.reset(); // Maak het formulier leeg
+                
+                // Optioneel: Stuur de gebruiker door naar de inlogpagina na 3 seconden
+                setTimeout(() => {
+                    window.location.href = 'login.html'; 
+                }, 3000);
+
+            } else {
+                // HTTP 400 Bad Request of andere fout
+                showStatus(resultText, true);
+            }
+        } catch (error) {
+            // Fout bij de netwerkverbinding of de server reageert niet
+            console.error('Fout bij registratie:', error);
+            showStatus('❌ Er is een netwerkfout opgetreden. Controleer de verbinding.', true);
+        }
+    });
 });
