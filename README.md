@@ -1,4 +1,4 @@
-Copyright 2025 abelsoftware123@ Company 
+Copyright 2026 abelsoftware123@ Company 
 
 Website scripts are forbidden for outsiders.
 
