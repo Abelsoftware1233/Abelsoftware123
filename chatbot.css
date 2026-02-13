@@ -1,0 +1,86 @@
+/* De zwevende ronde knop */
+#chat-launcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #007bff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: transform 0.3s;
+}
+
+#chat-launcher:hover { transform: scale(1.1); }
+#chat-launcher span { color: white; font-size: 30px; }
+
+/* Het chatvenster */
+#chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 480px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    display: none; /* Standaard dicht */
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+#chat-header {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-header h3 { margin: 0; font-size: 1rem; }
+#close-chat { cursor: pointer; font-size: 20px; }
+
+#messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+}
+
+.msg {
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.bot-msg { background: #e9e9eb; align-self: flex-start; color: #333; }
+.user-msg { background: #007bff; color: white; align-self: flex-end; }
+
+.btn-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+.quick-btn {
+    background: white;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+}
+.quick-btn:hover { background: #007bff; color: white; }
+
+#input-area { display: flex; border-top: 1px solid #eee; padding: 10px; background: white; }
+#input-area input { flex: 1; border: none; outline: none; padding: 8px; }
+#input-area button { background: none; border: none; color: #007bff; cursor: pointer; font-weight: bold; }
