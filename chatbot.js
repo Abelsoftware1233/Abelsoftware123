@@ -1,14 +1,16 @@
-// Database met vragen en antwoorden
+// Database with questions and answers (English version)
 const echoBotData = {
-    "prijzen": "Onze tarieven zijn erg scherp! Bekijk de prijzenpagina voor meer info.",
-    "uren": "Wij zijn geopend van maandag tot vrijdag, tussen 09:00 en 17:00.",
-    "contact": "Je kunt ons mailen via info@jouwwebsite.nl.",
-    "hallo": "Hoi! Hoe kan ik je vandaag helpen?",
-    "bedankt": "Graag gedaan! Heb je nog meer vragen?",
-    "default": "Ik begrijp het niet helemaal. Probeer een van de knoppen hierboven!"
+    "prices": "Our AI software licenses start at €15. Check our Payments page for more details!",
+    "hours": "We are available from Monday to Friday, between 09:00 and 17:00 (CET).",
+    "contact": "You can reach us at abelsoftware123@hotmail.com. We usually respond within 24 hours.",
+    "hello": "Hello! Welcome to Abelsoftware123. How can I assist you today?",
+    "hi": "Hi there! Looking for some specific software or tools?",
+    "software": "We specialize in AI Face Recognition, Drone Mapping, and Ethical Hacking tools.",
+    "thanks": "You're welcome! Let me know if you have any other questions.",
+    "default": "I'm not sure I understand. Please try one of the buttons above or type 'contact'!"
 };
 
-// Functie om chat te openen/sluiten
+// Function to open/close the chat
 function toggleChat() {
     const chat = document.getElementById("chat-container");
     if (chat.style.display === "flex") {
@@ -18,21 +20,23 @@ function toggleChat() {
     }
 }
 
-// Functie om vragen te verwerken
-function askBot(tekst = null) {
+// Function to process messages
+function askBot(text = null) {
     const input = document.getElementById("user-input");
     const container = document.getElementById("messages");
     
-    // Pak tekst uit input of van de knop
-    let userText = tekst ? tekst : input.value.trim().toLowerCase();
+    // Get text from input field or from a button click
+    let userText = text ? text : input.value.trim().toLowerCase();
+    
     if (userText === "") return;
 
-    // Toon bericht van de gebruiker
+    // Display user message
     container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
-    input.value = ""; // Maak veld leeg
+    input.value = ""; // Clear input field
 
-    // Zoek naar antwoord
+    // Search for a matching answer in the database
     let botResponse = echoBotData["default"];
+    
     for (let key in echoBotData) {
         if (userText.includes(key)) {
             botResponse = echoBotData[key];
@@ -40,14 +44,14 @@ function askBot(tekst = null) {
         }
     }
 
-    // Laat de bot antwoorden na een korte pauze (voor realisme)
+    // Show bot response after a short delay for a realistic feel
     setTimeout(() => {
-        container.innerHTML += `<div class="msg bot-msg"><b>Bot:</b> ${botResponse}</div>`;
-        container.scrollTop = container.scrollHeight; // Scroll naar beneden
+        container.innerHTML += `<div class="msg bot-msg"><b>Echo:</b> ${botResponse}</div>`;
+        container.scrollTop = container.scrollHeight; // Auto-scroll to the latest message
     }, 600);
 }
 
-// Enter-toets ondersteuning
+// Support for the 'Enter' key
 function handleKey(event) {
     if (event.key === "Enter") {
         askBot();
