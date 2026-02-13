@@ -1,6 +1,6 @@
 // Database with questions and answers (English version)
 const echoBotData = {
-    "prijzen": "Our AI software licenses starts at €15 Check our Payments page for more details!",
+    "prices": "Our AI software licenses starts at €15 Check our Payments page for more details!",
     "hours": "We are available from Monday to Friday, between 09:00 and 17:00 (CET).",
     "contact": "You can reach us at abelsoftware123@hotmail.com. We usually respond within 24 hours.",
     "hello": "Hello! Welcome to Abelsoftware123. How can I assist you today?",
