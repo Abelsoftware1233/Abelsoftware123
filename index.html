@@ -65,7 +65,7 @@
             background-color: #8b0000;
             box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
             transition: all 0.3s ease-in-out;
-            margin: 0 5px; 
+            margin: 5px; 
         }
 
         .galant-red-button:hover {
@@ -104,7 +104,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background: #00ffff; /* Neon blauw passend bij je site */
+            background: #00ffff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -179,7 +179,7 @@
         </div>
         
         <h1 class="neon-title">Abelsoftware123</h1>
-        <p>welcome to Abelsoftware123</p>
+        <p>Welcome to Abelsoftware123</p>
         
         <nav>
             <ul>
@@ -205,26 +205,51 @@
 
     <main style="padding: 20px;">
         <section class="content-section" id="introductie-content"> 
-            <h2 class="neon-title">💻 Our Ethical Hacking Resources🖥️</h2>
+            <h2 class="neon-title">💻 Our Ethical Hacking Resources 🖥️</h2>
             <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto; border: 2px solid #00ffff;">
-            <p>Welcome at Abelsoftware123. We specialize in custom AI software, games, and hacktools.</p>
+            
+            <h3>New!!! On Abelsoftware123</h3>
+            <p>Register your account on abelsoftware123 and buy our AI Software/Games/Hacktools/Apps in your own account!</p>
+            <p>We specialize in custom software that meets all your needs. Download our free app below!</p>
+
+            <h3>PSP Gaming Portable For Sale!</h3>
+            <p>PSP Gaming Portable with 30+ games. Futuristic layout and design. Now for sale in Payments page.</p>
+            <img src="1000011254.jpg" alt="PSP Gaming Portable console" style="max-width: 100%; height: auto; display: block; margin: 15px auto;">
+
+            <h3>AI Software on Abelsoftware123</h3>
+            <h4>AI Face Recognition, Drone Mapping, Target Kill Drones, Swarm Technology and more.</h4>
+            <p>For more info Click on the AI Software button below!!!</p>
             <a href="ai.html" class="groene-knop">AI Software Page</a>
         </section>
 
         <section class="content-section" id="tools-content" style="display: none;">
             <h2>Our Tools</h2>
-            <p>Discover our advanced toolset for developers and hackers.</p>
+            <p>Discover our advanced toolset for developers and hackers. In-depth descriptions of tools offered by Abelsoftware123.</p>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
-            <h2>⚙️ Install Manual⚙️</h2>
-            <p>Step-by-step guides for all our software.</p>
+            <h2>⚙️ Install Manual ⚙️</h2>
+            <p>Step-by-step guides for easy installation and configuration of your new tools.</p>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
             <h2>❓ (FAQ) ❓</h2>
-            <p>Quick solutions to common issues.</p>
+            <p>Any questions? Head over to our FAQ for quick solutions to common issues.</p>
         </section>
+
+        <div style="text-align: center; margin-top: 40px;">
+             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0">
+                <button class="groene-knop">abelsoftware123 android app</button>
+            </a>
+            
+            <section class="contact" style="margin-top: 30px;">
+                <h2>📬 Contact Us 📬</h2>
+                <p>Order your Website/App/Hacktools/AI Software. We respond within 24 hours.</p>
+                <a href="mailto:abelsoftware123@hotmail.com">
+                    <button class="groene-knop">Contact</button>
+                </a>
+            </section>
+        </div>
     </main>
 
     <div id="chat-launcher" onclick="toggleChat()">💬</div>
@@ -243,13 +268,12 @@
             </div>
         </div>
         <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="if(event.key==='Enter') askBot()">
+            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="handleKey(event)">
             <button onclick="askBot()">➤</button>
         </div>
     </div>
 
-    <script>
-        // 1. Script voor de Content Secties (Info, Tools, etc.)
+    <script src="chatbot.js"></script> <script>
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
@@ -265,141 +289,13 @@
                     showSection(this.dataset.contenttarget + '-content');
                 });
             });
+            // Standaard sectie tonen
             showSection('introductie-content');
         });
-
-        // 2. Script voor de Chatbot
-        function toggleChat() {
-            const chat = document.getElementById("chat-container");
-            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
-        }
-
-        const botData = {
-            "Prices": "Our AI software starts at €150 per licence.",
-            "software": "We offer AI Face Recognition en Drone Mapping software.",
-            "contact": "Email us on: abelsoftware123@hotmail.com",
-            "hallo": "Hello! Welcome on Abelsoftware123. Can i help you?",
-            "fault": "i dont understand. Try 'prices' of 'software'."
-        };
-
-        function askBot(keuze = null) {
-            const input = document.getElementById("user-input");
-            const box = document.getElementById("messages");
-            let vraag = keuze ? keuze : input.value.trim().toLowerCase();
-
-            if (!vraag) return;
-
-            box.innerHTML += `<div class="msg user-msg">${vraag}</div>`;
-            input.value = "";
-
-            let antwoord = botData["fout"];
-            for (let key in botData) {
-                if (vraag.includes(key)) { antwoord = botData[key]; break; }
-            }
-
-            setTimeout(() => {
-                box.innerHTML += `<div class="msg bot-msg"><b>Echo:</b> ${antwoord}</div>`;
-                box.scrollTop = box.scrollHeight;
-            }, 500);
-        }
     </script>
-<h3>New!!! On Abelsoftware123</h3>
-<p>Register your account on abelsoftware123. and buy our AI Software/Games/Hacktools/Apps in your own account!--->Follow Us On Instagram and TikTok!</p>
-       
-            <p>Here you will find information about the **AI Software***Games*** Legal Hack Tools***Website***Apps**Domain Name** we develop and use. we specialize in developing custom software that meets all your needs. our mission is to give everyone a good AI/GAMING/WEBSITE/HACK/APP/DOMAIN NAME experience. your wishes come first! download our new abelsoftware123 app for free and conveniently purchase your apps/games/hacktools/website within the app! click on the green button below to  download abelsoftware123 free app!!!</p>
 
-
-<h3>PSP Gaming Portable For Sale!</h3>
-<p>PSP Gaming Portable with 30+ games from any play console at this time. with a futuristic layout and design. now for sale in page Payments.(First Product) You can buy this console with PayPal. We sent this console over the whole globe.</p>
-
-<img src="1000011254.jpg" alt="PSP Gaming Portable console" style="max-width: 100%; height: auto; display: block; margin: 15px auto;">
-
-<h3>AI Software on Abelsoftware123=====>           
-<h4>AI Face Recognition civilian software and AI GMC Terrain Enemy Lines Mapping Software.</h4>
-<h4>AI Target Kill and Aid Rate Drones Software.</h4>
- <h4>AI Accurate Drone Release Dropping Software.</h4>
- <h4>AI Swarm Software Technology and many more software.</h4>          
-
-<p>For more info Click on the AI Software button below!!!</p>
-
-<a href="ai.html" class="groene-knop">AI Software Page</a>
-    </section
-
-        <section class="content-section" id="tools-content" style="display: none;">
-            <h2>Our Tools</h2>
-            <p>Here you will find an in-depth description of the various tools offered by Abelsoftware123. Discover how each tool works and the benefits it provides.</p>
-        </section>
-
-        <section class="content-section" id="setup-content" style="display: none;">
-            <h2>⚙️ Install Manual⚙️</h2>
-            <p>Follow our step-by-step guide for easy installation and configuration of your new tools. Get up and running smoothly!</p>
-        </section>
-
-        <section class="content-section" id="faq-content" style="display: none;">
-            <h2>❓ (FAQ) ❓</h2>
-            <p>Any questions? Head over to our FAQ for quick solutions to common issues</p>
-        </section>
-
-        <div style="text-align: center; margin-top: 20px;">
-             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
-                <button class="groene-knop">abelsoftware123 android app</button>
-            </a>
-        </div>
-        
-        <section class="contact">
-            <h2>📬Contact Us📬</h2>
-            <p>Click the button below to contact us if you want to order a Website/App/Hacktools/AI Software/ Domain Name. we respond within 24 hours. quotes are non-binding and free of charge. send an email,Click on the contact button.</p>
-            
-             <div style="text-align: center; margin-top: 20px;">
-                   <a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
-            <button id="contact-knop" class="groene-knop">Contact</button>
-        </a>
-    </section>
-            </div>
-            </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 abelsoftware123. all rights reserved.</p>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Let op: De selector is nu `.galant-red-button`
-            const futuristicbuttons = document.querySelectorAll('.galant-red-button'); 
-            const contentsections = document.querySelectorAll('.content-section');
-
-            // Functie om alle contentsecties te verbergen
-            function hideallcontentsections() {
-                contentsections.forEach(section => {
-                    section.style.display = 'none';
-                });
-            }
-
-            // Functie om een specifieke contentsectie te tonen
-            function showcontentsection(targetid) {
-                hideallcontentsections(); // Verberg alles eerst
-                const targetsection = document.getElementById(targetid);
-                if (targetsection) {
-                    // Gebruik 'block' of 'flex' afhankelijk van hoe je de layout wilt
-                    targetsection.style.display = 'block'; 
-                }
-            }
-
-            // Voeg event listeners toe aan de galante rode knoppen
-            futuristicbuttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Haalt de ID op uit het data-attribuut en voegt '-content' toe
-                    // Bv: 'tools' wordt 'tools-content'
-                    const target = this.dataset.contenttarget + '-content'; 
-                    showcontentsection(target);
-                });
-            });
-
-            // Toon de 'info' sectie standaard wanneer de pagina laadt
-            // Dit moet aan het einde, zodat de event listeners eerst zijn ingesteld.
-            showcontentsection('introductie-content');
-        });
-    </script>
+    <footer>
+        <p style="text-align: center; padding: 20px;">&copy; 2025 abelsoftware123. all rights reserved.</p>
+    </footer>
 </body>
 </html>
