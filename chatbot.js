@@ -33,21 +33,9 @@ const echoBotData = {
 
         "dom": {
             en: "Ouch! 💔 That hurts my virtual heart. I'm still learning every day. Maybe you can show me how to do it better?",
-            nl: "Auw! 💔 Dat doet mijn virtuele hartje pijn. Iedere dag leer ik bij. Misschien kun jij me laten zien hoe het beter moet?"
+            nl: "Auw! 💔 Dat doet mijn virtuele hartje pijn. Ik leer elke dag bij. Misschien kun jij me laten zien hoe het beter moet?"
         },
         "stupid": "dom", "stom": "dom", "niet goed": "dom",
-
-        // --- INTERACTIEF SPELLETJE ---
-        "spelletje": {
-            en: "Let's play! 🎲 I'm thinking of a number between 1 and 10. Can you guess it? Type 'guess [number]' to play!",
-            nl: "Laten we spelen! 🎲 Ik denk aan een getal tussen de 1 en 10. Kun jij het raden? Typ 'guess [getal]' om te spelen!"
-        },
-        "game": "spelletje", "play": "spelletje", "spelen": "spelletje",
-
-        "guess": {
-            en: "Nice try! 🎯 Was it correct? If you want to know the real answer: I always think of 7! Try again?",
-            nl: "Goede gok! 🎯 Was het goed? Als je het echte antwoord wilt weten: Ik denk altijd aan 7! Nog een keer?"
-        },
 
         // --- 2. GAMES VERKOOP (Trots & Passie) ---
         "games": {
@@ -90,14 +78,7 @@ const echoBotData = {
         },
         "the app": "abelsoftware123 app", "onze app": "abelsoftware123 app",
 
-        // --- 5. CONTACT ---
-        "contact": {
-            en: "You can reach us at abelsoftware123@hotmail.com 📧 We're happy to help with any questions!",
-            nl: "Je kunt ons bereiken op abelsoftware123@hotmail.com 📧 We helpen je graag met al je vragen!"
-        },
-        "email": "contact", "mail": "contact", "support": "contact",
-
-        // --- 6. GROETEN & AFSLUITING ---
+        // --- 5. GROETEN & AFSLUITING ---
         "hallo": { en: "Hello! I'm Echo. I'm so glad you're here. Ready to see some magic? ✨", nl: "Hallo! Ik ben Echo. Ik ben echt blij dat je er bent. Klaar om wat magie te zien? ✨" },
         "hello": "hallo", "hi": "hallo", "hoi": "hallo", "hey": "hallo",
         "doei": { en: "Goodbye! It was a pleasure talking to you. See you soon! 👋", nl: "Doei! Het was een genoegen om met je te praten. Tot snel! 👋" },
@@ -110,7 +91,7 @@ const echoBotData = {
     }
 };
 
-let currentLang = 'nl'; 
+let currentLang = 'nl'; // Standaard op Nederlands
 
 function toggleChat() {
     const chat = document.getElementById("chat-container");
@@ -124,9 +105,11 @@ function askBot(text = null) {
     
     if (userText === "") return;
 
+    // Toon gebruikersbericht
     container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
     if (input) input.value = ""; 
 
+    // --- SLIMME TAALDETECTIE ---
     const nlTriggers = ["de", "het", "ik", "en", "is", "hoe", "wat", "koop", "leuk", "hallo", "bedankt"];
     const enTriggers = ["the", "is", "how", "what", "buy", "nice", "hello", "thanks", "are"];
     
@@ -141,6 +124,7 @@ function askBot(text = null) {
 
     let responseObj = echoBotData.default;
 
+    // --- ZOEK NAAR KEYWORDS ---
     for (let key in echoBotData.keywords) {
         if (userText.includes(key)) {
             let match = echoBotData.keywords[key];
@@ -150,6 +134,7 @@ function askBot(text = null) {
         }
     }
 
+    // --- BOT ANTWOORD MET NADENK-EFFECT ---
     setTimeout(() => {
         const messageText = currentLang === 'nl' ? responseObj.nl : responseObj.en;
         container.innerHTML += `
