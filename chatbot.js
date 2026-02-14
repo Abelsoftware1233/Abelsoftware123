@@ -101,7 +101,7 @@ const echoBotData = {
         "prijzen": { en: "AI Software from €15, Websites from €250. Great value!", nl: "AI Software vanaf €15, Websites vanaf €250. Topkwaliteit!" },
         "prijs": "prijzen", "kosten": "prijzen",
 
-        "hallo": { en: "Hello! I'm Echo. Let's build some amazing AI together!", nl: "Hallo! Ik ben Echo. Laten we samen geweldige AI bouwen!" },
+        "hallo": { en: "Hello! I'm Echo. Let me help you, i am your digital assistent!", nl: "Hallo! Ik ben Echo. Laat me je helpen ik ben je digitale assistent!" },
         "hoi": "hallo", "hi": "hallo",
         "doei": { en: "Goodbye! Stay smart and see you soon at Abelsoftware123!", nl: "Doei! Blijf slim en tot snel bij Abelsoftware123!" },
         "bye": "doei", "laters": "doei"
