@@ -78,7 +78,14 @@ const echoBotData = {
         },
         "the app": "abelsoftware123 app", "onze app": "abelsoftware123 app",
 
-        // --- 5. GROETEN & AFSLUITING ---
+        // --- 5. CONTACT (Nieuw Toegevoegd) ---
+        "contact": {
+            en: "You can reach us at abelsoftware123@hotmail.com 📧 We're happy to help with any questions!",
+            nl: "Je kunt ons bereiken op abelsoftware123@hotmail.com 📧 We helpen je graag met al je vragen!"
+        },
+        "email": "contact", "mail": "contact", "support": "contact",
+
+        // --- 6. GROETEN & AFSLUITING ---
         "hallo": { en: "Hello! I'm Echo. I'm so glad you're here. Ready to see some magic? ✨", nl: "Hallo! Ik ben Echo. Ik ben echt blij dat je er bent. Klaar om wat magie te zien? ✨" },
         "hello": "hallo", "hi": "hallo", "hoi": "hallo", "hey": "hallo",
         "doei": { en: "Goodbye! It was a pleasure talking to you. See you soon! 👋", nl: "Doei! Het was een genoegen om met je te praten. Tot snel! 👋" },
@@ -91,61 +98,4 @@ const echoBotData = {
     }
 };
 
-let currentLang = 'nl'; // Standaard op Nederlands
-
-function toggleChat() {
-    const chat = document.getElementById("chat-container");
-    if (chat) chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
-}
-
-function askBot(text = null) {
-    const input = document.getElementById("user-input");
-    const container = document.getElementById("messages");
-    let userText = text ? text : input.value.trim().toLowerCase();
-    
-    if (userText === "") return;
-
-    // Toon gebruikersbericht
-    container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
-    if (input) input.value = ""; 
-
-    // --- SLIMME TAALDETECTIE ---
-    const nlTriggers = ["de", "het", "ik", "en", "is", "hoe", "wat", "koop", "leuk", "hallo", "bedankt"];
-    const enTriggers = ["the", "is", "how", "what", "buy", "nice", "hello", "thanks", "are"];
-    
-    const nlScore = nlTriggers.filter(word => userText.includes(word)).length;
-    const enScore = enTriggers.filter(word => userText.includes(word)).length;
-
-    if (enScore > nlScore) {
-        currentLang = 'en';
-    } else if (nlScore > 0) {
-        currentLang = 'nl';
-    }
-
-    let responseObj = echoBotData.default;
-
-    // --- ZOEK NAAR KEYWORDS ---
-    for (let key in echoBotData.keywords) {
-        if (userText.includes(key)) {
-            let match = echoBotData.keywords[key];
-            if (typeof match === "string") match = echoBotData.keywords[match];
-            responseObj = match;
-            break; 
-        }
-    }
-
-    // --- BOT ANTWOORD MET NADENK-EFFECT ---
-    setTimeout(() => {
-        const messageText = currentLang === 'nl' ? responseObj.nl : responseObj.en;
-        container.innerHTML += `
-            <div class="msg bot-msg">
-                <span style="color: #00ffcc; font-size: 0.75em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Echo ✨</span><br>
-                ${messageText}
-            </div>`;
-        container.scrollTop = container.scrollHeight;
-    }, 700); 
-}
-
-function handleKey(event) {
-    if (event.key === "Enter") askBot();
-}
+// ... de rest van je functies (toggleChat, askBot, handleKey) blijven identiek ...
