@@ -1,171 +1,156 @@
 /**
- * ECHO AI - ADVANCED SMART CHATBOT SYSTEM
- * Versie: 2.0 (Deep Integration & Game Suite)
- * Geschikt voor: Abelsoftware123 / Echo AI Repository
+ * ECHO AI - INTEGRATED SMART BOT
+ * Combineert jouw originele database met slimme functies en games.
  */
 
-// --- DE SLIMME DATABASE ---
 const echoBotData = {
-    // Scoresysteem voor de gebruiker
-    userState: {
-        score: 0,
-        language: 'en',
-        lastInquiry: null
-    },
-
-    // Keywords met meertalige ondersteuning en aliassen
+    // Jouw uitgebreide database met alle info
     keywords: {
+        // --- BASIS INFO (Jouw originele data + uitbreiding) ---
+        "hours": {
+            en: "We are available from Monday to Friday, between 09:00 and 17:00 (CET).",
+            nl: "Wij zijn beschikbaar van maandag t/m vrijdag, tussen 09:00 en 17:00 (CET)."
+        },
+        "uren": "hours", "tijden": "hours", "openingstijden": "hours", "open": "hours",
+
+        "contact": {
+            en: "You can reach us at abelsoftware123@hotmail.com. We usually respond within 24 hours.",
+            nl: "Je kunt ons bereiken op abelsoftware123@hotmail.com. We reageren meestal binnen 24 uur."
+        },
+        "email": "contact", "mail": "contact", "hulp": "contact", "support": "contact",
+
+        "prices": {
+            en: "Our AI software licenses start at €15. Check our Payments page for more details!",
+            nl: "Onze AI-softwarelicenties beginnen bij €15. Bekijk de Payments-pagina voor details!"
+        },
+        "prijzen": "prices", "kosten": "prices", "betalen": "prices", "price": "prices",
+
+        "software": {
+            en: "We specialize in AI Face Recognition, Drone Mapping, and Ethical Hacking tools.",
+            nl: "Wij zijn gespecialiseerd in AI Face Recognition, Drone Mapping en Ethical Hacking tools."
+        },
+        "tools": "software", "programma": "software",
+
         // --- WELKOM ---
         "hello": {
-            en: "Hello! Welcome to Echo AI by Abelsoftware123. How can I assist you today?",
-            nl: "Hallo! Welkom bij Echo AI van Abelsoftware123. Hoe kan ik je vandaag helpen?"
+            en: "Hello! Welcome to Abelsoftware123. How can I assist you today?",
+            nl: "Hallo! Welkom bij Abelsoftware123. Hoe kan ik je vandaag helpen?"
         },
         "hallo": "hello", "hi": "hello", "hey": "hello", "hoi": "hello",
 
-        // --- PRODUCTEN & SERVICES ---
-        "software": {
-            en: "We specialize in AI Face Recognition, Drone Mapping, and Ethical Hacking tools. Which one interests you?",
-            nl: "Wij zijn gespecialiseerd in AI Face Recognition, Drone Mapping en Ethical Hacking tools. Welke spreekt je aan?"
-        },
+        // --- SPECIFIEKE AI TOOLS ---
         "face": {
-            en: "Our Face Recognition AI uses neural networks for 99.8% accuracy. Perfect for security apps.",
-            nl: "Onze Face Recognition AI gebruikt neurale netwerken voor 99,8% nauwkeurigheid. Perfect voor beveiliging."
+            en: "Our Face Recognition AI is built for speed and security. Accuracy: 99.8%.",
+            nl: "Onze Face Recognition AI is gebouwd voor snelheid en veiligheid. Nauwkeurigheid: 99,8%."
         },
         "gezicht": "face", "herkenning": "face",
-        
+
         "drone": {
-            en: "Echo Drone Mapping turns aerial photos into 3D point clouds automatically. Save hours of manual work!",
-            nl: "Echo Drone Mapping zet luchtfoto's automatisch om in 3D-modellen. Bespaar uren aan handmatig werk!"
+            en: "Drone Mapping allows you to create 3D maps from aerial footage automatically.",
+            nl: "Met Drone Mapping kun je automatisch 3D-kaarten maken van luchtbeelden."
         },
         "mapping": "drone", "kaarten": "drone",
 
-        "hack": {
-            en: "Our Ethical Hacking suite provides automated vulnerability scans and pentesting scripts.",
-            nl: "Onze Ethical Hacking suite biedt automatische kwetsbaarheidsscans en pentesting scripts."
-        },
-        "beveiliging": "hack", "hacking": "hack", "cyber": "hack",
-
-        // --- PRIJZEN & CONTACT ---
-        "price": {
-            en: "Licenses start at €15. Check our Payments page for Personal vs. Enterprise options!",
-            nl: "Licenties beginnen bij €15. Bekijk de Payments-pagina voor de Personal en Enterprise opties!"
-        },
-        "prijzen": "price", "kosten": "price", "license": "price", "kopen": "price",
-
-        "contact": {
-            en: "Reach us at abelsoftware123@hotmail.com. Our team responds within 24 hours.",
-            nl: "Bereik ons via abelsoftware123@hotmail.com. Ons team reageert binnen 24 uur."
-        },
-        "help": "contact", "support": "contact", "email": "contact",
-
-        // --- GAMES & INTERACTIE ---
+        // --- GAMES SECTIE ---
         "game": {
-            en: "I'm not just a bot, I'm a gamer! 🎮 Type 'play' to start a mini hacking-quest and earn Echo-credits!",
-            nl: "Ik ben niet alleen een bot, ik ben een gamer! 🎮 Typ 'speel' om een hacking-quest te starten en Echo-credits te verdienen!"
+            en: "I love games! 🎮 Type 'play' to start a mini-hacking quest.",
+            nl: "Ik hou van games! 🎮 Typ 'speel' om een mini-hacking quest te starten."
         },
         "spel": "game", "gaming": "game", "spelen": "game",
 
         "play": {
-            en: "SYSTEM BREACH IN PROGRESS... 🔓 You see two firewalls: [Blue] (Easy) or [Red] (Hard). Which one do you attack?",
-            nl: "SYSTEM BREACH BEZIG... 🔓 Je ziet twee firewalls: [Blauw] (Makkelijk) of [Rood] (Moeilijk). Welke val je aan?"
+            en: "ECHO QUEST: You found a locked server. Do you try to [Hack] it or [Scan] for vulnerabilities?",
+            nl: "ECHO QUEST: Je hebt een vergrendelde server gevonden. Probeer je te [Hack]en of te [Scan]nen op zwakheden?"
         },
         "speel": "play",
 
-        "blue": {
-            en: "Success! You bypassed the firewall. +50 Echo-credits! 💰 Type 'score' to see your total.",
-            nl: "Succes! Je bent door de firewall heen. +50 Echo-credits! 💰 Typ 'score' voor je totaal."
+        "hack": {
+            en: "CRITICAL HIT! You breached the server. You earned 100 Echo-credits! 💰",
+            nl: "CRITICAL HIT! Je bent binnengedrongen. Je hebt 100 Echo-credits verdiend! 💰"
         },
-        "blauw": "blue",
-
-        "red": {
-            en: "ACCESS DENIED! The system traced you. You lost 20 credits. 🚨 Try again?",
-            nl: "TOEGANG GEWEIGERD! Het systeem heeft je getraceerd. Je verliest 20 credits. 🚨 Opnieuw?"
-        },
-        "rood": "red",
-
-        "score": {
-            en: "Your current Echo-rank is: High-Level User. Total Credits: {score}",
-            nl: "Je huidige Echo-rank is: High-Level User. Totaal Credits: {score}"
+        "scan": {
+            en: "The scan took too long and the admin found you. Game over! 🚨",
+            nl: "De scan duurde te lang en de admin heeft je gevonden. Game over! 🚨"
         },
 
-        // --- BEDANKJES ---
+        // --- AFSLUITING ---
         "thanks": {
-            en: "You're welcome! Echo AI is always here to help.",
-            nl: "Graag gedaan! Echo AI staat altijd voor je klaar."
+            en: "You're welcome! Let me know if you have any other questions.",
+            nl: "Graag gedaan! Laat het me weten als je nog andere vragen hebt."
         },
-        "bedankt": "thanks", "dankje": "thanks", "top": "thanks", "bedankt": "thanks"
+        "bedankt": "thanks", "dankje": "thanks", "bedankt": "thanks"
     },
 
-    // Standaard antwoord als niets wordt gevonden
+    // Default antwoorden
     default: {
-        en: "Intriguing question... 🤖 I don't have that in my database yet. Try 'software', 'prices', or 'game'!",
-        nl: "Interessante vraag... 🤖 Dat staat nog niet in mijn database. Probeer 'software', 'prijzen' of 'spel'!"
+        en: "I'm not sure I understand. Please try typing 'software', 'prices', 'hours' or 'game'!",
+        nl: "Ik begrijp het niet helemaal. Probeer 'software', 'prijzen', 'uren' of 'spel' te typen!"
     }
 };
 
-// --- DE CORE LOGICA ---
+// De huidige taal van de sessie
+let currentLang = 'en';
 
+// Functie om de chat te openen/sluiten
 function toggleChat() {
     const chat = document.getElementById("chat-container");
     if (!chat) return;
     chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
 }
 
+// Functie om berichten te verwerken
 function askBot(text = null) {
     const input = document.getElementById("user-input");
     const container = document.getElementById("messages");
     
+    // Pak tekst uit input of van knop
     let userText = text ? text : input.value.trim().toLowerCase();
+    
     if (userText === "") return;
 
-    // Toon gebruiker bericht
+    // Toon gebruikersbericht
     container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
-    if (input) input.value = "";
+    if (input) input.value = ""; 
 
-    // 1. Slimme Taaldetectie
-    const dutchWords = ["de", "het", "een", "ik", "en", "is", "hoe", "wat", "spel", "prijzen"];
-    const inputWords = userText.split(/\s+/);
-    const isDutch = inputWords.some(word => dutchWords.includes(word));
-    echoBotData.userState.language = isDutch ? 'nl' : 'en';
+    // --- SLIMME LOGICA ---
+    
+    // 1. Detecteer taal op basis van veelvoorkomende NL woorden
+    const nlTriggers = ["de", "het", "ik", "hoe", "wat", "uren", "spel", "prijzen"];
+    if (nlTriggers.some(word => userText.includes(word))) {
+        currentLang = 'nl';
+    } else {
+        // Alleen terug naar EN als er duidelijke EN woorden zijn, anders taal vasthouden
+        const enTriggers = ["the", "is", "how", "what", "game", "prices"];
+        if (enTriggers.some(word => userText.includes(word))) currentLang = 'en';
+    }
 
-    // 2. Slimme Matching & Score Updates
     let responseObj = echoBotData.default;
-    let foundKey = null;
+    let found = false;
 
+    // 2. Zoek door de database
     for (let key in echoBotData.keywords) {
         if (userText.includes(key)) {
-            foundKey = key;
             let match = echoBotData.keywords[key];
             
-            // Volg aliassen
+            // Als het een alias is (string), zoek de hoofd-key op
             if (typeof match === "string") {
                 match = echoBotData.keywords[match];
             }
             
             responseObj = match;
-            break;
+            found = true;
+            break; 
         }
     }
 
-    // 3. Game Logica (Score bijwerken)
-    if (foundKey === "blue" || foundKey === "blauw") echoBotData.userState.score += 50;
-    if (foundKey === "red" || foundKey === "rood") echoBotData.userState.score -= 20;
-
-    // 4. Response Genereren
-    let finalResponse = isDutch ? responseObj.nl : responseObj.en;
-    
-    // Dynamische data invullen (zoals score)
-    finalResponse = finalResponse.replace("{score}", echoBotData.userState.score);
-
-    // 5. Bot Typing Animatie
+    // 3. Toon bot antwoord met vertraging
     setTimeout(() => {
-        const botMsgHtml = `
+        const messageText = currentLang === 'nl' ? responseObj.nl : responseObj.en;
+        container.innerHTML += `
             <div class="msg bot-msg">
-                <div style="font-weight: bold; color: #00ffcc; margin-bottom: 4px;">Echo AI Bot</div>
-                ${finalResponse}
+                <b>Echo AI:</b> ${messageText}
             </div>`;
-        container.innerHTML += botMsgHtml;
-        container.scrollTop = container.scrollHeight;
+        container.scrollTop = container.scrollHeight; // Auto-scroll
     }, 600);
 }
 
