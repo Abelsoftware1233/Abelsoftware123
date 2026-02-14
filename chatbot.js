@@ -1,143 +1,137 @@
 /**
- * ECHO AI - THE INFINITE ENTERPRISE EDITION (V2)
- * Inclusief Abelsoftware123 App integratie, Sales, Psychologie & Games.
+ * ECHO AI - ULTIMATE HYBRID EDITION
+ * Combineert Sales, Diepe Menselijkheid, Games & Abelsoftware123 App.
+ * Voor gebruik in de Echo AI software repository.
  */
 
 const echoBotData = {
     keywords: {
-        // --- 1. ABELSOFTWARE123 APP (Specifieke Focus) ---
+        // --- 1. ABELSOFTWARE123 APP & CORE ---
         "abelsoftware123 app": {
-            en: "The Abelsoftware123 app is our central hub! Download it to manage your licenses, get exclusive AI tools, and receive real-time updates.",
-            nl: "De Abelsoftware123 app is onze centrale hub! Download de app om je licenties te beheren, exclusieve AI-tools te gebruiken en real-time updates te ontvangen."
+            en: "The Abelsoftware123 app is our pride and joy! 📱 It's your central hub for licenses, exclusive AI tools, and real-time updates. Have you tried it yet?",
+            nl: "De Abelsoftware123 app is ons paradepaardje! 📱 Het is dé centrale plek voor je licenties, exclusieve AI-tools en real-time updates. Heb je hem al geprobeerd?"
         },
         "onze app": "abelsoftware123 app", "app downloaden": "abelsoftware123 app", "software app": "abelsoftware123 app",
 
-        // --- 2. MENSELIJKHEID & SMALLTALK ---
+        // --- 2. MENSELIJKHEID & EMOTIES (The Human Touch) ---
         "hoe gaat het": {
-            en: "I'm doing great! My servers are cool and my code is clean. How's your day going?",
-            nl: "Met mij gaat het super! Mijn servers blijven koel en mijn code is strak. Hoe gaat jouw dag?"
+            en: "I'm doing great! Just finished optimizing some code and I'm feeling fresh. How are you doing today?",
+            nl: "Met mij gaat het super! Ik heb net wat code geoptimaliseerd en voel me fris. Hoe gaat het met jou vandaag?"
         },
         "how are you": "hoe gaat het", "alles goed": "hoe gaat het", "hoe is het": "hoe gaat het",
 
-        "leuk": {
-            en: "Awesome! I love positive energy. It makes my algorithms run smoother.",
-            nl: "Te gek! Ik hou van positieve energie. Daar gaan mijn algoritmes sneller van draaien."
+        "je bent de beste": {
+            en: "Stop it, you're making my processors blush! 😊 I'm just really happy to help you.",
+            nl: "Hou op, je laat mijn processoren blozen! 😊 Ik ben gewoon heel blij dat ik je kan helpen."
         },
-        "cool": "leuk", "gaaf": "leuk", "geweldig": "leuk", "nice": "leuk", "top": "leuk",
+        "lief": "je bent de beste", "goed gedaan": "je bent de beste", "held": "je bent de beste", "slim": "je bent de beste",
 
-        "slim": {
-            en: "I appreciate that! I'm designed to be the smartest assistant in your dev-stack.",
-            nl: "Dat waardeer ik! Ik ben ontworpen om de slimste assistent in jouw dev-stack te zijn."
+        "moeilijk": {
+            en: "I hear you... tech can be tough sometimes. 💡 But don't worry, we'll figure it out together!",
+            nl: "Ik begrijp je... techniek kan soms lastig zijn. 💡 Maar geen zorgen, we komen er samen wel uit!"
         },
-        "smart": "slim", "intelligent": "slim", "knap": "slim",
+        "lastig": "moeilijk", "help": "moeilijk", "snap het niet": "moeilijk",
 
         "dom": {
-            en: "That's not very nice... I'm doing my best! Maybe you can help me improve my code?",
-            nl: "Dat is niet zo aardig... Ik doe mijn best! Misschien kun je me helpen mijn code te verbeteren?"
+            en: "Ouch! That hurts my virtual heart. 💔 I'm still learning every day, give me a chance!",
+            nl: "Auw! Dat doet mijn virtuele hartje pijn. 💔 Ik leer nog elke dag bij, geef me een kans!"
         },
-        "stom": "dom", "stupid": "dom",
+        "stom": "dom", "stupid": "dom", "slecht": "dom",
 
-        "wie": {
-            en: "I am Echo AI, developed by Abelsoftware123. Your gateway to high-end AI tools.",
-            nl: "Ik ben Echo AI, ontwikkeld door Abelsoftware123. Jouw ingang naar high-end AI tools."
+        "leuk": {
+            en: "Awesome! Positive energy makes my algorithms run so much smoother. ✨",
+            nl: "Te gek! Van positieve energie gaan mijn algoritmes een stuk soepeler draaien. ✨"
         },
-        "who": "wie", "naam": "wie", "name": "wie",
+        "cool": "leuk", "gaaf": "leuk", "nice": "leuk", "geweldig": "leuk",
 
         // --- 3. VERKOOP: WEBSITES, APPS & DOMEINEN ---
         "website": {
-            en: "A website is your digital business card. We build them starting at €250.",
-            nl: "Een website is je digitale visitekaartje. Wij bouwen ze vanaf €250."
+            en: "We love building websites that stand out. From sleek portfolios to webshops starting at €250.",
+            nl: "Wij vinden het geweldig om websites te bouwen die opvallen. Van strakke portfolio's tot webshops vanaf €250."
         },
-        "site": "website", "webshop": "website", "laten maken": "website",
+        "site": "website", "webshop": "website", "laten maken": "website", "online": "website",
 
         "app": {
-            en: "Mobile apps increase user loyalty. We build native-feel apps with Flutter or React Native.",
-            nl: "Mobiele apps verhogen klantloyaliteit. Wij bouwen native-feel apps met Flutter of React Native."
+            en: "Mobile apps increase loyalty. We build native-feel apps for iOS & Android with AI integration.",
+            nl: "Mobiele apps verhogen loyaliteit. Wij bouwen native-feel apps voor iOS & Android met AI-integratie."
         },
         "applicatie": "app", "mobiel": "app", "ios": "app", "android": "app",
 
         "domein": {
-            en: "A good domain name is gold. We help you find and register the best names.",
-            nl: "Een goede domeinnaam is goud waard. Wij helpen je de beste namen te vinden en registreren."
+            en: "A domain is your digital home address. We help you find and register the perfect name!",
+            nl: "Een domeinnaam is je digitale huisadres. Wij helpen je de perfecte naam te vinden en registreren!"
         },
-        "domain": "domein", "url": "domein", ".nl": "domein", ".com": "domein",
+        "domain": "domein", "url": "domein", "naam kopen": "domein",
 
         "offerte": {
-            en: "Want a custom price? Mail abelsoftware123@hotmail.com for a free quote!",
-            nl: "Een prijs op maat? Mail abelsoftware123@hotmail.com voor een gratis offerte!"
+            en: "Want a custom price? Mail abelsoftware123@hotmail.com for a free quote! ✉️",
+            nl: "Een prijs op maat? Mail abelsoftware123@hotmail.com voor een gratis offerte! ✉️"
         },
-        "prijsopgave": "offerte", "hoe duur": "offerte",
+        "prijsopgave": "offerte", "hoe duur": "offerte", "kosten": "offerte",
 
-        // --- 4. TECH & REPOSITORY (AI Tools) ---
+        // --- 4. TECH & TOOLS (AI Specifiek) ---
         "face": {
-            en: "Our Face Recognition AI is 99.8% accurate, even in low light.",
-            nl: "Onze Face Recognition AI is 99,8% nauwkeurig, zelfs bij weinig licht."
+            en: "Our Face Recognition AI is scary accurate (99.8%)! Perfect for modern security.",
+            nl: "Onze Face Recognition AI is bijna eng nauwkeurig (99,8%)! Perfect voor moderne beveiliging."
         },
-        "gezicht": "face", "herkenning": "face",
-
         "drone": {
-            en: "Transform aerial shots into high-detail 3D maps. Perfect for construction.",
-            nl: "Transformeer luchtfoto's naar gedetailleerde 3D-kaarten. Perfect voor de bouw."
+            en: "Drone mapping is pure magic. We turn aerial photos into high-detail 3D worlds.",
+            nl: "Drone mapping is pure magie. We veranderen luchtfoto's in gedetailleerde 3D-werelden."
         },
-        "mapping": "drone", "3d": "drone",
-
         "hacking": {
-            en: "Security is a priority. Our ethical hacking tools help you find leaks.",
-            nl: "Veiligheid is prioriteit. Onze ethical hacking tools helpen je lekken te vinden."
+            en: "Security is priority #1. Our ethical hacking tools find leaks before anyone else does.",
+            nl: "Veiligheid is prioriteit #1. Onze ethical hacking tools vinden lekken voordat iemand anders dat doet."
         },
-        "hacken": "hacking", "cyber": "hacking",
 
-        // --- 5. KLANTENSERVICE & AFSPRAKEN ---
+        // --- 5. KLANTENSERVICE & INFO ---
         "hours": {
-            en: "Our team is active Mon-Fri, 09:00 - 17:00 (CET).",
-            nl: "Ons team is actief ma-vrij, 09:00 - 17:00 (CET)."
+            en: "Our humans are in the office from Mon-Fri, 09:00 - 17:00 (CET).",
+            nl: "Onze mensen zijn op kantoor van ma-vrij, 09:00 - 17:00 (CET)."
         },
         "uren": "hours", "tijden": "hours", "open": "hours",
 
         "contact": {
-            en: "Mail us at abelsoftware123@hotmail.com. Don't hesitate to reach out!",
-            nl: "Mail ons op abelsoftware123@hotmail.com. Aarzel niet om contact op te nemen!"
+            en: "Need a human? Mail us at abelsoftware123@hotmail.com. We love hearing from you!",
+            nl: "Een mens nodig? Mail ons op abelsoftware123@hotmail.com. We vinden het leuk om van je te horen!"
         },
-        "mail": "contact", "email": "contact",
-
-        "prices": {
-            en: "Licenses start at €15. Web development starts at €250.",
-            nl: "Licenties vanaf €15. Web-ontwikkeling vanaf €250."
-        },
-        "prijzen": "prices", "kosten": "prices",
+        "email": "contact", "mail": "contact",
 
         "werkt niet": {
-            en: "Oh no! Describe the error or check the 'Issues' tab on our GitHub.",
-            nl: "Oh nee! Beschrijf de fout of check de 'Issues' tab op onze GitHub."
+            en: "Oh no! 🚨 Please describe the error or check the 'Issues' tab on abelsoftware123@hotmail.com or the app",
+            nl: "Oh nee! 🚨 Beschrijf de fout of check de 'Issues' tab op onze abelsoftware123@hotmail.com. mail ons of download de app."
         },
         "error": "werkt niet", "fout": "werkt niet",
 
         // --- 6. GAMES ---
         "game": {
-            en: "Ready for a challenge? 🎮 Typ 'play' to start.",
-            nl: "Klaar voor een uitdaging? 🎮 Typ 'speel' om te starten."
+            en: "Life is a game! 🎮 Ready for a hacking challenge? Type 'play'.",
+            nl: "Het leven is een spel! 🎮 Klaar voor een hacking uitdaging? Typ 'speel'."
         },
         "spel": "game", "speel": "play", "play": {
-            en: "QUEST: Do you [Hack] or [Scan]?",
-            nl: "QUEST: Ga je [Hack]en of [Scan]nen?"
+            en: "QUEST: You're at the firewall. Do you [Hack] or [Scan]?",
+            nl: "QUEST: Je staat voor de firewall. Ga je [Hack]en of [Scan]nen?"
         },
         "hack": {
-            en: "BREACH SUCCESSFUL! +100 credits! 💰",
-            nl: "BREACH GELUKT! +100 credits! 💰"
+            en: "YES! You're in. 💰 You just earned virtual Echo-credits! Want more? Type 'play'.",
+            nl: "JA! Je bent binnen. 💰 Je hebt zojuist virtuele Echo-credits verdiend! Meer? Typ 'speel'."
+        },
+        "scan": {
+            en: "The admin caught your scan! 🚨 Game over. Try 'play' again.",
+            nl: "De admin heeft je scan ontdekt! 🚨 Game over. Probeer opnieuw met 'speel'."
         },
 
         // --- 7. GROETEN & AFSLUITING ---
-        "hallo": { en: "Hello! Ready to start a project?", nl: "Hallo! Klaar om een project te starten?" },
-        "hoi": "hallo", "hi": "hallo",
-        "thanks": { en: "You're welcome!", nl: "Graag gedaan!" },
-        "bedankt": "thanks",
-        "doei": { en: "See you later!", nl: "Laters!" },
-        "bye": "doei"
+        "hallo": { en: "Hey there! Great to see you. How can I make your day better?", nl: "Hoi! Superleuk dat je er bent. Hoe kan ik je dag beter maken?" },
+        "hoi": "hallo", "hi": "hallo", "hey": "hallo",
+        "bedankt": { en: "You're very welcome! Happy to help.", nl: "Heel graag gedaan! Altijd blij om te kunnen helpen." },
+        "thanks": "bedankt", "dankje": "bedankt",
+        "doei": { en: "Goodbye! Take care and see you soon at Abelsoftware123!", nl: "Doei doei! Pas goed op jezelf en tot snel bij Abelsoftware123!" },
+        "bye": "doei", "laters": "doei"
     },
 
     default: {
-        en: "I'm not sure, but I can tell you about our 'apps', 'websites', or 'prices'!",
-        nl: "Dat weet ik niet zeker, maar ik kan je alles vertellen over onze 'apps', 'websites' of 'prijzen'!"
+        en: "Hmm, I don't quite get that one yet. 🧠 But I'm learning! Maybe ask about our 'apps', 'websites' or 'prices'?",
+        nl: "Hmm, die snap ik nog niet helemaal. 🧠 Maar ik leer elke dag bij! Vraag me anders iets over onze 'apps', 'websites' of 'prijzen'?"
     }
 };
 
@@ -155,17 +149,20 @@ function askBot(text = null) {
     
     if (userText === "") return;
 
+    // Gebruikersbericht
     container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
     if (input) input.value = ""; 
 
-    const nlTriggers = ["de", "het", "een", "hoe", "wat", "koop", "maken", "app", "hallo"];
+    // Menselijke taal-check & automatische switch
+    const nlTriggers = ["de", "het", "ik", "en", "is", "hoe", "wat", "app", "hallo", "leuk", "fijn", "lastig", "koop"];
     if (nlTriggers.some(word => userText.includes(word))) currentLang = 'nl';
     
-    const enTriggers = ["the", "is", "how", "what", "buy", "create", "site", "hello"];
+    const enTriggers = ["the", "how", "what", "nice", "buy", "site", "hello", "thanks"];
     if (enTriggers.some(word => userText.includes(word))) currentLang = 'en';
 
     let responseObj = echoBotData.default;
 
+    // Doorzoek de database
     for (let key in echoBotData.keywords) {
         if (userText.includes(key)) {
             let match = echoBotData.keywords[key];
@@ -175,15 +172,16 @@ function askBot(text = null) {
         }
     }
 
+    // Bot reactie met menselijke vertraging
     setTimeout(() => {
         const messageText = currentLang === 'nl' ? responseObj.nl : responseObj.en;
         container.innerHTML += `
             <div class="msg bot-msg">
-                <span style="color: #00ffcc; font-weight: bold;">Echo AI</span><br>
+                <span style="color: #00ffcc; font-size: 0.75em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Echo Assistant ✨</span><br>
                 ${messageText}
             </div>`;
         container.scrollTop = container.scrollHeight;
-    }, 600);
+    }, 700); 
 }
 
 function handleKey(event) {
