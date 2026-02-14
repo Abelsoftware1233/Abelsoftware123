@@ -33,9 +33,21 @@ const echoBotData = {
 
         "dom": {
             en: "Ouch! 💔 That hurts my virtual heart. I'm still learning every day. Maybe you can show me how to do it better?",
-            nl: "Auw! 💔 Dat doet mijn virtuele hartje pijn. Ik leer elke dag bij. Misschien kun jij me laten zien hoe het beter moet?"
+            nl: "Auw! 💔 Dat doet mijn virtuele hartje pijn. Iedere dag leer ik bij. Misschien kun jij me laten zien hoe het beter moet?"
         },
         "stupid": "dom", "stom": "dom", "niet goed": "dom",
+
+        // --- INTERACTIEF SPELLETJE ---
+        "spelletje": {
+            en: "Let's play! 🎲 I'm thinking of a number between 1 and 10. Can you guess it? Type 'guess [number]' to play!",
+            nl: "Laten we spelen! 🎲 Ik denk aan een getal tussen de 1 en 10. Kun jij het raden? Typ 'guess [getal]' om te spelen!"
+        },
+        "game": "spelletje", "play": "spelletje", "spelen": "spelletje",
+
+        "guess": {
+            en: "Nice try! 🎯 Was it correct? If you want to know the real answer: I always think of 7! Try again?",
+            nl: "Goede gok! 🎯 Was het goed? Als je het echte antwoord wilt weten: Ik denk altijd aan 7! Nog een keer?"
+        },
 
         // --- 2. GAMES VERKOOP (Trots & Passie) ---
         "games": {
@@ -78,7 +90,7 @@ const echoBotData = {
         },
         "the app": "abelsoftware123 app", "onze app": "abelsoftware123 app",
 
-        // --- 5. CONTACT (Nieuw Toegevoegd) ---
+        // --- 5. CONTACT ---
         "contact": {
             en: "You can reach us at abelsoftware123@hotmail.com 📧 We're happy to help with any questions!",
             nl: "Je kunt ons bereiken op abelsoftware123@hotmail.com 📧 We helpen je graag met al je vragen!"
@@ -98,4 +110,57 @@ const echoBotData = {
     }
 };
 
-// ... de rest van je functies (toggleChat, askBot, handleKey) blijven identiek ...
+let currentLang = 'nl'; 
+
+function toggleChat() {
+    const chat = document.getElementById("chat-container");
+    if (chat) chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+}
+
+function askBot(text = null) {
+    const input = document.getElementById("user-input");
+    const container = document.getElementById("messages");
+    let userText = text ? text : input.value.trim().toLowerCase();
+    
+    if (userText === "") return;
+
+    container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
+    if (input) input.value = ""; 
+
+    const nlTriggers = ["de", "het", "ik", "en", "is", "hoe", "wat", "koop", "leuk", "hallo", "bedankt"];
+    const enTriggers = ["the", "is", "how", "what", "buy", "nice", "hello", "thanks", "are"];
+    
+    const nlScore = nlTriggers.filter(word => userText.includes(word)).length;
+    const enScore = enTriggers.filter(word => userText.includes(word)).length;
+
+    if (enScore > nlScore) {
+        currentLang = 'en';
+    } else if (nlScore > 0) {
+        currentLang = 'nl';
+    }
+
+    let responseObj = echoBotData.default;
+
+    for (let key in echoBotData.keywords) {
+        if (userText.includes(key)) {
+            let match = echoBotData.keywords[key];
+            if (typeof match === "string") match = echoBotData.keywords[match];
+            responseObj = match;
+            break; 
+        }
+    }
+
+    setTimeout(() => {
+        const messageText = currentLang === 'nl' ? responseObj.nl : responseObj.en;
+        container.innerHTML += `
+            <div class="msg bot-msg">
+                <span style="color: #00ffcc; font-size: 0.75em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Echo ✨</span><br>
+                ${messageText}
+            </div>`;
+        container.scrollTop = container.scrollHeight;
+    }, 700); 
+}
+
+function handleKey(event) {
+    if (event.key === "Enter") askBot();
+}
