@@ -52,8 +52,8 @@ const echoBotData = {
 
         // --- 3. PAYMENTS & SALES (Commercieel met hart) ---
         "betalen": {
-            en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal or iDEAL. Your support keeps my servers running and my dreams alive!",
-            nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal of iDEAL. Jouw steun houdt mijn servers draaiende en mijn dromen levend!"
+            en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal. Your support keeps the games in proces and development!",
+            nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal. Jouw steun houdt de games in ontwikkeling!"
         },
         "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen", "afrekenen": "betalen",
 
@@ -67,7 +67,7 @@ const echoBotData = {
             en: "do you want human contact send us Email on abelsoftware123@hotmail.com and we will help you within 24 hours! 💻",
             nl: "Wilt u Menselijk contact stuur ons een email op abelsoftware123@hotmail.com en we reageren binnen 24uur om u te helpen! 💻"
         },
-        "contact": "kontact", "customs": "klantenservice", "customer": "company",
+        "contact": "kontakt",
 
         // --- 4. AI SOFTWARE & ABELSOFTWARE123 APP ---
         "ai software": {
