@@ -200,3 +200,19 @@ function askBot(text = null) {
 
     botReply(currentLang === 'nl' ? responseObj.nl : responseObj.en);
 }
+const contactInfo = {
+    openingHours: {
+        en: "We are open from Monday to Sunday, between 9:00 AM and 5:00 PM. 🕘",
+        nl: "Wij zijn geopend van maandag tot en met zondag, tussen 9:00 en 17:00 uur. 🕘"
+    },
+    responseTime: {
+        en: "You can email us at abelsoftware123@hotmail.com. We will respond within 24 hours! 💻",
+        nl: "U kunt mailen naar abelsoftware123@hotmail.com. we reageren binnen 24 uur! 💻"
+    }
+};
+
+function getContactResponse(lang) {
+    const hours = contactInfo.openingHours[lang];
+    const response = contactInfo.responseTime[lang];
+    return `${hours}\n${response}`;
+}
