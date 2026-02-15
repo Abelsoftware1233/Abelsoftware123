@@ -61,13 +61,16 @@ const echoBotData = {
             en: "We keep it fair: Games start at €4.99, and AI software from €15. Quality made with love, for a fair price! 💸",
             nl: "We houden het eerlijk: Games vanaf €4,99 en AI-software vanaf €15. Kwaliteit gemaakt met liefde, voor een eerlijke prijs! 💸"
         },
-"prices": "prijzen", "pricing": "prijzen", "kosten": "prijzen",
+        "prices": "prijzen", "pricing": "prijzen", "kosten": "prijzen",
 
-       "contact" : {
-            en: "do you want human contact send us Email on abelsoftware123@hotmail.com and we will help you within 24 hours! 💻",
-            nl: "Wilt u Menselijk contact stuur ons een email op abelsoftware123@hotmail.com en we reageren binnen 24uur om u te helpen! 💻"
+        // --- GECORRIGEERDE CONTACT SECTIE ---
+        "contact": {
+            en: "Do you want human contact? Send us an email at abelsoftware123@hotmail.com and we will help you within 24 hours! 💻",
+            nl: "Wilt u menselijk contact? Stuur ons een e-mail op abelsoftware123@hotmail.com en we reageren binnen 24 uur om u te helpen! 💻"
         },
-        "contact": "kontakt",
+        "kontakt": "contact",
+        "email": "contact",
+        "mail": "contact",
 
         // --- 4. AI SOFTWARE & ABELSOFTWARE123 APP ---
         "ai software": {
