@@ -100,7 +100,7 @@ const echoBotData = {
     }
 };
 
-let currentLang = 'nl'; // Standaard op Nederlands
+let currentLang = 'en'; // Standaard op Engels
 
 function toggleChat() {
     const chat = document.getElementById("chat-container");
