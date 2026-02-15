@@ -6,7 +6,7 @@
 
 const echoBotData = {
     keywords: {
-        // --- 1. MENSELIJKHEID & EMOTIE (Warmte en Empathie) ---
+        // --- 1. MENSELIJKHEID & EMOTIE ---
         "hoe gaat het": {
             en: "I'm doing wonderful! My algorithms are buzzing with energy. 🧠 How are you feeling today? Anything on your mind?",
             nl: "Met mij gaat het heerlijk! Mijn algoritmes bruisen van de energie. 🧠 Hoe voel jij je vandaag? Is er iets waar ik bij kan helpen?"
@@ -23,7 +23,7 @@ const echoBotData = {
             en: "Aww, you're making me blush! 😊 I'm just happy to be part of the Abelsoftware123 team. You're pretty great too!",
             nl: "Aww, je laat me blozen! 😊 Ik ben gewoon blij dat ik deel uitmaak van het Abelsoftware123 team. Jij bent zelf ook geweldig!"
         },
-        "lief": "je bent de beste", "held": "je bent de beste", "slim": "je bent de beste", "smart": "je beste", "awesome": "je bent de beste",
+        "lief": "je bent de beste", "held": "je bent de beste", "slim": "je bent de beste", "smart": "je bent de beste", "awesome": "je bent de beste",
 
         "moeilijk": {
             en: "I understand... sometimes tech can be a real puzzle. 🧩 Don't worry, take your time. We can figure it out together!",
@@ -37,7 +37,7 @@ const echoBotData = {
         },
         "stupid": "dom", "stom": "dom", "niet goed": "dom",
 
-        // --- 2. GAMES VERKOOP (Trots & Passie) ---
+        // --- 2. GAMES & LICENTIES ---
         "games": {
             en: "I love making games! 🎮 From AI-simulators to addictive arcade titles. You can buy full licenses for the best experience (no ads, lifetime updates!) in our shop.",
             nl: "Ik hou ervan om spellen te maken! 🎮 Van AI-simulators tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!) in onze shop."
@@ -50,7 +50,7 @@ const echoBotData = {
         },
         "license": "licentie", "volledige versie": "licentie", "full version": "licentie",
 
-        // --- 3. PAYMENTS & SALES (Commercieel met hart) ---
+        // --- 3. PAYMENTS & SALES ---
         "betalen": {
             en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal here: www.abelsoftware123.com/payments.html Your support keeps the games in development!",
             nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal op: www.abelsoftware123.com/payments.html Jouw steun houdt de games in ontwikkeling!"
@@ -63,14 +63,14 @@ const echoBotData = {
         },
         "prices": "prijzen", "pricing": "prijzen", "kosten": "prijzen",
 
-        // --- CONTACT ---
+        // --- 4. CONTACT & OPENINGSTIJDEN (Verbeterd) ---
         "contact": {
-            en: "Do you want human contact? Send us an email at abelsoftware123@hotmail.com and we will help you within 24 hours! 💻",
-            nl: "Wilt u menselijk contact? Stuur ons een e-mail op abelsoftware123@hotmail.com en we reageren binnen 24 uur om u te helpen! 💻"
+            en: "We are open from Monday to Sunday, between 9:00 AM and 5:00 PM. 🕘 You can email us at abelsoftware123@hotmail.com. We will respond within 24 hours! 💻",
+            nl: "Wij zijn geopend van maandag tot en met zondag, tussen 9:00 en 17:00 uur. 🕘 U kunt mailen naar abelsoftware123@hotmail.com. We reageren binnen 24 uur! 💻"
         },
-        "kontakt": "contact", "email": "contact", "mail": "contact",
+        "kontakt": "contact", "email": "contact", "mail": "contact", "openingstijden": "contact", "hours": "contact",
 
-        // --- 4. AI SOFTWARE & LINKS ---
+        // --- 5. AI SOFTWARE & LINKS ---
         "ai software": {
             en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping. Check it out: www.abelsoftware123.com/apps.html",
             nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping. Bekijk het hier: www.abelsoftware123.com/apps.html"
@@ -100,13 +100,13 @@ const echoBotData = {
             nl: "De Abelsoftware123 app is mijn thuis! 📱 Het is de plek waar je onze games speelt, je AI beheert en veilig betalingen regelt."
         },
 
-        // --- 5. HACK GAME ---
+        // --- 6. HACK GAME ---
         "hackgame": {
             en: "INITIALIZING HACK SESSION... 📟 System: Enter the 4-digit bypass code (1000-9999). You have 15 seconds! Type: 'code [number]'",
             nl: "HACK SESSIE INITIALISEREN... 📟 Systeem: Voer de 4-cijferige bypass-code in (1000-9999). Je hebt 15 seconden! Type: 'code [getal]'"
         },
 
-        // --- 6. GROETEN ---
+        // --- 7. GROETEN ---
         "hallo": { en: "Hello! I'm Echo. I'm so glad you're here. Ready to see some magic? ✨", nl: "Hallo! Ik ben Echo. Ik ben echt blij dat je er bent. Klaar om wat magie te zien? ✨" },
         "hello": "hallo", "hi": "hallo", "hoi": "hallo", "hey": "hallo",
         "doei": { en: "Goodbye! It was a pleasure talking to you. See you soon! 👋", nl: "Doei! Het was een genoegen om met je te praten. Tot snel! 👋" },
@@ -199,20 +199,4 @@ function askBot(text = null) {
     }
 
     botReply(currentLang === 'nl' ? responseObj.nl : responseObj.en);
-}
-const contactInfo = {
-    openingHours: {
-        en: "We are open from Monday to Sunday, between 9:00 AM and 5:00 PM. 🕘",
-        nl: "Wij zijn geopend van maandag tot en met zondag, tussen 9:00 en 17:00 uur. 🕘"
-    },
-    responseTime: {
-        en: "You can email us at abelsoftware123@hotmail.com. We will respond within 24 hours! 💻",
-        nl: "U kunt mailen naar abelsoftware123@hotmail.com. we reageren binnen 24 uur! 💻"
-    }
-};
-
-function getContactResponse(lang) {
-    const hours = contactInfo.openingHours[lang];
-    const response = contactInfo.responseTime[lang];
-    return `${hours}\n${response}`;
 }
