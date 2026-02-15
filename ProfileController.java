@@ -1,49 +1,50 @@
 package com.abelsoftware123.registratie.controller;
 
-import com.abelsoftware123.registratie.dto.RegistrationRequest;
+import com.abelsoftware123.registratie.dto.UserProfileDTO;
+import com.abelsoftware123.registratie.dto.UpdateProfileRequest;
 import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-public class RegistrationController {
+@RestController
+@RequestMapping("/api/profile")
+public class ProfileController {
 
     private final UserService userService;
 
     @Autowired
-    public RegistrationController(UserService userService) {
+    public ProfileController(UserService userService) {
         this.userService = userService;
     }
 
-    // Laat de registratiepagina zien
-    @GetMapping("/registreer")
-    public String showRegistrationPage() {
-        return "registreer"; 
+    private String getCurrentUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName(); 
     }
 
-    // Verwerk de registratie en stuur door naar profiel
-    @PostMapping("/register") 
-    public String registerUser(@ModelAttribute RegistrationRequest request) {
+    @GetMapping 
+    public ResponseEntity<?> getProfile() {
+        String currentUsername = getCurrentUsername(); 
         try {
-            userService.registerNewUser(
-                request.getUsername(), 
-                request.getEmail(), 
-                request.getPassword()
-            );
-            // Dit is de fix voor je "Page Not Found":
-            return "redirect:/profile"; 
-            
-        } catch (RuntimeException e) {
-            return "redirect:/registreer.html?error=" + e.getMessage();
+            UserProfileDTO profileData = userService.getUserProfile(currentUsername);
+            if (profileData == null) {
+                return ResponseEntity.status(404).body("Gebruiker niet gevonden.");
+            }
+            return ResponseEntity.ok(profileData);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Fout bij ophalen profiel.");
         }
     }
 
-    // DIT IS ESSENTIEEL: De route die de HTML pagina 'profile.html' opent
-    @GetMapping("/profile")
-    public String showProfilePage() {
-        return "profile"; 
+    @PostMapping("/update")
+    public ResponseEntity<String> updateProfile(@RequestBody UpdateProfileRequest request) {
+        String currentUsername = getCurrentUsername();
+        try {
+            userService.updateUserProfile(currentUsername, request);
+            return ResponseEntity.ok("✅ Profiel succesvol bijgewerkt!");
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body("❌ Update mislukt: " + e.getMessage());
+        }
     }
 }
