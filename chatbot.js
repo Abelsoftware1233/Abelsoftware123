@@ -72,8 +72,8 @@ const echoBotData = {
 
         // --- 5. AI SOFTWARE & LINKS ---
         "ai software": {
-            en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping. Check it out: www.abelsoftware123.com/apps.html",
-            nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping. Bekijk het hier: www.abelsoftware123.com/apps.html"
+            en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping. Check it out: www.abelsoftware123.com/ai.html",
+            nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping. Bekijk het hier: www.abelsoftware123.com/ai.html"
         },
         "face": {
             en: "Our Face Recognition is 99.8% accurate! 👤 It's high-tech security, but built with a human touch.",
