@@ -73,3 +73,25 @@ public class ProfileController {
         }
     }
 }
+package com.abelsoftware123.registratie.controller;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
+@RestController // Gebruik RestController voor API/JSON data
+@RequestMapping("/api/profile")
+public class ProfileController {
+
+    @GetMapping
+    public ResponseEntity<?> getProfile() {
+        // Hier haal je de data uit de database
+        // Voor nu een test-object:
+        return ResponseEntity.ok(new UserData("Gebruikersnaam", "email@test.com"));
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<String> updateProfile(@RequestBody UpdateProfileRequest request) {
+        // Hier sla je de data op
+        return ResponseEntity.ok("Profiel bijgewerkt!");
+    }
+}
