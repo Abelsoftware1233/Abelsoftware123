@@ -1,4 +1,4 @@
-package com.jouwgamedomein.registratie.config;
+package com.abelsoftware123.registratie.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
