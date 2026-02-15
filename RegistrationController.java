@@ -1,16 +1,14 @@
-// RegistrationController.java
 package com.abelsoftware123.registratie.controller;
 
 import com.abelsoftware123.registratie.dto.RegistrationRequest;
 import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller; // Veranderd van RestController naar Controller
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute; // Belangrijk voor formulieren
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
+@Controller
 public class RegistrationController {
 
     private final UserService userService;
@@ -20,14 +18,10 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/register") 
-    public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest request) {
+    // Dit zorgt dat het formulier uit de HTML wordt verwerkt
+    @PostMapping("/register") 
+    public String registerUser(@ModelAttribute RegistrationRequest request) {
         
-        if (request.getUsername() == null || request.getPassword() == null || request.getEmail() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body("❌ Alle velden (Gebruikersnaam, E-mail, Wachtwoord) zijn verplicht.");
-        }
-
         try {
             userService.registerNewUser(
                 request.getUsername(), 
@@ -35,11 +29,18 @@ public class RegistrationController {
                 request.getPassword()
             );
             
-            return ResponseEntity.ok("✅ Registratie succesvol! U wordt doorgestuurd naar de login pagina.");
+            // NA REGISTRATIE: Stuur direct door naar de profielpagina
+            return "redirect:/profile"; 
             
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body("❌ Registratie mislukt: " + e.getMessage());
+            // Bij een fout: ga terug naar de registreerpagina met een foutmelding
+            return "redirect:/registreer.html?error=" + e.getMessage();
         }
+    }
+
+    // DIT ONTBRAK: De route die de profielpagina daadwerkelijk opent
+    @GetMapping("/profile")
+    public String showProfilePage() {
+        return "profile"; // Dit zoekt naar profile.html
     }
 }
