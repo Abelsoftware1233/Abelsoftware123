@@ -61,3 +61,16 @@ function showStatus(text, type) {
     statusMsg.className = type;
     statusMsg.style.display = 'block';
 }
+@RestController // Belangrijk voor JavaScript/Fetch
+public class RegistrationController {
+
+    @PostMapping("/api/register") // Moet matchen met je fetch() in script.js
+    public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest request) {
+        try {
+            userService.registerNewUser(request.getUsername(), request.getEmail(), request.getPassword());
+            return ResponseEntity.ok().build(); // JavaScript handelt de redirect daarna af
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+}
