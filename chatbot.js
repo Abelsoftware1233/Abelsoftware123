@@ -52,10 +52,10 @@ const echoBotData = {
 
         // --- 3. PAYMENTS & SALES (Commercieel met hart) ---
         "betalen": {
-            en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal. Your support keeps the games in proces and development!",
-            nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal. Jouw steun houdt de games in ontwikkeling!"
+            en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal here: www.abelsoftware123.com/payments.html Your support keeps development going!",
+            nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal op: www.abelsoftware123.com/payments.html Jouw steun houdt de ontwikkeling gaande!"
         },
-        "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen", "afrekenen": "betalen",
+        "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen", "afrekenen": "betalen", "payments": "betalen",
 
         "prijzen": {
             en: "We keep it fair: Games start at €4.99, and AI software from €15. Quality made with love, for a fair price! 💸",
@@ -74,8 +74,8 @@ const echoBotData = {
 
         // --- 4. AI SOFTWARE & ABELSOFTWARE123 APP ---
         "ai software": {
-            en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping to make the future easier.",
-            nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping om de toekomst makkelijker te maken."
+            en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping. Check it out: www.abelsoftware123.com/apps.html",
+            nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping. Bekijk het hier: www.abelsoftware123.com/apps.html"
         },
         "face": {
             en: "Our Face Recognition is 99.8% accurate! 👤 It's high-tech security, but built with a human touch.",
@@ -87,6 +87,24 @@ const echoBotData = {
         },
         "the app": "abelsoftware123 app", "onze app": "abelsoftware123 app",
 
+        // --- NIEUWE SECTIES & LINKS ---
+        "apps": {
+            en: "Explore our latest applications and AI tools here: www.abelsoftware123.com/apps.html 📱",
+            nl: "Ontdek hier onze nieuwste applicaties en AI-tools: www.abelsoftware123.com/apps.html 📱"
+        },
+        "hacktools": {
+            en: "Interested in security and analysis? Check our tools: www.abelsoftware123.com/hacktools.html 🛠️",
+            nl: "Geïnteresseerd in security en analyse? Bekijk onze tools: www.abelsoftware123.com/hacktools.html 🛠️"
+        },
+        "website": {
+            en: "Visit our official homepage for the full experience: www.abelsoftware123.com/website.html 🌐",
+            nl: "Bezoek onze officiële homepage voor de volledige ervaring: www.abelsoftware123.com/website.html 🌐"
+        },
+        "company": {
+            en: "Learn more about the vision behind Abelsoftware123: www.abelsoftware123.com/company.html 🏢",
+            nl: "Leer meer over de visie achter Abelsoftware123: www.abelsoftware123.com/company.html 🏢"
+        },
+
         // --- 5. GROETEN & AFSLUITING ---
         "hallo": { en: "Hello! I'm Echo. I'm so glad you're here. Ready to see some magic? ✨", nl: "Hallo! Ik ben Echo. Ik ben echt blij dat je er bent. Klaar om wat magie te zien? ✨" },
         "hello": "hallo", "hi": "hallo", "hoi": "hallo", "hey": "hallo",
@@ -95,7 +113,7 @@ const echoBotData = {
     },
 
     default: {
-        en: "Hmm, I don't quite have the answer for that yet... 🧠 But I'm always learning! Try asking about our 'games' or 'betalen'.",
+        en: "Hmm, I don't quite have the answer for that yet... 🧠 But I'm always learning! Try asking about our 'games' or 'payments'.",
         nl: "Hmm, daar heb ik het antwoord nog niet op... 🧠 Maar ik leer elke dag bij! Vraag me eens naar onze 'games' of 'betalen'."
     }
 };
