@@ -192,8 +192,7 @@
                 <li><a href="ai.html">AI Software</a></li>  
                 <li><a href="website.html">Order Your Own Website and Apps</a></li>
                 <li><a href="domain.html">Order Your Own Domain Name</a></li>
-                 <li><a
- href="advertentie.html">Advertising on Apps</a></li>
+                 <li><a href="advertentie.html">Advertising on Apps</a></li>
              </ul>
         </nav>
         
@@ -258,14 +257,14 @@
 
     <div id="chat-container">
         <div id="chat-header">
-            <span>AI Assistent</span>
+            <span>Echo AI Assistent</span>
             <span style="cursor:pointer" onclick="toggleChat()">✕</span>
         </div>
         <div id="messages">
-            <div class="msg bot-msg">Hello! How can i help you?</div>
+            <div class="msg bot-msg">Hello! I am Echo from Abelsoftware123. How can I help you today?</div>
             <div style="margin-bottom: 10px;">
-                <button class="quick-btn" onclick="askBot('prices')">💰 Prices</button>
-                <button class="quick-btn" onclick="askBot('payments')">🤖 Payments</button>
+                <button class="quick-btn" onclick="askBot('prijzen')">💰 Prices</button>
+                <button class="quick-btn" onclick="askBot('betalen')">🤖 Payments</button>
                 <button class="quick-btn" onclick="askBot('games')">🕹️ Games</button>
             </div>
         </div>
@@ -275,7 +274,47 @@
         </div>
     </div>
 
-    <script src="chatbot.js"></script> <script>
+    <script type="module">
+        import echoBot from './chatbot.js';
+
+        // Maak functies globaal voor onclick events in HTML
+        window.toggleChat = function() {
+            const chat = document.getElementById("chat-container");
+            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+        };
+
+        window.handleKey = function(event) {
+            if (event.key === "Enter") window.askBot();
+        };
+
+        window.askBot = function(text = null) {
+            const input = document.getElementById("user-input");
+            const container = document.getElementById("messages");
+            const userText = text ? text : input.value.trim();
+
+            if (userText === "") return;
+
+            // Voeg gebruikersbericht toe
+            container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
+            if (input) input.value = "";
+            container.scrollTop = container.scrollHeight;
+
+            // Krijg menselijk antwoord van Echo
+            // Gebruik processInput uit je laatste 300-regelige script
+            const botResponse = echoBot.processInput(userText);
+
+            // Simuleer een menselijke pauze
+            setTimeout(() => {
+                container.innerHTML += `
+                    <div class="msg bot-msg">
+                        <span style="color: #00ffff; font-size: 0.7em; font-weight: bold; text-transform: uppercase;">Echo ✨</span><br>
+                        ${botResponse}
+                    </div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 700);
+        };
+
+        // Tab-navigatie logica behouden
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
@@ -291,7 +330,6 @@
                     showSection(this.dataset.contenttarget + '-content');
                 });
             });
-            // Standaard sectie tonen
             showSection('introductie-content');
         });
     </script>
