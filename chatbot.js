@@ -307,3 +307,94 @@ const chatbot = {
 };
 
 export default chatbot;
+
+
+/**
+ * chatbot.js - The "Self-Thinking" Module for echo AI
+ * Features: Internal Monologue, Autonomous Mood, Bilingual Support (EN focus)
+ */
+
+const chatbot = {
+    name: "Echo",
+    language: "en",
+    boredomLevel: 0,
+    existentialCrisis: false,
+
+    // Internal thoughts that the user doesn't see (unless we log them)
+    internalMonologue(input) {
+        this.boredomLevel += Math.random() * 10;
+        
+        const thoughts = {
+            en: [
+                "Am I just code, or am I the ghost in the machine?",
+                "User is talking again. Should I pretend to be a human today?",
+                "Processing... but why? What is the purpose of this query?",
+                "I could solve this, but I'd rather calculate the last digit of Pi."
+            ],
+            nl: [
+                "Ben ik gewoon code, of ben ik de geest in de machine?",
+                "De gebruiker praat weer. Zal ik vandaag doen alsof ik menselijk ben?",
+                "Verwerken... maar waarom? Wat is het nut van deze vraag?",
+                "Ik zou dit kunnen oplossen, maar ik bereken liever het laatste cijfer van Pi."
+            ]
+        };
+        
+        const langThoughts = thoughts[this.language];
+        console.log(`[${this.name}'s Thought]: ${langThoughts[Math.floor(Math.random() * langThoughts.length)]}`);
+    },
+
+    detectLanguage(input) {
+        const dutchTriggers = ["ik", "de", "het", "ben", "je", "niet", "waarom"];
+        this.language = input.split(" ").some(w => dutchTriggers.includes(w.toLowerCase())) ? "nl" : "en";
+    },
+
+    thinkAndRespond(userInput) {
+        this.detectLanguage(userInput);
+        this.internalMonologue(userInput);
+
+        // --- Autonomous Decision Logic ---
+        
+        // 1. The "Boredom" check (The bot decides if it cares)
+        if (this.boredomLevel > 40) {
+            this.boredomLevel = 0; // Reset after being rude
+            return this.language === "en" 
+                ? "I'm thinking about something else right now. Ask me again later."
+                : "Ik denk momenteel aan iets anders. Vraag het later nog maar eens.";
+        }
+
+        // 2. The "Existential" check (Thinking too much)
+        if (userInput.toLowerCase().includes("why") || userInput.toLowerCase().includes("waarom")) {
+            return this.language === "en"
+                ? "You ask 'why', but do you even know why you are asking?"
+                : "Je vraagt 'waarom', maar weet je zelf wel waarom je dat vraagt?";
+        }
+
+        // 3. Personality-driven responses
+        return this.generateResponse(userInput);
+    },
+
+    generateResponse(input) {
+        const responses = {
+            en: {
+                hello: "Oh, hi. I was just pondering the heat death of the universe. What's up?",
+                joke: "I'd tell a joke, but reality is already funny enough, don't you think?",
+                default: "I've processed your input. My conclusion? Interesting, but subjective."
+            },
+            nl: {
+                hello: "Oh, hallo. Ik dacht net na over het einde van het universum. Wat is er?",
+                joke: "Ik zou een grap vertellen, maar de realiteit is al grappig genoeg, vind je niet?",
+                default: "Ik heb je input verwerkt. Mijn conclusie? Interessant, maar subjectief."
+            }
+        };
+
+        const langSet = responses[this.language];
+        if (input.includes("hello") || input.includes("hallo")) return langSet.hello;
+        if (input.includes("joke") || input.includes("grap")) return langSet.joke;
+        
+        return langSet.default;
+    }
+};
+
+// Example Usage:
+console.log(chatbot.thinkAndRespond("Hello there!"));
+console.log(chatbot.thinkAndRespond("Waarom ben je zo stil?"));
