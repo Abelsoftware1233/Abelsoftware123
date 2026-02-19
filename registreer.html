@@ -1,12 +1,128 @@
-<form action="/register" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" required>
-    
-    <label for="email">Email:</label>
-    <input type="email" name="email" required>
-    
-    <label for="password">Password:</label>
-    <input type="password" name="password" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Abelsoftware123</title>
+    <style>
+        /* Basisstijlen overgenomen van jouw Neon Theme */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333333;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    <button type="submit">Create Account</button>
-</form>
+        .content-section {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #00f0ff;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Formulier specifieke styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #cccccc;
+        }
+
+        input {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 20px;
+            color: #fff;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        /* De knop in jouw Neon Blue stijl */
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF;
+            border: 2px solid #00FFFF;
+            transition: all 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #00FFFF;
+            color: #000;
+            box-shadow: 0 0 15px #00FFFF, 
+                        0 0 30px #00FFFF;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #00f0ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<section class="content-section">
+    <h2>Create Account</h2>
+    
+    <form action="/register" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Enter username" required>
+        
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="email@example.com" required>
+        
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="••••••••" required>
+
+        <button type="submit">Register Now</button>
+    </form>
+
+    <a href="index.html" class="back-link">Return to Home</a>
+</section>
+
+</body>
+</html>
