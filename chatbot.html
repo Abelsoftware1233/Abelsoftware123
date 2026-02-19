@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Development - Abelsoftware123</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- INTEGRATIE VAN ALLE STIJLEN --- */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header-controls {
+            position: absolute; 
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; 
+            background-color: transparent; 
+            box-shadow: 0 0 10px #00ffff; 
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00ffff;
+            color: #000; 
+        }
+
+        .neon-title {
+            color: #00ffff; 
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            text-align: center;
+        }
+
+        .control-panel {
+            text-align: center; 
+            margin-top: 20px;
+        }
+
+        .galant-red-button {
+            padding: 10px 20px;
+            border: 2px solid #ff4500;
+            border-radius: 8px; 
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: #8b0000;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
+            transition: all 0.3s ease-in-out;
+            margin: 5px; 
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .galant-red-button:hover {
+            background-color: #ff4500;
+            color: #000;
+        }
+
+        .groene-knop {
+            padding: 15px 25px;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 15px #00ff00;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .groene-knop:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+
+        nav ul { list-style: none; padding: 0; text-align: center; }
+        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
+        nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
+
+        /* --- ADVERTENTIE LAYOUT --- */
+        .pricing-section {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #222;
+            border: 2px solid #444;
+            border-radius: 15px;
+            padding: 25px;
+            width: 320px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: #00ffff; transform: scale(1.02); }
+        .card.premium { border-color: #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+
+        .price-big { font-size: 2.5em; font-weight: bold; margin: 15px 0; color: #fff; display: block; }
+    </style>
+</head>
+<body>
+
+    <header style="position: relative; text-align: center; padding-top: 50px;"> 
+        <div class="header-controls">
+            <a href="registreer.html" class="neon-blue-button">register</a>
+            <a href="login.html" class="neon-blue-button">log in</a>
+        </div>
+        
+        <h1 class="neon-title">Abelsoftware123</h1>
+        <p>Chatbot Development Services</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="company.html">Abelsoftware123 company</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="apps.html">Games List of Apps</a></li>
+                <li><a href="hacktools.html">Hacktools</a></li>
+                <li><a href="ai.html">AI Software</a></li>  
+                <li><a href="chatbot.html" style="color: #fff; text-shadow: 0 0 10px #00ffff;">Chatbot Orders</a></li>
+                <li><a href="website.html">Order Your Own Website and Apps</a></li>
+             </ul>
+        </nav>
+        
+        <div class="control-panel">
+            <a href="index.html" class="galant-red-button">Info</a>
+            <a href="setup.html" class="galant-red-button">Setup</a>
+            <a href="hacktools.html" class="galant-red-button">Tools</a>
+            <a href="faq.html" class="galant-red-button">F&Q</a>
+        </div>
+    </header>
+
+    <main style="padding: 20px;">
+        <h2 class="neon-title">🚀 Chatbot Ontwikkeling & Verkoop</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">Wij bouwen de meest geavanceerde chatbots van 2026. Of u nu een standaard systeem wilt of een zelfdenkende AI met menselijke emoties: Abelsoftware123 levert de code.</p>
+
+        <section class="pricing-section">
+            <div class="card">
+                <h3 style="color: #00ffff;">Standard Chatbot</h3>
+                <p>Keyword-gebaseerde automatisering.</p>
+                <span class="price-big">€1000</span>
+                <ul style="text-align: left; margin-bottom: 25px;">
+                    <li>Vaste antwoordstructuur</li>
+                    <li>Website integratie</li>
+                    <li>NL/EN Taalbeheer</li>
+                </ul>
+                <a href="mailto:abelsoftware123@hotmail.com?subject=Order Standaard Chatbot" class="groene-knop">Bestel Nu</a>
+            </div>
+
+            <div class="card premium">
+                <h3 style="color: #00ff00;">Premium AI Chatbot</h3>
+                <p>Deep Learning & Emotie-engine.</p>
+                <span class="price-big" style="color: #00ff00;">€1500</span>
+                <ul style="text-align: left; margin-bottom: 25px;">
+                    <li><strong>Zelfdenkende logica</strong></li>
+                    <li>Menselijke moods & empathie</li>
+                    <li>Interne monoloog (console)</li>
+                </ul>
+                <a href="mailto:abelsoftware123@hotmail.com?subject=Order AI Chatbot" class="groene-knop">Start AI Project</a>
+            </div>
+        </section>
+
+        <div style="background: #222; border: 1px solid #ff4500; padding: 20px; border-radius: 10px; margin-top: 40px; text-align: center;">
+            <h3 style="color: #ff4500;">Waarom 1000€+ investeren?</h3>
+            <p>Een chatbot van Abelsoftware123 werkt 24/7. Het bespaart personeelskosten, verhoogt klanttevredenheid en geeft uw merk een futuristische uitstraling. Onze AI-software is uniek in de markt.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p style="text-align: center; padding: 40px;">&copy; 2026 abelsoftware123. all rights reserved.</p>
+    </footer>
+
+</body>
+</html>
