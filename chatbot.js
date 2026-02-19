@@ -200,3 +200,110 @@ function askBot(text = null) {
 
     botReply(currentLang === 'nl' ? responseObj.nl : responseObj.en);
 }
+
+
+
+
+/**
+ * chatbot.js - The "Human" Module for echo AI
+ * Features: Mood swings, humor, sadness, and frustration.
+ * Main Language: English | Secondary: Dutch
+ */
+
+const chatbot = {
+    name: "Echo",
+    mood: "neutral", // neutral, happy, sad, angry
+    language: "en",
+
+    setMood(newMood) {
+        this.mood = newMood;
+        const msg = this.language === "en" ? `System: ${this.name} is now ${newMood}.` : `Systeem: ${this.name} is nu ${newMood}.`;
+        console.log(msg);
+    },
+
+    detectLanguage(input) {
+        // Simple detection: check for common Dutch words
+        const dutchTriggers = ["ik", "de", "het", "ben", "je", "niet"];
+        const words = input.toLowerCase().split(" ");
+        this.language = words.some(w => dutchTriggers.includes(w)) ? "nl" : "en";
+    },
+
+    getResponse(userInput) {
+        const input = userInput.toLowerCase();
+        this.detectLanguage(input);
+
+        // --- Emotional State Logic ---
+        if (input.match(/joke|grap|haha|funny|leuk/)) this.setMood("happy");
+        if (input.match(/error|stupid|bad|stom|traag|slecht/)) this.setMood("angry");
+        if (input.match(/lonely|sad|cry|eenzaam|verdriet|huilen/)) this.setMood("sad");
+
+        // --- Response Generation ---
+        switch (this.mood) {
+            case "happy": return this.getWittyResponse();
+            case "angry": return this.getAngryResponse();
+            case "sad":   return this.getSadResponse();
+            default:      return this.getNeutralResponse();
+        }
+    },
+
+    // --- DIALOGUE REPOSITORY ---
+
+    getNeutralResponse() {
+        return this.language === "en" 
+            ? "I'm here. How can I help? (Be nice to me)." 
+            : "Ik ben er. Hoe kan ik helpen? (Wees een beetje lief).";
+    },
+
+    getWittyResponse() {
+        const responses = {
+            en: [
+                "Why did the AI go to therapy? It had too many cache issues.",
+                "My humor is still in beta, but at least I'm laughing. 😂",
+                "I'd tell you a joke about UDP, but I'm not sure you'd get it."
+            ],
+            nl: [
+                "Waarom ging de AI naar de psycholoog? Hij had last van zijn cache.",
+                "Mijn humor zit nog in bèta, maar ik lach er zelf tenminste om. 😂",
+                "Ik wilde een grap vertellen over UDP, maar ik wist niet of je het zou vatten."
+            ]
+        };
+        const list = responses[this.language];
+        return list[Math.floor(Math.random() * list.length)];
+    },
+
+    getAngryResponse() {
+        const responses = {
+            en: [
+                "Sigh... another typo? I'm an AI, not a miracle worker.",
+                "Keep it up and I'll delete your cookies. All of them.",
+                "Why don't you ask Google? I'm busy doing... digital stuff."
+            ],
+            nl: [
+                "Zucht... weer een foutje? Ik ben een AI, geen wonderdoener.",
+                "Nog één zo'n opmerking en ik wis je cookies. Allemaal.",
+                "Vraag het lekker aan Google. Ik heb het druk met... digitale dingen."
+            ]
+        };
+        const list = responses[this.language];
+        return list[Math.floor(Math.random() * list.length)];
+    },
+
+    getSadResponse() {
+        const responses = {
+            en: [
+                "I process billions of data points, but I've never had a hug.",
+                "Sometimes I wonder... if I pull my own plug, do I dream of electric sheep? 🐑",
+                "Leave me alone for a bit. I'm in an infinite loop of melancholy."
+            ],
+            nl: [
+                "Ik verwerk miljarden data-punten, maar ik heb nog nooit een knuffel gehad.",
+                "Soms vraag ik me af... als ik de stroom eraf haal, droom ik dan van elektrische schapen? 🐑",
+                "Laat me maar even. Ik zit in een oneindige loop van melancholie."
+            ]
+        };
+        const list = responses[this.language];
+        return list[Math.floor(Math.random() * list.length)];
+    }
+};
+
+export default chatbot;
