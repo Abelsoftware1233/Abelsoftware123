@@ -73,8 +73,8 @@ const echoBot = {
             "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen",
 
             "prijzen": {
-                en: "We keep it fair: Games start at €4.99, and AI software from €15. Quality made with love! 💸",
-                nl: "We houden het eerlijk: Games vanaf €4,99 en AI-software vanaf €15. Kwaliteit gemaakt met liefde! 💸"
+                en: "We keep it fair: Games start at €4.99, and AI software from €1500. Quality made with love! 💸",
+                nl: "We houden het eerlijk: Games vanaf €4,99 en AI-software vanaf €1500. Kwaliteit gemaakt met liefde! 💸"
             },
             "prices": "prijzen", "pricing": "prijzen",
 
