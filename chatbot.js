@@ -93,6 +93,10 @@ const echoBot = {
                 en: "Visit our official homepage for the full experience: www.abelsoftware123.com/website.html 🌐",
                 nl: "Bezoek onze officiële homepage voor de volledige ervaring: www.abelsoftware123.com/website.html 🌐"
             },
+"hacktools": {
+                en: "Visit our official homepage for the full experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
+                nl: "Bezoek onze officiële homepage voor de volledige ervaring: www.abelsoftware123.com/hacktools.html 🧑‍💻"
+            },
 
             // --- 5. INTERACTIVE ---
             "hackgame": {
