@@ -54,8 +54,8 @@ const echoBot = {
 
             // --- 2. GAMES & LICENSES ---
             "games": {
-                en: "I love making games! 🎮 From AI-simulators to addictive arcade titles. You can buy full licenses for the best experience (no ads, lifetime updates!) in our shop.",
-                nl: "Ik hou ervan om spellen te maken! 🎮 Van AI-simulators tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!) in onze shop."
+                en: "I love making games! 🎮 From Mario to addictive arcade titles. You can buy full licenses for the best experience (no ads, lifetime updates!) in our shop.",
+                nl: "Ik hou ervan om spellen te maken! 🎮 Van Mario tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!) in onze shop."
             },
             "spellen": "games", "gaming": "games",
 
@@ -100,6 +100,10 @@ const echoBot = {
 "domain": {
                 en: "Visit our official homepage for the full domain (.com/.nl/.be) order experience: www.abelsoftware123.com/domain.html 🧑‍💻",
                 nl: "Bezoek onze officiële homepage voor de volledige domain (.com/.nl/.be) ervaring: www.abelsoftware123.com/domain.html 🧑‍💻"
+            },
+"apps": {
+                en: "Visit our official homepage for the full apps order experience: www.abelsoftware123.com/apps.html 🕹️",
+                nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps.html 🧑‍💻"
             },
 
             // --- 5. INTERACTIVE ---
