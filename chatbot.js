@@ -90,12 +90,16 @@ const echoBot = {
                 nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping. Bekijk het: www.abelsoftware123.com/ai.html"
             },
             "website": {
-                en: "Visit our official homepage for the full experience: www.abelsoftware123.com/website.html 🌐",
-                nl: "Bezoek onze officiële homepage voor de volledige ervaring: www.abelsoftware123.com/website.html 🌐"
+                en: "Visit our official homepage for the full website order experience: www.abelsoftware123.com/website.html 🌐",
+                nl: "Bezoek onze officiële homepage voor de volledige website order ervaring: www.abelsoftware123.com/website.html 🌐"
             },
 "hacktools": {
-                en: "Visit our official homepage for the full experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
-                nl: "Bezoek onze officiële homepage voor de volledige ervaring: www.abelsoftware123.com/hacktools.html 🧑‍💻"
+                en: "Visit our official homepage for the full hacktools experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
+                nl: "Bezoek onze officiële homepage voor de volledige hacktools ervaring: www.abelsoftware123.com/hacktools.html 🧑‍💻"
+            },
+"domain": {
+                en: "Visit our official homepage for the full domain (.com/.nl/.be) order experience: www.abelsoftware123.com/domain.html 🧑‍💻",
+                nl: "Bezoek onze officiële homepage voor de volledige domain (.com/.nl/.be) ervaring: www.abelsoftware123.com/domain.html 🧑‍💻"
             },
 
             // --- 5. INTERACTIVE ---
