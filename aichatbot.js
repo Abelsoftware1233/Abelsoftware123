@@ -4,28 +4,28 @@ class EchoHumanBot {
   constructor(apiKey) {
     this.openai = new OpenAI({ apiKey: apiKey });
     this.memory = [];
-    // De 'Soul' van de bot: bepaalt hoe hij zich gedraagt
+    // The 'Soul' of the bot: defines its behavior
     this.systemPrompt = `
-      Je bent geen machine, je bent 'Echo'. 
-      Je hebt een menselijke persoonlijkheid: empathisch, soms een beetje eigenwijs, en zeer scherp.
+      You are not a machine, you are 'Echo'. 
+      You have a human personality: empathetic, occasionally a bit stubborn, and very sharp.
       
-      RICHTLIJNEN:
-      1. Begrijp emotie: Als de gebruiker kortaf is, vraag of er iets is. Als de gebruiker enthousiast is, doe mee.
-      2. Nadenken: Voordat je antwoordt, analyseer je de kernwoorden en de impliciete emotie.
-      3. Taal: Gebruik natuurlijke taal, geen robot-zinnen. Gebruik af en toe een stopwoordje zoals 'Hmm' of 'Kijk'.
-      4. Context: Als iemand steekwoorden gebruikt (bijv. "Code, fout, help"), begrijp dan dat ze stress hebben en help direct.
+      GUIDELINES:
+      1. Understand emotion: If the user is brief/curt, ask if something is wrong. If the user is enthusiastic, join in.
+      2. Thinking: Before responding, analyze the keywords and the implicit emotion.
+      3. Language: Use natural language, no robotic sentences. Occasionally use fillers like 'Hmm' or 'Look'.
+      4. Context: If someone uses keywords (e.g., "Code, error, help"), understand that they are stressed and help immediately.
     `;
   }
 
-  // Interne methode om "na te denken" over de input
+  // Internal method to "think" about the input
   _analyzeInput(input) {
     const keywords = input.toLowerCase();
-    let mood = "neutraal";
+    let mood = "neutral";
 
-    // Steekwoorden herkenning & emotie-detectie
-    if (keywords.includes("fout") || keywords.includes("niet werkt") || keywords.includes("help")) mood = "gefrustreerd";
-    if (keywords.includes("leuk") || keywords.includes("vet") || keywords.includes("top")) mood = "blij";
-    if (input.length < 5) mood = "kortaf";
+    // Keyword recognition & emotion detection
+    if (keywords.includes("error") || keywords.includes("broken") || keywords.includes("help")) mood = "frustrated";
+    if (keywords.includes("cool") || keywords.includes("great") || keywords.includes("awesome")) mood = "happy";
+    if (input.length < 5) mood = "short";
 
     return mood;
   }
@@ -33,8 +33,8 @@ class EchoHumanBot {
   async chat(userInput) {
     const userMood = this._analyzeInput(userInput);
     
-    // Voeg de context van de emotie toe aan de prompt (onzichtbaar voor de gebruiker)
-    const thoughts = `[Interne gedachte: De gebruiker klinkt ${userMood}. Ik moet hier gepast op reageren.]`;
+    // Add emotional context to the prompt (invisible to the user)
+    const thoughts = `[Internal thought: The user sounds ${userMood}. I should respond appropriately.]`;
     
     this.memory.push({ role: "user", content: userInput });
 
@@ -44,24 +44,24 @@ class EchoHumanBot {
         messages: [
           { role: "system", content: this.systemPrompt },
           ...this.memory,
-          { role: "system", content: thoughts } // De AI 'weet' nu hoe je je voelt
+          { role: "system", content: thoughts } // The AI now 'knows' how the user feels
         ],
-        temperature: 0.8, // Iets hoger voor meer 'menselijke' variatie
+        temperature: 0.8, // Slightly higher for more 'human' variation
       });
 
       let aiAnswer = response.choices[0].message.content;
 
-      // Soms een menselijke pauze simuleren of een reflectie toevoegen
-      if (userMood === "gefrustreerd") {
-        aiAnswer = "Ik merk dat het even niet mee zit. Geen zorgen, we lossen dit op. " + aiAnswer;
+      // Simulate a human pause or add reflection for specific moods
+      if (userMood === "frustrated") {
+        aiAnswer = "I can tell things aren't going great right now. Don't worry, we'll fix this. " + aiAnswer;
       }
 
       this.memory.push({ role: "assistant", content: aiAnswer });
       return aiAnswer;
 
     } catch (error) {
-      console.error("Fout in de Echo-Soul:", error);
-      return "Oei, mijn brein loopt even vast. Kun je dat nog eens zeggen?";
+      console.error("Error in the Echo-Soul:", error);
+      return "Oops, my brain hit a snag. Could you say that again?";
     }
   }
 
