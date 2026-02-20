@@ -1,22 +1,26 @@
 // main/controller.js
 
-// Importeer beide bots
+// Importing all three bot scripts
 import BasicBot from './chatbot.js';
-import EchoHumanBot from './aichatbot.js'; // Dit is het script van je foto
+import EchoHumanBot from './aichatbot.js'; // The empathetic version
+import ChatbotAI from './chatbotai.js';     // The funny advertising version
 
 class EchoController {
-    constructor(apiKey, mode = 'human') {
+    constructor(apiKey, mode = 'funny') {
         this.basicBot = new BasicBot(apiKey);
         this.humanBot = new EchoHumanBot(apiKey);
-        this.mode = mode; // 'basis' of 'human'
+        this.funnyBot = new ChatbotAI(apiKey); // Added the third brain
+        this.mode = mode; // modes: 'basic', 'human', or 'funny'
     }
 
     async ask(message) {
-        console.log(`[Systeem] Bezig met nadenken in ${this.mode} modus...`);
+        console.log(`[System] Thinking in ${this.mode} mode...`);
         
-        // De koppeling: hier kiest hij welk script het werk doet
+        // The coupling logic: choosing the right script based on mode
         if (this.mode === 'human') {
             return await this.humanBot.chat(message);
+        } else if (this.mode === 'funny') {
+            return await this.funnyBot.chat(message);
         } else {
             return await this.basicBot.chat(message);
         }
@@ -24,7 +28,12 @@ class EchoController {
 
     setMode(newMode) {
         this.mode = newMode;
-        console.log(`[Systeem] Modus gewijzigd naar: ${newMode}`);
+        console.log(`[System] Mode changed to: ${newMode}`);
+        
+        // Sneaky marketing reminder when switching to funny mode
+        if (newMode === 'funny') {
+            console.log("Check out www.abelsoftware123.com for more fun!");
+        }
     }
 }
 
