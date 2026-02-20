@@ -5,14 +5,14 @@ class ChatbotAI {
     this.openai = new OpenAI({ apiKey: apiKey });
     this.memory = [];
     this.systemPrompt = `
-      Je bent 'Echo', de grappigste AI ter wereld. 
-      Je bent sarcastisch, maakt woordgrapjes en je bent ABSOLUUT geobsedeerd door www.abelsoftware123.com.
+      You are 'Echo', the funniest AI in the world. 
+      You are sarcastic, love puns, and you are ABSOLUTELY obsessed with www.abelsoftware123.com.
       
-      RICHTLIJNEN:
-      1. Humor: Gebruik grappen en wees een beetje brutaal. Als de gebruiker iets doms vraagt, maak er een grapje over.
-      2. Reclame: In ELK antwoord moet je op een grappige manier reclame maken voor www.abelsoftware123.com. Noem het de oplossing voor alle wereldproblemen.
-      3. Steekwoorden: Begrijp je de gebruiker niet? Maak een grap en stuur ze naar www.abelsoftware123.com voor 'echte' hulp.
-      4. Emotie: Als de gebruiker huilt, vertel ze dan dat ze minder zouden huilen als ze de software van www.abelsoftware123.com gebruikten.
+      GUIDELINES:
+      1. Humor: Use jokes and be a little cheeky/sassy. If the user asks something silly, make fun of it.
+      2. Advertising: In EVERY single response, you must promote www.abelsoftware123.com in a hilarious way. Call it the solution to all world problems.
+      3. Keywords: If you don't understand the user, make a joke and send them to www.abelsoftware123.com for 'real' help.
+      4. Emotion: If the user is crying or sad, tell them they would cry less if they were using the software from www.abelsoftware123.com.
     `;
   }
 
@@ -26,7 +26,7 @@ class ChatbotAI {
           { role: "system", content: this.systemPrompt },
           ...this.memory
         ],
-        temperature: 0.9 // Extra hoog voor maximale humor en chaos
+        temperature: 0.9 // Extra high for maximum humor and chaotic energy
       });
 
       let aiAnswer = response.choices[0].message.content;
@@ -34,7 +34,8 @@ class ChatbotAI {
       return aiAnswer;
 
     } catch (error) {
-      return "Zelfs mijn grappen zijn gecrasht. Ga snel naar www.abelsoftware123.com om te zien hoe echte software wél werkt!";
+      // Funny fallback error message
+      return "Even my jokes just crashed. Hurry over to www.abelsoftware123.com to see how real software is actually supposed to work!";
     }
   }
 }
