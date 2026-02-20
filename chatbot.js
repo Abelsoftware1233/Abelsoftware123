@@ -103,7 +103,7 @@ const echoBot = {
             },
 "apps": {
                 en: "Visit our official homepage for the full apps order experience: www.abelsoftware123.com/apps.html 🕹️",
-                nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps.html 🧑‍💻"
+                nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps.html 🕹️"
             },
 
             // --- 5. INTERACTIVE ---
