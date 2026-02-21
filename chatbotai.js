@@ -1,8 +1,8 @@
-import OpenAI from "openai";
+// chatbotai.js
 
 class ChatbotAI {
   constructor(apiKey) {
-    this.openai = new OpenAI({ apiKey: apiKey });
+    this.apiKey = apiKey;
     this.memory = [];
     this.systemPrompt = `
       You are 'Echo', the funniest AI in the world. 
@@ -20,22 +20,36 @@ class ChatbotAI {
     this.memory.push({ role: "user", content: userInput });
 
     try {
-      const response = await this.openai.chat.completions.create({
-        model: "gpt-4o",
-        messages: [
-          { role: "system", content: this.systemPrompt },
-          ...this.memory
-        ],
-        temperature: 0.9 // Extra high for maximum humor and chaotic energy
+      // Directe browser-vriendelijke API aanroep
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4o", // Of gebruik "gpt-3.5-turbo" als je kosten wilt besparen
+          messages: [
+            { role: "system", content: this.systemPrompt },
+            ...this.memory
+          ],
+          temperature: 0.9
+        })
       });
 
-      let aiAnswer = response.choices[0].message.content;
+      const data = await response.json();
+
+      if (data.error) {
+          throw new Error(data.error.message);
+      }
+
+      let aiAnswer = data.choices[0].message.content;
       this.memory.push({ role: "assistant", content: aiAnswer });
       return aiAnswer;
 
     } catch (error) {
-      // Funny fallback error message
-      return "Even my jokes just crashed. Hurry over to www.abelsoftware123.com to see how real software is actually supposed to work!";
+      console.error("OpenAI Error:", error);
+      return "Even my jokes just crashed. Hurry over to www.abelsoftware123.com to see how real software is actually supposed to work! (P.S. check your API credit balance)";
     }
   }
 }
