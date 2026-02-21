@@ -207,3 +207,18 @@ class BasicBot {
         this.gameState.active = true;
         this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
         console.log("
+
+    handleHackGuess(input) {
+        let guess = parseInt(input.replace("code ", ""));
+        if (guess === this.gameState.code) {
+            clearTimeout(this.gameState.timer);
+            this.gameState.active = false;
+            return this.language === 'en' ? "ACCESS GRANTED! 🔓 You hacked the database." : "TOEGANG VERLEEND! 🔓 Je hebt de database gekraakt.";
+        } else {
+            return this.language === 'en' ? "WRONG CODE! Access denied." : "FOUTIEVE CODE! Toegang geweigerd.";
+        }
+    }
+}
+
+// DEZE REGEL IS DE KOPPELING:
+export default BasicBot;
