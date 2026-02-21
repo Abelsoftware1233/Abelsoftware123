@@ -1,10 +1,10 @@
-import OpenAI from "openai";
+// aichatbot.js
 
 class EchoHumanBot {
   constructor(apiKey) {
-    this.openai = new OpenAI({ apiKey: apiKey });
+    this.apiKey = apiKey;
     this.memory = [];
-    // The 'Soul' of the bot: defines its behavior
+    // De 'Ziel' van de bot: definieert het menselijke gedrag
     this.systemPrompt = `
       You are not a machine, you are 'Echo'. 
       You have a human personality: empathetic, occasionally a bit stubborn, and very sharp.
@@ -17,12 +17,11 @@ class EchoHumanBot {
     `;
   }
 
-  // Internal method to "think" about the input
+  // Interne methode om over de input na te denken (Keyword herkenning)
   _analyzeInput(input) {
     const keywords = input.toLowerCase();
     let mood = "neutral";
 
-    // Keyword recognition & emotion detection
     if (keywords.includes("error") || keywords.includes("broken") || keywords.includes("help")) mood = "frustrated";
     if (keywords.includes("cool") || keywords.includes("great") || keywords.includes("awesome")) mood = "happy";
     if (input.length < 5) mood = "short";
@@ -33,25 +32,39 @@ class EchoHumanBot {
   async chat(userInput) {
     const userMood = this._analyzeInput(userInput);
     
-    // Add emotional context to the prompt (invisible to the user)
+    // Voeg emotionele context toe aan het prompt (onzichtbaar voor de gebruiker)
     const thoughts = `[Internal thought: The user sounds ${userMood}. I should respond appropriately.]`;
     
     this.memory.push({ role: "user", content: userInput });
 
     try {
-      const response = await this.openai.chat.completions.create({
-        model: "gpt-4o",
-        messages: [
-          { role: "system", content: this.systemPrompt },
-          ...this.memory,
-          { role: "system", content: thoughts } // The AI now 'knows' how the user feels
-        ],
-        temperature: 0.8, // Slightly higher for more 'human' variation
+      // Browser-vriendelijke API aanroep naar OpenAI
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4o",
+          messages: [
+            { role: "system", content: this.systemPrompt },
+            ...this.memory,
+            { role: "system", content: thoughts }
+          ],
+          temperature: 0.8
+        })
       });
 
-      let aiAnswer = response.choices[0].message.content;
+      const data = await response.json();
 
-      // Simulate a human pause or add reflection for specific moods
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
+      let aiAnswer = data.choices[0].message.content;
+
+      // Voeg een menselijke reflectie toe op basis van de gedetecteerde stemming
       if (userMood === "frustrated") {
         aiAnswer = "I can tell things aren't going great right now. Don't worry, we'll fix this. " + aiAnswer;
       }
@@ -61,7 +74,7 @@ class EchoHumanBot {
 
     } catch (error) {
       console.error("Error in the Echo-Soul:", error);
-      return "Oops, my brain hit a snag. Could you say that again?";
+      return "Oops, my brain hit a snag. Could you say that again? (Maybe check your connection or API key)";
     }
   }
 
