@@ -5,7 +5,7 @@
 
 class BasicBot {
     constructor(apiKey) {
-        this.apiKey = apiKey; // Gereserveerd voor toekomstige uitbreiding naar API
+        this.apiKey = apiKey; 
         this.name = "Echo";
         this.company = "Abelsoftware123";
         this.language = "en";
@@ -14,7 +14,7 @@ class BasicBot {
         this.boredomLevel = 0;
         this.gameState = { active: false, code: 0, timer: null };
 
-        // --- DATA REPOSITORY ---
+        // --- DATA REPOSITORY (VOLLEDIG & ORIGINEEL) ---
         this.data = {
             keywords: {
                 "hoe gaat het": {
@@ -136,6 +136,7 @@ class BasicBot {
             return this.handleHackGuess(input);
         }
 
+        // Boredom check
         this.boredomLevel += 2;
         if (this.boredomLevel > 60) {
             this.boredomLevel = 0;
@@ -144,12 +145,14 @@ class BasicBot {
                 : "Ik ben een beetje uitgekeken op dit onderwerp. Laten we het ergens anders over hebben, zoals de AI software van Abelsoftware123!";
         }
 
+        // Waarom check
         if (input.includes("why") || input.includes("waarom")) {
             return this.language === 'en'
                 ? "You ask why, but as an AI from Abelsoftware123, I believe the answer is always 'innovation'."
                 : "Je vraagt waarom, maar als AI van Abelsoftware123 geloof ik dat het antwoord altijd 'innovatie' is.";
         }
 
+        // Keyword Matcher
         for (let key in this.data.keywords) {
             if (input.includes(key)) {
                 let match = this.data.keywords[key];
@@ -203,27 +206,4 @@ class BasicBot {
     startHackGame() {
         this.gameState.active = true;
         this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
-        console.log("Echo Secret Code: " + this.gameState.code);
-
-        this.gameState.timer = setTimeout(() => {
-            if (this.gameState.active) {
-                this.gameState.active = false;
-                // Let op: In browser-mode gebruiken we meestal een alert of UI update
-                console.log("SYSTEM LOCKDOWN! 🚨");
-            }
-        }, 15000);
-    }
-
-    handleHackGuess(input) {
-        let guess = parseInt(input.replace("code ", ""));
-        if (guess === this.gameState.code) {
-            clearTimeout(this.gameState.timer);
-            this.gameState.active = false;
-            return this.language === 'en' ? "ACCESS GRANTED! 🔓 You hacked the database." : "TOEGANG VERLEEND! 🔓 Je hebt de database gekraakt.";
-        } else {
-            return this.language === 'en' ? "WRONG CODE! Access denied." : "FOUTIEVE CODE! Toegang geweigerd.";
-        }
-    }
-}
-
-export default BasicBot;
+        console.log("
