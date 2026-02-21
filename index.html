@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- BASIS STIJLEN --- */
+        /* --- JOUW ORIGINELE BASIS STIJLEN --- */
         body { background-color: #1a1a1a; color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 0; }
         .header-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
         .neon-blue-button { padding: 8px 15px; border: 2px solid #00ffff; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00ffff; transition: all 0.3s ease-in-out; }
@@ -23,19 +23,24 @@
         nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
         nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
 
-        /* --- CHATBOT STIJLEN (BERICHTWOLKJE) --- */
+        /* --- CHATBOT STIJLEN MET ANIMATIE --- */
         #chat-launcher { 
             position: fixed; bottom: 20px; right: 20px; 
             width: 65px; height: 55px; background: #00ffff; 
             border-radius: 18px; display: flex; justify-content: center; 
             align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
             z-index: 1001; font-size: 30px; border: none;
+            animation: float 3s ease-in-out infinite;
         }
-        /* Het staartje van het wolkje */
         #chat-launcher::after {
             content: ""; position: absolute; bottom: -8px; right: 12px;
             border-width: 12px 12px 0 0; border-style: solid;
             border-color: #00ffff transparent transparent transparent;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         #chat-container { 
@@ -50,8 +55,8 @@
         .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; margin: 2px; }
         .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
+        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
         #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
         #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
@@ -122,83 +127,72 @@
         </div>
     </main>
 
-    <div id="chat-launcher" onclick="toggleChat()">💬</div>
+    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
 
     <div id="chat-container">
         <div id="chat-header">
             <span>🤖 AI Assistent</span>
-            <span style="cursor:pointer" onclick="toggleChat()">✕</span>
+            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
         </div>
         <div class="mode-selector">
-            <button class="quick-btn" onclick="changeBotMode('basic')">Basic</button>
-            <button class="quick-btn" onclick="changeBotMode('human')">Human</button>
-            <button class="quick-btn" onclick="changeBotMode('funny')">Funny</button>
+            <button class="quick-btn" onclick="window.changeBotMode('basic')">Basic</button>
+            <button class="quick-btn" onclick="window.changeBotMode('human')">Human</button>
+            <button class="quick-btn" onclick="window.changeBotMode('funny')">Funny</button>
         </div>
         <div id="messages">
-            <div class="msg bot-msg">Welkom bij de Abelsoftware123 AI Assistent! Waarmee kan ik je helpen?</div>
+            <div class="msg bot-msg">Welkom bij de Abelsoftware123 AI Assistent!</div>
         </div>
         <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="handleKey(event)">
-            <button onclick="askBot()">➤</button>
+            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
+            <button onclick="window.askBot()">➤</button>
         </div>
     </div>
 
     <script type="module">
         import BasicBot from './chatbot.js';
-
         let echo = null;
 
-        // Toggle chatvenster
+        // Functies koppelen aan window zodat ze werken in de HTML
         window.toggleChat = function() {
             const chat = document.getElementById("chat-container");
+            const launcher = document.getElementById("chat-launcher");
             chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
             
-            if (!echo) {
-                // Initialiseer direct jouw originele chatbot.js
-                echo = new BasicBot();
-                console.log("Abelsoftware123 AI Assistent geactiveerd.");
+            if (chat.style.display === "flex") {
+                launcher.style.animation = "none";
+                if (!echo) {
+                    echo = new BasicBot();
+                    console.log("Chatbot Geladen");
+                }
+            } else {
+                launcher.style.animation = "float 3s ease-in-out infinite";
             }
         };
 
-        window.handleKey = function(event) {
-            if (event.key === "Enter") window.askBot();
-        };
-
-        window.changeBotMode = function(mode) {
-            if (echo) {
-                echo.mood = mode;
-                const container = document.getElementById("messages");
-                container.innerHTML += `<div class="msg bot-msg" style="border-color: #ff4500; font-size: 11px;">Modus: ${mode}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }
-        };
+        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
 
         window.askBot = async function() {
             const input = document.getElementById("user-input");
             const container = document.getElementById("messages");
             const text = input.value.trim();
-
             if (!text || !echo) return;
 
-            // User bericht tonen
             container.innerHTML += `<div class="msg user-msg">${text}</div>`;
             input.value = "";
             container.scrollTop = container.scrollHeight;
 
             try {
-                // Roep de chat methode aan in jouw chatbot.js
                 const response = await echo.chat(text);
-                
                 setTimeout(() => {
                     container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
                     container.scrollTop = container.scrollHeight;
                 }, 400);
-            } catch (err) {
-                console.error("Fout in chatbot.js:", err);
-            }
+            } catch (err) { console.error(err); }
         };
 
-        // Pagina sectie navigatie (rode knoppen)
+        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
+
+        // Originele navigatie logica voor rode knoppen
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
