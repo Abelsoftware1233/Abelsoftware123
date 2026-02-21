@@ -103,20 +103,65 @@
         </div>
     </main>
 
-    <div id="chat-launcher" onclick="toggleChat()">💬</div>
-    <div id="chat-container">
-        <div id="chat-header"><span>AI Assistent</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div>
-        <div class="mode-selector">
-            <button class="quick-btn" onclick="changeBotMode('basic')">Basic</button>
-            <button class="quick-btn" onclick="changeBotMode('human')">Human</button>
-            <button class="quick-btn" onclick="changeBotMode('funny')">Funny</button>
-        </div>
-        <div id="messages"><div class="msg bot-msg">Hello! Voer je sleutel in als daarom gevraagd wordt om te chatten.</div></div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="handleKey(event)">
-            <button onclick="askBot()">➤</button>
-        </div>
-    </div>
+    <script type="module">
+    // 1. Importeer direct JOUW bestand (geen /main/ map!)
+    import BasicBot from './chatbot.js';
+
+    let echo = null;
+
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+        
+        // Initialiseer jouw chatbot.js direct als dat nog niet gedaan is
+        if (!echo) {
+            // We maken de bot aan. De sleutel is optioneel voor jouw keyword-logica.
+            echo = new BasicBot(); 
+            const container = document.getElementById("messages");
+            container.innerHTML += `<div class="msg bot-msg" style="border-color: #00ffff;">Systeem: Abelsoftware123 AI is online!</div>`;
+        }
+    };
+
+    window.handleKey = function(event) {
+        if (event.key === "Enter") {
+            window.askBot();
+        }
+    };
+
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+
+        if (!text || !echo) return;
+
+        // Toon jouw bericht
+        container.innerHTML += `<div class="user-msg" style="background:#00ffff; color:black; padding:8px; border-radius:10px; align-self:flex-end; margin-bottom:10px;">${text}</div>`;
+        input.value = "";
+        container.scrollTop = container.scrollHeight;
+
+        try {
+            // ROEP JOUW ORIGINELE CHAT FUNCTIE AAN
+            const response = await echo.chat(text);
+            
+            setTimeout(() => {
+                container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 400);
+        } catch (err) {
+            console.error("Fout in chatbot.js:", err);
+        }
+    };
+
+    // Optioneel: Mode switcher koppelen aan je script als je dat wilt uitbreiden
+    window.changeBotMode = function(mode) {
+        if(echo) {
+            echo.mood = mode; // Past de mood in jouw chatbot.js aan
+            alert("Modus veranderd naar: " + mode);
+        }
+    };
+</script>
+
 
     <script type="module">
         import EchoController from './main/chatbot.js';
