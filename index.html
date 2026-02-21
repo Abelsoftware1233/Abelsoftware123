@@ -150,27 +150,28 @@
 
     <script src="chatbot.js"></script>
 
-<script>
-    // Gebruik de bot direct (geen import nodig)
-    let echo = null;
-    
-    window.toggleChat = function() {
-        // ... rest van de code blijft hetzelfde ...
+    <script>
+        let echo = null;
 
-        // Functies koppelen aan window zodat ze werken in de HTML
         window.toggleChat = function() {
             const chat = document.getElementById("chat-container");
             const launcher = document.getElementById("chat-launcher");
-            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
             
+            // Wissel tussen tonen en verbergen
             if (chat.style.display === "flex") {
-                launcher.style.animation = "none";
-                if (!echo) {
-                    echo = new BasicBot();
-                    console.log("Chatbot Geladen");
-                }
-            } else {
+                chat.style.display = "none";
                 launcher.style.animation = "float 3s ease-in-out infinite";
+            } else {
+                chat.style.display = "flex";
+                launcher.style.animation = "none";
+                
+                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
+                if (!echo && typeof BasicBot !== 'undefined') {
+                    echo = new BasicBot();
+                    console.log("Echo AI is nu online!");
+                } else if (typeof BasicBot === 'undefined') {
+                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
+                }
             }
         };
 
@@ -192,12 +193,12 @@
                     container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
                     container.scrollTop = container.scrollHeight;
                 }, 400);
-            } catch (err) { console.error(err); }
+            } catch (err) { console.error("Fout in Echo chat:", err); }
         };
 
         window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
 
-        // Originele navigatie logica voor rode knoppen
+        // Rode knoppen logica
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
