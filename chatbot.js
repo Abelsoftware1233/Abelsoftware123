@@ -66,13 +66,12 @@ class BasicBot {
                 },
                 "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen",
 
-                "prices": {
-                    en: "We keep it fair: Games start at €4.99, and website and apps start at €200 and domain name start at €50. and chatbot standard €1000. and AI Software (face recognition or DJI drone) starts at €300 licence. AI chatbot with API Key €1500 Quality made with love! 💸",
-                    nl: "We houden het eerlijk:
-games: vanaf €4,99
-Kwaliteit gemaakt met liefde! 💸"
-                },
-                "prices": "prijzen", "pricing": "prijzen",
+               "prijzen": {
+    "en": "We keep it fair: Games start at €4.99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €300 license. AI chatbot with API Key is €1500. Quality made with love! 💸",
+    "nl": "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of DJI-drone) vanaf een licentie van €300. AI-chatbot met API-sleutel voor €1500. Kwaliteit gemaakt met liefde! 💸"
+},
+"prices": "prijzen",
+"pricing": "prijzen",
 
                 "contact": {
                     en: "We are open Mon-Sun, 9:00 AM - 5:00 PM. 🕘 Email us at abelsoftware123@hotmail.com. We respond within 24 hours! 💻",
