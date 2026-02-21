@@ -97,13 +97,26 @@ const echoBot = {
                 en: "Visit our official homepage for the full hacktools experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
                 nl: "Bezoek onze officiële homepage voor de volledige hacktools ervaring: www.abelsoftware123.com/hacktools.html 🧑‍💻",
             },
-"domain": {
+"orderdomain": {
                 en: "Visit our official homepage for the full domain (.com/.nl/.be) order experience: www.abelsoftware123.com/domain.html 🧑‍💻",
                 nl: "Bezoek onze officiële homepage voor de volledige domain (.com/.nl/.be) ervaring: www.abelsoftware123.com/domain.html 🧑‍💻"
             },
 "apps": {
                 en: "Visit our official homepage for the full apps order experience: www.abelsoftware123.com/apps.html 🕹️",
                 nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps.html 🕹️"
+            },
+"chatbot": {
+                en: "Visit our official homepage for the full (AI) chatbots order experience: www.abelsoftware123.com/chatbot.html 🕹️",
+                nl: "Bezoek onze officiële homepage voor de volledige (AI) chatbot ervaring: www.abelsoftware123.com/chatbot.html 🤖"
+            },
+"advertising": {
+                en: "Visit our official homepage for the advertising on games order experience: www.abelsoftware123.com/advertentie.html 💸",
+                nl: "Bezoek onze officiële homepage voor de adverteren in games ervaring: www.abelsoftware123.com/advertentie.html 💸"
+            },
+
+"download": {
+                en: "Visit our official homepage for the full apps and games collection: www.abelsoftware123.com/payments.html 🎮",
+                nl: "Bezoek onze officiële homepage voor de volledige apps en games cellectie: www.abelsoftware123.com/payments.html 🎮"
             },
 
             // --- 5. INTERACTIVE ---
