@@ -9,162 +9,29 @@
 
     <style>
         /* --- BESTAANDE STIJLEN --- */
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .header-controls {
-            position: absolute; 
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px; 
-        }
-        
-        .neon-blue-button {
-            padding: 8px 15px;
-            border: 2px solid #00ffff;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff; 
-            background-color: transparent; 
-            box-shadow: 0 0 10px #00ffff; 
-            transition: all 0.3s ease-in-out;
-        }
-
-        .neon-blue-button:hover {
-            background-color: #00ffff;
-            color: #000; 
-        }
-
-        .neon-title {
-            color: #00ffff; 
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-            text-align: center;
-        }
-
-        .control-panel {
-            text-align: center; 
-            margin-top: 20px;
-        }
-
-        .galant-red-button {
-            padding: 10px 20px;
-            border: 2px solid #ff4500;
-            border-radius: 8px; 
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: #8b0000;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
-            transition: all 0.3s ease-in-out;
-            margin: 5px; 
-        }
-
-        .galant-red-button:hover {
-            background-color: #ff4500;
-            color: #000;
-        }
-
-        .groene-knop {
-            padding: 10px 20px;
-            border: 2px solid #00ff00;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 15px #00ff00;
-            transition: all 0.3s ease-in-out;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .groene-knop:hover {
-            background-color: #00ff00;
-            color: #000;
-        }
-
+        body { background-color: #1a1a1a; color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .header-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
+        .neon-blue-button { padding: 8px 15px; border: 2px solid #00ffff; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00ffff; transition: all 0.3s ease-in-out; }
+        .neon-blue-button:hover { background-color: #00ffff; color: #000; }
+        .neon-title { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; text-align: center; }
+        .control-panel { text-align: center; margin-top: 20px; }
+        .galant-red-button { padding: 10px 20px; border: 2px solid #ff4500; border-radius: 8px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: #8b0000; box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); transition: all 0.3s ease-in-out; margin: 5px; }
+        .galant-red-button:hover { background-color: #ff4500; color: #000; }
+        .groene-knop { padding: 10px 20px; border: 2px solid #00ff00; border-radius: 8px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 15px #00ff00; transition: all 0.3s ease-in-out; text-decoration: none; display: inline-block; }
+        .groene-knop:hover { background-color: #00ff00; color: #000; }
         nav ul { list-style: none; padding: 0; text-align: center; }
         nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
         nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
 
         /* --- CHATBOT STIJLEN --- */
-        #chat-launcher {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #00ffff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 15px #00ffff;
-            z-index: 1000;
-            font-size: 30px;
-        }
-
-        #chat-container {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 320px;
-            height: 450px;
-            background: #2a2a2a;
-            border: 2px solid #00ffff;
-            border-radius: 15px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-        }
-
-        #chat-header {
-            background: #00ffff;
-            color: #000;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-        }
-
-        #messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            background: #1a1a1a;
-        }
-
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #00ffff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1000; font-size: 30px; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 450px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
         .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-
-        .quick-btn {
-            background: transparent;
-            border: 1px solid #00ffff;
-            color: #00ffff;
-            padding: 5px 10px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 11px;
-            margin: 2px;
-        }
-
+        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; margin: 2px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
         #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
         #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
@@ -177,10 +44,8 @@
             <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
             <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
         </div>
-        
         <h1 class="neon-title">Abelsoftware123</h1>
         <p>Welcome to Abelsoftware123</p>
-        
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -193,10 +58,9 @@
                 <li><a href="ai.html">AI Software</a></li>  
                 <li><a href="website.html">Order Your Own Website and Apps</a></li>
                 <li><a href="domain.html">Order Your Own Domain Name</a></li>
-                 <li><a href="advertentie.html">Advertising on Apps</a></li>
+                <li><a href="advertentie.html">Advertising on Apps</a></li>
           </ul>
         </nav>
-        
         <div class="control-panel">
             <button class="galant-red-button" data-content-target="introductie">Info</button>
             <button class="galant-red-button" data-content-target="tools">Setup</button>
@@ -209,49 +73,27 @@
         <section class="content-section" id="introductie-content"> 
             <h2 class="neon-title">💻 Our Ethical Hacking Resources 🖥️</h2>
             <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto; border: 2px solid #00ffff;">
-            
             <h3>New!!! On Abelsoftware123</h3>
             <p>Register your account on abelsoftware123 and buy our AI Software/Games/Hacktools/Apps in your own account!</p>
-            <p>We specialize in custom software that meets all your needs. Download our free app below!</p>
-
             <h3>PSP Gaming Portable For Sale!</h3>
-            <p>PSP Gaming Portable with 30+ games. Futuristic layout and design. Now for sale in Payments page.</p>
-            <img src="1000011254.jpg" alt="PSP Gaming Portable console" style="max-width: 100%; height: auto; display: block; margin: 15px auto;">
-
-            <h3>AI Software on Abelsoftware123</h3>
-            <h4>AI Face Recognition, Drone Mapping, Target Kill Drones, Swarm Technology and more.</h4>
-            <p>For more info Click on the AI Software button below!!!</p>
+            <img src="1000011254.jpg" alt="PSP" style="max-width: 100%; height: auto; display: block; margin: 15px auto;">
             <a href="ai.html" class="groene-knop">AI Software Page</a>
         </section>
 
         <section class="content-section" id="tools-content" style="display: none;">
             <h2>Our Tools</h2>
-            <p>Discover our advanced toolset for developers and hackers. In-depth descriptions of tools offered by Abelsoftware123.</p>
+            <p>Discover our advanced toolset for developers and hackers.</p>
         </section>
 
         <section class="content-section" id="setup-content" style="display: none;">
             <h2>⚙️ Install Manual ⚙️</h2>
-            <p>Step-by-step guides for easy installation and configuration of your new tools.</p>
+            <p>Step-by-step guides for easy installation.</p>
         </section>
 
         <section class="content-section" id="faq-content" style="display: none;">
             <h2>❓ (FAQ) ❓</h2>
-            <p>Any questions? Head over to our FAQ for quick solutions to common issues.</p>
+            <p>Any questions? Head over to our FAQ.</p>
         </section>
-
-        <div style="text-align: center; margin-top: 40px;">
-             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0">
-                <button class="groene-knop">abelsoftware123 android app</button>
-            </a>
-            
-            <section class="contact" style="margin-top: 30px;">
-                <h2>📬 Contact Us 📬</h2>
-                <p>Order your Website/App/Hacktools/AI Software. We respond within 24 hours.</p>
-                <a href="mailto:abelsoftware123@hotmail.com">
-                    <button class="groene-knop">Contact</button>
-                </a>
-            </section>
-        </div>
     </main>
 
     <div id="chat-launcher" onclick="toggleChat()">💬</div>
@@ -263,11 +105,6 @@
         </div>
         <div id="messages">
             <div class="msg bot-msg">Hello! I am Echo from Abelsoftware123. How can I help you today?</div>
-            <div style="margin-bottom: 10px;">
-                <button class="quick-btn" onclick="askBot('prijzen')">💰 Prices</button>
-                <button class="quick-btn" onclick="askBot('betalen')">🤖 Payments</button>
-                <button class="quick-btn" onclick="askBot('games')">🕹️ Games</button>
-            </div>
         </div>
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="handleKey(event)">
@@ -276,14 +113,13 @@
     </div>
 
     <script type="module">
-        import EchoController from './main/controller.js';
+        // PAD AANGEPAST: Geen /main/ meer nodig
+        import EchoController from './controller.js';
 
-        // VEILIGE SPLIT KEY
         const p1 = "sk-proj-UbGssouDLwYXfIkjr9Bv1QqIdAud-RnYphLbzIhxg3hX6qsbtTRA";
         const p2 = "cGefKAgiGQFYVU2pdFH3BXT3BlbkFJJWklu7PJT1t46tOSSHwVRLyB5olpIO-PYOn";
         const p3 = "Ii-C8e9geVqr49MiyUnZj-ULW3xhebYeX3hQQEA";
 
-        // Initialiseer controller met samengevoegde delen
         const echo = new EchoController(p1, p2 + p3, 'funny');
 
         window.toggleChat = function() {
@@ -307,41 +143,24 @@
             container.scrollTop = container.scrollHeight;
 
             try {
-                // Gebruik de controller om het antwoord op te halen
                 const botResponse = await echo.ask(userText);
-
                 setTimeout(() => {
-                    container.innerHTML += `
-                        <div class="msg bot-msg">
-                            <span style="color: #00ffff; font-size: 0.7em; font-weight: bold; text-transform: uppercase;">Echo ✨</span><br>
-                            ${botResponse}
-                        </div>`;
+                    container.innerHTML += `<div class="msg bot-msg"><span style="color: #00ffff; font-size: 0.7em; font-weight: bold;">Echo ✨</span><br>${botResponse}</div>`;
                     container.scrollTop = container.scrollHeight;
-                }, 700);
-            } catch (error) {
-                console.error("Chat Error:", error);
-            }
+                }, 600);
+            } catch (e) { console.error(e); }
         };
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
             buttons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    showSection(this.dataset.contenttarget + '-content');
+                btn.addEventListener('click', () => {
+                    sections.forEach(s => s.style.display = 'none');
+                    document.getElementById(btn.dataset.contenttarget + '-content').style.display = 'block';
                 });
             });
-            showSection('introductie-content');
         });
     </script>
-
-    <footer>
-        <p style="text-align: center; padding: 20px;">&copy; 2026 abelsoftware123. all rights reserved.</p>
-    </footer>
 </body>
 </html>
