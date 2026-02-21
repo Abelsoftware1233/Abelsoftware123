@@ -4,322 +4,187 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>welcome - abelsoftware123</title>
+    
     <link rel="stylesheet" href="style.css">
+
     <style>
-        /* --- BASIS STYLING --- */
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+        /* --- BASIS STIJLEN --- */
+        body { background-color: #1a1a1a; color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .header-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
+        .neon-blue-button { padding: 8px 15px; border: 2px solid #00ffff; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00ffff; transition: all 0.3s ease-in-out; }
+        .neon-blue-button:hover { background-color: #00ffff; color: #000; }
+        .neon-title { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; text-align: center; }
+        .control-panel { text-align: center; margin-top: 20px; }
+        .galant-red-button { padding: 10px 20px; border: 2px solid #ff4500; border-radius: 8px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: #8b0000; box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); transition: all 0.3s ease-in-out; margin: 5px; }
+        .galant-red-button:hover { background-color: #ff4500; color: #000; }
+        .groene-knop { padding: 10px 20px; border: 2px solid #00ff00; border-radius: 8px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 15px #00ff00; transition: all 0.3s ease-in-out; text-decoration: none; display: inline-block; margin: 10px; }
+        .groene-knop:hover { background-color: #00ff00; color: #000; }
+        nav ul { list-style: none; padding: 0; text-align: center; }
+        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
+        nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
 
-        header {
-            position: relative;
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* 1. Knoppen in de header (REGISTER/LOG IN) */
-        .header-controls {
-            position: absolute; 
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px; 
-        }
-        
-        .neon-blue-button {
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff; 
-            background-color: transparent; 
-            box-shadow: 0 0 10px #00ffff; 
-            border: 2px solid #00ffff; 
-            transition: all 0.3s ease-in-out;
-        }
-
-        .neon-blue-button:hover {
-            background-color: #00ffff;
-            color: #000; 
-            box-shadow: 0 0 20px #00ffff; 
-        }
-
-        .neon-title {
-            color: #00ffff; 
-            text-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.5);
-            margin-top: 40px;
-        }
-
-        /* Navigatie links */
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        
-        nav li a {
-            color: #00ffff;
-            text-decoration: none;
-            display: inline-block;
-            padding: 8px 15px;
-            transition: color 0.3s ease;
-        }
-        
-        nav li a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px #00ffff;
-        }
-
-        /* 2. Control-panel buttons (INFO, TOOLS, SETUP, FAQ) */
-        .control-panel {
-            text-align: center; 
-            margin-bottom: 30px;
-        }
-
-        .galant-red-button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px; 
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: #8b0000;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
-            border: 2px solid #ff4500;
-            transition: all 0.3s ease-in-out;
-            margin: 5px; 
-        }
-
-        .galant-red-button:hover {
-            background-color: #ff4500;
-            color: #000; 
-            box-shadow: 0 0 15px #ff4500; 
-        }
-
-        .groene-knop {
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 10px #00ff00;
-            border: 2px solid #00ff00;
-            transition: all 0.3s ease-in-out;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 0;
-        }
-
-        .groene-knop:hover {
-            background-color: #00ff00;
-            color: #000;
-            box-shadow: 0 0 20px #00ff00;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .content-section {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* --- CHATBOT ASSISTENT STYLING (HET WOLKJE) --- */
-        #chat-launcher { 
-            position: fixed; 
-            bottom: 20px; 
-            right: 20px; 
-            width: 70px; 
-            height: 60px; 
-            background: #00ffff; 
-            border-radius: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            cursor: pointer; 
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); 
-            z-index: 1000; 
-            font-size: 30px; 
-            border: none;
-            transition: transform 0.3s ease;
-        }
-
-        #chat-launcher::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            right: 15px;
-            border-width: 15px 15px 0 0;
-            border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-
-        #chat-launcher:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px #00ffff;
-        }
-
-        #chat-container { 
-            position: fixed; 
-            bottom: 100px; 
-            right: 20px; 
-            width: 320px; 
-            height: 450px; 
-            background: #2a2a2a; 
-            border: 2px solid #00ffff; 
-            border-radius: 15px; 
-            display: none; 
-            flex-direction: column; 
-            z-index: 1000; 
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); 
-            overflow: hidden;
-        }
-
-        #chat-header { 
-            background: #00ffff; 
-            color: #000; 
-            padding: 12px 15px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            font-weight: bold;
-        }
-
-        #messages { 
-            flex: 1; 
-            padding: 15px; 
-            overflow-y: auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-            background: #1a1a1a;
-            text-align: left;
-        }
-
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+        /* --- CHATBOT STIJLEN --- */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #00ffff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1000; font-size: 30px; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 520px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
+        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-
+        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; margin: 2px; }
+        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: none; color: white; padding: 10px; border-radius: 5px; outline: none; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-size: 20px; margin-left: 5px; }
-
-        footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }
+        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
+        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
     </style>
 </head>
 <body>
 
-    <header> 
+    <header style="position: relative; text-align: center; padding-top: 50px;"> 
         <div class="header-controls">
             <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
             <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
         </div>
-        
         <h1 class="neon-title">Abelsoftware123</h1>
-        <p>Welcome to the future of software development</p>
-        
+        <p>Welcome to Abelsoftware123</p>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Company</a></li>
+                <li><a href="chatbot.html">Order Your Chatbot</a></li>
+                <li><a href="company.html">Abelsoftware123 company</a></li>
                 <li><a href="downloads.html">Downloads</a></li>
                 <li><a href="payments.html">Payments</a></li>
-                <li><a href="apps.html">Games</a></li>
+                <li><a href="apps.html">Games List of Apps</a></li>
                 <li><a href="hacktools.html">Hacktools</a></li>
                 <li><a href="ai.html">AI Software</a></li>  
-                <li><a href="website.html">Order Website</a></li>
-                <li><a href="domain.html">Domains</a></li>
+                <li><a href="website.html">Order Your Own Website and Apps</a></li>
+                <li><a href="domain.html">Order Your Own Domain Name</a></li>
+                <li><a href="advertentie.html">Advertising on Apps</a></li>
             </ul>
         </nav>
-        
         <div class="control-panel">
-            <button class="galant-red-button" data-content-target="introductie">info</button>
-            <button class="galant-red-button" data-content-target="tools">tools</button>
-            <button class="galant-red-button" data-content-target="setup">setup</button>
-            <button class="galant-red-button" data-content-target="faq">faq</button>
+            <button class="galant-red-button" data-content-target="introductie">Info</button>
+            <button class="galant-red-button" data-content-target="tools">Setup</button>
+            <button class="galant-red-button" data-content-target="setup">Tools</button>
+            <button class="galant-red-button" data-content-target="faq">F&Q</button>
         </div>
     </header>
 
-    <main>
+    <main style="padding: 20px;">
         <section class="content-section" id="introductie-content"> 
-            <h2>💻 Our Ethical Hacking Resources 🖥️</h2>
-            <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; border-radius: 10px; border: 1px solid #00ffff;">
+            <h2 class="neon-title">💻 Our Ethical Hacking Resources 🖥️</h2>
+            <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto; border: 2px solid #00ffff;">
             
-            <h3>New on Abelsoftware123</h3>
-            <p>Register your account and buy our AI Software, Games, and Hacktools directly! Follow us on Instagram and TikTok!</p>
-            
-            <p>We specialize in custom software: AI Face Recognition, Drone Mapping, and more. Download our free Android app below!</p>
+            <h3>New!!! On Abelsoftware123</h3>
+            <p>Register your account on abelsoftware123 and buy our AI Software/Games/Hacktools/Apps in your own account!</p>
 
-            <h3>PSP Gaming Portable For Sale!</h3>
-            <p>30+ pre-installed games. Futuristic design. Worldwide shipping via PayPal.</p>
-            <img src="1000011254.jpg" alt="PSP console" style="max-width: 80%; border-radius: 10px;">
-            <br>
+            <div style="border: 2px solid #ff4500; padding: 20px; margin: 20px 0; border-radius: 10px; background: rgba(139, 0, 0, 0.2);">
+                <h3 style="color: #ff4500;">🔥 PSP Gaming Portable For Sale! 🔥</h3>
+                <p>PSP Gaming Portable with 30+ games. Futuristic layout and design. Nu te koop op de Payments pagina.</p>
+                <img src="1000011254.jpg" alt="PSP console" style="max-width: 100%; height: auto; display: block; margin: 15px auto; border: 1px solid #ff4500;">
+                <div style="text-align: center;">
+                    <a href="payments.html" class="groene-knop">Bekijk PSP Aanbod</a>
+                </div>
+            </div>
+
+            <h3>AI Software on Abelsoftware123</h3>
+            <p>AI Face Recognition, Drone Mapping, Target Kill Drones en meer.</p>
             <a href="ai.html" class="groene-knop">AI Software Page</a>
         </section>
 
-        <section class="content-section" id="tools-content" style="display: none;">
-            <h2>Our Tools</h2>
-            <p>In-depth descriptions of our custom developed hacking and business tools.</p>
-        </section>
+        <section class="content-section" id="tools-content" style="display: none;"><h2>Our Tools</h2><p>Ontdek onze geavanceerde tools.</p></section>
+        <section class="content-section" id="setup-content" style="display: none;"><h2>⚙️ Setup ⚙️</h2><p>Installatie handleidingen.</p></section>
+        <section class="content-section" id="faq-content" style="display: none;"><h2>❓ FAQ ❓</h2><p>Veelgestelde vragen.</p></section>
 
-        <section class="content-section" id="setup-content" style="display: none;">
-            <h2>⚙️ Install Manual ⚙️</h2>
-            <p>Step-by-step guides for smooth installation of all Abelsoftware123 products.</p>
-        </section>
-
-        <section class="content-section" id="faq-content" style="display: none;">
-            <h2>❓ (FAQ) ❓</h2>
-            <p>Common questions about licenses, payments, and software updates.</p>
-        </section>
-
-        <div style="margin-top: 30px;">
-             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0">
+        <div style="text-align: center; margin-top: 40px;">
+             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&dl=0">
                 <button class="groene-knop">Download Android App</button>
             </a>
         </div>
-        
-        <section style="margin-top: 40px;">
-            <h2>📬 Contact Us 📬</h2>
-            <p>Get a free quote for your own Website or App. We respond within 24 hours.</p>
-            <a href="mailto:abelsoftware123@hotmail.com">
-                <button class="groene-knop">Send Email</button>
-            </a>
-        </section>
     </main>
 
-    <button id="chat-launcher" onclick="toggleChat()">💬</button>
-
+    <div id="chat-launcher" onclick="toggleChat()">💬</div>
     <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent</span>
-            <span style="cursor:pointer; font-size: 24px;" onclick="toggleChat()">×</span>
+        <div id="chat-header"><span>Echo AI Assistent</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div>
+        <div class="mode-selector">
+            <button class="quick-btn" onclick="changeBotMode('basic')">Basic</button>
+            <button class="quick-btn" onclick="changeBotMode('human')">Human</button>
+            <button class="quick-btn" onclick="changeBotMode('funny')">Funny</button>
         </div>
-        <div id="messages">
-            <div class="msg bot-msg">Hallo! Ik ben de Abelsoftware123 AI Assistent. Hoe kan ik je helpen met onze software of games?</div>
-        </div>
+        <div id="messages"><div class="msg bot-msg">Hello! Voer je sleutel in als daarom gevraagd wordt om te chatten.</div></div>
         <div id="input-area">
-            <input type="text" id="user-input" placeholder="Stel een vraag..." onkeypress="handleKey(event)">
+            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="handleKey(event)">
             <button onclick="askBot()">➤</button>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 abelsoftware123. all rights reserved.</p>
-    </footer>
-    
     <script type="module">
-        import EchoController from './controller.js
+        import EchoController from './main/controller.js';
+
+        let echo = null;
+
+        window.toggleChat = function() {
+            const chat = document.getElementById("chat-container");
+            chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+            
+            // Vraag om de sleutel zodra de chat voor het eerst geopend wordt
+            if (!echo) {
+                const key = prompt("Plak hier je nieuwe API sleutel (sk-...) om de Echo AI te activeren:");
+                if (key) {
+                    echo = new EchoController(key, 'funny');
+                    const container = document.getElementById("messages");
+                    container.innerHTML += `<div class="msg bot-msg" style="border-color: #00ff00;">Systeem: Echo AI Geactiveerd!</div>`;
+                }
+            }
+        };
+
+        window.handleKey = function(event) { if (event.key === "Enter") window.askBot(); };
+
+        window.changeBotMode = function(mode) {
+            if (!echo) return alert("Activeer eerst de AI met je sleutel!");
+            echo.setMode(mode);
+            const container = document.getElementById("messages");
+            container.innerHTML += `<div class="msg bot-msg" style="border-color: #ff4500; font-size: 11px;">Modus: ${mode}</div>`;
+            container.scrollTop = container.scrollHeight;
+        };
+
+        window.askBot = async function(text = null) {
+            if (!echo) return alert("Voer eerst je sleutel in (klik op de chatwolk).");
+            const input = document.getElementById("user-input");
+            const container = document.getElementById("messages");
+            const userText = text ? text : input.value.trim();
+            if (userText === "") return;
+
+            container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
+            if (input) input.value = "";
+            
+            const typingId = "typing-" + Date.now();
+            container.innerHTML += `<div class="msg bot-msg" id="${typingId}">...</div>`;
+            container.scrollTop = container.scrollHeight;
+
+            try {
+                const botResponse = await echo.ask(userText);
+                document.getElementById(typingId).innerHTML = `
+                    <span style="color: #00ffff; font-size: 0.7em; font-weight: bold; text-transform: uppercase;">Echo [${echo.mode}] ✨</span><br>${botResponse}`;
+            } catch (error) {
+                document.getElementById(typingId).innerText = "Fout: Controleer je sleutel.";
+            }
+            container.scrollTop = container.scrollHeight;
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.galant-red-button'); 
+            const sections = document.querySelectorAll('.content-section');
+            function showSection(id) {
+                sections.forEach(s => s.style.display = 'none');
+                const target = document.getElementById(id);
+                if(target) target.style.display = 'block';
+            }
+            buttons.forEach(btn => btn.addEventListener('click', function() {
+                showSection(this.dataset.contenttarget + '-content');
+            }));
+            showSection('introductie-content');
+        });
+    </script>
+</body>
+</html>
