@@ -1,291 +1,325 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>welcome - abelsoftware123</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* add this internal style block for the new buttons and positioning */
-        
-        /* 1. Knoppen in de header (REGISTER/LOG IN) - Blijven neon blauw */
-        .header-controls {
-            position: absolute; 
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px; 
-        }
-        
-        .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff; 
-            background-color: transparent; 
-            box-shadow: 0 0 5px #00ffff, 
-                        0 0 10px #00ffff, 
-                        0 0 20px #00ffff, 
-                        0 0 40px rgba(0, 255, 255, 0.5); 
-            border: 2px solid #00ffff; 
-            transition: all 0.3s ease-in-out;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welcome - abelsoftware123</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- BASIS STYLING --- */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-        .neon-blue-button:hover {
-            background-color: #00ffff;
-            color: #000; 
-            box-shadow: 0 0 5px #00ffff, 
-                        0 0 10px #00ffff, 
-                        0 0 20px #00ffff, 
-                        0 0 60px #00ffff; 
-        }
+        header {
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
 
-        /* Nieuwe stijl voor de hoofdtitel - Blijft neon blauw */
-        .neon-title {
-            color: #00ffff; 
-            text-shadow: 0 0 7px #00ffff,
-                         0 0 10px #00ffff,
-                         0 0 21px #00ffff,
-                         0 0 42px rgba(0, 255, 255, 0.8),
-                         0 0 82px rgba(0, 255, 255, 0.6),
-                         0 0 92px rgba(0, 255, 255, 0.4),
-                         0 0 102px rgba(0, 255, 255, 0.2),
-                         0 0 151px rgba(0, 255, 255, 0.1);
-        }
+        /* 1. Knoppen in de header (REGISTER/LOG IN) */
+        .header-controls {
+            position: absolute; 
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; 
+            background-color: transparent; 
+            box-shadow: 0 0 10px #00ffff; 
+            border: 2px solid #00ffff; 
+            transition: all 0.3s ease-in-out;
+        }
 
-        /* 2. Styles voor de control-panel buttons (INFO, TOOLS, SETUP, FAQ) */
-        .control-panel {
-            text-align: center; 
-            margin-top: 20px;
-        }
+        .neon-blue-button:hover {
+            background-color: #00ffff;
+            color: #000; 
+            box-shadow: 0 0 20px #00ffff; 
+        }
 
-        /* VERNIEUWDE STIJL: Galant Rood met Zachte Gloed */
-        .galant-red-button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px; 
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: #8b0000; /* Donkerrood als basis */
-            /* Zachte rode gloed */
-            box-shadow: 0 0 5px #ff4500, 
-                        0 0 10px rgba(255, 69, 0, 0.7); 
-            border: 2px solid #ff4500; /* Oranjerood voor de rand */
-            transition: all 0.3s ease-in-out;
-            margin: 0 5px; 
-        }
+        .neon-title {
+            color: #00ffff; 
+            text-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.5);
+            margin-top: 40px;
+        }
 
-        .galant-red-button:hover {
-            background-color: #ff4500; /* Oranjerood op hover */
-            color: #000; /* Zwarte tekst op hover */
-            /* Zachte gloed wordt iets sterker */
-            box-shadow: 0 0 5px #ff4500, 
-                        0 0 15px #ff4500; 
-        }
+        /* Navigatie links */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        nav li a {
+            color: #00ffff;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 15px;
+            transition: color 0.3s ease;
+        }
+        
+        nav li a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #00ffff;
+        }
 
-        /* Update de groene knoppen voor consistentie - Blijven neon groen */
-        .groene-knop {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 5px #00ff00,
-                        0 0 10px #00ff00,
-                        0 0 20px #00ff00,
-                        0 0 40px rgba(0, 255, 0, 0.5);
-            border: 2px solid #00ff00;
-            transition: all 0.3s ease-in-out;
-        }
+        /* 2. Control-panel buttons (INFO, TOOLS, SETUP, FAQ) */
+        .control-panel {
+            text-align: center; 
+            margin-bottom: 30px;
+        }
 
-        .groene-knop:hover {
-            background-color: #00ff00;
-            color: #000;
-            box-shadow: 0 0 5px #00ff00,
-                        0 0 10px #00ff00,
-                        0 0 20px #00ff00,
-                        0 0 60px #00ff00;
-        }
-        
-        /* Standaard donkere achtergrond voor het thema (indien nog niet in style.css) */
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            font-family: Arial, sans-serif;
-        }
-        
-        /* Stijl voor de navigatie links */
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        nav li a {
-            color: #00ffff; /* Neon blauwe tekst */
-            text-decoration: none;
-            display: block;
-            padding: 10px 0;
-            margin: 5px 0;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-            transition: color 0.3s ease;
-        }
-        
-        nav li a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px #00ffff;
-        }
-    </style>
+        .galant-red-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px; 
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: #8b0000;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
+            border: 2px solid #ff4500;
+            transition: all 0.3s ease-in-out;
+            margin: 5px; 
+        }
+
+        .galant-red-button:hover {
+            background-color: #ff4500;
+            color: #000; 
+            box-shadow: 0 0 15px #ff4500; 
+        }
+
+        .groene-knop {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 10px #00ff00;
+            border: 2px solid #00ff00;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .groene-knop:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* --- CHATBOT ASSISTENT STYLING (HET WOLKJE) --- */
+        #chat-launcher { 
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            width: 70px; 
+            height: 60px; 
+            background: #00ffff; 
+            border-radius: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); 
+            z-index: 1000; 
+            font-size: 30px; 
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        #chat-launcher::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 15px;
+            border-width: 15px 15px 0 0;
+            border-style: solid;
+            border-color: #00ffff transparent transparent transparent;
+        }
+
+        #chat-launcher:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px #00ffff;
+        }
+
+        #chat-container { 
+            position: fixed; 
+            bottom: 100px; 
+            right: 20px; 
+            width: 320px; 
+            height: 450px; 
+            background: #2a2a2a; 
+            border: 2px solid #00ffff; 
+            border-radius: 15px; 
+            display: none; 
+            flex-direction: column; 
+            z-index: 1000; 
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); 
+            overflow: hidden;
+        }
+
+        #chat-header { 
+            background: #00ffff; 
+            color: #000; 
+            padding: 12px 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-weight: bold;
+        }
+
+        #messages { 
+            flex: 1; 
+            padding: 15px; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            background: #1a1a1a;
+            text-align: left;
+        }
+
+        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
+        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
+
+        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
+        #input-area input { flex: 1; background: #1a1a1a; border: none; color: white; padding: 10px; border-radius: 5px; outline: none; }
+        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-size: 20px; margin-left: 5px; }
+
+        footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }
+    </style>
 </head>
 <body>
 
-    <header style="position: relative;"> 
-        <div class="header-controls">
-            <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
-            <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
-        </div>
-        
-        <h1 class="neon-title">Abelsoftware123</h1>
-        <p>welcome to Abelsoftware123</p>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="company.html">Abelsoftware123 company</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="payments.html">Payments</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a 
-href="ai.html">AI Software</a></li>  
-                <li><a
-href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-            </ul>
-        </nav>
-        
-        <div class="control-panel">
-            <button class="galant-red-button" data-content-target="introductie">info</button>
-            <button class="galant-red-button" data-content-target="tools">tools</button>
-            <button class="galant-red-button" data-content-target="setup">setup</button>
-            <button class="galant-red-button" data-content-target="faq">faq</button>
-        </div>
-    </header>
+    <header> 
+        <div class="header-controls">
+            <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
+            <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
+        </div>
+        
+        <h1 class="neon-title">Abelsoftware123</h1>
+        <p>Welcome to the future of software development</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="apps.html">Games</a></li>
+                <li><a href="hacktools.html">Hacktools</a></li>
+                <li><a href="ai.html">AI Software</a></li>  
+                <li><a href="website.html">Order Website</a></li>
+                <li><a href="domain.html">Domains</a></li>
+            </ul>
+        </nav>
+        
+        <div class="control-panel">
+            <button class="galant-red-button" data-content-target="introductie">info</button>
+            <button class="galant-red-button" data-content-target="tools">tools</button>
+            <button class="galant-red-button" data-content-target="setup">setup</button>
+            <button class="galant-red-button" data-content-target="faq">faq</button>
+        </div>
+    </header>
 
-    <main>
-        
-        <section class="introductie content-section" id="introductie-content"> 
-            <h2>💻 Our Ethical Hacking Resources🖥️</h2>
-            
-            <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-            <br>
+    <main>
+        <section class="content-section" id="introductie-content"> 
+            <h2>💻 Our Ethical Hacking Resources 🖥️</h2>
+            <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix neo cover" style="max-width: 100%; border-radius: 10px; border: 1px solid #00ffff;">
+            
+            <h3>New on Abelsoftware123</h3>
+            <p>Register your account and buy our AI Software, Games, and Hacktools directly! Follow us on Instagram and TikTok!</p>
+            
+            <p>We specialize in custom software: AI Face Recognition, Drone Mapping, and more. Download our free Android app below!</p>
 
-            <h3>New!!! On Abelsoftware123</h3>
-<p>Register your account on abelsoftware123. and buy our AI Software/Games/Hacktools/Apps in your own account!--->Follow Us On Instagram and TikTok!</p>
-       
-            <p>Here you will find information about the **AI Software***Games*** Legal Hack Tools***Website***Apps**Domain Name** we develop and use. we specialize in developing custom software that meets all your needs. our mission is to give everyone a good AI/GAMING/WEBSITE/HACK/APP/DOMAIN NAME experience. your wishes come first! download our new abelsoftware123 app for free and conveniently purchase your apps/games/hacktools/website within the app! click on the green button below to  download abelsoftware123 free app!!!</p>
+            <h3>PSP Gaming Portable For Sale!</h3>
+            <p>30+ pre-installed games. Futuristic design. Worldwide shipping via PayPal.</p>
+            <img src="1000011254.jpg" alt="PSP console" style="max-width: 80%; border-radius: 10px;">
+            <br>
+            <a href="ai.html" class="groene-knop">AI Software Page</a>
+        </section>
 
+        <section class="content-section" id="tools-content" style="display: none;">
+            <h2>Our Tools</h2>
+            <p>In-depth descriptions of our custom developed hacking and business tools.</p>
+        </section>
 
-<h3>PSP Gaming Portable For Sale!</h3>
-<p>PSP Gaming Portable with 30+ games from any play console at this time. with a futuristic layout and design. now for sale in page Payments.(First Product) You can buy this console with PayPal. We sent this console over the whole globe.</p>
+        <section class="content-section" id="setup-content" style="display: none;">
+            <h2>⚙️ Install Manual ⚙️</h2>
+            <p>Step-by-step guides for smooth installation of all Abelsoftware123 products.</p>
+        </section>
 
-<img src="1000011254.jpg" alt="PSP Gaming Portable console" style="max-width: 100%; height: auto; display: block; margin: 15px auto;">
+        <section class="content-section" id="faq-content" style="display: none;">
+            <h2>❓ (FAQ) ❓</h2>
+            <p>Common questions about licenses, payments, and software updates.</p>
+        </section>
 
-<h3>AI Software on Abelsoftware123=====>           
-<h4>AI Face Recognition civilian software and AI GMC Terrain Enemy Lines Mapping Software.</h4>
-<h4>AI Target Kill and Aid Rate Drones Software.</h4>
- <h4>AI Accurate Drone Release Dropping Software.</h4>
- <h4>AI Swarm Software Technology and many more software.</h4>          
+        <div style="margin-top: 30px;">
+             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0">
+                <button class="groene-knop">Download Android App</button>
+            </a>
+        </div>
+        
+        <section style="margin-top: 40px;">
+            <h2>📬 Contact Us 📬</h2>
+            <p>Get a free quote for your own Website or App. We respond within 24 hours.</p>
+            <a href="mailto:abelsoftware123@hotmail.com">
+                <button class="groene-knop">Send Email</button>
+            </a>
+        </section>
+    </main>
 
-<p>For more info Click on the AI Software button below!!!</p>
+    <button id="chat-launcher" onclick="toggleChat()">💬</button>
 
-<a href="ai.html" class="groene-knop">AI Software Page</a>
-    </section
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>🤖 AI Assistent</span>
+            <span style="cursor:pointer; font-size: 24px;" onclick="toggleChat()">×</span>
+        </div>
+        <div id="messages">
+            <div class="msg bot-msg">Hallo! Ik ben de Abelsoftware123 AI Assistent. Hoe kan ik je helpen met onze software of games?</div>
+        </div>
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Stel een vraag..." onkeypress="handleKey(event)">
+            <button onclick="askBot()">➤</button>
+        </div>
+    </div>
 
-        <section class="content-section" id="tools-content" style="display: none;">
-            <h2>Our Tools</h2>
-            <p>Here you will find an in-depth description of the various tools offered by Abelsoftware123. Discover how each tool works and the benefits it provides.</p>
-        </section>
-
-        <section class="content-section" id="setup-content" style="display: none;">
-            <h2>⚙️ Install Manual⚙️</h2>
-            <p>Follow our step-by-step guide for easy installation and configuration of your new tools. Get up and running smoothly!</p>
-        </section>
-
-        <section class="content-section" id="faq-content" style="display: none;">
-            <h2>❓ (FAQ) ❓</h2>
-            <p>Any questions? Head over to our FAQ for quick solutions to common issues</p>
-        </section>
-
-        <div style="text-align: center; margin-top: 20px;">
-             <a href="https://www.dropbox.com/scl/fi/5r6encl49maxv0egxuhk9/_abelsoftware123_19141700.apk?rlkey=14bfnsvtdke8jq1mvzgwpkx1i&st=ye84fwcd&dl=0" id="download-knop">
-                <button class="groene-knop">abelsoftware123 android app</button>
-            </a>
-        </div>
-        
-        <section class="contact">
-            <h2>📬Contact Us📬</h2>
-            <p>Click the button below to contact us if you want to order a Website/App/Hacktools/AI Software/ Domain Name. we respond within 24 hours. quotes are non-binding and free of charge. send an email,Click on the contact button.</p>
-            
-             <div style="text-align: center; margin-top: 20px;">
-                   <a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
-            <button id="contact-knop" class="groene-knop">Contact</button>
-        </a>
-    </section>
-            </div>
-            </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 abelsoftware123. all rights reserved.</p>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Let op: De selector is nu `.galant-red-button`
-            const futuristicbuttons = document.querySelectorAll('.galant-red-button'); 
-            const contentsections = document.querySelectorAll('.content-section');
-
-            // Functie om alle contentsecties te verbergen
-            function hideallcontentsections() {
-                contentsections.forEach(section => {
-                    section.style.display = 'none';
-                });
-            }
-
-            // Functie om een specifieke contentsectie te tonen
-            function showcontentsection(targetid) {
-                hideallcontentsections(); // Verberg alles eerst
-                const targetsection = document.getElementById(targetid);
-                if (targetsection) {
-                    // Gebruik 'block' of 'flex' afhankelijk van hoe je de layout wilt
-                    targetsection.style.display = 'block'; 
-                }
-            }
-
-            // Voeg event listeners toe aan de galante rode knoppen
-            futuristicbuttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Haalt de ID op uit het data-attribuut en voegt '-content' toe
-                    // Bv: 'tools' wordt 'tools-content'
-                    const target = this.dataset.contenttarget + '-content'; 
-                    showcontentsection(target);
-                });
-            });
-
-            // Toon de 'info' sectie standaard wanneer de pagina laadt
-            // Dit moet aan het einde, zodat de event listeners eerst zijn ingesteld.
-            showcontentsection('introductie-content');
-        });
-    </script>
-</body>
-</html>
+    <footer>
+        <p>&copy; 2025 abelsoftware123. all rights reserved.</p>
+    </footer>
+    
+    <script type="module">
+        import EchoController from './controller.js
