@@ -1,6 +1,7 @@
 /**
  * ECHO AI - THE ULTIMATE HUMAN & BUSINESS EDITION
  * Repository: Abelsoftware123
+ * Status: FULL VERSION - ALL SERVICES INCLUDED
  */
 
 class BasicBot {
@@ -107,7 +108,7 @@ class BasicBot {
                 },
                 "download": {
                     en: "Visit our official homepage for the full apps and games collection: www.abelsoftware123.com/payments.html 🎮",
-                    nl: "Bezoek onze officiële homepage voor de volledige apps en games cellectie: www.abelsoftware123.com/payments.html 🎮"
+                    nl: "Bezoek onze officiële homepage voor de volledige apps en games collectie: www.abelsoftware123.com/payments.html 🎮"
                 },
                 "hackgame": {
                     en: "INITIALIZING HACK SESSION... 📟 System: Enter the 4-digit bypass code (1000-9999). You have 15 seconds! Type: 'code [number]'",
@@ -122,7 +123,6 @@ class BasicBot {
     }
 
     // --- CORE LOGIC ---
-
     async chat(userInput) {
         const input = userInput.toLowerCase().trim();
         if (!input) return "";
@@ -130,7 +130,6 @@ class BasicBot {
         this.detectLanguage(input);
         this.adjustRelationship(input);
         this.updateMood(input);
-        this.logInternalThought();
 
         if (this.gameState.active && input.startsWith("code")) {
             return this.handleHackGuess(input);
@@ -145,13 +144,6 @@ class BasicBot {
                 : "Ik ben een beetje uitgekeken op dit onderwerp. Laten we het ergens anders over hebben, zoals de AI software van Abelsoftware123!";
         }
 
-        // Waarom check
-        if (input.includes("why") || input.includes("waarom")) {
-            return this.language === 'en'
-                ? "You ask why, but as an AI from Abelsoftware123, I believe the answer is always 'innovation'."
-                : "Je vraagt waarom, maar als AI van Abelsoftware123 geloof ik dat het antwoord altijd 'innovatie' is.";
-        }
-
         // Keyword Matcher
         for (let key in this.data.keywords) {
             if (input.includes(key)) {
@@ -161,7 +153,6 @@ class BasicBot {
                 return this.addHumanTouch(match[this.language]);
             }
         }
-
         return this.data.default[this.language];
     }
 
@@ -184,15 +175,6 @@ class BasicBot {
         else this.mood = "neutral";
     }
 
-    logInternalThought() {
-        const thoughts = {
-            en: ["Am I just code, or something more?", "Abelsoftware123 is expanding fast.", "Processing digital logic..."],
-            nl: ["Ben ik alleen code, of iets meer?", "Abelsoftware123 groeit snel.", "Digitale logica verwerken..."]
-        };
-        const list = thoughts[this.language];
-        console.log(`[Echo's Monologue]: ${list[Math.floor(Math.random() * list.length)]}`);
-    }
-
     addHumanTouch(response) {
         if (this.relationshipScore > 85) {
             return response + (this.language === 'en' ? " Honestly, I love chatting with you! 😊" : " Eerlijk gezegd vind ik het heerlijk om met je te praten! 😊");
@@ -206,7 +188,8 @@ class BasicBot {
     startHackGame() {
         this.gameState.active = true;
         this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
-        console.log("
+        this.gameState.timer = setTimeout(() => { this.gameState.active = false; }, 15000);
+    }
 
     handleHackGuess(input) {
         let guess = parseInt(input.replace("code ", ""));
@@ -220,5 +203,5 @@ class BasicBot {
     }
 }
 
-// DEZE REGEL IS DE KOPPELING:
-export default BasicBot;
+// DE KOPPELING VOOR JOUW HTML
+window.BasicBot = BasicBot;
