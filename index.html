@@ -148,9 +148,14 @@
         </div>
     </div>
 
-    <script type="module">
-        import BasicBot from './chatbot.js';
-        let echo = null;
+    <script src="chatbot.js"></script>
+
+<script>
+    // Gebruik de bot direct (geen import nodig)
+    let echo = null;
+    
+    window.toggleChat = function() {
+        // ... rest van de code blijft hetzelfde ...
 
         // Functies koppelen aan window zodat ze werken in de HTML
         window.toggleChat = function() {
