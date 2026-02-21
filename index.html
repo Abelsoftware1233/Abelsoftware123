@@ -177,6 +177,17 @@
         };
 
         window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
+window.handleQuickReply = function(keyword) {
+    const input = document.getElementById("user-input");
+    
+    if (input) {
+        // 1. Zet de tekst in het vakje
+        input.value = keyword;
+        
+        // 2. Roep de bestaande askBot functie aan om het te versturen
+        window.askBot();
+    }
+};
 
         window.askBot = async function() {
             const input = document.getElementById("user-input");
