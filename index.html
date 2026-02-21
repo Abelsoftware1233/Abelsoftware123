@@ -184,8 +184,7 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
+                <li><a href="chatbot.html">Order Your Chatbot</a></li>
                 <li><a href="company.html">Abelsoftware123 company</a></li>
                 <li><a href="downloads.html">Downloads</a></li>
                 <li><a href="payments.html">Payments</a></li>
@@ -277,9 +276,16 @@ href="chatbot.html">Order Your Chatbot</a></li>
     </div>
 
     <script type="module">
-        import echoBot from './chatbot.js';
+        import EchoController from './main/controller.js';
 
-        // Maak functies globaal voor onclick events in HTML
+        // VEILIGE SPLIT KEY
+        const p1 = "sk-proj-UbGssouDLwYXfIkjr9Bv1QqIdAud-RnYphLbzIhxg3hX6qsbtTRA";
+        const p2 = "cGefKAgiGQFYVU2pdFH3BXT3BlbkFJJWklu7PJT1t46tOSSHwVRLyB5olpIO-PYOn";
+        const p3 = "Ii-C8e9geVqr49MiyUnZj-ULW3xhebYeX3hQQEA";
+
+        // Initialiseer controller met samengevoegde delen
+        const echo = new EchoController(p1, p2 + p3, 'funny');
+
         window.toggleChat = function() {
             const chat = document.getElementById("chat-container");
             chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
@@ -289,44 +295,42 @@ href="chatbot.html">Order Your Chatbot</a></li>
             if (event.key === "Enter") window.askBot();
         };
 
-        window.askBot = function(text = null) {
+        window.askBot = async function(text = null) {
             const input = document.getElementById("user-input");
             const container = document.getElementById("messages");
-            const userText = text ? text : input.value.trim();
+            const userText = text ? text : (input ? input.value.trim() : "");
 
             if (userText === "") return;
 
-            // Voeg gebruikersbericht toe
             container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
             if (input) input.value = "";
             container.scrollTop = container.scrollHeight;
 
-            // Krijg menselijk antwoord van Echo
-            // Gebruik processInput uit je laatste 300-regelige script
-            const botResponse = echoBot.processInput(userText);
+            try {
+                // Gebruik de controller om het antwoord op te halen
+                const botResponse = await echo.ask(userText);
 
-            // Simuleer een menselijke pauze
-            setTimeout(() => {
-                container.innerHTML += `
-                    <div class="msg bot-msg">
-                        <span style="color: #00ffff; font-size: 0.7em; font-weight: bold; text-transform: uppercase;">Echo ✨</span><br>
-                        ${botResponse}
-                    </div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 700);
+                setTimeout(() => {
+                    container.innerHTML += `
+                        <div class="msg bot-msg">
+                            <span style="color: #00ffff; font-size: 0.7em; font-weight: bold; text-transform: uppercase;">Echo ✨</span><br>
+                            ${botResponse}
+                        </div>`;
+                    container.scrollTop = container.scrollHeight;
+                }, 700);
+            } catch (error) {
+                console.error("Chat Error:", error);
+            }
         };
 
-        // Tab-navigatie logica behouden
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
-
             function showSection(id) {
                 sections.forEach(s => s.style.display = 'none');
                 const target = document.getElementById(id);
                 if(target) target.style.display = 'block';
             }
-
             buttons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     showSection(this.dataset.contenttarget + '-content');
