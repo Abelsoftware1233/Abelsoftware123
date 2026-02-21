@@ -70,11 +70,7 @@ class BasicBot {
                     en: "We keep it fair: Games start at €4.99, and website and apps start at €200 and domain name start at €50. and chatbot standard €1000. and AI Software (face recognition or DJI drone) starts at €300 licence. AI chatbot with API Key €1500 Quality made with love! 💸",
                     nl: "We houden het eerlijk:
 games: vanaf €4,99
-websites en apps vanaf €200
-domeinnamen: vanaf €50
-standaard chatbot €1.000
-AI-software (gezichtsherkenning of DJI-drone) vanaf €300, per licentie
-AI-chatbot met API-key: €1.500. Kwaliteit gemaakt met liefde! 💸"
+Kwaliteit gemaakt met liefde! 💸"
                 },
                 "prices": "prijzen", "pricing": "prijzen",
 
