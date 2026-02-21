@@ -23,9 +23,28 @@
         nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
         nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
 
-        /* --- CHATBOT STIJLEN --- */
-        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #00ffff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1000; font-size: 30px; }
-        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 520px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+        /* --- CHATBOT STIJLEN (BERICHTWOLKJE) --- */
+        #chat-launcher { 
+            position: fixed; bottom: 20px; right: 20px; 
+            width: 65px; height: 55px; background: #00ffff; 
+            border-radius: 18px; display: flex; justify-content: center; 
+            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
+            z-index: 1001; font-size: 30px; border: none;
+        }
+        /* Het staartje van het wolkje */
+        #chat-launcher::after {
+            content: ""; position: absolute; bottom: -8px; right: 12px;
+            border-width: 12px 12px 0 0; border-style: solid;
+            border-color: #00ffff transparent transparent transparent;
+        }
+
+        #chat-container { 
+            position: fixed; bottom: 90px; right: 20px; 
+            width: 320px; height: 520px; background: #2a2a2a; 
+            border: 2px solid #00ffff; border-radius: 15px; 
+            display: none; flex-direction: column; overflow: hidden; 
+            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        }
         #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
         .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
@@ -103,120 +122,83 @@
         </div>
     </main>
 
-    <script type="module">
-    // 1. Importeer direct JOUW bestand (geen /main/ map!)
-    import BasicBot from './chatbot.js';
+    <div id="chat-launcher" onclick="toggleChat()">💬</div>
 
-    let echo = null;
-
-    window.toggleChat = function() {
-        const chat = document.getElementById("chat-container");
-        chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
-        
-        // Initialiseer jouw chatbot.js direct als dat nog niet gedaan is
-        if (!echo) {
-            // We maken de bot aan. De sleutel is optioneel voor jouw keyword-logica.
-            echo = new BasicBot(); 
-            const container = document.getElementById("messages");
-            container.innerHTML += `<div class="msg bot-msg" style="border-color: #00ffff;">Systeem: Abelsoftware123 AI is online!</div>`;
-        }
-    };
-
-    window.handleKey = function(event) {
-        if (event.key === "Enter") {
-            window.askBot();
-        }
-    };
-
-    window.askBot = async function() {
-        const input = document.getElementById("user-input");
-        const container = document.getElementById("messages");
-        const text = input.value.trim();
-
-        if (!text || !echo) return;
-
-        // Toon jouw bericht
-        container.innerHTML += `<div class="user-msg" style="background:#00ffff; color:black; padding:8px; border-radius:10px; align-self:flex-end; margin-bottom:10px;">${text}</div>`;
-        input.value = "";
-        container.scrollTop = container.scrollHeight;
-
-        try {
-            // ROEP JOUW ORIGINELE CHAT FUNCTIE AAN
-            const response = await echo.chat(text);
-            
-            setTimeout(() => {
-                container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 400);
-        } catch (err) {
-            console.error("Fout in chatbot.js:", err);
-        }
-    };
-
-    // Optioneel: Mode switcher koppelen aan je script als je dat wilt uitbreiden
-    window.changeBotMode = function(mode) {
-        if(echo) {
-            echo.mood = mode; // Past de mood in jouw chatbot.js aan
-            alert("Modus veranderd naar: " + mode);
-        }
-    };
-</script>
-
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>🤖 AI Assistent</span>
+            <span style="cursor:pointer" onclick="toggleChat()">✕</span>
+        </div>
+        <div class="mode-selector">
+            <button class="quick-btn" onclick="changeBotMode('basic')">Basic</button>
+            <button class="quick-btn" onclick="changeBotMode('human')">Human</button>
+            <button class="quick-btn" onclick="changeBotMode('funny')">Funny</button>
+        </div>
+        <div id="messages">
+            <div class="msg bot-msg">Welkom bij de Abelsoftware123 AI Assistent! Waarmee kan ik je helpen?</div>
+        </div>
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="handleKey(event)">
+            <button onclick="askBot()">➤</button>
+        </div>
+    </div>
 
     <script type="module">
-        import EchoController from './main/chatbot.js';
+        import BasicBot from './chatbot.js';
 
         let echo = null;
 
+        // Toggle chatvenster
         window.toggleChat = function() {
             const chat = document.getElementById("chat-container");
             chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
             
-            // Vraag om de sleutel zodra de chat voor het eerst geopend wordt
             if (!echo) {
-                const key = prompt("Plak hier je nieuwe API sleutel (sk-...) om de Echo AI te activeren:");
-                if (key) {
-                    echo = new EchoController(key, 'funny');
-                    const container = document.getElementById("messages");
-                    container.innerHTML += `<div class="msg bot-msg" style="border-color: #00ff00;">Systeem: Echo AI Geactiveerd!</div>`;
-                }
+                // Initialiseer direct jouw originele chatbot.js
+                echo = new BasicBot();
+                console.log("Abelsoftware123 AI Assistent geactiveerd.");
             }
         };
 
-        window.handleKey = function(event) { if (event.key === "Enter") window.askBot(); };
-
-        window.changeBotMode = function(mode) {
-            if (!echo) return alert("Activeer eerst de AI met je sleutel!");
-            echo.setMode(mode);
-            const container = document.getElementById("messages");
-            container.innerHTML += `<div class="msg bot-msg" style="border-color: #ff4500; font-size: 11px;">Modus: ${mode}</div>`;
-            container.scrollTop = container.scrollHeight;
+        window.handleKey = function(event) {
+            if (event.key === "Enter") window.askBot();
         };
 
-        window.askBot = async function(text = null) {
-            if (!echo) return alert("Voer eerst je sleutel in (klik op de chatwolk).");
+        window.changeBotMode = function(mode) {
+            if (echo) {
+                echo.mood = mode;
+                const container = document.getElementById("messages");
+                container.innerHTML += `<div class="msg bot-msg" style="border-color: #ff4500; font-size: 11px;">Modus: ${mode}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }
+        };
+
+        window.askBot = async function() {
             const input = document.getElementById("user-input");
             const container = document.getElementById("messages");
-            const userText = text ? text : input.value.trim();
-            if (userText === "") return;
+            const text = input.value.trim();
 
-            container.innerHTML += `<div class="msg user-msg">${userText}</div>`;
-            if (input) input.value = "";
-            
-            const typingId = "typing-" + Date.now();
-            container.innerHTML += `<div class="msg bot-msg" id="${typingId}">...</div>`;
+            if (!text || !echo) return;
+
+            // User bericht tonen
+            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+            input.value = "";
             container.scrollTop = container.scrollHeight;
 
             try {
-                const botResponse = await echo.ask(userText);
-                document.getElementById(typingId).innerHTML = `
-                    <span style="color: #00ffff; font-size: 0.7em; font-weight: bold; text-transform: uppercase;">Echo [${echo.mode}] ✨</span><br>${botResponse}`;
-            } catch (error) {
-                document.getElementById(typingId).innerText = "Fout: Controleer je sleutel.";
+                // Roep de chat methode aan in jouw chatbot.js
+                const response = await echo.chat(text);
+                
+                setTimeout(() => {
+                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
+                    container.scrollTop = container.scrollHeight;
+                }, 400);
+            } catch (err) {
+                console.error("Fout in chatbot.js:", err);
             }
-            container.scrollTop = container.scrollHeight;
         };
 
+        // Pagina sectie navigatie (rode knoppen)
         document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.galant-red-button'); 
             const sections = document.querySelectorAll('.content-section');
@@ -228,7 +210,6 @@
             buttons.forEach(btn => btn.addEventListener('click', function() {
                 showSection(this.dataset.contenttarget + '-content');
             }));
-            showSection('introductie-content');
         });
     </script>
 </body>
