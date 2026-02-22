@@ -87,13 +87,73 @@
                 <li><a href="domain.html">Order Your Own Domain Name</a></li>
             </ul>
         </nav>
+       
+ <header>
         <div class="control-panel">
-            <button class="galant-red-button" data-content-target="introductie">Info</button>
-            <button class="galant-red-button" data-content-target="tools">Setup</button>
-            <button class="galant-red-button" data-content-target="setup">Tools</button>
-            <button class="galant-red-button" data-content-target="faq">F&Q</button>
+            <button class="galant-red-button" data-target="introductie">INFO</button>
+            <button class="galant-red-button" data-target="setup">SETUP</button>
+            <button class="galant-red-button" data-target="tools">TOOLS</button>
+            <button class="galant-red-button" data-target="faq">F&Q</button>
         </div>
     </header>
+
+    <main>
+        <div id="introductie" class="content-section active">
+            <h2>💰 Onze Tarieven</h2>
+            <ul>
+                <li>🎮 <strong>Games:</strong> Vanaf <span class="price">€4,99</span></li>
+                <li>🌐 <strong>Websites & Apps:</strong> Vanaf <span class="price">€200</span></li>
+                <li>🤖 <strong>Standaard Chatbots:</strong> Vanaf <span class="price">€1000</span></li>
+                <li>🛰️ <strong>AI Software (Face Recognition/Drone):</strong> Licentie <span class="price">€300</span></li>
+                <li>🔑 <strong>AI Chatbot met API Key:</strong> <span class="price">€1500</span></li>
+            </ul>
+        </div>
+
+        <div id="setup" class="content-section">
+            <h2>🚀 Setup & Installatie</h2>
+            <p>Om gebruik te maken van onze software en drones:</p>
+            <ul>
+                <li>Vraag een licentie aan via het contactmenu.</li>
+                <li>Domeinnamen starten bij <span class="price">€50</span>.</li>
+                <li>Installatiehulp bij apps is inbegrepen bij de startprijs.</li>
+            </ul>
+        </div>
+
+        <div id="tools" class="content-section">
+            <h2>🛡️ Hacktools & AI Modules</h2>
+            <p>Professionele tools voor beveiliging en automatisering:</p>
+            <ul>
+                <li><strong>Network Scanner:</strong> Voor kwetsbaarheden onderzoek.</li>
+                <li><strong>AI Face Recognition:</strong> Geavanceerde herkenning voor DJI drones.</li>
+                <li><strong>Automated Scripts:</strong> Voor web- en app automatisering.</li>
+                <li><strong>Custom Malware Testing:</strong> Alleen voor ethisch gebruik.</li>
+            </ul>
+        </div>
+
+        <div id="faq" class="content-section">
+            <h2>💳 Payments & FAQ</h2>
+            <p><strong>Hoe kan ik betalen?</strong><br>Wij accepteren verschillende betaalmethodes voor je games en licenties.</p>
+            <p><strong>Kwaliteit:</strong><br>Alles is <em>Quality made with love!</em> 💸</p>
+        </div>
+    </main>
+
+    <script>
+        const buttons = document.querySelectorAll('.galant-red-button');
+        const sections = document.querySelectorAll('.content-section');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                
+                sections.forEach(sec => {
+                    sec.classList.remove('active');
+                });
+
+                document.getElementById(target).classList.add('active');
+            });
+        });
+    </script>
+
 
     <main style="padding: 20px;">
         <section class="content-section" id="introductie-content"> 
