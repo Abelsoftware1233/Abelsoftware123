@@ -84,8 +84,8 @@ class BasicBot {
                     nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping en GCM en S.A.R drone software en veel meer. Bekijk het: www.abelsoftware123.com/ai.html"
                 },
                 "website": {
-                    en: "Visit our official homepage for the full website and apps order experience: www.abelsoftware123.com/website.html 🌐",
-                    nl: "Bezoek onze officiële homepage voor de volledige website en apps order ervaring: www.abelsoftware123.com/website.html 🌐"
+                    en: "Visit our official homepage for the full website and apps order experience. Custom made website and apps for you company with the newest technologies: www.abelsoftware123.com/website.html 🌐",
+                    nl: "Bezoek onze officiële homepage voor de volledige website en apps order ervaring. op maat gemaakte website en app met de nieuwste technologieën: www.abelsoftware123.com/website.html 🌐"
                 },
                 "hacktools": {
                     en: "Visit our official homepage for the full hacktools experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
