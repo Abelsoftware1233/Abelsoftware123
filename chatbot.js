@@ -1,7 +1,7 @@
 /**
  * ECHO AI - THE ULTIMATE HUMAN & BUSINESS EDITION
  * Repository: Abelsoftware123
- * Status: FULL VERSION - ALL SERVICES INCLUDED
+ * Status: FULL VERSION - ALL SERVICES + LOCKDOWN SYSTEM
  */
 
 class BasicBot {
@@ -13,9 +13,16 @@ class BasicBot {
         this.mood = "neutral";
         this.relationshipScore = 50;
         this.boredomLevel = 0;
-        this.gameState = { active: false, code: 0, timer: null };
+        
+        // --- GAME & LOCKDOWN STATE ---
+        this.gameState = { 
+            active: false, 
+            code: null, 
+            timer: null,
+            lockdown: false 
+        };
 
-        // --- DATA REPOSITORY (VOLLEDIG & ORIGINEEL) ---
+        // --- DATA REPOSITORY (ALL SERVICES INCLUDED) ---
         this.data = {
             keywords: {
                 "hoe gaat het": {
@@ -50,7 +57,7 @@ class BasicBot {
 
                 "games": {
                     en: "I love making games! 🎮 From Mario to addictive arcade titles. You can buy the game, and have a lifetime gameplay, for the best experience (no ads, lifetime updates!) in our shop.",
-                    nl: "Ik hou ervan om spellen te maken! 🎮 Van Mario tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!)je kan de games kopen in onze shop,en levenslang spelen."
+                    nl: "Ik hou ervan om spellen te maken! 🎮 Van Mario tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!) je kan de games kopen in onze shop, en levenslang spelen."
                 },
                 "spellen": "games", "gaming": "games",
 
@@ -66,12 +73,11 @@ class BasicBot {
                 },
                 "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen",
 
-               "prijzen": {
-    "en": "We keep it fair: Games start at €4.99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €150 license. AI chatbot with API Key is €1500. Advertising om my games and apps starts at €50 to €300 each month. Quality made with love! 💸",
-    "nl": "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software  (gezichtsherkenning of software DJI-drone) vanaf een licentie van €150. AI-chatbot met API-sleutel voor €1500. Adverteren op me games en apps begint tussen de €50 en €300 per maand. Kwaliteit gemaakt met liefde! 💸"
-},
-"prices": "prijzen",
-"pricing": "prijzen",
+                "prijzen": {
+                    en: "We keep it fair: Games start at €4.99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €150 license. AI chatbot with API Key is €1500. Advertising on my games and apps starts at €50 to €300 each month. Quality made with love! 💸",
+                    nl: "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of software DJI-drone) vanaf een licentie van €150. AI-chatbot met API-sleutel voor €1500. Adverteren op me games en apps begint tussen de €50 en €300 per maand. Kwaliteit gemaakt met liefde! 💸"
+                },
+                "prices": "prijzen", "pricing": "prijzen",
 
                 "contact": {
                     en: "We are open Mon-Sun, 9:00 AM - 5:00 PM. 🕘 Email us at abelsoftware123@hotmail.com. We respond within 24 hours! 💻",
@@ -84,8 +90,8 @@ class BasicBot {
                     nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping en GCM en S.A.R drone software en veel meer. Bekijk het: www.abelsoftware123.com/ai.html"
                 },
                 "website": {
-                    en: "Visit our official homepage for the full website and apps order experience. Custom made website and apps for you company with the newest technologies: www.abelsoftware123.com/website.html 🌐",
-                    nl: "Bezoek onze officiële homepage voor de volledige website en apps order ervaring. op maat gemaakte website en app met de nieuwste technologieën: www.abelsoftware123.com/website.html 🌐"
+                    en: "Visit our official homepage for custom made websites and apps for your company with the newest technologies: www.abelsoftware123.com/website.html 🌐",
+                    nl: "Bezoek onze officiële homepage voor op maat gemaakte websites en apps met de nieuwste technologieën: www.abelsoftware123.com/website.html 🌐"
                 },
                 "hacktools": {
                     en: "Visit our official homepage for the full hacktools experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
@@ -100,7 +106,7 @@ class BasicBot {
                     nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps.html 🕹️"
                 },
                 "chatbot": {
-                    en: "Visit our official homepage for the full (AI) chatbots order experience: www.abelsoftware123.com/chatbot.html 🕹️",
+                    en: "Visit our official homepage for the full (AI) chatbots order experience: www.abelsoftware123.com/chatbot.html 🤖",
                     nl: "Bezoek onze officiële homepage voor de volledige (AI) chatbot ervaring: www.abelsoftware123.com/chatbot.html 🤖"
                 },
                 "advertising": {
@@ -128,10 +134,18 @@ class BasicBot {
         const input = userInput.toLowerCase().trim();
         if (!input) return "";
 
+        // Lockdown Check
+        if (this.gameState.lockdown) {
+            return this.language === 'en' 
+                ? "🚨 SYSTEM IN LOCKDOWN! Security bypass in progress... Please wait 10 seconds." 
+                : "🚨 SYSTEEM IN LOCKDOWN! Beveiliging omzeilen... Wacht 10 seconden.";
+        }
+
         this.detectLanguage(input);
         this.adjustRelationship(input);
         this.updateMood(input);
 
+        // Handle Hack Guess
         if (this.gameState.active && input.startsWith("code")) {
             return this.handleHackGuess(input);
         }
@@ -150,7 +164,9 @@ class BasicBot {
             if (input.includes(key)) {
                 let match = this.data.keywords[key];
                 if (typeof match === "string") match = this.data.keywords[match];
-                if (key === "hackgame") this.startHackGame();
+                
+                if (key === "hackgame") return this.startHackGame();
+                
                 return this.addHumanTouch(match[this.language]);
             }
         }
@@ -158,7 +174,7 @@ class BasicBot {
     }
 
     detectLanguage(input) {
-        const nlTriggers = ["de", "het", "ik", "ben", "je", "niet", "is", "hoe", "wat", "koop", "leuk"];
+        const nlTriggers = ["de", "het", "ik", "ben", "je", "niet", "is", "hoe", "wat", "koop", "leuk", "betalen"];
         const nlScore = input.split(" ").filter(word => nlTriggers.includes(word)).length;
         this.language = nlScore > 0 ? "nl" : "en";
     }
@@ -186,66 +202,12 @@ class BasicBot {
         return response;
     }
 
-    startHackGame() {
-        this.gameState.active = true;
-        this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
-        this.gameState.timer = setTimeout(() => { this.gameState.active = false; }, 15000);
-    }
-
-    handleHackGuess(input) {
-        let guess = parseInt(input.replace("code ", ""));
-        if (guess === this.gameState.code) {
-            clearTimeout(this.gameState.timer);
-            this.gameState.active = false;
-            return this.language === 'en' ? "ACCESS GRANTED! 🔓 You hacked the database." : "TOEGANG VERLEEND! 🔓 Je hebt de database gekraakt.";
-        } else {
-            return this.language === 'en' ? "WRONG CODE! Access denied." : "FOUTIEVE CODE! Toegang geweigerd.";
-        }
-    }
-    // Voeg dit toe aan de constructor van je BasicBot
-    this.gameState = {
-        active: false,
-        code: null,
-        timer: null,
-        lockdown: false // Nieuwe status
-    };
-
-    // --- CORE LOGIC UPDATE ---
-    async chat(userInput) {
-        const input = userInput.toLowerCase().trim();
-        if (!input) return "";
-
-        // Check voor Lockdown
-        if (this.gameState.lockdown) {
-            return this.language === 'en' 
-                ? "🚨 SYSTEM IN LOCKDOWN! Attempting to bypass security... Please wait." 
-                : "🚨 SYSTEEM IN LOCKDOWN! Beveiliging omzeilen... Even geduld.";
-        }
-
-        this.detectLanguage(input);
-        // ... rest van je logica (adjustRelationship, updateMood)
-
-        if (this.gameState.active && input.startsWith("code")) {
-            return this.handleHackGuess(input);
-        }
-
-        // Keyword Matcher
-        for (let key in this.data.keywords) {
-            if (input.includes(key)) {
-                let match = this.data.keywords[key];
-                if (key === "hackgame") return this.startHackGame(); // Direct return
-                return this.addHumanTouch(match[this.language]);
-            }
-        }
-        return this.data.default[this.language];
-    }
-
-    // --- VERBETERDE GAME LOGICA ---
+    // --- HACK GAME & LOCKDOWN LOGIC ---
     startHackGame() {
         this.gameState.active = true;
         this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
         
-        // Timer zetten voor 15 seconden
+        // Start the fail timer
         this.gameState.timer = setTimeout(() => { 
             if (this.gameState.active) {
                 this.activateLockdown();
@@ -259,10 +221,7 @@ class BasicBot {
         this.gameState.active = false;
         this.gameState.lockdown = true;
         
-        // De bot stuurt een bericht (of je ziet het bij de volgende input)
-        console.log("LOCKDOWN GEACTIVEERD");
-
-        // Na 10 seconden gaat de lockdown er weer vanaf
+        // Reset lockdown after 10 seconds
         setTimeout(() => {
             this.gameState.lockdown = false;
         }, 10000);
@@ -278,8 +237,7 @@ class BasicBot {
             return this.language === 'en' ? "WRONG CODE! Access denied." : "FOUTIEVE CODE! Toegang geweigerd.";
         }
     }
-
 }
 
-// DE KOPPELING VOOR JOUW HTML
+// BINDING
 window.BasicBot = BasicBot;
