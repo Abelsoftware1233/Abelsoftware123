@@ -88,9 +88,9 @@
             </ul>
         </nav>
        
- <header>
+     <header>
         <div class="control-panel">
-            <button class="galant-red-button" data-target="introductie">INFO</button>
+            <button class="galant-red-button" data-target="introduction">INFO</button>
             <button class="galant-red-button" data-target="setup">SETUP</button>
             <button class="galant-red-button" data-target="tools">TOOLS</button>
             <button class="galant-red-button" data-target="faq">F&Q</button>
@@ -98,42 +98,42 @@
     </header>
 
     <main>
-        <div id="introductie" class="content-section active">
-            <h2>💰 Onze Tarieven</h2>
+        <div id="introduction" class="content-section active">
+            <h2>💰 Our Rates</h2>
             <ul>
-                <li>🎮 <strong>Games:</strong> Vanaf <span class="price">€4,99</span></li>
-                <li>🌐 <strong>Websites & Apps:</strong> Vanaf <span class="price">€200</span></li>
-                <li>🤖 <strong>Standaard Chatbots:</strong> Vanaf <span class="price">€1000</span></li>
-                <li>🛰️ <strong>AI Software (Face Recognition/Drone):</strong> Licentie <span class="price">€300</span></li>
-                <li>🔑 <strong>AI Chatbot met API Key:</strong> <span class="price">€1500</span></li>
+                <li>🎮 <strong>Games:</strong> Starting at <span class="price">€4.99</span></li>
+                <li>🌐 <strong>Websites & Apps:</strong> Starting at <span class="price">€200</span></li>
+                <li>🤖 <strong>Standard Chatbots:</strong> From <span class="price">€1000</span></li>
+                <li>🛰️ <strong>AI Software (Face Recognition/Drone):</strong> License <span class="price">€300</span></li>
+                <li>🔑 <strong>AI Chatbot with API Key:</strong> <span class="price">€1500</span></li>
             </ul>
         </div>
 
         <div id="setup" class="content-section">
-            <h2>🚀 Setup & Installatie</h2>
-            <p>Om gebruik te maken van onze software en drones:</p>
+            <h2>🚀 Setup & Installation</h2>
+            <p>To use our software and drones:</p>
             <ul>
-                <li>Vraag een licentie aan via het contactmenu.</li>
-                <li>Domeinnamen starten bij <span class="price">€50</span>.</li>
-                <li>Installatiehulp bij apps is inbegrepen bij de startprijs.</li>
+                <li>Request a license via the contact menu.</li>
+                <li>Domain names start at <span class="price">€50</span>.</li>
+                <li>Installation support for apps is included in the starting price.</li>
             </ul>
         </div>
 
         <div id="tools" class="content-section">
             <h2>🛡️ Hacktools & AI Modules</h2>
-            <p>Professionele tools voor beveiliging en automatisering:</p>
+            <p>Professional tools for security and automation:</p>
             <ul>
-                <li><strong>Network Scanner:</strong> Voor kwetsbaarheden onderzoek.</li>
-                <li><strong>AI Face Recognition:</strong> Geavanceerde herkenning voor DJI drones.</li>
-                <li><strong>Automated Scripts:</strong> Voor web- en app automatisering.</li>
-                <li><strong>Custom Malware Testing:</strong> Alleen voor ethisch gebruik.</li>
+                <li><strong>Network Scanner:</strong> For vulnerability research.</li>
+                <li><strong>AI Face Recognition:</strong> Advanced recognition for DJI drones.</li>
+                <li><strong>Automated Scripts:</strong> For web and app automation.</li>
+                <li><strong>Custom Malware Testing:</strong> For ethical use only.</li>
             </ul>
         </div>
 
         <div id="faq" class="content-section">
             <h2>💳 Payments & FAQ</h2>
-            <p><strong>Hoe kan ik betalen?</strong><br>Wij accepteren verschillende betaalmethodes voor je games en licenties.</p>
-            <p><strong>Kwaliteit:</strong><br>Alles is <em>Quality made with love!</em> 💸</p>
+            <p><strong>How can I pay?</strong><br>We accept various payment methods for your games and licenses.</p>
+            <p><strong>Quality:</strong><br>Everything is <em>Quality made with love!</em> 💸</p>
         </div>
     </main>
 
@@ -145,11 +145,16 @@
             btn.addEventListener('click', () => {
                 const target = btn.getAttribute('data-target');
                 
+                // Hide all sections
                 sections.forEach(sec => {
                     sec.classList.remove('active');
                 });
 
-                document.getElementById(target).classList.add('active');
+                // Show the selected section
+                const targetElement = document.getElementById(target);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                }
             });
         });
     </script>
