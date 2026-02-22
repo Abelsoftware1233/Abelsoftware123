@@ -67,8 +67,8 @@ class BasicBot {
                 "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen",
 
                "prijzen": {
-    "en": "We keep it fair: Games start at €4.99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €300 license. AI chatbot with API Key is €1500. Quality made with love! 💸",
-    "nl": "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of DJI-drone) vanaf een licentie van €300. AI-chatbot met API-sleutel voor €1500. Kwaliteit gemaakt met liefde! 💸"
+    "en": "We keep it fair: Games start at €4.99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €150 license. AI chatbot with API Key is €1500. Quality made with love! 💸",
+    "nl": "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of DJI-drone) vanaf een licentie van €150. AI-chatbot met API-sleutel voor €1500. Kwaliteit gemaakt met liefde! 💸"
 },
 "prices": "prijzen",
 "pricing": "prijzen",
@@ -80,8 +80,8 @@ class BasicBot {
                 "email": "contact", "mail": "contact", "openingstijden": "contact",
 
                 "ai software": {
-                    en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping. Check it: www.abelsoftware123.com/ai.html",
-                    nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping. Bekijk het: www.abelsoftware123.com/ai.html"
+                    en: "AI is where my heart is! 🤖 We build smart software like Face Recognition and Drone Mapping and GCM and S.A.R drone software and many more. Check it: www.abelsoftware123.com/ai.html",
+                    nl: "AI is waar mijn hart ligt! 🤖 We bouwen slimme software zoals Face Recognition en Drone Mapping en GCM en S.A.R drone software en veel meer. Bekijk het: www.abelsoftware123.com/ai.html"
                 },
                 "website": {
                     en: "Visit our official homepage for the full website and apps order experience: www.abelsoftware123.com/website.html 🌐",
