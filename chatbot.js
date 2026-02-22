@@ -202,6 +202,83 @@ class BasicBot {
             return this.language === 'en' ? "WRONG CODE! Access denied." : "FOUTIEVE CODE! Toegang geweigerd.";
         }
     }
+    // Voeg dit toe aan de constructor van je BasicBot
+    this.gameState = {
+        active: false,
+        code: null,
+        timer: null,
+        lockdown: false // Nieuwe status
+    };
+
+    // --- CORE LOGIC UPDATE ---
+    async chat(userInput) {
+        const input = userInput.toLowerCase().trim();
+        if (!input) return "";
+
+        // Check voor Lockdown
+        if (this.gameState.lockdown) {
+            return this.language === 'en' 
+                ? "🚨 SYSTEM IN LOCKDOWN! Attempting to bypass security... Please wait." 
+                : "🚨 SYSTEEM IN LOCKDOWN! Beveiliging omzeilen... Even geduld.";
+        }
+
+        this.detectLanguage(input);
+        // ... rest van je logica (adjustRelationship, updateMood)
+
+        if (this.gameState.active && input.startsWith("code")) {
+            return this.handleHackGuess(input);
+        }
+
+        // Keyword Matcher
+        for (let key in this.data.keywords) {
+            if (input.includes(key)) {
+                let match = this.data.keywords[key];
+                if (key === "hackgame") return this.startHackGame(); // Direct return
+                return this.addHumanTouch(match[this.language]);
+            }
+        }
+        return this.data.default[this.language];
+    }
+
+    // --- VERBETERDE GAME LOGICA ---
+    startHackGame() {
+        this.gameState.active = true;
+        this.gameState.code = Math.floor(1000 + Math.random() * 9000); 
+        
+        // Timer zetten voor 15 seconden
+        this.gameState.timer = setTimeout(() => { 
+            if (this.gameState.active) {
+                this.activateLockdown();
+            }
+        }, 15000);
+
+        return this.data.keywords["hackgame"][this.language];
+    }
+
+    activateLockdown() {
+        this.gameState.active = false;
+        this.gameState.lockdown = true;
+        
+        // De bot stuurt een bericht (of je ziet het bij de volgende input)
+        console.log("LOCKDOWN GEACTIVEERD");
+
+        // Na 10 seconden gaat de lockdown er weer vanaf
+        setTimeout(() => {
+            this.gameState.lockdown = false;
+        }, 10000);
+    }
+
+    handleHackGuess(input) {
+        let guess = parseInt(input.replace("code ", ""));
+        if (guess === this.gameState.code) {
+            clearTimeout(this.gameState.timer);
+            this.gameState.active = false;
+            return this.language === 'en' ? "ACCESS GRANTED! 🔓 You hacked the database." : "TOEGANG VERLEEND! 🔓 Je hebt de database gekraakt.";
+        } else {
+            return this.language === 'en' ? "WRONG CODE! Access denied." : "FOUTIEVE CODE! Toegang geweigerd.";
+        }
+    }
+
 }
 
 // DE KOPPELING VOOR JOUW HTML
