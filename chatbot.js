@@ -49,8 +49,8 @@ class BasicBot {
                 "stupid": "dom", "stom": "dom", "niet goed": "dom",
 
                 "games": {
-                    en: "I love making games! 🎮 From Mario to addictive arcade titles. You can buy full licenses for the best experience (no ads, lifetime updates!) in our shop.",
-                    nl: "Ik hou ervan om spellen te maken! 🎮 Van Mario tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!) in onze shop."
+                    en: "I love making games! 🎮 From Mario to addictive arcade titles. You can buy the game, and have a lifetime gameplay, for the best experience (no ads, lifetime updates!) in our shop.",
+                    nl: "Ik hou ervan om spellen te maken! 🎮 Van Mario tot verslavende arcade-titels. Je kunt volledige licenties kopen voor de beste ervaring (geen reclame, levenslange updates!)je kan de games kopen in onze shop,en levenslang spelen."
                 },
                 "spellen": "games", "gaming": "games",
 
