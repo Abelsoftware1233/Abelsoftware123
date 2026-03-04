@@ -7,7 +7,7 @@
     
     <style>
         /* ================================================= */
-        /* == NEON BLAUW DARK THEME STIJLEN (Geïntegreerd) == */
+        /* == NEON BLAUW DARK THEME STIJLEN (Gesynchroniseerd) == */
         /* ================================================= */
         
         body {
@@ -21,10 +21,40 @@
         }
 
         header {
+            position: relative; /* Voor de absolute positionering van de knoppen */
             text-align: center;
             padding: 40px 0 20px 0;
             background-color: #333333;
-            position: relative;
+        }
+
+        /* De neon-knoppen rechtsboven (Hetzelfde als Hacktools) */
+        .header-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: 2px solid #00FFFF;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease-in-out;
+            font-size: 12px;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000;
+            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
         }
 
         .logo-text {
@@ -36,46 +66,56 @@
             margin: 0;
         }
 
-        /* Navigatie */
+        /* Navigatie Lijst (Hetzelfde als Hacktools) */
         nav {
             padding: 0;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 30px auto 0 auto;
         }
 
         nav ul {
             list-style: none;
             padding: 0 20px; 
             margin: 0; 
-            display: flex;
-            flex-wrap: wrap;
         }
 
         nav li {
-            flex: 1 1 200px; /* Zorgt dat menu-items netjes verdelen */
+            margin: 0;
         }
 
         nav a {
             display: block;
             background-color: #555555; 
             color: #00f0ff; 
-            padding: 15px; 
+            padding: 18px 20px; 
             text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease; 
-            text-align: center; 
+            font-size: 18px;
+            text-align: left;
+            transition: all 0.1s ease, box-shadow 0.3s ease; 
             border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            border-right: 1px solid rgba(0, 240, 255, 0.1);
-            box-sizing: border-box;
+        }
+
+        /* Afronding en gloed voor de knoppengroep */
+        nav ul li:first-child a {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3);
+        }
+
+        nav ul li:last-child a {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-bottom: none;
+            box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3);
         }
 
         nav a:hover {
             background-color: #4a4a4a; 
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6); 
-            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8); 
+            color: #ffffff;
         }
 
-        /* Main Content Container */
+        /* Content Styling */
         .container {
             max-width: 900px;
             margin: 20px auto;
@@ -119,9 +159,10 @@
 
         .price-big {
             font-size: 48px;
-            color: #00f0ff; /* Neon blauw ipv geel voor consistentie */
+            color: #00f0ff;
             font-weight: bold;
             margin: 15px 0;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .features {
@@ -144,7 +185,6 @@
             left: 0;
         }
 
-        /* De grote koopknop in Neon stijl */
         .btn-buy {
             display: inline-block;
             background-color: transparent;
@@ -178,32 +218,37 @@
             border-top: 1px solid rgba(0, 240, 255, 0.2);
         }
 
-        /* Media Query */
         @media (max-width: 600px) {
             .logo-text { font-size: 24px; }
             .price-big { font-size: 36px; }
+            .header-controls { position: static; justify-content: center; margin-bottom: 10px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="header-controls">
+            <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
+            <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+        </div>
+
         <h1 class="logo-text">☣️Abelsoftware123☣️</h1>
         <p style="color: #cccccc;">Premium NES Experience</p>
         
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="chatbot.html">Order Chatbot</a></li>
-                <li><a href="advertentie.html">Advertising</a></li>  
-                <li><a href="company.html">Company</a></li>
+                <li><a href="chatbot.html">Order Your Chatbot</a></li>
+                <li><a href="advertentie.html">Advertising on Apps</a></li>  
+                <li><a href="company.html">Abelsoftware123 Company</a></li>
                 <li><a href="payments.html">Payments</a></li>
-                <li><a href="apps.html">Apps List</a></li>
+                <li><a href="apps.html">Games List of Apps</a></li>
                 <li><a href="hacktools.html">Hacktools</a></li>
                 <li><a href="ai.html">AI Software</a></li>           
-                <li><a href="website.html">Web & Apps</a></li>
-                <li><a href="domain.html">Domains</a></li>
-                <li><a href="emulator.html">Emulator</a></li>
+                <li><a href="website.html">Order Your Own Website and Apps</a></li>
+                <li><a href="domain.html">Order Your Own Domain Name</a></li>
+                <li><a href="emulator.html">Mobile Games Emulator</a></li>
             </ul>
         </nav>
     </header>
