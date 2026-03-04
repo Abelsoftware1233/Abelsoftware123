@@ -46,7 +46,43 @@
                         0 0 20px #00FFFF, 
                         0 0 60px #00FFFF; /* Heldere gloed bij hover */
         }
-        /* EINDE VAN DE BENODIGDE CSS */
+        /* --- CHATBOT STIJLEN MET ANIMATIE --- */
+        #chat-launcher { 
+            position: fixed; bottom: 20px; right: 20px; 
+            width: 65px; height: 55px; background: #00ffff; 
+            border-radius: 18px; display: flex; justify-content: center; 
+            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
+            z-index: 1001; font-size: 30px; border: none;
+            animation: float 3s ease-in-out infinite;
+        }
+        #chat-launcher::after {
+            content: ""; position: absolute; bottom: -8px; right: 12px;
+            border-width: 12px 12px 0 0; border-style: solid;
+            border-color: #00ffff transparent transparent transparent;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        #chat-container { 
+            position: fixed; bottom: 90px; right: 20px; 
+            width: 320px; height: 520px; background: #2a2a2a; 
+            border: 2px solid #00ffff; border-radius: 15px; 
+            display: none; flex-direction: column; overflow: hidden; 
+            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        }
+        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
+        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
+        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
+        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
+        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
+        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
+        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
+        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
     </style>
 </head>
 <body>
