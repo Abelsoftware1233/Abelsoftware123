@@ -3,223 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy Abelsoftware123 NES Player Premium</title>
+    <title>Buy Abelsoftware123 NES Player Premium | Neon Theme</title>
+    
     <style>
-        /* Website Style */
+        /* ================================================= */
+        /* == NEON BLAUW DARK THEME STIJLEN (Geïntegreerd) == */
+        /* ================================================= */
+        
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            background-color: #333333; 
+            color: #f0f0f0; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Navigation Menu Styling */
+        header {
+            text-align: center;
+            padding: 40px 0 20px 0;
+            background-color: #333333;
+            position: relative;
+        }
+
+        .logo-text {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        /* Navigatie */
         nav {
-            background-color: #1a1a1a;
-            border-bottom: 2px solid #d32f2f;
-            padding: 10px 0;
+            padding: 0;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
+            padding: 0 20px; 
+            margin: 0; 
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        nav ul li {
-            margin: 5px 15px;
+        nav li {
+            flex: 1 1 200px; /* Zorgt dat menu-items netjes verdelen */
         }
 
-        nav ul li a {
-            color: #fff;
+        nav a {
+            display: block;
+            background-color: #555555; 
+            color: #00f0ff; 
+            padding: 15px; 
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            font-size: 14px;
+            transition: all 0.3s ease; 
+            text-align: center; 
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            border-right: 1px solid rgba(0, 240, 255, 0.1);
+            box-sizing: border-box;
         }
 
-        nav ul li a:hover {
-            color: #d32f2f;
+        nav a:hover {
+            background-color: #4a4a4a; 
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6); 
+            color: #fff;
         }
 
-        header {
-            background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 3px solid #d32f2f;
-        }
-
-        .logo-text {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #d32f2f;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0;
-        }
-
+        /* Main Content Container */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex-grow: 1;
         }
 
-        .hero-section {
+        .content-section {
+            background-color: #1a1a1a;
+            color: #f0f0f0; 
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 240, 255, 0.3);
             display: flex;
             flex-wrap: wrap;
+            gap: 30px;
             align-items: center;
-            gap: 40px;
-            margin-bottom: 60px;
         }
 
         .hero-image {
             flex: 1;
-            min-width: 300px;
-            border: 5px solid #333;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(211, 47, 47, 0.4);
+            min-width: 280px;
+            max-width: 100%;
+            border: 3px solid #00f0ff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
 
         .hero-content {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
         }
 
         h2 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 28px;
+            color: #00f0ff;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+            margin-top: 0;
         }
 
         .price-big {
-            font-size: 4rem;
-            color: #ffcc00;
+            font-size: 48px;
+            color: #00f0ff; /* Neon blauw ipv geel voor consistentie */
             font-weight: bold;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .features {
             list-style: none;
             padding: 0;
-            margin: 30px 0;
         }
 
         .features li {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-size: 16px;
         }
 
         .features li::before {
-            content: "🎮";
-            margin-right: 15px;
+            content: '»'; 
+            color: #00f0ff;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
 
+        /* De grote koopknop in Neon stijl */
         .btn-buy {
             display: inline-block;
-            background-color: #d32f2f;
-            color: white;
+            background-color: transparent;
+            color: #00FFFF;
+            padding: 15px 40px;
             text-decoration: none;
-            padding: 20px 50px;
-            font-size: 1.5rem;
+            border-radius: 5px;
             font-weight: bold;
-            border-radius: 50px;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.5);
-            border: none;
+            font-size: 18px;
+            text-transform: uppercase;
+            border: 2px solid #00FFFF;
+            box-shadow: 0 0 10px #00FFFF;
             cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
 
         .btn-buy:hover {
-            background-color: #ff3333;
-            transform: scale(1.05);
+            background-color: #00FFFF;
+            color: #000;
+            box-shadow: 0 0 30px #00FFFF;
+            transform: translateY(-3px);
         }
 
-        /* Footer Bars in App Style */
-        .color-bars {
-            display: flex;
-            height: 10px;
-            margin-top: 50px;
-        }
-        .bar-1 { background: #f57c00; flex: 1; }
-        .bar-2 { background: #1976d2; flex: 1; }
-        .bar-3 { background: #7b1fa2; flex: 1; }
-
-        .footer {
+        footer {
             text-align: center;
-            padding: 40px;
-            background: #111;
-            color: #666;
+            padding: 30px;
+            background-color: #222222; 
+            color: #999999;
+            font-size: 14px;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo-text { font-size: 2rem; }
-            h2 { font-size: 1.8rem; }
+        /* Media Query */
+        @media (max-width: 600px) {
+            .logo-text { font-size: 24px; }
+            .price-big { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
-            <li><a href="hacktools.html">Hacktools</a></li>
-            <li><a href="ai.html">AI Software</a></li>           
-            <li><a href="website.html">Order Website & Apps</a></li>
-            <li><a href="domain.html">Order Your Domain</a></li>
-            <li><a href="emulator.html">Mobile Emulator</a></li>
-        </ul>
-    </nav>
-
     <header>
-        <p style="color: #666; margin: 0;">OFFICIAL RELEASE</p>
-        <h1 class="logo-text">Abelsoftware123</h1>
-        <p style="font-size: 1.2rem;">The most powerful NES Emulator experience</p>
+        <h1 class="logo-text">☣️Abelsoftware123☣️</h1>
+        <p style="color: #cccccc;">Premium NES Experience</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chatbot.html">Order Chatbot</a></li>
+                <li><a href="advertentie.html">Advertising</a></li>  
+                <li><a href="company.html">Company</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="apps.html">Apps List</a></li>
+                <li><a href="hacktools.html">Hacktools</a></li>
+                <li><a href="ai.html">AI Software</a></li>           
+                <li><a href="website.html">Web & Apps</a></li>
+                <li><a href="domain.html">Domains</a></li>
+                <li><a href="emulator.html">Emulator</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="container">
-        <div class="hero-section">
+        <section class="content-section">
             <img src="1000015085.jpg" alt="NES Player Preview" class="hero-image">
             
             <div class="hero-content">
-                <h2>Mario Premium Pack</h2>
+                <h2>☢️Mario Premium Pack☢️</h2>
                 <p>Upgrade your Abelsoftware123 NES Player today and unlock the ultimate retro collection.</p>
                 
-                <div class="price-big">Only €4.99</div>
+                <div class="price-big">€4.99</div>
 
                 <ul class="features">
                     <li><strong>8 Awesome Mario Games</strong> (Exclusive Hacks)</li>
-                    <li><strong>Optimized</strong> by pro developers</li>
+                    <li><strong>Optimized</strong> for Echo AI systems</li>
                     <li><strong>No more ads</strong> inside the app</li>
                     <li><strong>Instant access</strong> after payment</li>
                 </ul>
 
                 <button class="btn-buy" onclick="window.location.href='payments.html'">ORDER DIRECTLY</button>
             </div>
-        </div>
+        </section>
     </div>
 
-    <div class="color-bars">
-        <div class="bar-1"></div>
-        <div class="bar-2"></div>
-        <div class="bar-3"></div>
-    </div>
-
-    <footer class="footer">
-        <p>&copy; 2026 Abelsoftware123 Development Team.</p>
-        <p style="font-size: 0.8rem;">Mario is a trademark of Nintendo. This collection contains fan-made hacks.</p>
+    <footer>
+        <p>&copy; 2026 Abelsoftware123 Development Team. All rights reserved.</p>
+        <p style="font-size: 11px; opacity: 0.6;">Mario is a trademark of Nintendo. This collection contains fan-made hacks for educational research.</p>
     </footer>
 
 </body>
