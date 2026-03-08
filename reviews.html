@@ -1,3 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews- Abelsoftware123</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- INTEGRATION OF ALL STYLES --- */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header-controls {
+            position: absolute; 
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; 
+            background-color: transparent; 
+            box-shadow: 0 0 10px #00ffff; 
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00ffff;
+            color: #000; 
+        }
+
+        .neon-title {
+            color: #00ffff; 
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            text-align: center;
+        }
+
+        .control-panel {
+            text-align: center; 
+            margin-top: 20px;
+        }
+
+        .galant-red-button {
+            padding: 10px 20px;
+            border: 2px solid #ff4500;
+            border-radius: 8px; 
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: #8b0000;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
+            transition: all 0.3s ease-in-out;
+            margin: 5px; 
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .galant-red-button:hover {
+            background-color: #ff4500;
+            color: #000;
+        }
+
+        .groene-knop {
+            padding: 15px 25px;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 15px #00ff00;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .groene-knop:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+
+        nav ul { list-style: none; padding: 0; text-align: center; }
+        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
+        nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
+
+        /* --- ADVERTISEMENT LAYOUT --- */
+        .pricing-section {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #222;
+            border: 2px solid #444;
+            border-radius: 15px;
+            padding: 25px;
+            width: 320px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: #00ffff; transform: scale(1.02); }
+        .card.premium { border-color: #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+
+        .price-big { font-size: 2.5em; font-weight: bold; margin: 15px 0; color: #fff; display: block; }
+    
+/* --- CHATBOT STIJLEN MET ANIMATIE --- */
+        #chat-launcher { 
+            position: fixed; bottom: 20px; right: 20px; 
+            width: 65px; height: 55px; background: #00ffff; 
+            border-radius: 18px; display: flex; justify-content: center; 
+            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
+            z-index: 1001; font-size: 30px; border: none;
+            animation: float 3s ease-in-out infinite;
+        }
+        #chat-launcher::after {
+            content: ""; position: absolute; bottom: -8px; right: 12px;
+            border-width: 12px 12px 0 0; border-style: solid;
+            border-color: #00ffff transparent transparent transparent;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        #chat-container { 
+            position: fixed; bottom: 90px; right: 20px; 
+            width: 320px; height: 520px; background: #2a2a2a; 
+            border: 2px solid #00ffff; border-radius: 15px; 
+            display: none; flex-direction: column; overflow: hidden; 
+            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        }
+        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
+        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
+        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
+        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
+        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
+        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
+        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
+        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+    </style>
+</head>
+<body>
+
+    <header style="position: relative; text-align: center; padding-top: 50px;"> 
+        <div class="header-controls">
+            <a href="registreer.html" class="neon-blue-button">register</a>
+            <a href="login.html" class="neon-blue-button">log in</a>
+        </div>
+        
+        <h1 class="neon-title">Abelsoftware123</h1>
+        <p>Advanced Chatbot Development Services</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chatbot.html">Order Your Chatbot</a></li>
+<li><a
+ href="advertentie.html">Advertising on Apps</a></li>
+                <li><a href="company.html">Abelsoftware123 Company</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="apps.html">Games List of Apps</a></li>
+                <li><a href="hacktools.html">Hacktools</a></li>
+                <li><a href="ai.html">AI Software</a></li>             
+                <li><a href="website.html">Order Your Own Website and Apps</a></li>
+                <li><a href="domain.html">Order Your Own Domain Name</a></li>
+<li><a 
+href="emulator.html">Mobile Games Emulator</a></li>
+            </ul>
+         </header>
+
     <section id="reviews">
         <h2>Client Reviews & Trust</h2>
         <div class="review-container">
