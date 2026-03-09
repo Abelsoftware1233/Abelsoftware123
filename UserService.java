@@ -1,4 +1,3 @@
-// UserService.java
 package com.abelsoftware123.registratie.service;
 
 import com.abelsoftware123.registratie.dto.UpdateProfileRequest;
@@ -18,14 +17,13 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    // Injecteer de Repository en de PasswordEncoder
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     /**
-     * 1. REGISTRATIE: Registreert een nieuwe gebruiker.
+     * 1. REGISTRATIE: Registreert een nieuwe gebruiker met standaard ROLE_USER.
      */
     public void registerNewUser(String username, String email, String password) {
         
@@ -33,91 +31,60 @@ public class UserService {
             throw new RuntimeException("Gebruikersnaam moet minimaal 3 tekens zijn en wachtwoord minimaal 8.");
         }
         
-        // Controleer of de gebruiker al bestaat
-        if (userRepository.existsByUsernameOrEmail(username, email)) {
+        // Controleer of de gebruiker al bestaat via de repository
+        if (userRepository.findByUsername(username).isPresent() || userRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("Deze gebruikersnaam of dit e-mailadres is al in gebruik.");
         }
         
         // Wachtwoord hashen
         String hashedPassword = passwordEncoder.encode(password);
         
-        // Nieuwe User entiteit aanmaken en opslaan
-        User newUser = new User(username, email, hashedPassword);
+        // Nieuwe User entiteit aanmaken
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setEmail(email);
+        newUser.setPasswordHash(hashedPassword); // Zorg dat dit matcht met User.java
+        newUser.setRole("ROLE_USER"); // Belangrijk: Geef de standaard rol mee!
+        
         userRepository.save(newUser);
         
-        System.out.println("LOG: Gebruiker " + username + " succesvol geregistreerd.");
+        System.out.println("LOG: Gebruiker " + username + " succesvol geregistreerd als ROLE_USER.");
     }
 
     /**
-     * 2. AUTHENTICATIE: Controleert inloggegevens.
-     * NB: In een echte Spring Security app zou dit in een aparte service zitten,
-     * maar voor jouw flow is dit de meest directe oplossing.
-     */
-    public String authenticateAndGenerateToken(String usernameOrEmail, String password) {
-        
-        // Zoek de gebruiker op via gebruikersnaam of e-mail
-        Optional<User> userOptional = userRepository.findByUsername(usernameOrEmail)
-                                                .or(() -> userRepository.findByEmail(usernameOrEmail));
-
-        User user = userOptional.orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
-        
-        // Controleer het gehashte wachtwoord
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Onjuist wachtwoord.");
-        }
-        
-        // Hier zou je een ECHTE JWT-token genereren.
-        // Omdat we de JWT-generatie service niet hebben, geven we een testtoken terug.
-        String jwtToken = "TEST_JWT_" + user.getUsername() + "_" + System.currentTimeMillis(); 
-        
-        System.out.println("LOG: Gebruiker " + user.getUsername() + " succesvol ingelogd.");
-        return jwtToken;
-    }
-
-    /**
-     * 3. PROFIEL OPHALEN: Haalt de gegevens van een gebruiker op.
+     * 2. PROFIEL OPHALEN
      */
     public UserProfileDTO getUserProfile(String username) {
-        
-        // Zoek de gebruiker op basis van de beveiligde gebruikersnaam
         User user = userRepository.findByUsername(username)
-                                .orElseThrow(() -> new RuntimeException("Profiel niet gevonden na authenticatie."));
+                                .orElseThrow(() -> new RuntimeException("Profiel niet gevonden."));
         
-        // Vertaal de User entiteit naar een DTO voor de frontend
         UserProfileDTO dto = new UserProfileDTO();
         dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
-
         return dto;
     }
 
     /**
-     * 4. PROFIEL BIJWERKEN: Slaat de gewijzigde profielgegevens op.
+     * 3. PROFIEL BIJWERKEN
      */
     public void updateUserProfile(String username, UpdateProfileRequest request) {
-        
         User user = userRepository.findByUsername(username)
-                                .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden voor update."));
+                                .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
         
-        // Update de velden
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
 
-        // Wachtwoord bijwerken, indien gevraagd
         if (request.getNewPassword() != null && !request.getNewPassword().isEmpty()) {
             if (request.getNewPassword().length() < 8) {
                  throw new RuntimeException("Nieuw wachtwoord moet minimaal 8 tekens lang zijn.");
             }
-            String newHashedPassword = passwordEncoder.encode(request.getNewPassword());
-            user.setPassword(newHashedPassword);
+            user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
         }
         
-        // Sla de wijzigingen op in de database
         userRepository.save(user);
-
         System.out.println("LOG: Profiel van " + username + " succesvol bijgewerkt.");
     }
 }
