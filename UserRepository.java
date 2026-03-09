@@ -8,10 +8,13 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     
-    // Deze methode is nodig om de admin te vinden bij het opstarten
-    // En voor de login-logica later
+    // Nodig voor de DataInitializer en de login
     Optional<User> findByUsername(String username);
     
-    // Optioneel: handig als je ook op email wilt kunnen zoeken
+    // Handig voor login via e-mail of profielchecks
     Optional<User> findByEmail(String email);
+
+    // Deze wordt specifiek gebruikt in je UserService.registerNewUser
+    // om in één keer te checken of een account al bestaat.
+    boolean existsByUsernameOrEmail(String username, String email);
 }
