@@ -3,33 +3,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Voorkom dat de pagina herlaadt of een POST probeert
+            e.preventDefault(); // Voorkom de 405 error (geen POST naar HTML)
 
-            // Haal de waarden uit de invoervelden
+            // Haal de waarden uit de velden
             const usernameInput = document.getElementById('username').value;
             const passwordInput = document.getElementById('password').value;
 
-            // Hardcoded Admin Gegevens (zoals je aangaf dat je deze al had)
+            // Jouw Admin Gegevens
             const ADMIN_USER = "admin";
-            const ADMIN_PASS = "admin123"; // Pas dit aan naar jouw wachtwoord
+            const ADMIN_PASS = "admin123"; 
 
             if (usernameInput === ADMIN_USER && passwordInput === ADMIN_PASS) {
-                // 1. Sla de login-status op zodat admin.html weet dat we binnen mogen
+                // 1. Zet de login-vinkjes in de browser (localStorage)
                 localStorage.setItem('isLoggedIn', 'true');
                 
-                // 2. Sla de gebruikersnaam op voor het profiel-gedeelte
+                // 2. Sla de profielgegevens op voor de profielpagina
                 const userData = {
                     username: usernameInput,
+                    email: "admin@abelsoftware.nl", // Jouw email
                     role: 'Admin',
                     loginTime: new Date().toLocaleString()
                 };
                 localStorage.setItem('currentUser', JSON.stringify(userData));
 
-                // 3. Verwijs door naar de admin pagina
+                // 3. Direct door naar het dashboard
                 window.location.href = 'admin.html';
             } else {
-                // Foutmelding als de gegevens niet kloppen
-                alert('Onjuiste gebruikersnaam of wachtwoord. Probeer het opnieuw.');
+                // Neon-stijl alert
+                alert('❌ Onjuiste gebruikersnaam of wachtwoord.');
             }
         });
     }
