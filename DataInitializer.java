@@ -19,13 +19,13 @@ public class DataInitializer {
                 admin.setUsername("admin");
                 admin.setEmail("admin@abelsoftware123.com");
                 // We hashen het wachtwoord direct hier
-                admin.setPasswordHash(passwordEncoder.encode("admin1501"));
+                admin.setPasswordHash(passwordEncoder.encode("admin123"));
                 admin.setRole("ROLE_ADMIN");
-                admin.setFirstName("abelsoftware123");
+                admin.setFirstName("abel");
                 admin.setLastName("Admin");
 
                 userRepository.save(admin);
-                System.out.println("✅ Automatisch admin-account aangemaakt: admin / admin1501");
+                System.out.println("✅ Automatisch admin-account aangemaakt: admin / admin123");
             } else {
                 System.out.println("ℹ️ Admin-account bestond al, geen actie nodig.");
             }
