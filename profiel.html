@@ -7,7 +7,7 @@
     <style>
         /* Jouw Signature Neon Theme */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             background-color: #333333;
             color: #f0f0f0;
@@ -31,12 +31,12 @@
 
         h2, h3 {
             color: #00f0ff;
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
             text-align: center;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 26px;
             margin-top: 0;
             margin-bottom: 20px;
             border-bottom: 1px solid rgba(0, 240, 255, 0.2);
@@ -73,20 +73,19 @@
             padding: 12px;
             color: #fff;
             outline: none;
-            transition: border 0.3s ease;
+            transition: all 0.3s ease;
             box-sizing: border-box;
         }
 
         input:focus {
             border-color: #00f0ff;
-            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
         }
 
-        /* Styling voor velden die je niet kunt aanpassen */
         input[readonly] {
             background-color: #111;
-            color: #888;
-            border-color: #333;
+            color: #666;
+            border-color: #222;
             cursor: not-allowed;
         }
 
@@ -114,34 +113,46 @@
         hr {
             border: 0;
             border-top: 1px solid rgba(0, 240, 255, 0.2);
-            margin: 20px 0;
+            margin: 25px 0;
         }
 
         .logout-link {
             display: block;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
             color: #ff4d4d;
             text-decoration: none;
             font-size: 14px;
+            font-weight: bold;
             transition: 0.3s;
         }
 
         .logout-link:hover {
-            text-shadow: 0 0 5px #ff4d4d;
+            text-shadow: 0 0 8px #ff4d4d;
             text-decoration: underline;
         }
 
-        /* Status meldingen (voor script.js) */
         #statusMessage {
             text-align: center;
             margin-bottom: 15px;
-            padding: 10px;
+            padding: 12px;
             border-radius: 4px;
             display: none;
+            font-size: 14px;
+            font-weight: bold;
         }
         .error { color: #ff4d4d; border: 1px solid #ff4d4d; background: rgba(255, 77, 77, 0.1); }
         .success { color: #00ff00; border: 1px solid #00ff00; background: rgba(0, 255, 0, 0.1); }
+        
+        .nav-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .nav-links a {
+            color: #00f0ff;
+            text-decoration: none;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -153,7 +164,7 @@
 
     <form id="profileForm">
         <div class="form-group">
-            <label for="username">Gebruikersnaam</label>
+            <label for="username">Gebruikersnaam (Vast)</label>
             <input type="text" id="username" readonly>
         </div>
 
@@ -177,7 +188,7 @@
 
         <div class="form-group">
             <label for="newPassword">Nieuw Wachtwoord</label>
-            <input type="password" id="newPassword" placeholder="Laten leeg als je niet wilt wijzigen">
+            <input type="password" id="newPassword" placeholder="Leeg laten om te behouden">
         </div>
 
         <div class="form-group">
@@ -188,7 +199,11 @@
         <button type="submit">Wijzigingen Opslaan</button>
     </form>
 
-    <a href="/perform_logout" class="logout-link">Uitloggen uit systeem</a>
+    <div class="nav-links">
+        <a href="admin.html">← Terug naar Dashboard</a>
+    </div>
+
+    <a href="#" onclick="logout(); return false;" class="logout-link">🚪 Uitloggen uit systeem</a>
 </div>
 
 <script src="script.js"></script>
