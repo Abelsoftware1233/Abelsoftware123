@@ -1,41 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Controleer of de admin wel is "ingelogd"
-    // We checken of er een sessie-vinkje in de browser staat
+    // 1. Check if admin is logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-        alert('Toegang geweigerd. Log eerst in.');
+        alert('Access denied. Please log in first.');
         window.location.href = 'login.html';
         return;
     }
 
-    // 2. Zet de admin naam op het scherm
+    // 2. Display admin name
     const adminData = JSON.parse(localStorage.getItem('currentUser')) || { username: 'Admin' };
-    document.getElementById('adminName').textContent = adminData.username;
+    const adminNameElement = document.getElementById('adminName');
+    if (adminNameElement) {
+        adminNameElement.textContent = adminData.username;
+    }
 
-    // 3. Haal de gebruikers op
+    // 3. Fetch and display users
     renderUsers();
 });
 
-// Simuleer een database met een lijstje in JavaScript
+// Helper function to manage user data
 function getStoredUsers() {
     const savedUsers = localStorage.getItem('echo_users');
+    
     if (savedUsers) {
         return JSON.parse(savedUsers);
     } else {
-        // Standaard data als de lijst nog leeg is
+        // Consolidated default data
         const defaultUsers = [
             { id: 1, username: 'Abelsoftware123_Admin', email: 'abelsoftware123@hotmail.com', role: 'Admin' },
-            { id: 2, username: 'Kevin', email: 'kevin@echoai.com', role: 'User' }
-        ];
-        localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
-        return defaultUsers;
-    },
-{ id: 3, username: 'Samantha', email: 'samantha.sabrina@gmail.com', role: 'User' }
-        ];
-        localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
-        return defaultUsers;
-    },
-{ id: 4, username: 'Britney', email: 'britneypears@live.be', role: 'User' }
+            { id: 2, username: 'Kevin', email: 'kevin@echoai.com', role: 'User' },
+            { id: 3, username: 'Samantha', email: 'samantha.sabrina@gmail.com', role: 'User' },
+            { id: 4, username: 'Britney', email: 'britneypears@live.be', role: 'User' }
         ];
         localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
         return defaultUsers;
@@ -57,7 +52,7 @@ function renderUsers() {
                 <td>${user.email}</td>
                 <td><span class="badge">${user.role}</span></td>
                 <td>
-                    <button class="btn-delete" onclick="deleteUser(${user.id})">Verwijderen</button>
+                    <button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>
                 </td>
             </tr>
         `;
@@ -66,18 +61,18 @@ function renderUsers() {
 }
 
 function deleteUser(id) {
-    if (confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')) {
+    if (confirm('Are you sure you want to delete this user?')) {
         let users = getStoredUsers();
-        // Filter de gebruiker eruit
+        // Filter out the user
         users = users.filter(user => user.id !== id);
-        // Sla de nieuwe lijst op
+        // Save new list
         localStorage.setItem('echo_users', JSON.stringify(users));
-        // Update de tabel
+        // Refresh table
         renderUsers();
     }
 }
 
-// Uitlog functie koppelen aan je knop
+// Logout function
 window.performLogout = function() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
