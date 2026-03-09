@@ -1,55 +1,65 @@
 package com.abelsoftware123.registratie.controller;
 
-import com.abelsoftware123.registratie.dto.*;
+import com.abelsoftware123.registratie.dto.UpdateProfileRequest;
+import com.abelsoftware123.registratie.dto.UserProfileDTO;
 import com.abelsoftware123.registratie.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
 
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    // 1. REGISTREREN: POST http://localhost:8080/api/users/register
+    /**
+     * Registratie endpoint voor de 'registreer.html'
+     */
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody Map<String, String> payload) {
-        userService.registerNewUser(
-            payload.get("username"), 
-            payload.get("email"), 
-            payload.get("password")
-        );
-        return ResponseEntity.ok("Gebruiker succesvol geregistreerd!");
+    public ResponseEntity<?> registerUser(@RequestBody Map<String, String> request) {
+        try {
+            userService.registerNewUser(
+                request.get("username"),
+                request.get("email"),
+                request.get("password")
+            );
+            return ResponseEntity.ok(Map.of("message", "Registratie succesvol!"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 
-    // 2. INLOGGEN: POST http://localhost:8080/api/users/login
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> payload) {
-        String token = userService.authenticateAndGenerateToken(
-            payload.get("usernameOrEmail"), 
-            payload.get("password")
-        );
-        return ResponseEntity.ok(token);
+    /**
+     * Profiel ophalen voor de 'profiel.html'
+     * Spring Security vult de @AuthenticationPrincipal automatisch in na login.
+     */
+    @GetMapping("/user/profile")
+    public ResponseEntity<UserProfileDTO> getProfile(@AuthenticationPrincipal UserDetails userDetails) {
+        UserProfileDTO profile = userService.getUserProfile(userDetails.getUsername());
+        return ResponseEntity.ok(profile);
     }
 
-    // 3. PROFIEL OPHALEN: GET http://localhost:8080/api/users/profile/{username}
-    @GetMapping("/profile/{username}")
-    public ResponseEntity<UserProfileDTO> getProfile(@PathVariable String username) {
-        return ResponseEntity.ok(userService.getUserProfile(username));
-    }
-
-    // 4. PROFIEL UPDATE: PUT http://localhost:8080/api/users/profile/{username}
-    @PutMapping("/profile/{username}")
-    public ResponseEntity<String> updateProfile(
-            @PathVariable String username, 
-            @RequestBody UpdateProfileRequest request) {
-        userService.updateUserProfile(username, request);
-        return ResponseEntity.ok("Profiel succesvol bijgewerkt!");
+    /**
+     * Profiel bijwerken
+     */
+    @PutMapping("/user/profile")
+    public ResponseEntity<?> updateProfile(@AuthenticationPrincipal UserDetails userDetails, 
+                                          @RequestBody UpdateProfileRequest request) {
+        try {
+            userService.updateUserProfile(userDetails.getUsername(), request);
+            return ResponseEntity.ok(Map.of("message", "Profiel succesvol bijgewerkt!"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 }
