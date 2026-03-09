@@ -19,7 +19,7 @@ public class DataInitializer {
                 admin.setUsername("admin");
                 admin.setEmail("admin@abelsoftware123.com");
                 // We hashen het wachtwoord direct hier
-                admin.setPasswordHash(passwordEncoder.encode("admin123"));
+                admin.setPasswordHash(passwordEncoder.encode("admin1501"));
                 admin.setRole("ROLE_ADMIN");
                 admin.setFirstName("abelsoftware123");
                 admin.setLastName("Admin");
