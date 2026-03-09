@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     // Hardcoded Admin Gegevens (pas deze aan indien nodig)
     const ADMIN_USER = "admin";
-    const ADMIN_PASS = "admin123";
+    const ADMIN_PASS = "admin1994";
 
     if (usernameInput === ADMIN_USER && passwordInput === ADMIN_PASS) {
         // Sessie opslaan
