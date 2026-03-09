@@ -12,7 +12,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // Bean voor het veilig versleutelen van wachtwoorden
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(); 
@@ -21,41 +20,34 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // CSRF uitschakelen voor API-tests met Postman/JS (in productie later aanzetten)
             .csrf(csrf -> csrf.disable()) 
-            
             .authorizeHttpRequests(auth -> auth
-                // 1. OPENBARE TOEGANG: Iedereen mag registreren en inloggen
+                // OPENBARE BESTANDEN (Alles staat direct in de hoofdmap)
                 .requestMatchers(
-                    "/api/registreer", 
-                    "/api/login", 
                     "/register.html", 
                     "/login.html", 
+                    "/api/registreer", 
+                    "/api/login", 
                     "/api/users/**",
-                    "/style.css",    // Zorg dat je CSS en JS ook bereikbaar zijn
-                    "/script.js"
+                    "/*.css",    // Pakt alle CSS in de hoofdmap
+                    "/*.js"      // Pakt alle JS in de hoofdmap (script.js, admin-script.js)
                 ).permitAll()
 
-                // 2. ADMIN TOEGANG: Alleen voor gebruikers met de rol ADMIN
-                .requestMatchers("/admin.html", "/api/admin/**", "/admin-script.js").hasRole("ADMIN")
+                // ADMIN GEDEELTE
+                .requestMatchers("/admin.html", "/api/admin/**").hasRole("ADMIN")
 
-                // 3. GEBRUIKER TOEGANG: Profiel vereist alleen een geldige login
-                .requestMatchers("/profiel", "/profiel.html", "/api/profile/**").authenticated()
+                // PROFIEL GEDEELTE
+                .requestMatchers("/profiel.html", "/api/profile/**").authenticated()
 
-                // 4. REST: Al het andere vereist ook een login
                 .anyRequest().authenticated()
             )
-            
-            // Configuratie van het inlogformulier
             .formLogin(form -> form
                 .loginPage("/login.html")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/profiel", true)
+                .defaultSuccessUrl("/profiel.html", true) // Direct naar het HTML bestand
                 .failureUrl("/login.html?error=true")
                 .permitAll()
             )
-            
-            // Configuratie van het uitloggen
             .logout(logout -> logout
                 .logoutUrl("/perform_logout")
                 .logoutSuccessUrl("/login.html?logout=true")
