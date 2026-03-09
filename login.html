@@ -85,17 +85,6 @@
             box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
         }
 
-        .error-msg {
-            color: #ff4d4d;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-            border: 1px solid #ff4d4d;
-            padding: 10px;
-            border-radius: 4px;
-            background: rgba(255, 77, 77, 0.1);
-        }
-
         .back-link {
             display: block;
             text-align: center;
@@ -111,17 +100,7 @@
 <section class="content-section">
     <h2>🔒 Log In</h2>
     
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('error')) {
-            document.write('<div class="error-msg">❌ Invalid username or password</div>');
-        }
-        if (urlParams.has('logout')) {
-            document.write('<div style="color: #00ff00; text-align: center; margin-bottom: 15px;">✅ Logged out successfully</div>');
-        }
-    </script>
-
-    <form action="/perform_login" method="POST">
+    <form id="loginForm">
         
         <label for="username">Username</label>
         <input type="text" id="username" name="username" placeholder="Enter username" required>
@@ -139,6 +118,7 @@
     <a href="index.html" class="back-link">Return to Home</a>
 </section>
 
+<script src="login.js"></script>
+
 </body>
 </html>
-
