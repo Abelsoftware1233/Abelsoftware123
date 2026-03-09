@@ -41,6 +41,6 @@ public class RegistrationController {
     // DIT ONTBRAK: De route die de profielpagina daadwerkelijk opent
     @GetMapping("/profile")
     public String showProfilePage() {
-        return "profile"; // Dit zoekt naar profile.html
+        return "profile"; // Dit zoekt naar profiel.html
     }
 }
