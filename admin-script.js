@@ -25,7 +25,17 @@ function getStoredUsers() {
         // Standaard data als de lijst nog leeg is
         const defaultUsers = [
             { id: 1, username: 'Abel_Admin', email: 'abelsoftware123@hotmail.com', role: 'Admin' },
-            { id: 2, username: 'TestUser', email: 'test@echoai.com', role: 'User' }
+            { id: 2, username: 'Kevin', email: 'kevin@echoai.com', role: 'User' }
+        ];
+        localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
+        return defaultUsers;
+    },
+{ id: 3, username: 'Samantha', email: 'samantha.sabrina@gmail.com', role: 'User' }
+        ];
+        localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
+        return defaultUsers;
+    },
+{ id: 4, username: 'Britney', email: 'britneypears@live.be', role: 'User' }
         ];
         localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
         return defaultUsers;
