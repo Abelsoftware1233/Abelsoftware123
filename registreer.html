@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Abelsoftware123</title>
     <style>
-        /* Basisstijlen overgenomen van jouw Neon Theme */
+        /* Exact jouw originele Neon Theme stijl */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -37,7 +37,6 @@
             text-align: center;
         }
 
-        /* Formulier specifieke styling */
         form {
             display: flex;
             flex-direction: column;
@@ -65,7 +64,6 @@
             box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
         }
 
-        /* De knop in jouw Neon Blue stijl */
         button {
             padding: 12px;
             border: none;
@@ -89,6 +87,17 @@
                         0 0 30px #00FFFF;
         }
 
+        /* Status meldingen styling */
+        #statusMessage {
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .error { color: #ff4d4d; border: 1px solid #ff4d4d; background: rgba(255, 77, 77, 0.1); }
+        .success { color: #00ff00; border: 1px solid #00ff00; background: rgba(0, 255, 0, 0.1); }
+
         .back-link {
             display: block;
             text-align: center;
@@ -101,6 +110,17 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        p a {
+            color: #00f0ff;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -108,28 +128,32 @@
 <section class="content-section">
     <h2>Create Account</h2>
     
-    <form action="/register" method="POST">
+    <div id="statusMessage"></div>
+
+    <form id="registrationForm">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Enter username" required>
+        <input type="text" id="username" placeholder="Enter username" required>
         
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="email@example.com" required>
+        <input type="email" id="email" placeholder="email@example.com" required>
         
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="••••••••" required>
+        <input type="password" id="password" placeholder="••••••••" required>
 
-        <button type="submit">Register Now</button>
+        <label for="password_confirm">Confirm Password</label>
+        <input type="password" id="password_confirm" placeholder="••••••••" required>
+
+        <button type="submit" id="submitBtn">Register Now</button>
     </form>
  
-<p style="text-align: center; margin-top: 15px;">
-                Do you already have an account? <a href="login.html">Login here</a>
-            </p>
-        </form>
-    </div>
-
+    <p>
+        Already have an account? <a href="login.html">Login here</a>
+    </p>
 
     <a href="index.html" class="back-link">Return to Home</a>
 </section>
+
+<script src="script.js"></script>
 
 </body>
 </html>
