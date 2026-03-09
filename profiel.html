@@ -2,28 +2,158 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Profiel Bewerken | Abelsoftware123</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiel Bewerken - Abelsoftware123</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 40px; }
-        .profile-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
-        h2 { color: #333; margin-bottom: 20px; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
-        input[readonly] { background-color: #eee; cursor: not-allowed; }
-        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-        button:hover { background-color: #0056b3; }
-        .logout-link { display: block; text-align: center; margin-top: 20px; color: #dc3545; text-decoration: none; font-size: 14px; }
+        /* Jouw Signature Neon Theme */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333333;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        h2, h3 {
+            color: #00f0ff;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 12px;
+            color: #fff;
+            outline: none;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Styling voor velden die je niet kunt aanpassen */
+        input[readonly] {
+            background-color: #111;
+            color: #888;
+            border-color: #333;
+            cursor: not-allowed;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+            border: 2px solid #00FFFF;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #00FFFF;
+            color: #000;
+            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            margin: 20px 0;
+        }
+
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #ff4d4d;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .logout-link:hover {
+            text-shadow: 0 0 5px #ff4d4d;
+            text-decoration: underline;
+        }
+
+        /* Status meldingen (voor script.js) */
+        #statusMessage {
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .error { color: #ff4d4d; border: 1px solid #ff4d4d; background: rgba(255, 77, 77, 0.1); }
+        .success { color: #00ff00; border: 1px solid #00ff00; background: rgba(0, 255, 0, 0.1); }
     </style>
 </head>
 <body>
 
 <div class="profile-container">
-    <h2>Mijn Profiel Instellingen</h2>
+    <h2>Mijn Profiel</h2>
     
+    <div id="statusMessage"></div>
+
     <form id="profileForm">
         <div class="form-group">
-            <label for="username">Gebruikersnaam (kan niet gewijzigd worden)</label>
+            <label for="username">Gebruikersnaam</label>
             <input type="text" id="username" readonly>
         </div>
 
@@ -43,15 +173,15 @@
         </div>
 
         <hr>
-        <h3>Wachtwoord Wijzigen (optioneel)</h3>
+        <h3>Wachtwoord Wijzigen</h3>
 
         <div class="form-group">
             <label for="newPassword">Nieuw Wachtwoord</label>
-            <input type="password" id="newPassword" placeholder="Minimaal 8 tekens">
+            <input type="password" id="newPassword" placeholder="Laten leeg als je niet wilt wijzigen">
         </div>
 
         <div class="form-group">
-            <label for="confirmPassword">Bevestig Nieuw Wachtwoord</label>
+            <label for="confirmPassword">Bevestig Wachtwoord</label>
             <input type="password" id="confirmPassword">
         </div>
 
