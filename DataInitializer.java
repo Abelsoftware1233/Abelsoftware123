@@ -21,11 +21,11 @@ public class DataInitializer {
                 // We hashen het wachtwoord direct hier
                 admin.setPasswordHash(passwordEncoder.encode("admin123"));
                 admin.setRole("ROLE_ADMIN");
-                admin.setFirstName("Abel");
+                admin.setFirstName("abelsoftware123");
                 admin.setLastName("Admin");
 
                 userRepository.save(admin);
-                System.out.println("✅ Automatisch admin-account aangemaakt: admin / admin123");
+                System.out.println("✅ Automatisch admin-account aangemaakt: admin / admin1501");
             } else {
                 System.out.println("ℹ️ Admin-account bestond al, geen actie nodig.");
             }
