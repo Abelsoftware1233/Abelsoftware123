@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Abelsoftware123</title>
+    <title>Login - Abelsoftware123</title>
     <style>
-        /* Basisstijlen overgenomen van jouw Neon Theme */
+        /* Jouw Signature Neon Theme */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -37,7 +37,6 @@
             text-align: center;
         }
 
-        /* Formulier specifieke styling */
         form {
             display: flex;
             flex-direction: column;
@@ -65,7 +64,6 @@
             box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
         }
 
-        /* De knop in jouw Neon Blue stijl */
         button {
             padding: 12px;
             border: none;
@@ -75,8 +73,7 @@
             cursor: pointer;
             color: #fff;
             background-color: transparent;
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF;
+            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
             border: 2px solid #00FFFF;
             transition: all 0.3s ease-in-out;
             margin-top: 10px;
@@ -85,8 +82,18 @@
         button:hover {
             background-color: #00FFFF;
             color: #000;
-            box-shadow: 0 0 15px #00FFFF, 
-                        0 0 30px #00FFFF;
+            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
+        }
+
+        .error-msg {
+            color: #ff4d4d;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            border-radius: 4px;
+            background: rgba(255, 77, 77, 0.1);
         }
 
         .back-link {
@@ -97,36 +104,40 @@
             text-decoration: none;
             font-size: 14px;
         }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-</head>
-<body>
-    <div class="container">
-        <h2>🔒 Log In</h2>
-        
-        <form id="loginForm" action="/api/login" method="POST">
-            
-            <div id="statusMessage" class="status-message" style="display: none;"></div>
-            
-            <label for="usernameOrEmail">Username or Email:</label>
-            <input type="text" id="usernameOrEmail" name="usernameOrEmail" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Log In</button>
-            
-            <p style="text-align: center; margin-top: 15px;">
-                Don't have an account? <a href="registreer.html">Register here</a>
-            </p>
-        </form>
-    </div>
 
-    <script src="script.js"></script> 
+<section class="content-section">
+    <h2>🔒 Log In</h2>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            document.write('<div class="error-msg">❌ Invalid username or password</div>');
+        }
+        if (urlParams.has('logout')) {
+            document.write('<div style="color: #00ff00; text-align: center; margin-bottom: 15px;">✅ Logged out successfully</div>');
+        }
+    </script>
+
+    <form action="/perform_login" method="POST">
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+        
+        <button type="submit">Log In</button>
+        
+        <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+            Don't have an account? <a href="registreer.html" style="color: #00f0ff; text-decoration: none;">Register here</a>
+        </p>
+    </form>
+
+    <a href="index.html" class="back-link">Return to Home</a>
+</section>
+
 </body>
 </html>
