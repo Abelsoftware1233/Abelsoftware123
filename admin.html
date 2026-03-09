@@ -2,33 +2,162 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard | Abelsoftware123</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Abelsoftware123</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; display: flex; }
-        .sidebar { width: 250px; background: #343a40; color: white; height: 100vh; padding: 20px; }
-        .main-content { flex-grow: 1; padding: 30px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
-        th { background-color: #f8f9fa; }
-        .badge { padding: 5px 10px; border-radius: 4px; font-size: 12px; background: #28a745; color: white; }
-        .btn-delete { background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+        /* Jouw Signature Neon Theme */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333333;
+            color: #f0f0f0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 260px;
+            background-color: #1a1a1a;
+            border-right: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            color: #00f0ff;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar hr {
+            border: 0;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            margin: 20px 0;
+        }
+
+        .sidebar a {
+            color: #cccccc;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            color: #00f0ff;
+            background: rgba(0, 240, 255, 0.1);
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #333333;
+        }
+
+        .card {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        h2 {
+            color: #00f0ff;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+            margin-top: 0;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            color: #f0f0f0;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid rgba(0, 240, 255, 0.3);
+            color: #00f0ff;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            font-size: 15px;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Badge & Buttons */
+        .badge {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .btn-delete {
+            background-color: transparent;
+            color: #ff4d4d;
+            border: 1px solid #ff4d4d;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-delete:hover {
+            background-color: #ff4d4d;
+            color: white;
+            box-shadow: 0 0 10px #ff4d4d;
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            color: #ff4d4d !important;
+            border: 1px solid #ff4d4d;
+            text-align: center;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 77, 77, 0.2) !important;
+        }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
     <h2>Echo AI Admin</h2>
-    <p>Ingelogd als: <span id="adminName">Admin</span></p>
+    <p style="font-size: 14px; color: #888;">Ingelogd als: <span id="adminName" style="color: #00f0ff;">Admin</span></p>
     <hr>
-    <a href="/profiel" style="color: white; text-decoration: none;">Mijn Profiel</a><br><br>
-    <a href="/perform_logout" style="color: #ffc107; text-decoration: none;">Uitloggen</a>
+    <a href="profiel.html">👤 Mijn Profiel</a>
+    <a href="index.html">🏠 Dashboard Home</a>
+    
+    <a href="/perform_logout" class="logout-btn">🚪 Uitloggen</a>
 </div>
 
 <div class="main-content">
     <div class="card">
         <h2>Gebruikersbeheer</h2>
-        <p>Overzicht van alle geregistreerde accounts in de database.</p>
+        <p style="color: #888;">Beheer alle geregistreerde accounts in de Echo AI database.</p>
         
         <table id="userTable">
             <thead>
@@ -46,6 +175,8 @@
     </div>
 </div>
 
-<script src="/admin-script.js"></script>
+
+
+<script src="admin-script.js"></script>
 </body>
 </html>
