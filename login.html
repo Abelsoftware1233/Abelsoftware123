@@ -5,29 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Abelsoftware123</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; background-color: #333; color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .content-section { background-color: #1a1a1a; padding: 30px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); border: 1px solid rgba(0, 240, 255, 0.3); }
-        h2 { color: #00f0ff; text-align: center; }
-        form { display: flex; flex-direction: column; }
-        label { margin-bottom: 8px; color: #ccc; }
-        input { background: #2a2a2a; border: 1px solid #444; border-radius: 4px; padding: 12px; margin-bottom: 20px; color: #fff; }
-        button { padding: 12px; border: 2px solid #00FFFF; border-radius: 5px; font-weight: bold; cursor: pointer; color: #fff; background: transparent; transition: 0.3s; }
-        button:hover { background: #00FFFF; color: #000; box-shadow: 0 0 15px #00FFFF; }
-        .back-link { display: block; text-align: center; margin-top: 20px; color: #00f0ff; text-decoration: none; }
+        /* Jouw Signature Neon Theme */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333333;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .content-section {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #00f0ff;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #cccccc;
+        }
+
+        input {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 20px;
+            color: #fff;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff;
+            background-color: transparent;
+            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+            border: 2px solid #00FFFF;
+            transition: all 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #00FFFF;
+            color: #000;
+            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
+        }
+
+        .error-msg {
+            color: #ff4d4d;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            border-radius: 4px;
+            background: rgba(255, 77, 77, 0.1);
+            display: none;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #00f0ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+
 <section class="content-section">
     <h2>🔒 Log In</h2>
+    
+    <div id="loginError" class="error-msg">❌ Onjuiste gebruikersnaam of wachtwoord</div>
+
     <form id="loginForm">
         <label for="username">Username</label>
-        <input type="text" id="username" required>
+        <input type="text" id="username" placeholder="Enter username" required>
+        
         <label for="password">Password</label>
-        <input type="password" id="password" required>
+        <input type="password" id="password" placeholder="••••••••" required>
+        
         <button type="submit">Log In</button>
+        
+        <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+            Don't have an account? <a href="registreer.html" style="color: #00f0ff; text-decoration: none;">Register here</a>
+        </p>
     </form>
+
     <a href="index.html" class="back-link">Return to Home</a>
 </section>
-<script src="login.js"></script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const errorDiv = document.getElementById('loginError');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Voorkom server-fout
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+
+            // 1. Admin controle (hardcoded)
+            const ADMIN_USER = "admin";
+            const ADMIN_PASS = "admin123";
+
+            // 2. Haal geregistreerde gebruikers op uit localStorage
+            const storedUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
+            
+            // 3. Check of het de admin is OF een geregistreerde gebruiker
+            const foundUser = storedUsers.find(u => u.username === usernameInput && u.password === passwordInput);
+
+            if ((usernameInput === ADMIN_USER && passwordInput === ADMIN_PASS) || foundUser) {
+                // Sessie opslaan
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                const userData = {
+                    username: usernameInput,
+                    role: (usernameInput === ADMIN_USER) ? 'Admin' : 'User'
+                };
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+
+                // Doorsturen naar dashboard
+                window.location.href = 'admin.html';
+            } else {
+                // Laat neon-stijl error zien
+                errorDiv.style.display = 'block';
+            }
+        });
+    }
+});
+</script>
+
 </body>
 </html>
