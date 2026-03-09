@@ -1,0 +1,9 @@
+# Database credentials en configuratie
+.env
+application.yml
+
+# IDE bestanden
+.idea/
+.vscode/
+target/
+*.class
