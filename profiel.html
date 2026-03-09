@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Profiel Bewerken | Abelsoftware123</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 40px; }
+        .profile-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h2 { color: #333; margin-bottom: 20px; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        input[readonly] { background-color: #eee; cursor: not-allowed; }
+        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background-color: #0056b3; }
+        .logout-link { display: block; text-align: center; margin-top: 20px; color: #dc3545; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <h2>Mijn Profiel Instellingen</h2>
+    
+    <form id="profileForm">
+        <div class="form-group">
+            <label for="username">Gebruikersnaam (kan niet gewijzigd worden)</label>
+            <input type="text" id="username" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">Voornaam</label>
+            <input type="text" id="firstName" placeholder="Je voornaam">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Achternaam</label>
+            <input type="text" id="lastName" placeholder="Je achternaam">
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mailadres</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <hr>
+        <h3>Wachtwoord Wijzigen (optioneel)</h3>
+
+        <div class="form-group">
+            <label for="newPassword">Nieuw Wachtwoord</label>
+            <input type="password" id="newPassword" placeholder="Minimaal 8 tekens">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Bevestig Nieuw Wachtwoord</label>
+            <input type="password" id="confirmPassword">
+        </div>
+
+        <button type="submit">Wijzigingen Opslaan</button>
+    </form>
+
+    <a href="/perform_logout" class="logout-link">Uitloggen uit systeem</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
