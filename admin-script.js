@@ -1,57 +1,75 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Haal de gebruikers op zodra de pagina laadt
-    fetchUsers();
+    // 1. Controleer of de admin wel is "ingelogd"
+    // We checken of er een sessie-vinkje in de browser staat
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+        alert('Toegang geweigerd. Log eerst in.');
+        window.location.href = 'login.html';
+        return;
+    }
 
-    // 2. Toon de naam van de ingelogde admin (optioneel)
-    // Dit haalt gegevens op van je profiel endpoint
-    fetch('/api/user/profile')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('adminName').textContent = data.username;
-        })
-        .catch(err => console.error('Fout bij ophalen admin profiel:', err));
+    // 2. Zet de admin naam op het scherm
+    const adminData = JSON.parse(localStorage.getItem('currentUser')) || { username: 'Admin' };
+    document.getElementById('adminName').textContent = adminData.username;
+
+    // 3. Haal de gebruikers op
+    renderUsers();
 });
 
-function fetchUsers() {
-    fetch('/api/admin/users')
-        .then(response => {
-            if (!response.ok) throw new Error('Geen toegang tot gebruikerslijst');
-            return response.json();
-        })
-        .then(users => {
-            const tableBody = document.getElementById('userTableBody');
-            tableBody.innerHTML = ''; // Maak tabel leeg voor het laden
+// Simuleer een database met een lijstje in JavaScript
+function getStoredUsers() {
+    const savedUsers = localStorage.getItem('echo_users');
+    if (savedUsers) {
+        return JSON.parse(savedUsers);
+    } else {
+        // Standaard data als de lijst nog leeg is
+        const defaultUsers = [
+            { id: 1, username: 'Abel_Admin', email: 'info@abelsoftware123.com', role: 'Admin' },
+            { id: 2, username: 'TestUser', email: 'test@echoai.com', role: 'User' }
+        ];
+        localStorage.setItem('echo_users', JSON.stringify(defaultUsers));
+        return defaultUsers;
+    }
+}
 
-            users.forEach(user => {
-                const row = `
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.username}</td>
-                        <td>${user.email}</td>
-                        <td><span class="badge">${user.role}</span></td>
-                        <td>
-                            <button class="btn-delete" onclick="deleteUser(${user.id})">Verwijderen</button>
-                        </td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
-            });
-        })
-        .catch(error => {
-            console.error('Fout:', error);
-            alert('Kon gebruikers niet laden. Ben je wel ingelogd als Admin?');
-        });
+function renderUsers() {
+    const users = getStoredUsers();
+    const tableBody = document.getElementById('userTableBody');
+    
+    if (!tableBody) return;
+    tableBody.innerHTML = ''; 
+
+    users.forEach(user => {
+        const row = `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td><span class="badge">${user.role}</span></td>
+                <td>
+                    <button class="btn-delete" onclick="deleteUser(${user.id})">Verwijderen</button>
+                </td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
 }
 
 function deleteUser(id) {
     if (confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')) {
-        fetch(`/api/admin/users/${id}`, { method: 'DELETE' })
-            .then(response => {
-                if (response.ok) {
-                    fetchUsers(); // Herlaad de lijst
-                } else {
-                    alert('Verwijderen mislukt.');
-                }
-            });
+        let users = getStoredUsers();
+        // Filter de gebruiker eruit
+        users = users.filter(user => user.id !== id);
+        // Sla de nieuwe lijst op
+        localStorage.setItem('echo_users', JSON.stringify(users));
+        // Update de tabel
+        renderUsers();
     }
 }
+
+// Uitlog functie koppelen aan je knop
+window.performLogout = function() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+};
