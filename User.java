@@ -63,3 +63,28 @@ public class User {
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 }
+package com.abelsoftware123.registratie.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users") // Dit maakt de tabel 'users' aan in echo_ai_db
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+    private String email;
+    private String password;
+    private String role = "User"; // Standaard rol
+
+    // Belangrijk: Voeg getters en setters toe voor alle velden!
+    public Long getId() { return id; }
+    public String getUsername() { return username; }
+    public String getEmail() { return email; }
+    public String getRole() { return role; }
+    
+    // ... en de setters
+}
