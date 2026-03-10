@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const statusMessage = document.getElementById('statusMessage');
 
     if (registrationForm) {
-        registrationForm.addEventListener('submit', function(e) {
+        registrationForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value;
@@ -161,39 +161,42 @@ document.addEventListener('DOMContentLoaded', function() {
             const password = document.getElementById('password').value;
             const passwordConfirm = document.getElementById('password_confirm').value;
 
+            // 1. Validatie (gebeurt nog in de browser)
             if (password !== passwordConfirm) {
                 showStatus("❌ Wachtwoorden komen niet overeen!", "error");
                 return;
             }
 
-            // Haal gebruikers op uit localStorage
-            let users = JSON.parse(localStorage.getItem('echo_users')) || [
-                { id: 1, username: 'Abel_Admin', email: 'info@abelsoftware123.com', role: 'Admin' }
-            ];
-
-            const userExists = users.some(u => u.username === username || u.email === email);
-            if (userExists) {
-                showStatus("❌ Gebruikersnaam of e-mail is al bezet!", "error");
-                return;
-            }
-
-            const newUser = {
-                id: users.length + 1,
+            // 2. Data voorbereiden voor Java
+            const userData = {
                 username: username,
                 email: email,
-                password: password,
-                role: 'User',
-                regDate: new Date().toLocaleDateString()
+                passwordHash: password // Je Java UserService regelt de hashing
             };
 
-            users.push(newUser);
-            localStorage.setItem('echo_users', JSON.stringify(users));
+            try {
+                // 3. Verzend naar je Java Controller (@PostMapping("/api/users/register"))
+                const response = await fetch('/api/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
 
-            showStatus("✅ Account aangemaakt! Je wordt doorgestuurd...", "success");
-
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 2000);
+                if (response.ok) {
+                    showStatus("✅ Account opgeslagen in Database! Je wordt doorgestuurd...", "success");
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    const errorText = await response.text();
+                    showStatus("❌ Fout: " + errorText, "error");
+                }
+            } catch (error) {
+                console.error("Server onbereikbaar:", error);
+                showStatus("❌ Kan geen verbinding maken met de server.", "error");
+            }
         });
     }
 
@@ -203,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         statusMessage.style.display = 'block';
     }
 });
+
 </script>
 
 </body>
