@@ -30,3 +30,44 @@ function getStoredUsers() {
         return users;
     }
 }
+// Modal openen/sluiten
+window.openAddUserModal = function() {
+    document.getElementById('addUserModal').style.display = 'block';
+};
+
+window.closeAddUserModal = function() {
+    document.getElementById('addUserModal').style.display = 'none';
+};
+
+// Nieuwe gebruiker opslaan in de database
+window.saveNewUser = function() {
+    const username = document.getElementById('newUsername').value;
+    const email = document.getElementById('newEmail').value;
+    const password = document.getElementById('newPassword').value;
+    const role = document.getElementById('newRole').value;
+
+    if (!username || !email || !password) {
+        alert("Vul alle velden in aub.");
+        return;
+    }
+
+    let users = getStoredUsers();
+    
+    // Nieuw ID bepalen (hoogste ID + 1)
+    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+
+    const newUserObj = {
+        id: newId,
+        username: username,
+        email: email,
+        password: password,
+        role: role
+    };
+
+    users.push(newUserObj);
+    localStorage.setItem('echo_users', JSON.stringify(users));
+    
+    alert("Gebruiker " + username + " is succesvol toegevoegd!");
+    closeAddUserModal();
+    renderUsers(); // Tabel direct verversen
+};
