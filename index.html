@@ -8,6 +8,56 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+.welcome-card {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    margin-bottom: 30px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.welcome-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #00f0ff;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+    object-fit: cover;
+}
+
+.welcome-text h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.badge-role {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid #00f0ff;
+    color: #00f0ff;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
         /* --- JOUW ORIGINELE BASIS STIJLEN --- */
         body { background-color: #1a1a1a; color: #e0e0e0; font-family: Arial, sans-serif; margin: 0; padding: 0; }
         .header-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
