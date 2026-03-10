@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,36 +24,50 @@ public class UserService {
     }
 
     /**
-     * 1. REGISTRATIE: Registreert een nieuwe gebruiker met standaard ROLE_USER.
+     * 1. REGISTRATIE: Registreert een nieuwe gebruiker met password hashing.
      */
     public void registerNewUser(String username, String email, String password) {
-        
         if (username == null || username.length() < 3 || password == null || password.length() < 8) {
             throw new RuntimeException("Gebruikersnaam moet minimaal 3 tekens zijn en wachtwoord minimaal 8.");
         }
         
-        // Controleer of de gebruiker al bestaat via de repository
+        // Controleer of de gebruiker al bestaat
         if (userRepository.findByUsername(username).isPresent() || userRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("Deze gebruikersnaam of dit e-mailadres is al in gebruik.");
         }
         
-        // Wachtwoord hashen
+        // Wachtwoord beveiliging
         String hashedPassword = passwordEncoder.encode(password);
         
-        // Nieuwe User entiteit aanmaken
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setEmail(email);
-        newUser.setPasswordHash(hashedPassword); // Zorg dat dit matcht met User.java
-        newUser.setRole("ROLE_USER"); // Belangrijk: Geef de standaard rol mee!
+        newUser.setPasswordHash(hashedPassword);
+        newUser.setRole("ROLE_USER"); 
         
         userRepository.save(newUser);
-        
-        System.out.println("LOG: Gebruiker " + username + " succesvol geregistreerd als ROLE_USER.");
+        System.out.println("LOG: Gebruiker " + username + " opgeslagen in PostgreSQL.");
     }
 
     /**
-     * 2. PROFIEL OPHALEN
+     * 2. ALLE GEBRUIKERS OPHALEN (Voor je Admin Tabel)
+     */
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
+     * 3. GEBRUIKER VERWIJDEREN
+     */
+    public void deleteUserById(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new RuntimeException("Gebruiker niet gevonden.");
+        }
+        userRepository.deleteById(id);
+    }
+
+    /**
+     * 4. PROFIEL OPHALEN
      */
     public UserProfileDTO getUserProfile(String username) {
         User user = userRepository.findByUsername(username)
@@ -67,7 +82,7 @@ public class UserService {
     }
 
     /**
-     * 3. PROFIEL BIJWERKEN
+     * 5. PROFIEL BIJWERKEN
      */
     public void updateUserProfile(String username, UpdateProfileRequest request) {
         User user = userRepository.findByUsername(username)
@@ -85,14 +100,5 @@ public class UserService {
         }
         
         userRepository.save(user);
-        System.out.println("LOG: Profiel van " + username + " succesvol bijgewerkt.");
     }
-}
-// Voeg dit toe aan je UserService.java
-public List<User> findAllUsers() {
-    return userRepository.findAll();
-}
-
-public void deleteUserById(Long id) {
-    userRepository.deleteById(id);
 }
