@@ -235,5 +235,12 @@
 </div>
 
 <script src="admin-script.js"></script>
+// Voeg dit toe bovenaan je script
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+if (!currentUser || currentUser.username !== 'Abelsoftware123_Admin') {
+    alert("Toegang geweigerd: Alleen de hoofd-admin heeft hier toegang.");
+    window.location.href = 'profiel.html';
+}
+
 </body>
 </html>
