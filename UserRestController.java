@@ -58,3 +58,14 @@ public class UserRestController {
         userService.deleteUserById(id);
     }
 }
+// In UserRestController.java
+@PostMapping("/register")
+public ResponseEntity<String> registerUser(@RequestBody User user) {
+    try {
+        // We roepen je UserService aan om de boel veilig op te slaan
+        userService.registerNewUser(user.getUsername(), user.getEmail(), user.getPasswordHash());
+        return ResponseEntity.ok("Gebruiker succesvol opgeslagen in PostgreSQL!");
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body("Fout: " + e.getMessage());
+    }
+}
