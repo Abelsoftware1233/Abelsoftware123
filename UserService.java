@@ -88,3 +88,11 @@ public class UserService {
         System.out.println("LOG: Profiel van " + username + " succesvol bijgewerkt.");
     }
 }
+// Voeg dit toe aan je UserService.java
+public List<User> findAllUsers() {
+    return userRepository.findAll();
+}
+
+public void deleteUserById(Long id) {
+    userRepository.deleteById(id);
+}
