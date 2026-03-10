@@ -1,12 +1,29 @@
 /**
  * Echo AI - Ultimate Admin Management System
- * Version: 2.0 (500 Users + Manual Add)
- * Protected for: Abelsoftware123_Admin
+ * Version: 2.2 (Case-Insensitive & Anti-Lockout)
+ * Owner: Abelsoftware123
  */
 
-// --- 1. STRIKTE TOEGANGSCONTROLE ---
+// --- 1. STRIKTE TOEGANGSCONTROLE (NU OOK VOOR KLEINE LETTERS) ---
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-if (!currentUser || currentUser.username !== 'Abelsoftware123_Admin') {
+const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+function checkAccess() {
+    if (!isLoggedIn || !currentUser) return false;
+
+    // We zetten alles om naar kleine letters voor de vergelijking
+    const usernameLow = currentUser.username.toLowerCase();
+    const roleLow = (currentUser.role || "").toLowerCase();
+
+    // Toegang als de naam abelsoftware123_admin is, of admin, of als de rol admin is
+    return (
+        usernameLow === 'abelsoftware123_admin' || 
+        usernameLow === 'admin' || 
+        roleLow === 'admin'
+    );
+}
+
+if (!checkAccess()) {
     alert("Toegang geweigerd: Je hebt niet de juiste rechten.");
     window.location.href = 'profiel.html';
 }
@@ -16,11 +33,9 @@ let currentPage = 1;
 const rowsPerPage = 10;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Admin naam bovenaan zetten
     const adminNameElement = document.getElementById('adminName');
     if (adminNameElement) adminNameElement.textContent = currentUser.username;
 
-    // Zoekfunctie activeren
     const searchInput = document.getElementById('userSearch');
     if (searchInput) {
         searchInput.addEventListener('input', function(e) {
@@ -39,19 +54,17 @@ function getStoredUsers() {
     if (savedUsers) {
         return JSON.parse(savedUsers);
     } else {
-        // De enige echte Admin
         let users = [
-            { id: 1, username: 'Abelsoftware123_Admin', email: 'admin@abelsoftware.nl', role: 'Admin', password: 'admin1501' }
+            { id: 1, username: 'Abelsoftware123_Admin', email: 'admin@abelsoftware.nl', role: 'Admin', password: 'admin1501' },
+            { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin', password: 'admin1501' }
         ];
 
         const vNamen = ["Liam", "Noah", "Lucas", "Yara", "Finn", "Levi", "Zoe", "Mila", "James", "Sara", "Nora", "Hugo", "Liv", "Tess", "Evi", "Luca", "Xavi", "Bibi", "Lotte", "Sem"];
         const domains = ["echoai.com", "gmail.com", "outlook.com", "hotmail.com", "live.nl"];
 
-        // Genereer de overige 499 accounts als 'User'
-        for (let i = 2; i <= 500; i++) {
+        for (let i = 3; i <= 500; i++) {
             const v = vNamen[Math.floor(Math.random() * vNamen.length)];
             const d = domains[Math.floor(Math.random() * domains.length)];
-            
             users.push({
                 id: i,
                 username: `${v}${i}`,
@@ -60,20 +73,15 @@ function getStoredUsers() {
                 password: "echo123"
             });
         }
-
         localStorage.setItem('echo_users', JSON.stringify(users));
         return users;
     }
 }
 
-// --- 3. MODAL (TOEVOEGEN) FUNCTIES ---
-window.openAddUserModal = function() {
-    document.getElementById('addUserModal').style.display = 'block';
-};
-
-window.closeAddUserModal = function() {
+// --- 3. MODAL FUNCTIES ---
+window.openAddUserModal = () => document.getElementById('addUserModal').style.display = 'block';
+window.closeAddUserModal = () => {
     document.getElementById('addUserModal').style.display = 'none';
-    // Velden leegmaken
     document.getElementById('newUsername').value = '';
     document.getElementById('newEmail').value = '';
     document.getElementById('newPassword').value = '';
@@ -85,38 +93,30 @@ window.saveNewUser = function() {
     const password = document.getElementById('newPassword').value;
     const role = document.getElementById('newRole').value;
 
-    if (!username || !email || !password) {
-        alert("Vul alle velden in.");
-        return;
-    }
+    if (!username || !email || !password) return alert("Vul alle velden in.");
 
     let users = getStoredUsers();
     const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
-
     users.push({ id: newId, username, email, password, role });
     localStorage.setItem('echo_users', JSON.stringify(users));
     
-    alert(`Gebruiker ${username} succesvol toegevoegd!`);
     closeAddUserModal();
     renderUsers(); 
 };
 
-// --- 4. RENDER LOGICA (TABEL & STATS) ---
+// --- 4. RENDER LOGICA ---
 function updateStats(users) {
     const totalUsersElem = document.getElementById('totalUsersCount');
     const adminCountElem = document.getElementById('adminCount');
-
     if (totalUsersElem) totalUsersElem.textContent = users.length;
-    if (adminCountElem) adminCountElem.textContent = users.filter(u => u.role === 'Admin').length;
+    if (adminCountElem) adminCountElem.textContent = users.filter(u => u.role.toLowerCase() === 'admin').length;
 }
 
 function renderUsers(filter = '') {
     const users = getStoredUsers();
-    updateStats(users); // Update de tellers bovenaan
-
+    updateStats(users);
     const tableBody = document.getElementById('userTableBody');
     if (!tableBody) return;
-
     tableBody.innerHTML = ''; 
 
     const filteredUsers = users.filter(user => 
@@ -128,10 +128,12 @@ function renderUsers(filter = '') {
     if (currentPage > totalPages) currentPage = totalPages || 1;
 
     const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedUsers = filteredUsers.slice(start, end);
+    const paginatedUsers = filteredUsers.slice(start, start + rowsPerPage);
 
     paginatedUsers.forEach(user => {
+        const uLow = user.username.toLowerCase();
+        const isProtected = (uLow === 'abelsoftware123_admin' || uLow === 'admin');
+        
         const row = `
             <tr>
                 <td>${user.id}</td>
@@ -139,63 +141,48 @@ function renderUsers(filter = '') {
                 <td>${user.email}</td>
                 <td><span class="badge ${user.role.toLowerCase()}">${user.role}</span></td>
                 <td>
-                    ${user.username !== 'Abelsoftware123_Admin' ? 
+                    ${!isProtected ? 
                     `<button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>` : 
-                    `<span style="color:#888; font-size:12px;">Protected</span>`}
+                    `<span style="color:#888; font-size:11px;">System Admin</span>`}
                 </td>
             </tr>
         `;
         tableBody.innerHTML += row;
     });
-
     renderPaginationControls(filteredUsers.length);
 }
 
 // --- 5. PAGINERING ---
 function renderPaginationControls(totalItems) {
-    const paginationContainer = document.getElementById('pagination');
-    if (!paginationContainer) return;
-
+    const container = document.getElementById('pagination');
+    if (!container) return;
     const totalPages = Math.ceil(totalItems / rowsPerPage);
-    let html = '';
-
-    html += `<button class="btn-page" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">«</button>`;
-
-    let startPage = Math.max(1, currentPage - 1);
-    let endPage = Math.min(totalPages, currentPage + 1);
-
-    if (startPage > 1) {
-        html += `<button class="btn-page" onclick="changePage(1)">1</button>`;
-        if (startPage > 2) html += `<span style="padding:0 5px">...</span>`;
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-        html += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
-    }
-
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) html += `<span style="padding:0 5px">...</span>`;
-        html += `<button class="btn-page" onclick="changePage(${totalPages})">${totalPages}</button>`;
+    let html = `<button class="btn-page" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">«</button>`;
+    
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+            html += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+            html += `<span style="color:#00f0ff">...</span>`;
+        }
     }
 
     html += `<button class="btn-page" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">»</button>`;
-
-    paginationContainer.innerHTML = html;
+    container.innerHTML = html;
 }
 
-window.changePage = function(page) {
+window.changePage = (page) => {
     currentPage = page;
-    const currentSearch = document.getElementById('userSearch')?.value.toLowerCase() || '';
-    renderUsers(currentSearch);
+    renderUsers(document.getElementById('userSearch')?.value.toLowerCase() || '');
 };
 
 // --- 6. ACTIES ---
 window.deleteUser = function(id) {
-    if (confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?')) {
+    if (confirm('Gebruiker definitief verwijderen?')) {
         let users = getStoredUsers();
         users = users.filter(user => user.id !== id);
         localStorage.setItem('echo_users', JSON.stringify(users));
-        renderUsers(document.getElementById('userSearch')?.value.toLowerCase() || '');
+        renderUsers();
     }
 };
 
