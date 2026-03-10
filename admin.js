@@ -22,3 +22,40 @@ async function deleteUser(userId) {
         renderUsers(); // Ververs de tabel
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Haal de gebruikers op van je Java backend zodra de pagina laadt
+    fetchUsersFromDatabase();
+});
+
+async function fetchUsersFromDatabase() {
+    try {
+        // Dit roept je Java UserService/Controller aan
+        const response = await fetch('/api/users'); 
+        const users = await response.json();
+        renderUsers(users);
+    } catch (error) {
+        console.error("Fout bij ophalen gebruikers:", error);
+    }
+}
+
+function renderUsers(users) {
+    const tableBody = document.getElementById('userTableBody');
+    if (!tableBody) return;
+
+    tableBody.innerHTML = ''; 
+
+    users.forEach(user => {
+        const row = `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td><span class="badge">${user.role || 'User'}</span></td>
+                <td>
+                    <button class="btn-delete" onclick="deleteUser(${user.id})">Verwijderen</button>
+                </td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
