@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const statusMessage = document.getElementById('statusMessage');
 
     if (registrationForm) {
-        registrationForm.addEventListener('submit', async function(e) {
+        registrationForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value;
@@ -161,42 +161,43 @@ document.addEventListener('DOMContentLoaded', function() {
             const password = document.getElementById('password').value;
             const passwordConfirm = document.getElementById('password_confirm').value;
 
-            // 1. Validatie (gebeurt nog in de browser)
+            // 1. Controleer of wachtwoorden gelijk zijn
             if (password !== passwordConfirm) {
                 showStatus("❌ Wachtwoorden komen niet overeen!", "error");
                 return;
             }
 
-            // 2. Data voorbereiden voor Java
-            const userData = {
+            // 2. Haal bestaande gebruikers op uit localStorage (of start een nieuwe lijst)
+            let users = JSON.parse(localStorage.getItem('echo_users')) || [
+                { id: 1, username: 'Abel_Admin', email: 'info@abelsoftware123.com', role: 'Admin' }
+            ];
+
+            // 3. Controleer of de gebruiker al bestaat in de lokale lijst
+            const userExists = users.some(u => u.username === username || u.email === email);
+            if (userExists) {
+                showStatus("❌ Gebruikersnaam of e-mail is al bezet!", "error");
+                return;
+            }
+
+            // 4. Maak de nieuwe gebruiker aan
+            const newUser = {
+                id: users.length + 1,
                 username: username,
                 email: email,
-                passwordHash: password // Je Java UserService regelt de hashing
+                password: password, // Let op: dit is onbeveiligde tekst in localStorage
+                role: 'User',
+                regDate: new Date().toLocaleDateString()
             };
 
-            try {
-                // 3. Verzend naar je Java Controller (@PostMapping("/api/users/register"))
-                const response = await fetch('/api/users/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(userData)
-                });
+            // 5. Opslaan in de browser-cache (localStorage)
+            users.push(newUser);
+            localStorage.setItem('echo_users', JSON.stringify(users));
 
-                if (response.ok) {
-                    showStatus("✅ Account opgeslagen in Database! Je wordt doorgestuurd...", "success");
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 2000);
-                } else {
-                    const errorText = await response.text();
-                    showStatus("❌ Fout: " + errorText, "error");
-                }
-            } catch (error) {
-                console.error("Server onbereikbaar:", error);
-                showStatus("❌ Kan geen verbinding maken met de server.", "error");
-            }
+            showStatus("✅ Account aangemaakt in browser-cache! Je wordt doorgestuurd...", "success");
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
         });
     }
 
@@ -206,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
         statusMessage.style.display = 'block';
     }
 });
-
 </script>
 
 </body>
