@@ -55,7 +55,7 @@ function getStoredUsers() {
         return JSON.parse(savedUsers);
     } else {
         let users = [
-            { id: 1, username: 'Abelsoftware123_Admin', email: 'admin@abelsoftware.nl', role: 'Admin', password: 'admin1501' },
+            { id: 1, username: 'Abelsoftware123_Admin', email: 'abelsoftware123@hotmail.nl', role: 'Admin', password: 'admin1501' },
             { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin', password: 'admin1501' }
         ];
 
