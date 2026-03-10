@@ -1,6 +1,6 @@
 /**
  * Echo AI - Admin Database Script
- * Database grootte: 500 gebruikers
+ * Database grootte: 700 gebruikers
  * Paginering: 10 rijen per pagina
  */
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderUsers();
 });
 
-// Functie om de database op te halen of te genereren (tot 500)
+// Functie om de database op te halen of te genereren (tot 700)
 function getStoredUsers() {
     let savedUsers = localStorage.getItem('echo_users');
     
