@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Abelsoftware123</title>
+    <title>Admin Dashboard - Echo AI</title>
     <style>
         /* Jouw Signature Neon Theme */
         body {
@@ -77,6 +77,23 @@
             margin-top: 0;
         }
 
+        /* Search Input */
+        #userSearch {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #111;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 4px;
+            color: #00f0ff;
+            outline: none;
+        }
+
+        #userSearch:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
         /* Table Styling */
         table {
             width: 100%;
@@ -104,14 +121,56 @@
             background-color: rgba(255, 255, 255, 0.03);
         }
 
-        /* Badge & Buttons */
+        /* Badges */
         .badge {
-            background: rgba(0, 255, 0, 0.2);
-            color: #00ff00;
-            border: 1px solid #00ff00;
             padding: 4px 10px;
             border-radius: 4px;
             font-size: 12px;
+            text-transform: uppercase;
+        }
+        .badge.admin {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+            border: 1px solid #00f0ff;
+        }
+        .badge.user {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+
+        /* Paginering Styling */
+        .pagination-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-page {
+            background: #222;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #ccc;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-page:hover {
+            border-color: #00f0ff;
+            color: #00f0ff;
+        }
+
+        .btn-page.active {
+            background: #00f0ff;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+
+        .btn-page:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
 
         .btn-delete {
@@ -136,22 +195,18 @@
             border: 1px solid #ff4d4d;
             text-align: center;
         }
-
-        .logout-btn:hover {
-            background: rgba(255, 77, 77, 0.2) !important;
-        }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <h2>Admin Pagina</h2>
+    <h2>Echo AI Admin</h2>
     <p style="font-size: 14px; color: #888;">Ingelogd als: <span id="adminName" style="color: #00f0ff;">Admin</span></p>
     <hr>
     <a href="profiel.html">👤 Mijn Profiel</a>
     <a href="index.html">🏠 Dashboard Home</a>
     
-    <a href="/perform_logout" class="logout-btn">🚪 Uitloggen</a>
+    <a href="#" onclick="performLogout()" class="logout-btn">🚪 Uitloggen</a>
 </div>
 
 <div class="main-content">
@@ -159,6 +214,8 @@
         <h2>Gebruikersbeheer</h2>
         <p style="color: #888;">Beheer alle geregistreerde accounts in de Echo AI database.</p>
         
+        <input type="text" id="userSearch" placeholder="Zoek op naam of e-mail...">
+
         <table id="userTable">
             <thead>
                 <tr>
@@ -172,10 +229,10 @@
             <tbody id="userTableBody">
                 </tbody>
         </table>
+
+        <div id="pagination" class="pagination-container"></div>
     </div>
 </div>
-
-
 
 <script src="admin-script.js"></script>
 </body>
