@@ -59,7 +59,7 @@ function getStoredUsers() {
             { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin', password: 'admin1501' }
         ];
 
-        const vNamen = ["Liam", "Noah", "Lucas", "Yara", "Finn", "Levi", "Zoe", "Mila", "James", "Sara", "Nora", "Hugo", "Liv", "Tess", "Evi", "Luca", "Xavi", "Bibi", "Lotte", "Sem"];
+        const vNamen = ["Liam", "Noah", "Lucas", "Yara", "Finn", "Levi", "Zoe", "Mila", "James", "Sara", "Nora", "Hugo", "Liv", "Tess", "Evi", "Luca", "Xavi", "Bibi", "Lotte", "halim", "Hakim", "Mohammed", "Ali", "Britney", "Sem"];
         const domains = ["echoai.com", "gmail.com", "outlook.com", "hotmail.com", "live.nl"];
 
         for (let i = 3; i <= 500; i++) {
