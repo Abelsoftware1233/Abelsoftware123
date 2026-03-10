@@ -1,40 +1,25 @@
-// Importeer de Firebase functies (SDK)
-import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.x/firebase-firestore.js";
-
-// 1. Haal alle gebruikers op uit de database
-async function getRemoteUsers() {
-    const db = getFirestore();
-    const querySnapshot = await getDocs(collection(db, "users"));
-    const users = [];
-    
-    querySnapshot.forEach((doc) => {
-        users.push({ id: doc.id, ...doc.data() });
-    });
-    
-    return users;
-}
-
-// 2. Verwijder een gebruiker uit de database
-async function deleteUser(userId) {
-    if (confirm('Zeker weten?')) {
-        const db = getFirestore();
-        await deleteDoc(doc(db, "users", userId));
-        renderUsers(); // Ververs de tabel
-    }
-}
 document.addEventListener('DOMContentLoaded', function() {
-    // Haal de gebruikers op van je Java backend zodra de pagina laadt
+    // 1. Controleer of de admin is ingelogd (veiligheid)
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // 2. Haal de gebruikers op uit je Java Database
     fetchUsersFromDatabase();
 });
 
+// Haal gebruikers op via je Java Controller (@GetMapping("/api/users"))
 async function fetchUsersFromDatabase() {
     try {
-        // Dit roept je Java UserService/Controller aan
         const response = await fetch('/api/users'); 
+        if (!response.ok) throw new Error('Netwerk respons was niet ok');
         const users = await response.json();
         renderUsers(users);
     } catch (error) {
         console.error("Fout bij ophalen gebruikers:", error);
+        // Optioneel: toon een foutmelding in de tabel
     }
 }
 
@@ -52,10 +37,29 @@ function renderUsers(users) {
                 <td>${user.email}</td>
                 <td><span class="badge">${user.role || 'User'}</span></td>
                 <td>
-                    <button class="btn-delete" onclick="deleteUser(${user.id})">Verwijderen</button>
+                    <button class="btn-delete" onclick="confirmDelete(${user.id})">Verwijderen</button>
                 </td>
             </tr>
         `;
         tableBody.innerHTML += row;
     });
+}
+
+// Verwijder gebruiker via je Java Controller (@DeleteMapping("/api/users/{id}"))
+async function confirmDelete(userId) {
+    if (confirm('Weet je zeker dat je deze gebruiker wilt verwijderen uit de database?')) {
+        try {
+            const response = await fetch(`/api/users/${userId}`, {
+                method: 'DELETE'
+            });
+            
+            if (response.ok) {
+                fetchUsersFromDatabase(); // Ververs de lijst na verwijderen
+            } else {
+                alert("Verwijderen mislukt.");
+            }
+        } catch (error) {
+            console.error("Fout bij verwijderen:", error);
+        }
+    }
 }
