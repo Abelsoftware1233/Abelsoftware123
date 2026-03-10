@@ -1,248 +1,30 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Echo AI</title>
-    <style>
-        /* Jouw Signature Neon Theme */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar Styling */
-        .sidebar {
-            width: 260px;
-            background-color: #111;
-            border-right: 1px solid rgba(0, 240, 255, 0.3);
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .sidebar h2 {
-            font-size: 22px;
-            color: #00f0ff;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .sidebar hr {
-            border: 0;
-            border-top: 1px solid rgba(0, 240, 255, 0.2);
-            margin: 20px 0;
-        }
-
-        .sidebar a {
-            color: #cccccc;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 4px;
-            transition: 0.3s;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            color: #00f0ff;
-            background: rgba(0, 240, 255, 0.1);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
-            padding: 40px;
-            background-color: #1a1a1a;
-        }
-
-        .stats-container {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: #222;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            flex: 1;
-            text-align: center;
-        }
-
-        .stat-value {
-            display: block;
-            font-size: 24px;
-            color: #00f0ff;
-            font-weight: bold;
-        }
-
-        .card {
-            background-color: #222;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-        }
-
-        h2 { color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); }
-
-        /* Table */
-        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th { text-align: left; padding: 15px; border-bottom: 2px solid #00f0ff; color: #00f0ff; }
-        td { padding: 15px; border-bottom: 1px solid #444; }
-
-        .badge { padding: 4px 10px; border-radius: 4px; font-size: 12px; }
-        .badge.admin { border: 1px solid #00f0ff; color: #00f0ff; }
-        .badge.user { border: 1px solid #00ff00; color: #00ff00; }
-
-        .btn-delete { background: none; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 6px; cursor: pointer; border-radius: 4px; }
-        .btn-delete:hover { background: #ff4d4d; color: white; }
-
-        .logout-btn { margin-top: auto; color: #ff4d4d !important; border: 1px solid #ff4d4d; text-align: center; }
-
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-        .modal-input { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; box-sizing: border-box; }
-    </style>
-</head>
-<body>
-
-<div class="sidebar">
-    <h2>Abel Admin</h2>
-    <p style="font-size: 14px; color: #888;">Ingelogd als: <br><span id="adminName" style="color: #00f0ff; font-weight: bold;">...</span></p>
-    <hr>
-    <a href="index.html">🏠 Home Dashboard</a>
-    <a href="profiel.html">👤 My Profile</a>
-    <a href="#" onclick="performLogout()" class="logout-btn">🚪 Logout</a>
-</div>
-
-<div class="main-content">
-    <div class="stats-container">
-        <div class="stat-card"><span id="totalUsersCount" class="stat-value">0</span><span style="color:#888">Gebruikers</span></div>
-        <div class="stat-card"><span id="adminCount" class="stat-value">0</span><span style="color:#888">Admins</span></div>
-        <div class="stat-card"><span class="stat-value" style="color:#00ff00">Online</span><span style="color:#888">Status</span></div>
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2 class="neon-text">Gebruikersbeheer</h2>
+        <button onclick="openAddUserModal()" class="luxe-add-btn">+ NIEUWE KLANT</button>
+    </div>
+    
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="userSearch" placeholder="Zoek op naam, e-mail of ID..." class="luxe-search">
+        <div class="search-glow"></div>
     </div>
 
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>Gebruikersbeheer</h2>
-            <button onclick="openAddUserModal()" style="background:#00f0ff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold;">+ NIEUW</button>
-        </div>
-        
-        <table id="userTable">
+    <div class="table-responsive">
+        <table>
             <thead>
                 <tr>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Actie</th>
+                    <th>ID</th>
+                    <th>Klantnaam</th>
+                    <th>E-mailadres</th>
+                    <th>Status</th>
+                    <th>Beheer</th>
                 </tr>
             </thead>
-            <tbody id="userTableBody"></tbody>
+            <tbody id="userTableBody">
+                </tbody>
         </table>
     </div>
+
+    <div id="pagination" class="pagination-container"></div>
 </div>
-
-<div id="addUserModal" class="modal">
-    <div class="card" style="width: 350px; margin: 100px auto;">
-        <h3>Nieuwe Gebruiker</h3>
-        <input type="text" id="newUsername" class="modal-input" placeholder="Gebruikersnaam">
-        <input type="email" id="newEmail" class="modal-input" placeholder="Email">
-        <input type="password" id="newPassword" class="modal-input" placeholder="Wachtwoord">
-        <select id="newRole" class="modal-input">
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-        </select>
-        <button onclick="saveNewUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer;">Opslaan</button>
-        <button onclick="closeAddUserModal()" style="width:100%; background:#444; color:white; padding:10px; border:none; cursor:pointer;">Annuleren</button>
-    </div>
-</div>
-
-<script>
-/**
- * 1. TOEGANGSCONTROLE (DIT MOET BOVENAAN)
- */
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-// Check of je bent ingelogd EN of je Admin bent
-if (!isLoggedIn || !currentUser || (currentUser.username !== 'Admin' && currentUser.role !== 'Admin')) {
-    alert("Toegang geweigerd! Je bent geen administrator.");
-    window.location.href = 'profiel.html'; 
-}
-
-/**
- * 2. DASHBOARD LOGICA
- */
-document.addEventListener('DOMContentLoaded', function() {
-    if (currentUser) {
-        document.getElementById('adminName').textContent = currentUser.username;
-    }
-    loadData();
-});
-
-function loadData() {
-    const users = JSON.parse(localStorage.getItem('echo_users')) || [];
-    document.getElementById('totalUsersCount').textContent = users.length;
-    document.getElementById('adminCount').textContent = users.filter(u => u.role === 'Admin' || u.username === 'Admin').length;
-
-    const tbody = document.getElementById('userTableBody');
-    tbody.innerHTML = '';
-
-    users.forEach(user => {
-        const row = `<tr>
-            <td>${user.username}</td>
-            <td>${user.email}</td>
-            <td><span class="badge ${user.role === 'Admin' ? 'admin' : 'user'}">${user.role || 'User'}</span></td>
-            <td><button class="btn-delete" onclick="deleteUser('${user.username}')">Delete</button></td>
-        </tr>`;
-        tbody.innerHTML += row;
-    });
-}
-
-function deleteUser(username) {
-    if (username === 'Admin') return alert("Je kunt de hoofd-admin niet verwijderen.");
-    if (confirm("Gebruiker verwijderen?")) {
-        let users = JSON.parse(localStorage.getItem('echo_users')) || [];
-        users = users.filter(u => u.username !== username);
-        localStorage.setItem('echo_users', JSON.stringify(users));
-        loadData();
-    }
-}
-
-function openAddUserModal() { document.getElementById('addUserModal').style.display = 'block'; }
-function closeAddUserModal() { document.getElementById('addUserModal').style.display = 'none'; }
-
-function saveNewUser() {
-    const u = document.getElementById('newUsername').value;
-    const e = document.getElementById('newEmail').value;
-    const p = document.getElementById('newPassword').value;
-    const r = document.getElementById('newRole').value;
-
-    if(!u || !p) return alert("Vul gegevens in!");
-
-    let users = JSON.parse(localStorage.getItem('echo_users')) || [];
-    users.push({ username: u, email: e, password: p, role: r });
-    localStorage.setItem('echo_users', JSON.stringify(users));
-    
-    closeAddUserModal();
-    loadData();
-}
-
-function performLogout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
-}
-</script>
-
-</body>
-</html>
