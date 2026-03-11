@@ -1,13 +1,57 @@
 /**
- * Echo AI - Database User List (Handmatig Uitgeschreven)
- * Totaal: 100 unieke gebruikers
+ * Echo AI - Ultimate Admin Management System
+ * Version: 2.6 (Strict Access & 100 Manual Users)
+ * Owner: Abelsoftware123
  */
 
+// --- 1. STRIKTE TOEGANGSCONTROLE ---
+// Controleert of de bezoeker is ingelogd en of de gebruikersnaam of rol 'admin' is.
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+function checkAccess() {
+    if (!isLoggedIn || !currentUser) return false;
+    
+    const usernameLow = currentUser.username.toLowerCase();
+    const roleLow = (currentUser.role || "").toLowerCase();
+    
+    // Alleen toegang voor de hoofdadmin of gebruikers met de rol 'admin'
+    return (
+        usernameLow === 'abelsoftware123_admin' || 
+        usernameLow === 'admin' || 
+        roleLow === 'admin'
+    );
+}
+
+if (!checkAccess()) {
+    alert("Toegang geweigerd: Je hebt niet de juiste rechten om dit paneel te bekijken.");
+    window.location.href = 'profiel.html';
+}
+
+// --- 2. PAGINERING SETTINGS ---
+let currentPage = 1;
+const rowsPerPage = 10;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const adminNameElement = document.getElementById('adminName');
+    if (adminNameElement) adminNameElement.textContent = currentUser.username;
+    
+    const searchInput = document.getElementById('userSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentPage = 1;
+            renderUsers(e.target.value.toLowerCase());
+        });
+    }
+    renderUsers();
+});
+
+// --- 3. DATABASE (100 GEBRUIKERS VOLUIT GESCHREVEN) ---
 function getStoredUsers() {
     let savedUsers = localStorage.getItem('echo_users');
     if (savedUsers) return JSON.parse(savedUsers);
 
-    // Hier zijn alle 100 gebruikers volledig uitgeschreven
+    // Handmatige lijst met 100 unieke gebruikers en variërende e-mails
     let users = [
         { id: 1, username: 'Abelsoftware123_Admin', email: 'abelsoftware123@hotmail.nl', role: 'Admin', password: 'admin1501' },
         { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin', password: 'admin1501' },
@@ -59,7 +103,6 @@ function getStoredUsers() {
         { id: 48, username: 'Eva48', email: 'eva48@live.nl', role: 'User', password: 'echo123' },
         { id: 49, username: 'Luuk49', email: 'luuk49@protonmail.com', role: 'User', password: 'echo123' },
         { id: 50, username: 'Roos50', email: 'roos50@echoai.com', role: 'User', password: 'echo123' },
-        // ... Dit gaat zo door tot 100
         { id: 51, username: 'Anuar51', email: 'anuar51@icloud.com', role: 'User', password: 'echo123' },
         { id: 52, username: 'Fatima52', email: 'fatima52@gmail.com', role: 'User', password: 'echo123' },
         { id: 53, username: 'Omar53', email: 'omar53@outlook.com', role: 'User', password: 'echo123' },
@@ -115,3 +158,68 @@ function getStoredUsers() {
     localStorage.setItem('echo_users', JSON.stringify(users));
     return users;
 }
+
+// --- 4. RENDER LOGICA ---
+function renderUsers(filter = '') {
+    const users = getStoredUsers();
+    const tableBody = document.getElementById('userTableBody');
+    if (!tableBody) return;
+    tableBody.innerHTML = ''; 
+
+    const filteredUsers = users.filter(user => 
+        user.username.toLowerCase().includes(filter) || user.email.toLowerCase().includes(filter)
+    );
+
+    const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
+    const start = (currentPage - 1) * rowsPerPage;
+    const paginatedUsers = filteredUsers.slice(start, start + rowsPerPage);
+
+    paginatedUsers.forEach(user => {
+        const uLow = user.username.toLowerCase();
+        const isProtected = (uLow === 'abelsoftware123_admin' || uLow === 'admin');
+        
+        tableBody.innerHTML += `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td><span class="badge ${user.role.toLowerCase()}">${user.role}</span></td>
+                <td>
+                    ${!isProtected ? `
+                        <button class="btn-edit" onclick="openEditModal(${user.id})">Edit</button>
+                        <button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>
+                    ` : `<span style="color:#888;">System Protected</span>`}
+                </td>
+            </tr>
+        `;
+    });
+    renderPaginationControls(filteredUsers.length);
+}
+
+// --- 5. PAGINERING & LOGOUT ---
+function renderPaginationControls(totalItems) {
+    const container = document.getElementById('pagination');
+    if (!container) return;
+    const totalPages = Math.ceil(totalItems / rowsPerPage);
+    let html = `<button class="btn-page" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">«</button>`;
+    
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+            html += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+        }
+    }
+    
+    html += `<button class="btn-page" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">»</button>`;
+    container.innerHTML = html;
+}
+
+window.changePage = (page) => {
+    currentPage = page;
+    renderUsers();
+};
+
+window.performLogout = function() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+};
