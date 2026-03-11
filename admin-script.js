@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderUsers();
 });
 
-// --- 2. DATABASE & GENERATOR (MET MEER NAMEN) ---
+// --- 2. DATABASE & GENERATOR (VARIEERDE DOMEINEN) ---
 function getStoredUsers() {
     let savedUsers = localStorage.getItem('echo_users');
     if (savedUsers) return JSON.parse(savedUsers);
@@ -51,19 +51,24 @@ function getStoredUsers() {
     const vNamen = [
         "Gerlinde", "Noah", "Gabriel", "Michaël", "Finn", "Levi", "Britney", "Mila", "James", "Yasmina", 
         "Nora", "Hugo", "Jessica", "Tessa", "Evelien", "Luca", "Xavi", "Bibi", "Lotte", "Halim", 
-        "Hakim", "Mohammed", "Ali", "Britney", "Sem", "Sophie", "Bram", "Daan", "Milan", 
-        "Meis", "Fleur", "Lynn", "Jesse", "Mason", "Isabella", "Adam", "Eva", "Luuk", 
-        "Roos", "Anuar", "Fatima", "Omar", "Sander", "Thijs", "Lieke", "Saar", "Noor"
+        "Hakim", "Mohammed", "Ali", "Sem", "Sophie", "Bram", "Daan", "Milan", "Zoe"
     ];
-    const domains = ["outlook.com", "gmail.com", "fastmail.com", "hotmail.com", "live.nl", "protonmail.com"];
+    
+    // De lijst met verschillende providers
+    const domains = ["outlook.com", "gmail.com", "hotmail.com", "live.nl", "protonmail.com"];
 
     for (let i = 3; i <= 500; i++) {
         const v = vNamen[Math.floor(Math.random() * vNamen.length)];
         const d = domains[Math.floor(Math.random() * domains.length)];
+        
+        // VERBETERING: Geen punt meer tussen naam en ID
+        const generatedUsername = `${v}${i}`;
+        const generatedEmail = `${v.toLowerCase()}${i}@${d}`;
+
         users.push({
             id: i,
-            username: `${v}${i}`,
-            email: `${v.toLowerCase()}.${i}@${d}`,
+            username: generatedUsername,
+            email: generatedEmail,
             role: 'User',
             password: "echo123"
         });
@@ -71,6 +76,7 @@ function getStoredUsers() {
     localStorage.setItem('echo_users', JSON.stringify(users));
     return users;
 }
+
 
 // --- 3. MODAL FUNCTIES (ADD & EDIT) ---
 window.openAddUserModal = () => document.getElementById('addUserModal').style.display = 'block';
