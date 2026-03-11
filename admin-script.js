@@ -22,7 +22,7 @@ if (!checkAccess()) {
 
 // Global variables voor paginering
 let currentPage = 1;
-const rowsPerPage = 15;
+const rowsPerPage = 10;
 
 document.addEventListener('DOMContentLoaded', function() {
     const adminNameElement = document.getElementById('adminName');
@@ -55,7 +55,7 @@ function getStoredUsers() {
         "Meis", "Fleur", "Lynn", "Jesse", "Mason", "Isabella", "Adam", "Eva", "Luuk", 
         "Roos", "Anuar", "Fatima", "Omar", "Sander", "Thijs", "Lieke", "Saar", "Noor"
     ];
-    const domains = ["echoai.com", "gmail.com", "outlook.com", "hotmail.com", "live.nl", "protonmail.com"];
+    const domains = ["outlook.com", "gmail.com", "fastmail.com", "hotmail.com", "live.nl", "protonmail.com"];
 
     for (let i = 3; i <= 500; i++) {
         const v = vNamen[Math.floor(Math.random() * vNamen.length)];
