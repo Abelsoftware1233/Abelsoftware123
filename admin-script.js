@@ -1,5 +1,5 @@
 /**
- * Echo AI - Ultimate Admin Management System
+ * Abelsoftware123 - Ultimate Admin Management System
  * Version: 2.6 (Strict Access & 100 Manual Users)
  * Owner: Abelsoftware123
  */
