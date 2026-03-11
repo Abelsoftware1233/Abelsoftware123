@@ -49,8 +49,8 @@ function getStoredUsers() {
     ];
 
     const vNamen = [
-        "Liam", "Noah", "Lucas", "Yara", "Finn", "Levi", "Zoe", "Mila", "James", "Sara", 
-        "Nora", "Hugo", "Liv", "Tess", "Evi", "Luca", "Xavi", "Bibi", "Lotte", "Halim", 
+        "Gerlinde", "Noah", "Gabriel", "Michaël", "Finn", "Levi", "Britney", "Mila", "James", "Yasmina", 
+        "Nora", "Hugo", "Jessica", "Tessa", "Evelien", "Luca", "Xavi", "Bibi", "Lotte", "Halim", 
         "Hakim", "Mohammed", "Ali", "Britney", "Sem", "Sophie", "Bram", "Daan", "Milan", 
         "Meis", "Fleur", "Lynn", "Jesse", "Mason", "Isabella", "Adam", "Eva", "Luuk", 
         "Roos", "Anuar", "Fatima", "Omar", "Sander", "Thijs", "Lieke", "Saar", "Noor"
