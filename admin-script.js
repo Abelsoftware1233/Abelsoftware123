@@ -22,7 +22,7 @@ if (!checkAccess()) {
 
 // Global variables voor paginering
 let currentPage = 1;
-const rowsPerPage = 10;
+const rowsPerPage = 15;
 
 document.addEventListener('DOMContentLoaded', function() {
     const adminNameElement = document.getElementById('adminName');
