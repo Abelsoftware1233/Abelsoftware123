@@ -19,20 +19,21 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    // Dit veld zorgt ervoor dat Spring Security weet of je een USER of ADMIN bent
+    // Wordt gebruikt door Spring Security (bijv. ROLE_USER)
     @Column(nullable = false)
     private String role = "ROLE_USER"; 
 
-    // Extra velden voor het profiel
+    // Profiel velden
     private String firstName;
     private String lastName;
+    
+    // Veld voor de profielfoto (slaat de bestandsnaam of URL op)
+    private String profilePictureUrl;
 
     // --- CONSTRUCTORS ---
     
-    // Lege constructor is verplicht voor JPA
     public User() {}
 
-    // Handige constructor voor registratie
     public User(String username, String email, String passwordHash) {
         this.username = username;
         this.email = email;
@@ -48,6 +49,9 @@ public class User {
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
+    // CRUCIAAL VOOR LOGIN: Spring Security zoekt naar getPassword()
+    public String getPassword() { return this.passwordHash; }
+
     public String getPasswordHash() { return passwordHash; }
     public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
 
@@ -62,29 +66,7 @@ public class User {
 
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-}
-package com.abelsoftware123.registratie.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "users") // Dit maakt de tabel 'users' aan in echo_ai_db
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String username;
-    private String email;
-    private String password;
-    private String role = "User"; // Standaard rol
-
-    // Belangrijk: Voeg getters en setters toe voor alle velden!
-    public Long getId() { return id; }
-    public String getUsername() { return username; }
-    public String getEmail() { return email; }
-    public String getRole() { return role; }
-    
-    // ... en de setters
+    public String getProfilePictureUrl() { return profilePictureUrl; }
+    public void setProfilePictureUrl(String profilePictureUrl) { this.profilePictureUrl = profilePictureUrl; }
 }
