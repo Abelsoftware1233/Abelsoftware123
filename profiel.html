@@ -5,172 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Change - Abelsoftware123</title>
     <style>
-        /* Jouw Signature Neon Theme */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: #333333;
-            color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    /* Jouw Signature Neon Theme */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background-color: #333333;
+        color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
 
-        .profile-container {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-            padding: 30px;
-            width: 100%;
-            max-width: 450px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-        }
+    .profile-container {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+        padding: 30px;
+        width: 100%;
+        max-width: 450px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+    }
 
-        h2, h3 {
-            color: #00f0ff;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
-            text-align: center;
-        }
+    h2, h3 {
+        color: #00f0ff;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+        text-align: center;
+    }
 
-        h2 {
-            font-size: 26px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            padding-bottom: 10px;
-        }
+    h2 {
+        font-size: 26px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        padding-bottom: 10px;
+    }
 
-        h3 {
-            font-size: 18px;
-            margin-top: 25px;
-        }
+    h3 {
+        font-size: 18px;
+        margin-top: 25px;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #cccccc;
-            font-size: 14px;
-        }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #cccccc;
+        font-size: 14px;
+    }
 
-        input {
-            width: 100%;
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 4px;
-            padding: 12px;
-            color: #fff;
-            outline: none;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
+    input {
+        width: 100%;
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 4px;
+        padding: 12px;
+        color: #fff;
+        outline: none;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
 
-        input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-        }
+    input:focus {
+        border-color: #00f0ff;
+        box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+    }
 
-        input[readonly] {
-            background-color: #111;
-            color: #666;
-            border-color: #222;
-            cursor: not-allowed;
-        }
+    button {
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #fff;
+        background-color: transparent;
+        box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+        border: 2px solid #00FFFF;
+        margin-top: 20px;
+    }
 
-        button {
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
-            border: 2px solid #00FFFF;
-            transition: all 0.3s ease-in-out;
-            margin-top: 20px;
-        }
+    hr {
+        border: 0;
+        border-top: 1px solid rgba(0, 240, 255, 0.2);
+        margin: 25px 0;
+    }
 
-        button:hover {
-            background-color: #00FFFF;
-            color: #000;
-            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
-        }
+    /* LUXURY NAVIGATION STYLING (Nieuw) */
+    .luxury-nav-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 30px;
+        align-items: center;
+    }
 
-        hr {
-            border: 0;
-            border-top: 1px solid rgba(0, 240, 255, 0.2);
-            margin: 25px 0;
-        }
+    .luxury-button {
+        text-decoration: none;
+        color: #00f0ff;
+        font-weight: bold;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+        text-align: center;
+        border: 1px solid #00f0ff;
+        border-radius: 6px;
+        background: rgba(0, 240, 255, 0.05);
+        box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+    }
 
-        .logout-link {
-            display: block;
-            text-align: center;
-            margin-top: 25px;
-            color: #ff4d4d;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
+    /* Speciale kleur voor de onderste knop */
+    .luxury-button.highlight {
+        border-color: #ff4d4d;
+        color: #ff4d4d;
+        box-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
+        background: rgba(255, 77, 77, 0.05);
+    }
 
-        .logout-link:hover {
-            text-shadow: 0 0 8px #ff4d4d;
-            text-decoration: underline;
-        }
+    .logout-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #ff4d4d;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-        #statusMessage {
-            text-align: center;
-            margin-bottom: 15px;
-            padding: 12px;
-            border-radius: 4px;
-            display: none;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .error { color: #ff4d4d; border: 1px solid #ff4d4d; background: rgba(255, 77, 77, 0.1); }
-        .success { color: #00ff00; border: 1px solid #00ff00; background: rgba(0, 255, 0, 0.1); }
-        
-        .nav-links {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .nav-links a {
-            color: #00f0ff;
-            text-decoration: none;
-            font-size: 13px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="profile-container">
-    <h2>My Profile</h2>
-    
-    <div id="statusMessage"></div>
-
-    <div class="form-group" style="text-align: center;">
-        <label>Profielfoto</label>
-        <div style="margin-bottom: 15px;">
-            <img id="profilePreview" src="https://via.placeholder.com/100" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid #00f0ff; object-fit: cover; box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);">
-        </div>
-        <input type="file" id="imageUpload" accept="image/*" style="font-size: 12px; border: none; background: transparent; color: #888; cursor: pointer;">
-    </div>
-
+    .nav-links {
+        text-align: center;
+        margin-top: 15px;
+    }
+    .nav-links a {
+        color: #00f0ff;
+        text-decoration: none;
+        font-size: 13px;
+    }
+</style>
+</div>
     <form id="profileForm">
         <div class="form-group">
             <label for="username">Username (Vast)</label>
