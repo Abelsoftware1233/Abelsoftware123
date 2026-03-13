@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -24,33 +23,28 @@ public class UserService {
     }
 
     /**
-     * 1. REGISTRATIE: Registreert een nieuwe gebruiker met password hashing.
+     * 1. REGISTRATIE
      */
     public void registerNewUser(String username, String email, String password) {
         if (username == null || username.length() < 3 || password == null || password.length() < 8) {
-            throw new RuntimeException("Gebruikersnaam moet minimaal 3 tekens zijn en wachtwoord minimaal 8.");
+            throw new RuntimeException("Gebruikersnaam min. 3 tekens, wachtwoord min. 8.");
         }
         
-        // Controleer of de gebruiker al bestaat
         if (userRepository.findByUsername(username).isPresent() || userRepository.findByEmail(email).isPresent()) {
-            throw new RuntimeException("Deze gebruikersnaam of dit e-mailadres is al in gebruik.");
+            throw new RuntimeException("Gebruikersnaam of e-mail al in gebruik.");
         }
-        
-        // Wachtwoord beveiliging
-        String hashedPassword = passwordEncoder.encode(password);
         
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setEmail(email);
-        newUser.setPasswordHash(hashedPassword);
+        newUser.setPasswordHash(passwordEncoder.encode(password));
         newUser.setRole("ROLE_USER"); 
         
         userRepository.save(newUser);
-        System.out.println("LOG: Gebruiker " + username + " opgeslagen in PostgreSQL.");
     }
 
     /**
-     * 2. ALLE GEBRUIKERS OPHALEN (Voor je Admin Tabel)
+     * 2. ALLE GEBRUIKERS OPHALEN
      */
     public List<User> findAllUsers() {
         return userRepository.findAll();
@@ -67,7 +61,7 @@ public class UserService {
     }
 
     /**
-     * 4. PROFIEL OPHALEN
+     * 4. PROFIEL OPHALEN (Inclusief Foto URL)
      */
     public UserProfileDTO getUserProfile(String username) {
         User user = userRepository.findByUsername(username)
@@ -78,13 +72,14 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
+        dto.setProfilePictureUrl(user.getProfilePictureUrl()); // Zorg dat dit in je DTO staat!
         return dto;
     }
 
     /**
-     * 5. PROFIEL BIJWERKEN
+     * 5. PROFIEL BIJWERKEN (Nu met Foto ondersteuning)
      */
-    public void updateUserProfile(String username, UpdateProfileRequest request) {
+    public void updateUserProfile(String username, UpdateProfileRequest request, String photoUrl) {
         User user = userRepository.findByUsername(username)
                                 .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
         
@@ -92,6 +87,12 @@ public class UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
 
+        // Alleen de foto bijwerken als er een nieuwe is geüpload
+        if (photoUrl != null) {
+            user.setProfilePictureUrl(photoUrl);
+        }
+
+        // Wachtwoord alleen bijwerken als het veld is ingevuld
         if (request.getNewPassword() != null && !request.getNewPassword().isEmpty()) {
             if (request.getNewPassword().length() < 8) {
                  throw new RuntimeException("Nieuw wachtwoord moet minimaal 8 tekens lang zijn.");
