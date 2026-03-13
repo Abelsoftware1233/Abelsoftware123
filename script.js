@@ -1,129 +1,236 @@
 /**
- * Echo AI - Unified Profile & Session Script
- * Handelt profielupdates, foto-uploads en database synchronisatie af.
+ * ECHO AI - UNIFIED CORE ENGINE V2.0
+ * Developed for: Echo AI Software Repository
+ * Author: Gemini (AI Collaborator)
+ * Purpose: LocalStorage Database Management & Profile Synchronization
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Toegangscontrole & Variabelen
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const profileForm = document.getElementById('profileForm');
+(function() {
+    'use strict';
 
-    if (!isLoggedIn || !currentUser) {
-        window.location.href = 'login.html';
-        return;
-    }
+    // --- CONFIGURATION & DATABASE KEYS ---
+    const DB_NAME = 'echo_users';
+    const SESSION_KEY = 'currentUser';
+    const LOGIN_STATUS = 'isLoggedIn';
 
-    // 2. Dashboard link tonen/verbergen voor Admins
-    const adminLink = document.getElementById('adminLink');
-    if (adminLink) {
-        adminLink.style.display = (currentUser.role === 'Admin') ? 'block' : 'none';
-    }
+    // --- DOM ELEMENT SELECTORS ---
+    const elements = {
+        profileForm: document.getElementById('profileForm'),
+        profilePreview: document.getElementById('profilePreview'),
+        imageUpload: document.getElementById('imageUpload'),
+        statusMsg: document.getElementById('statusMessage'),
+        usernameField: document.getElementById('username'),
+        emailField: document.getElementById('email'),
+        firstNameField: document.getElementById('firstName'),
+        lastNameField: document.getElementById('lastName'),
+        newPassField: document.getElementById('newPassword'),
+        confirmPassField: document.getElementById('confirmPassword'),
+        adminLink: document.getElementById('adminLink')
+    };
 
-    // 3. Velden vullen met huidige data
-    if (document.getElementById('username')) document.getElementById('username').value = currentUser.username || '';
-    if (document.getElementById('email')) document.getElementById('email').value = currentUser.email || '';
-    if (document.getElementById('firstName')) document.getElementById('firstName').value = currentUser.firstName || '';
-    if (document.getElementById('lastName')) document.getElementById('lastName').value = currentUser.lastName || '';
-    
-    const profilePreview = document.getElementById('profilePreview');
-    if (profilePreview && currentUser.profilePic) {
-        profilePreview.src = currentUser.profilePic;
-    }
-
-    // 4. Foto Preview Logica (FileReader)
-    const imageUpload = document.getElementById('imageUpload');
-    if (imageUpload && profilePreview) {
-        imageUpload.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePreview.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-    // 5. Formulier Opslaan Logica
-    if (profileForm) {
-        profileForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const newEmail = document.getElementById('email').value;
-            const newPass = document.getElementById('newPassword').value;
-            const confirmPass = document.getElementById('confirmPassword').value;
-            
-            // Wachtwoord validatie
-            if (newPass !== "" && newPass !== confirmPass) {
-                showStatus("❌ Wachtwoorden komen niet overeen!", "error");
-                return;
-            }
-
-            // Database ophalen (echo_users)
-            let allUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
-            const userIndex = allUsers.findIndex(u => u.username === currentUser.username);
-
-            if (userIndex !== -1) {
-                // Gegevens bijwerken in de lokale variabele
-                const updatedUser = {
-                    ...allUsers[userIndex],
-                    email: newEmail,
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    profilePic: profilePreview ? profilePreview.src : allUsers[userIndex].profilePic
-                };
-
-                // Alleen wachtwoord updaten als er een nieuw wachtwoord is ingevuld
-                if (newPass !== "") {
-                    updatedUser.password = newPass;
-                }
-
-                // Opslaan in de database (Lijst met alle gebruikers)
-                allUsers[userIndex] = updatedUser;
-                localStorage.setItem('echo_users', JSON.stringify(allUsers));
-
-                // Opslaan in de huidige sessie (Ingelogde gebruiker)
-                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-
-                showStatus("✅ Profiel succesvol bijgewerkt!", "success");
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                // Wachtwoord velden legen
-                if(document.getElementById('newPassword')) document.getElementById('newPassword').value = '';
-                if(document.getElementById('confirmPassword')) document.getElementById('confirmPassword').value = '';
-            } else {
-                showStatus("❌ Fout: Gebruiker niet gevonden in database.", "error");
-            }
-        });
-    }
-});
-
-/**
- * Status meldingen tonen in Neon stijl
- */
-function showStatus(message, type) {
-    const statusMsg = document.getElementById('statusMessage');
-    if (statusMsg) {
-        statusMsg.textContent = message;
-        statusMsg.className = type; // 'success' of 'error'
-        statusMsg.style.display = 'block';
+    /**
+     * INITIALIZATION: Starts the Echo AI Engine logic
+     */
+    async function init() {
+        console.log("🚀 Echo AI Engine: Loading Core Modules...");
         
-        // Verberg melding na 4 seconden
-        setTimeout(() => {
-            statusMsg.style.display = 'none';
-        }, 4000);
-    } else {
-        alert(message);
-    }
-}
+        // Ensure initial database exists
+        if (!localStorage.getItem(DB_NAME)) {
+            localStorage.setItem(DB_NAME, JSON.stringify([]));
+        }
 
-/**
- * Logout functie
- */
-window.logout = function() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
-};
+        const authenticated = checkAccess();
+        if (authenticated) {
+            loadUserData();
+            setupEventListeners();
+        }
+    }
+
+    /**
+     * 1. ACCESS CONTROL & SECURITY
+     */
+    function checkAccess() {
+        const loggedIn = localStorage.getItem(LOGIN_STATUS) === 'true';
+        const user = JSON.parse(localStorage.getItem(SESSION_KEY));
+
+        if (!loggedIn || !user) {
+            console.error("⛔ Access Denied: No active session found.");
+            window.location.href = 'login.html';
+            return false;
+        }
+
+        console.info(`✅ Access Granted: Session active for ${user.username}`);
+        
+        // Handle Admin Visibility
+        if (elements.adminLink) {
+            const isAdmin = user.role === 'Admin' || user.role === 'ROLE_ADMIN';
+            elements.adminLink.style.display = isAdmin ? 'block' : 'none';
+        }
+        return true;
+    }
+
+    /**
+     * 2. DATA BINDING: Filling the UI with stored data
+     */
+    function loadUserData() {
+        const user = JSON.parse(localStorage.getItem(SESSION_KEY));
+        if (!user) return;
+
+        // Populate fields
+        if (elements.usernameField) elements.usernameField.value = user.username || '';
+        if (elements.emailField) elements.emailField.value = user.email || '';
+        if (elements.firstNameField) elements.firstNameField.value = user.firstName || '';
+        if (elements.lastNameField) elements.lastNameField.value = user.lastName || '';
+        
+        // Load Profile Image
+        if (user.profilePic && elements.profilePreview) {
+            elements.profilePreview.src = user.profilePic;
+            console.log("🖼️ Profile image loaded from LocalStorage.");
+        }
+    }
+
+    /**
+     * 3. EVENT REGISTRATION
+     */
+    function setupEventListeners() {
+        // Handle image selection
+        if (elements.imageUpload) {
+            elements.imageUpload.addEventListener('change', processImage);
+        }
+
+        // Handle profile update
+        if (elements.profileForm) {
+            elements.profileForm.addEventListener('submit', handleProfileUpdate);
+        }
+
+        // Expose Logout to Global Scope
+        window.logout = performLogout;
+    }
+
+    /**
+     * 4. IMAGE PROCESSING: Converting file to Base64 String
+     */
+    function processImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Size validation (Max 2.5MB to stay within LocalStorage limits)
+        if (file.size > 2.5 * 1024 * 1024) {
+            displayStatus("❌ Image is too large! Max size is 2.5MB.", "error");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            if (elements.profilePreview) {
+                elements.profilePreview.src = e.target.result;
+                console.log("📸 Image preview updated successfully.");
+            }
+        };
+        reader.onerror = () => console.error("❌ Error reading file.");
+        reader.readAsDataURL(file);
+    }
+
+    /**
+     * 5. PERSISTENCE LOGIC: Saving to the LocalStorage Database
+     */
+    function handleProfileUpdate(event) {
+        event.preventDefault();
+        console.log("💾 Persistence Engine: Starting update...");
+
+        const newPass = elements.newPassField.value;
+        const confirmPass = elements.confirmPassField.value;
+
+        // Logic Validation
+        if (newPass !== "" && newPass !== confirmPass) {
+            displayStatus("❌ Passwords do not match!", "error");
+            return;
+        }
+
+        if (!validateEmail(elements.emailField.value)) {
+            displayStatus("❌ Invalid email format!", "error");
+            return;
+        }
+
+        const currentUser = JSON.parse(localStorage.getItem(SESSION_KEY));
+        
+        // Construct Updated Profile Object
+        const updatedUser = {
+            ...currentUser,
+            email: elements.emailField.value,
+            firstName: elements.firstNameField.value,
+            lastName: elements.lastNameField.value,
+            profilePic: elements.profilePreview.src,
+            updatedAt: new Date().toLocaleString()
+        };
+
+        // Update password only if provided
+        if (newPass !== "") {
+            updatedUser.password = newPass;
+            console.warn("🔑 User password has been updated.");
+        }
+
+        try {
+            // STEP A: Update Current Session
+            localStorage.setItem(SESSION_KEY, JSON.stringify(updatedUser));
+
+            // STEP B: Update Main User Registry
+            syncWithMasterRegistry(updatedUser);
+
+            displayStatus("✅ Profile updated successfully!", "success");
+            
+            // Clean up UI
+            elements.newPassField.value = '';
+            elements.confirmPassField.value = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        } catch (error) {
+            console.error("💾 Storage Exception:", error);
+            displayStatus("❌ Error: Browser storage quota exceeded.", "error");
+        }
+    }
+
+    /**
+     * 6. UTILITY METHODS
+     */
+    function syncWithMasterRegistry(updatedUser) {
+        let allUsers = JSON.parse(localStorage.getItem(DB_NAME)) || [];
+        const index = allUsers.findIndex(u => u.username === updatedUser.username);
+        
+        if (index !== -1) {
+            allUsers[index] = updatedUser;
+            localStorage.setItem(DB_NAME, JSON.stringify(allUsers));
+            console.info("🗄️ Master Registry synchronized.");
+        }
+    }
+
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function displayStatus(message, type) {
+        if (!elements.statusMsg) return;
+
+        elements.statusMsg.textContent = message;
+        elements.statusMsg.className = type; // CSS classes: 'success' or 'error'
+        elements.statusMsg.style.display = 'block';
+        
+        console.log(`[EchoAI-UI] ${type.toUpperCase()}: ${message}`);
+
+        setTimeout(() => {
+            elements.statusMsg.style.display = 'none';
+        }, 5000);
+    }
+
+    function performLogout() {
+        console.log("🚪 Ending session...");
+        localStorage.setItem(LOGIN_STATUS, 'false');
+        localStorage.removeItem(SESSION_KEY);
+        window.location.href = 'login.html';
+    }
+
+    // Initialize Engine
+    init();
+
+})();
