@@ -46,3 +46,18 @@ const PERMANENT_USERS = [
 function getPermanentUsers() {
     return PERMANENT_USERS;
 }
+
+/**
+ * Echo AI - Vaste Database
+ * Versie: 1.0
+ * Eigenaar: Abelsoftware123
+ */
+
+const PERMANENT_USERS = [
+    { id: 1, username: 'Abelsoftware123_Admin', email: 'abelsoftware123@hotmail.nl', role: 'Admin', password: 'admin1501' },
+    { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin', password: 'admin1501' }
+];
+
+function getPermanentUsers() {
+    return PERMANENT_USERS;
+}
