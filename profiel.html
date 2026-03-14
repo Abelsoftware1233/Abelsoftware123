@@ -181,6 +181,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // 1. Check of gebruiker is ingelogd
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const isLoggedIn = localStorage.getItem('isLoggedIn');
 
@@ -189,53 +190,94 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Alleen admin mag dashboard link zien
-    if (currentUser.role !== 'Admin') {
+    // 2. Admin link verbergen indien geen admin
+    if (currentUser.role !== 'Admin' && currentUser.role !== 'ROLE_ADMIN') {
         const adminLink = document.getElementById('adminLink');
         if(adminLink) adminLink.style.display = 'none';
     }
 
-    // Data ophalen
-    const allUsers = getStoredUsers();
+    // 3. Data inladen uit LocalStorage
+    // We halen de meest recente data uit de 'echo_users' lijst
+    const allUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
     let userIndex = allUsers.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
-    let userData = allUsers[userIndex];
+    let userData = allUsers[userIndex] || currentUser; // fallback naar sessie data
 
     if (userData) {
-        document.getElementById('username').value = userData.username;
+        document.getElementById('username').value = userData.username || "";
         document.getElementById('email').value = userData.email || "";
         document.getElementById('firstName').value = userData.firstName || "";
         document.getElementById('lastName').value = userData.lastName || "";
-        if (userData.profilePic) document.getElementById('profilePreview').src = userData.profilePic;
+        if (userData.profilePic) {
+            document.getElementById('profilePreview').src = userData.profilePic;
+        }
     }
 
-    // Foto Upload
+    // 4. Foto Preview functionaliteit
     document.getElementById('imageUpload').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = (event) => document.getElementById('profilePreview').src = event.target.result;
+            reader.onload = function(event) {
+                document.getElementById('profilePreview').src = event.target.result;
+            };
             reader.readAsDataURL(file);
         }
     });
 
-    // Opslaan
-    document.getElementById('profileForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const newPass = document.getElementById('newPassword').value;
-        if (newPass && newPass !== document.getElementById('confirmPassword').value) {
-            return alert("❌ Wachtwoorden komen niet overeen!");
-        }
-
-        allUsers[userIndex].email = document.getElementById('email').value;
-        allUsers[userIndex].firstName = document.getElementById('firstName').value;
-        allUsers[userIndex].lastName = document.getElementById('lastName').value;
-        allUsers[userIndex].profilePic = document.getElementById('profilePreview').src;
-        if (newPass) allUsers[userIndex].password = newPass;
-
-        localStorage.setItem('echo_users', JSON.stringify(allUsers));
-        alert("✅ Profiel succesvol bijgewerkt!");
+    // 5. De Opslaan Functie (Gekoppeld aan het formulier)
+    const profileForm = document.getElementById('profileForm');
+    profileForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // STOP de pagina refresh
+        
+        saveProfileChanges();
     });
 });
+
+// De hoofdfunctie voor het opslaan
+function saveProfileChanges() {
+    console.log("Saving to LocalStorage...");
+    
+    // Data ophalen uit de lijst
+    let allUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    let userIndex = allUsers.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
+
+    if (userIndex === -1) {
+        alert("❌ Fout: Gebruiker niet gevonden in database.");
+        return;
+    }
+
+    // Wachtwoord check
+    const newPass = document.getElementById('newPassword').value;
+    const confirmPass = document.getElementById('confirmPassword').value;
+
+    if (newPass !== "" && newPass !== confirmPass) {
+        alert("❌ Wachtwoorden komen niet overeen!");
+        return;
+    }
+
+    // Update de database array
+    allUsers[userIndex].email = document.getElementById('email').value;
+    allUsers[userIndex].firstName = document.getElementById('firstName').value;
+    allUsers[userIndex].lastName = document.getElementById('lastName').value;
+    allUsers[userIndex].profilePic = document.getElementById('profilePreview').src;
+    
+    if (newPass !== "") {
+        allUsers[userIndex].password = newPass;
+    }
+
+    // Sla de hele lijst weer op
+    localStorage.setItem('echo_users', JSON.stringify(allUsers));
+
+    // BELANGRIJK: Update ook de currentUser sessie zodat andere pagina's de nieuwe info zien
+    localStorage.setItem('currentUser', JSON.stringify(allUsers[userIndex]));
+
+    alert("✅ Profiel succesvol bijgewerkt!");
+    
+    // Optioneel: herlaad de pagina om alles te refreshen
+    window.location.reload();
+}
 
 function logout() {
     localStorage.removeItem('isLoggedIn');
