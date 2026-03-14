@@ -32,3 +32,17 @@ const PERMANENT_USERS = [
 function getPermanentUsers() {
     return PERMANENT_USERS;
 }
+
+/**
+ * Echo AI - Vaste Database
+ * Voeg hier handmatig gebruikers toe die permanent moeten blijven.
+ */
+const PERMANENT_USERS = [
+    { id: 1, username: 'Abelsoftware123_Admin', email: 'abelsoftware123@hotmail.nl', role: 'Admin', password: 'admin1501' },
+    { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin', password: 'admin1501' }
+    // Voeg hier de volgende toe: { id: 3, username: 'Naam', email: '...', password: '...', role: 'User' },
+];
+
+function getPermanentUsers() {
+    return PERMANENT_USERS;
+}
