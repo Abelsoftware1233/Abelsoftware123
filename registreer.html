@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Abelsoftware123</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Jouw Public Key is hier ingevuld
+            emailjs.init("RoeA9BgwLyBeUbv5i");
+        })();
+    </script>
     <style>
         /* Exact jouw originele Neon Theme stijl */
         body {
@@ -153,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const statusMessage = document.getElementById('statusMessage');
 
     if (registrationForm) {
-        registrationForm.addEventListener('submit', function(e) {
+        registrationForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value;
@@ -161,39 +168,55 @@ document.addEventListener('DOMContentLoaded', function() {
             const password = document.getElementById('password').value;
             const passwordConfirm = document.getElementById('password_confirm').value;
 
-            // 1. Controleer of wachtwoorden gelijk zijn
+            // 1. Wachtwoord check
             if (password !== passwordConfirm) {
                 showStatus("❌ Wachtwoorden komen niet overeen!", "error");
                 return;
             }
 
-            // 2. Haal bestaande gebruikers op uit localStorage (of start een nieuwe lijst)
+            // 2. LocalStorage ophalen
             let users = JSON.parse(localStorage.getItem('echo_users')) || [
                 { id: 1, username: 'Abel_Admin', email: 'info@abelsoftware123.com', role: 'Admin' }
             ];
 
-            // 3. Controleer of de gebruiker al bestaat in de lokale lijst
+            // 3. Bestaande gebruiker check
             const userExists = users.some(u => u.username === username || u.email === email);
             if (userExists) {
                 showStatus("❌ Gebruikersnaam of e-mail is al bezet!", "error");
                 return;
             }
 
-            // 4. Maak de nieuwe gebruiker aan
+            // 4. Gebruiker object
             const newUser = {
                 id: users.length + 1,
                 username: username,
                 email: email,
-                password: password, // Let op: dit is onbeveiligde tekst in localStorage
+                password: password, 
                 role: 'User',
                 regDate: new Date().toLocaleDateString()
             };
 
-            // 5. Opslaan in de browser-cache (localStorage)
+            // --- EMAIL NOTIFICATIE ---
+            const templateParams = {
+                username: username,
+                email: email,
+                notes: "Nieuwe registratie voor abelsoftware123@hotmail.com"
+            };
+
+            try {
+                // VERVANG 'HIER_JE_TEMPLATE_ID' DOOR JE EIGEN TEMPLATE ID UIT EMAILJS
+                await emailjs.send('service_uyi3cur', 'HIER_JE_TEMPLATE_ID', templateParams);
+                console.log("Ping verzonden naar admin.");
+            } catch (err) {
+                console.error("EmailJS Fout:", err);
+            }
+            // --------------------------
+
+            // 5. Opslaan
             users.push(newUser);
             localStorage.setItem('echo_users', JSON.stringify(users));
 
-            showStatus("✅ Account aangemaakt in browser-cache! Je wordt doorgestuurd...", "success");
+            showStatus("✅ Account aangemaakt! De admin is op de hoogte gebracht.", "success");
 
             setTimeout(() => {
                 window.location.href = 'login.html';
