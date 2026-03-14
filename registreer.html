@@ -1,243 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Abelsoftware123</title>
     
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() { emailjs.init("RoeA9BgwLyBeUbv5i"); })();
+    </script>
+
     <script src="database.js"></script>
     <script src="admin-script.js"></script>
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            // Jouw Public Key
-            emailjs.init("RoeA9BgwLyBeUbv5i");
-        })();
-    </script>
+
     <style>
-        /* Jouw Signature Neon Theme */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #333333;
-            color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .content-section {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-            padding: 30px;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-        }
-
-        h2 {
-            font-size: 24px;
-            color: #00f0ff;
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
-            margin-top: 0;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #cccccc;
-        }
-
-        input {
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 4px;
-            padding: 12px;
-            margin-bottom: 20px;
-            color: #fff;
-            outline: none;
-            transition: border 0.3s ease;
-        }
-
-        input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-        }
-
-        button {
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
-            border: 2px solid #00FFFF;
-            transition: all 0.3s ease-in-out;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #00FFFF;
-            color: #000;
-            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
-        }
-
-        #statusMessage {
-            text-align: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 4px;
-            display: none;
-            font-size: 14px;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #333; color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .content-section { background-color: #1a1a1a; padding: 30px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); border: 1px solid rgba(0, 240, 255, 0.3); }
+        h2 { font-size: 24px; color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); text-align: center; }
+        form { display: flex; flex-direction: column; }
+        label { margin-bottom: 8px; font-weight: bold; color: #cccccc; }
+        input { background-color: #2a2a2a; border: 1px solid #444; border-radius: 4px; padding: 12px; margin-bottom: 20px; color: #fff; outline: none; }
+        input:focus { border-color: #00f0ff; box-shadow: 0 0 5px rgba(0, 240, 255, 0.5); }
+        button { padding: 12px; border: 2px solid #00FFFF; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00FFFF; transition: 0.3s; }
+        button:hover { background-color: #00FFFF; color: #000; box-shadow: 0 0 20px #00FFFF; }
+        #statusMessage { text-align: center; margin-bottom: 15px; padding: 10px; border-radius: 4px; display: none; font-size: 14px; }
         .error { color: #ff4d4d; border: 1px solid #ff4d4d; background: rgba(255, 77, 77, 0.1); }
         .success { color: #00ff00; border: 1px solid #00ff00; background: rgba(0, 255, 0, 0.1); }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #00f0ff;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        p {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        p a {
-            color: #00f0ff;
-            text-decoration: none;
-        }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #00f0ff; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <section class="content-section">
     <h2>Create Account</h2>
-    
     <div id="statusMessage"></div>
-
     <form id="registrationForm">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Enter username" required>
-        
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="email@example.com" required>
-        
-        <label for="password">Password</label>
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Gebruikersnaam" required>
+        <label>Email</label>
+        <input type="email" id="email" placeholder="email@voorbeeld.com" required>
+        <label>Password</label>
         <input type="password" id="password" placeholder="••••••••" required>
-
-        <label for="password_confirm">Confirm Password</label>
+        <label>Confirm Password</label>
         <input type="password" id="password_confirm" placeholder="••••••••" required>
-
-        <button type="submit" id="submitBtn">Register Now</button>
+        <button type="submit">Register Now</button>
     </form>
- 
-    <p>
-        Already have an account? <a href="login.html">Login here</a>
-    </p>
-
-    <a href="index.html" class="back-link">Return to Home</a>
+    <p style="text-align:center;">Heb je al een account? <a href="login.html" style="color:#00f0ff;">Login hier</a></p>
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const registrationForm = document.getElementById('registrationForm');
-    const statusMessage = document.getElementById('statusMessage');
+document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const status = document.getElementById('statusMessage');
+    const user = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const pass = document.getElementById('password').value;
+    const confirm = document.getElementById('password_confirm').value;
 
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            const passwordConfirm = document.getElementById('password_confirm').value;
-
-            // 1. Wachtwoord check
-            if (password !== passwordConfirm) {
-                showStatus("❌ Wachtwoorden komen niet overeen!", "error");
-                return;
-            }
-
-            // 2. Gebruik getStoredUsers() voor de meest actuele lijst (permanent + local)
-            const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
-
-            // 3. Bestaande gebruiker check
-            const userExists = allUsers.some(u => 
-                u.username.toLowerCase() === username.toLowerCase() || 
-                u.email.toLowerCase() === email.toLowerCase()
-            );
-
-            if (userExists) {
-                showStatus("❌ Gebruikersnaam of e-mail is al bezet!", "error");
-                return;
-            }
-
-            // 4. Gebruiker object maken
-            // Pak de hoogste ID uit de huidige lijst
-            const nextId = allUsers.length > 0 ? Math.max(...allUsers.map(u => u.id)) + 1 : 1;
-            
-            const newUser = {
-                id: nextId,
-                username: username,
-                email: email,
-                password: password, 
-                role: 'User'
-            };
-
-            // --- EMAIL NOTIFICATIE (Ping naar jou) ---
-            const templateParams = {
-                username: username,
-                email: email,
-                notes: "Nieuwe registratie via Echo AI Website"
-            };
-
-            try {
-                await emailjs.send('service_uyi3cur', 'template_ctg1y99', templateParams);
-                console.log("Ping verzonden.");
-            } catch (err) {
-                console.error("EmailJS Error:", err);
-            }
-
-            // 5. Opslaan in LocalStorage (zodat het dashboard het ziet)
-            let localCache = JSON.parse(localStorage.getItem('echo_users')) || [];
-            localCache.push(newUser);
-            localStorage.setItem('echo_users', JSON.stringify(localCache));
-
-            showStatus("✅ Account aangemaakt! Je kunt nu inloggen.", "success");
-
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 2000);
-        });
+    if (user.toLowerCase() === 'admin') {
+        status.textContent = "❌ Naam gereserveerd."; status.className = "error"; status.style.display = "block"; return;
+    }
+    if (pass !== confirm) {
+        status.textContent = "❌ Wachtwoorden ongelijk."; status.className = "error"; status.style.display = "block"; return;
     }
 
-    function showStatus(text, type) {
-        statusMessage.textContent = text;
-        statusMessage.className = type; 
-        statusMessage.style.display = 'block';
-    }
+    // Gebruikers ophalen en toevoegen
+    let users = JSON.parse(localStorage.getItem('echo_users')) || [];
+    users.push({ username: user, email: email, password: pass, role: 'User', id: Date.now() });
+    localStorage.setItem('echo_users', JSON.stringify(users));
+
+    // EmailJS melding
+    await emailjs.send('service_uyi3cur', 'template_ctg1y99', { username: user, email: email });
+
+    status.textContent = "✅ Succes! Ga naar login..."; status.className = "success"; status.style.display = "block";
+    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
 });
 </script>
-
 </body>
 </html>
