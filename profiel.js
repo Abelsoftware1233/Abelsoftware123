@@ -1,104 +1,151 @@
 /**
- * Echo AI - Profile Management System
- * Version: 1.3
- * Integratie met ProfileController.java Backend
+ * Abelsoftware123 - UNIFIED CORE ENGINE V2.0 (LocalStorage Only)
+ * Developed for: profile Software Repository
+ * Author: Abelsoftware123 
+ * Purpose: Pure LocalStorage Database Management
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Laad de huidige gegevens van de ingelogde gebruiker voor de UI
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+(function() {
+    'use strict';
 
-    if (!isLoggedIn || !currentUser) {
-        window.location.href = 'login.html';
-        return;
-    }
+    // --- CONFIGURATIE ---
+    const DB_NAME = 'echo_users';
+    const SESSION_KEY = 'currentUser';
+    const LOGIN_STATUS = 'isLoggedIn';
 
-    // 2. Vul de velden in op de pagina
-    if (document.getElementById('firstName')) {
-        document.getElementById('firstName').value = currentUser.firstName || currentUser.username || "";
-    }
-    if (document.getElementById('lastName')) {
-        document.getElementById('lastName').value = currentUser.lastName || "";
-    }
-    if (document.getElementById('emailAddress')) {
-        document.getElementById('emailAddress').value = currentUser.email || "";
-    }
-});
-
-/**
- * De hoofdfunctie om wijzigingen op te slaan naar de Java Backend
- */
-window.saveProfileChanges = async function() {
-    // 1. Haal de waarden op uit de HTML velden
-    const firstName = document.getElementById('firstName')?.value;
-    const lastName = document.getElementById('lastName')?.value;
-    const email = document.getElementById('emailAddress')?.value;
-    const newPass = document.getElementById('newPassword')?.value;
-    const confirmPass = document.getElementById('confirmPassword')?.value;
-
-    // 2. Validatie: Wachtwoord controleren
-    if (newPass && newPass !== "") {
-        if (newPass !== confirmPass) {
-            alert("❌ Wachtwoorden komen niet overeen!");
-            return;
-        }
-    }
-
-    // 3. Maak het data object (moet matchen met UpdateProfileRequest.java)
-    const updateData = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: newPass || null // Stuur null als er geen nieuw wachtwoord is
+    // --- ELEMENTEN ---
+    const elements = {
+        profileForm: document.getElementById('profileForm'), // Zorg dat je <form id="profileForm"> hebt
+        profilePreview: document.getElementById('profilePreview'),
+        imageUpload: document.getElementById('imageUpload'),
+        statusMsg: document.getElementById('statusMessage'),
+        emailField: document.getElementById('emailAddress') || document.getElementById('email'),
+        firstNameField: document.getElementById('firstName'),
+        lastNameField: document.getElementById('lastName'),
+        newPassField: document.getElementById('newPassword'),
+        confirmPassField: document.getElementById('confirmPassword')
     };
 
-    // 4. Maak FormData aan (nodig voor @RequestPart in de Controller)
-    const formData = new FormData();
-    
-    // Voeg de JSON data toe als een Blob met type application/json
-    formData.append('data', new Blob([JSON.stringify(updateData)], {
-        type: "application/json"
-    }));
+    /**
+     * INITIALISATIE
+     */
+    function init() {
+        console.log("🚀 Echo AI Engine: Loading Local Storage Mode...");
+        
+        const loggedIn = localStorage.getItem(LOGIN_STATUS) === 'true';
+        const user = JSON.parse(localStorage.getItem(SESSION_KEY));
 
-    // Optioneel: Voeg een foto toe als je een input hebt met id 'profilePhoto'
-    const photoInput = document.getElementById('profilePhoto');
-    if (photoInput && photoInput.files[0]) {
-        formData.append('photo', photoInput.files[0]);
-    }
-
-    try {
-        // Toon een melding dat we bezig zijn
-        console.log("Profiel aan het bijwerken via API...");
-
-        // 5. Verstuur naar de backend API
-        const response = await fetch('/api/profile/update', {
-            method: 'POST',
-            body: formData
-            // Let op: GEEN Content-Type header zetten, de browser doet dit zelf voor FormData!
-        });
-
-        if (response.ok) {
-            const result = await response.text();
-            alert("✅ " + result);
-            
-            // 6. Synchroniseer lokale opslag voor het dashboard
-            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            currentUser.firstName = firstName;
-            currentUser.lastName = lastName;
-            currentUser.email = email;
-            if (newPass) currentUser.password = newPass;
-
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
-            // Herlaad de pagina om wijzigingen (zoals naam in sidebar) te tonen
-            window.location.reload();
-        } else {
-            const errorMsg = await response.text();
-            alert("❌ Update mislukt: " + errorMsg);
+        if (!loggedIn || !user) {
+            window.location.href = 'login.html';
+            return;
         }
-    } catch (error) {
-        console.error("Netwerkfout:", error);
-        alert("❌ Kan geen verbinding maken met de server. Is de backend gestart?");
+
+        loadUserData(user);
+        setupEventListeners();
     }
-};
+
+    /**
+     * DATA LADEN IN FORMULIER
+     */
+    function loadUserData(user) {
+        if (elements.emailField) elements.emailField.value = user.email || '';
+        if (elements.firstNameField) elements.firstNameField.value = user.firstName || '';
+        if (elements.lastNameField) elements.lastNameField.value = user.lastName || '';
+        
+        if (user.profilePic && elements.profilePreview) {
+            elements.profilePreview.src = user.profilePic;
+        }
+    }
+
+    /**
+     * EVENT LISTENERS
+     */
+    function setupEventListeners() {
+        // Foto uploaden
+        if (elements.imageUpload) {
+            elements.imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    if (elements.profilePreview) elements.profilePreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Formulier verzenden (De SAVE knop)
+        if (elements.profileForm) {
+            elements.profileForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Voorkom dat de pagina herlaadt voor de save
+                handleProfileUpdate();
+            });
+        }
+
+        // Maak de functie ook globaal beschikbaar voor de onclick="saveProfileChanges()"
+        window.saveProfileChanges = handleProfileUpdate;
+    }
+
+    /**
+     * OPSLAAN LOGICA
+     */
+    function handleProfileUpdate() {
+        console.log("💾 Opslaan naar LocalStorage...");
+
+        const newPass = elements.newPassField.value;
+        const confirmPass = elements.confirmPassField.value;
+
+        // Wachtwoord Check
+        if (newPass !== "" && newPass !== confirmPass) {
+            displayStatus("❌ Wachtwoorden komen niet overeen!", "error");
+            return;
+        }
+
+        let currentUser = JSON.parse(localStorage.getItem(SESSION_KEY));
+        let allUsers = JSON.parse(localStorage.getItem(DB_NAME)) || [];
+
+        // Update het object
+        currentUser.firstName = elements.firstNameField.value;
+        currentUser.lastName = elements.lastNameField.value;
+        currentUser.email = elements.emailField.value;
+        
+        if (elements.profilePreview) {
+            currentUser.profilePic = elements.profilePreview.src;
+        }
+
+        if (newPass !== "") {
+            currentUser.password = newPass;
+        }
+
+        // 1. Update Sessie
+        localStorage.setItem(SESSION_KEY, JSON.stringify(currentUser));
+
+        // 2. Update 'Database' (allUsers)
+        const userIndex = allUsers.findIndex(u => u.username === currentUser.username);
+        if (userIndex !== -1) {
+            allUsers[userIndex] = { ...allUsers[userIndex], ...currentUser };
+            localStorage.setItem(DB_NAME, JSON.stringify(allUsers));
+        }
+
+        displayStatus("✅ Gegevens succesvol bijgewerkt!", "success");
+
+        // Optioneel: herlaad na 1 seconde om resultaat te zien
+        setTimeout(() => {
+            window.location.reload();
+        }, 1200);
+    }
+
+    function displayStatus(message, type) {
+        if (elements.statusMsg) {
+            elements.statusMsg.textContent = message;
+            elements.statusMsg.style.display = 'block';
+            elements.statusMsg.className = type;
+            setTimeout(() => { elements.statusMsg.style.display = 'none'; }, 4000);
+        } else {
+            alert(message);
+        }
+    }
+
+    init();
+})();
