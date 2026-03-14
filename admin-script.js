@@ -206,7 +206,7 @@ function renderUsers(filter = '') {
     const start = (currentPage - 1) * rowsPerPage;
     const paginatedUsers = filteredUsers.slice(start, start + rowsPerPage);
 
-    paginatedUsers.forEach(user => {
+        paginatedUsers.forEach(user => {
         const isOwner = (user.id === 1 || user.id === 2);
         
         tableBody.innerHTML += `
@@ -227,6 +227,7 @@ function renderUsers(filter = '') {
             </tr>
         `;
     });
+
     renderPaginationControls(filteredUsers.length);
 }
 
