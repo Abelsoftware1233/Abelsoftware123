@@ -1,7 +1,7 @@
 /**
  * ECHO AI - UNIFIED CORE ENGINE V2.0
  * Developed for: Echo AI Software Repository
- * Author: Gemini (AI Collaborator)
+ * Author: Abelsoftware123 
  * Purpose: LocalStorage Database Management & Profile Synchronization
  */
 
