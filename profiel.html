@@ -181,7 +181,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Check of gebruiker is ingelogd
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const isLoggedIn = localStorage.getItem('isLoggedIn');
 
@@ -190,98 +189,84 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // 2. Admin link verbergen indien geen admin
+    // Admin check
     if (currentUser.role !== 'Admin' && currentUser.role !== 'ROLE_ADMIN') {
         const adminLink = document.getElementById('adminLink');
         if(adminLink) adminLink.style.display = 'none';
     }
 
-    // 3. Data inladen uit LocalStorage
-    // We halen de meest recente data uit de 'echo_users' lijst
+    // Data inladen
     const allUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
-    let userIndex = allUsers.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
-    let userData = allUsers[userIndex] || currentUser; // fallback naar sessie data
+    // We zoeken op een veilige manier (case-insensitive)
+    const userData = allUsers.find(u => u.username?.toLowerCase() === currentUser.username?.toLowerCase()) || currentUser;
 
-    if (userData) {
-        document.getElementById('username').value = userData.username || "";
-        document.getElementById('email').value = userData.email || "";
-        document.getElementById('firstName').value = userData.firstName || "";
-        document.getElementById('lastName').value = userData.lastName || "";
-        if (userData.profilePic) {
-            document.getElementById('profilePreview').src = userData.profilePic;
-        }
-    }
+    document.getElementById('username').value = userData.username || "";
+    document.getElementById('email').value = userData.email || "";
+    document.getElementById('firstName').value = userData.firstName || "";
+    document.getElementById('lastName').value = userData.lastName || "";
+    if (userData.profilePic) document.getElementById('profilePreview').src = userData.profilePic;
 
-    // 4. Foto Preview functionaliteit
+    // Foto Preview
     document.getElementById('imageUpload').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('profilePreview').src = event.target.result;
-            };
+            reader.onload = (event) => document.getElementById('profilePreview').src = event.target.result;
             reader.readAsDataURL(file);
         }
     });
 
-    // 5. De Opslaan Functie (Gekoppeld aan het formulier)
-    const profileForm = document.getElementById('profileForm');
-    profileForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // STOP de pagina refresh
-        
+    // Formulier submit opvangen
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
         saveProfileChanges();
     });
 });
 
-// De hoofdfunctie voor het opslaan
 function saveProfileChanges() {
-    console.log("Saving to LocalStorage...");
-    
-    // Data ophalen uit de lijst
     let allUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    
-    let userIndex = allUsers.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
 
-    if (userIndex === -1) {
-        alert("❌ Fout: Gebruiker niet gevonden in database.");
-        return;
-    }
+    if (!currentUser) return alert("❌ Geen actieve sessie gevonden.");
 
-    // Wachtwoord check
     const newPass = document.getElementById('newPassword').value;
     const confirmPass = document.getElementById('confirmPassword').value;
 
     if (newPass !== "" && newPass !== confirmPass) {
-        alert("❌ Wachtwoorden komen niet overeen!");
-        return;
+        return alert("❌ Wachtwoorden komen niet overeen!");
     }
 
-    // Update de database array
-    allUsers[userIndex].email = document.getElementById('email').value;
-    allUsers[userIndex].firstName = document.getElementById('firstName').value;
-    allUsers[userIndex].lastName = document.getElementById('lastName').value;
-    allUsers[userIndex].profilePic = document.getElementById('profilePreview').src;
-    
-    if (newPass !== "") {
-        allUsers[userIndex].password = newPass;
+    // Zoek de index van de gebruiker
+    let userIndex = allUsers.findIndex(u => u.username?.toLowerCase() === currentUser.username?.toLowerCase());
+
+    // Maak het nieuwe object
+    const updatedUser = {
+        ...currentUser,
+        email: document.getElementById('email').value,
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        profilePic: document.getElementById('profilePreview').src
+    };
+
+    if (newPass !== "") updatedUser.password = newPass;
+
+    // Als de gebruiker bestaat: update. Anders: toevoegen aan de lijst.
+    if (userIndex !== -1) {
+        allUsers[userIndex] = updatedUser;
+    } else {
+        allUsers.push(updatedUser);
     }
 
-    // Sla de hele lijst weer op
+    // Sla alles op
     localStorage.setItem('echo_users', JSON.stringify(allUsers));
-
-    // BELANGRIJK: Update ook de currentUser sessie zodat andere pagina's de nieuwe info zien
-    localStorage.setItem('currentUser', JSON.stringify(allUsers[userIndex]));
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
 
     alert("✅ Profiel succesvol bijgewerkt!");
-    
-    // Optioneel: herlaad de pagina om alles te refreshen
     window.location.reload();
 }
 
 function logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
+    localStorage.clear(); // Voor de zekerheid alles leegmaken bij logout
     window.location.href = 'login.html';
 }
 </script>
