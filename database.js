@@ -8,7 +8,7 @@ const PERMANENT_USERS = [
         id: 1, 
         username: 'Abelsoftware123_Admin', 
         email: 'abelsoftware123@hotmail.nl', 
-        role: 'Admin', 
+        role: 'admin', 
         password: 'admin1501' 
     },
     { 
