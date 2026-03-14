@@ -1,34 +1,28 @@
 /**
  * Echo AI - Ultimate Admin Management System
- * Version: 2.5 (Fix: Geen Kick-Loop)
+ * Version: 2.7 (Full Integration)
  * Owner: Abelsoftware123
  */
 
-// --- 1. SLIMMERE TOEGANGSCONTROLE (Voorkomt Loops op Login/Registreer) ---
+// --- 1. TOEGANGSCONTROLE (Voorkomt Loops) ---
 function checkAccess() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-    
-    // Alleen controleren als we daadwerkelijk op de admin-pagina zijn
     const isPageAdmin = window.location.pathname.includes('admin.html');
     
     if (isPageAdmin) {
         if (!isLoggedIn || !currentUser) return false;
-        
         const usernameLow = currentUser.username.toLowerCase();
         const roleLow = (currentUser.role || "").toLowerCase();
-        
-        // Check of de gebruiker admin-rechten heeft
-        return (usernameLow === 'abelsoftware123_admin' || usernameLow === 'admin' || roleLow === 'admin');
+        // Geef toegang als de rol Admin is of de naam specifiek admin-gerelateerd is
+        return (usernameLow === 'abelsoftware123' || usernameLow === 'admin' || roleLow === 'admin');
     }
-    
-    return true; // Sta toegang toe op login/registreer pagina's
+    return true;
 }
 
-// Voer de check uit. Als we op de admin pagina zijn en geen recht hebben -> Kick.
 if (!checkAccess()) {
     alert("Toegang geweigerd: Je hebt niet de juiste rechten.");
-    window.location.href = 'login.html'; // Stuur terug naar login bij fout
+    window.location.href = 'login.html';
 }
 
 // Global variables voor paginering
@@ -50,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderUsers(e.target.value.toLowerCase());
         });
     }
-    // Alleen renderen als de tabel bestaat op de huidige pagina
     if (document.getElementById('userTableBody')) {
         renderUsers();
     }
@@ -69,11 +62,12 @@ function getStoredUsers() {
         }
     });
 
-    if (combinedUsers.length <= 2) {
+    // Generator: vul aan tot 500 als de lijst leeg/klein is
+    if (combinedUsers.length <= 5) {
         const vNamen = ["Gerlinde", "Noah", "Gabriel", "Michaël", "Finn", "Levi", "Britney", "Mila", "James", "Yasmina", "Nora", "Hugo", "Jessica", "Tessa", "Evelien", "Luca", "Xavi", "Bibi", "Lotte", "Halim", "Hakim", "Mohammed", "Ali", "Sem", "Sophie", "Bram", "Daan", "Milan", "Zoe"];
         const domains = ["outlook.com", "gmail.com", "hotmail.com", "live.nl", "protonmail.com"];
 
-        for (let i = 3; i <= 500; i++) {
+        for (let i = combinedUsers.length + 1; i <= 500; i++) {
             const v = vNamen[Math.floor(Math.random() * vNamen.length)];
             const d = domains[Math.floor(Math.random() * domains.length)];
             combinedUsers.push({
@@ -89,7 +83,7 @@ function getStoredUsers() {
     return combinedUsers;
 }
 
-// --- 3. MODAL FUNCTIES (ADD & EDIT) ---
+// --- 3. MODAL FUNCTIES ---
 window.openAddUserModal = () => {
     const modal = document.getElementById('addUserModal');
     if (modal) modal.style.display = 'block';
@@ -100,8 +94,7 @@ window.closeAddUserModal = () => {
     if (modal) {
         modal.style.display = 'none';
         ['newUsername', 'newEmail', 'newPassword'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = '';
+            if (document.getElementById(id)) document.getElementById(id).value = '';
         });
     }
 };
@@ -163,23 +156,36 @@ window.resetPassword = function(id) {
         if (index !== -1) {
             users[index].password = newPass;
             localStorage.setItem('echo_users', JSON.stringify(users));
-            alert("Wachtwoord succesvol gewijzigd!");
+            alert("Wachtwoord succesvol gewijzigd naar: " + newPass);
         }
     }
 };
 
 window.deleteUser = function(id) {
+    if (id === 1 || id === 2) return alert("Systeembeveiliging: De eigenaar kan niet verwijderd worden.");
     if (confirm('Gebruiker definitief verwijderen?')) {
-        let users = getStoredUsers().filter(user => user.id !== id);
-        localStorage.setItem('echo_users', JSON.stringify(users));
+        let savedUsers = localStorage.getItem('echo_users');
+        let localUsers = savedUsers ? JSON.parse(savedUsers) : [];
+        localUsers = localUsers.filter(user => user.id !== id);
+        localStorage.setItem('echo_users', JSON.stringify(localUsers));
         renderUsers();
     }
 };
 
-// --- 5. RENDER LOGICA ---
+// --- 5. RENDER & STATS LOGICA ---
 function updateStats(users) {
-    if(document.getElementById('totalUsersCount')) document.getElementById('totalUsersCount').textContent = users.length;
-    if(document.getElementById('adminCount')) document.getElementById('adminCount').textContent = users.filter(u => (u.role || "").toLowerCase() === 'admin').length;
+    if(document.getElementById('totalUsersCount')) {
+        document.getElementById('totalUsersCount').textContent = users.length;
+    }
+    
+    // Telt nu correct alle admins (Vaste database + handmatige admins)
+    const adminCount = users.filter(u => 
+        (u.role || "").toLowerCase() === 'admin' || u.id === 1 || u.id === 2
+    ).length;
+
+    if(document.getElementById('adminCount')) {
+        document.getElementById('adminCount').textContent = adminCount;
+    }
 }
 
 function renderUsers(filter = '') {
@@ -193,25 +199,27 @@ function renderUsers(filter = '') {
         (user.username || "").toLowerCase().includes(filter) || (user.email || "").toLowerCase().includes(filter)
     );
 
+    // Sorteren op ID (Eigenaar ID 1 bovenaan)
+    filteredUsers.sort((a, b) => a.id - b.id);
+
     const start = (currentPage - 1) * rowsPerPage;
     const paginatedUsers = filteredUsers.slice(start, start + rowsPerPage);
 
     paginatedUsers.forEach(user => {
-        const uLow = (user.username || "").toLowerCase();
-        const isProtected = (uLow === 'abelsoftware123_admin' || uLow === 'admin');
+        const isOwner = (user.id === 1 || user.id === 2);
         
         tableBody.innerHTML += `
             <tr>
                 <td>${user.id}</td>
-                <td>${user.username}</td>
+                <td>${user.username} ${isOwner ? '⭐' : ''}</td>
                 <td>${user.email}</td>
                 <td><span class="badge ${(user.role || "User").toLowerCase()}">${user.role}</span></td>
                 <td>
-                    ${!isProtected ? `
+                    ${!isOwner ? `
                         <button class="btn-edit" onclick="openEditModal(${user.id})">Edit</button>
                         <button class="btn-reset" onclick="resetPassword(${user.id})">Reset</button>
                         <button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>
-                    ` : `<span style="color:#888; font-size:11px;">System Protected</span>`}
+                    ` : `<span style="color:#00f0ff; font-weight:bold;">OWNER</span>`}
                 </td>
             </tr>
         `;
@@ -225,6 +233,7 @@ function renderPaginationControls(totalItems) {
     if (!container) return;
     const totalPages = Math.ceil(totalItems / rowsPerPage);
     let html = `<button class="btn-page" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">«</button>`;
+    
     for (let i = 1; i <= totalPages; i++) {
         if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
             html += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
@@ -232,6 +241,7 @@ function renderPaginationControls(totalItems) {
             html += `<span style="color:#00f0ff">...</span>`;
         }
     }
+    
     html += `<button class="btn-page" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">»</button>`;
     container.innerHTML = html;
 }
