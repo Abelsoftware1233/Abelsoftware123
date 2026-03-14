@@ -26,11 +26,32 @@
         /* COMPACTE TABEL (Foto 2 Stijl) */
         table { width: 100%; border-collapse: collapse; margin-top: 25px; }
         th { text-align: left; padding: 10px; border-bottom: 2px solid #00f0ff; color: #00f0ff; text-transform: uppercase; font-size: 13px; }
-        td { padding: 8px 10px; border-bottom: 1px solid #444; font-size: 14px; vertical-align: middle; }
         
-        /* KNOPPEN ONDER ELKAAR */
-        .btn-group { display: flex; flex-direction: column; gap: 4px; width: 80px; }
-        .btn-edit, .btn-delete, .btn-reset { background: none; border: 1px solid; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-size: 11px; text-align: center; }
+        /* Zorgt voor de compacte hoogte van de rijen */
+        td { 
+            padding: 6px 10px !important; 
+            border-bottom: 1px solid #333; 
+            font-size: 14px; 
+            vertical-align: middle; 
+        }
+        
+        /* KNOPPEN ONDER ELKAAR (btn-group) */
+        .btn-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 2px; 
+            width: 70px; 
+        }
+        
+        .btn-edit, .btn-delete, .btn-reset { 
+            background: none; 
+            border: 1px solid; 
+            padding: 2px 5px !important; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-size: 10px !important; 
+            text-align: center; 
+        }
         
         .btn-edit { border-color: #00f0ff; color: #00f0ff; }
         .btn-edit:hover { background: #00f0ff; color: #000; }
@@ -47,6 +68,7 @@
         .pagination { margin-top: 20px; display: flex; justify-content: center; gap: 5px; }
         .btn-page { background: #111; border: 1px solid #00f0ff; color: #00f0ff; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
         .btn-page.active { background: #00f0ff; color: #000; font-weight: bold; }
+        
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
         .modal-input { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; box-sizing: border-box; }
         #userSearch { width: 250px; padding: 8px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; margin-right: 15px; }
@@ -111,7 +133,10 @@
         <input type="text" id="newUsername" class="modal-input" placeholder="Gebruikersnaam">
         <input type="email" id="newEmail" class="modal-input" placeholder="Email">
         <input type="password" id="newPassword" class="modal-input" placeholder="Wachtwoord">
-        <select id="newRole" class="modal-input"><option value="User">User</option><option value="Admin">Admin</option></select>
+        <select id="newRole" class="modal-input">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
         <button onclick="saveNewUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer; font-weight:bold;">Opslaan</button>
         <button onclick="closeAddUserModal()" style="width:100%; background:#444; color:white; padding:10px; border:none; cursor:pointer;">Annuleren</button>
     </div>
@@ -121,9 +146,12 @@
     <div class="card" style="width: 350px; margin: 100px auto;">
         <h3 style="color:#00f0ff;">Bewerken</h3>
         <input type="hidden" id="editUserId">
-        <input type="text" id="editUsername" class="modal-input">
-        <input type="email" id="editEmail" class="modal-input">
-        <select id="editRole" class="modal-input"><option value="User">User</option><option value="Admin">Admin</option></select>
+        <input type="text" id="editUsername" class="modal-input" placeholder="Username">
+        <input type="email" id="editEmail" class="modal-input" placeholder="Email">
+        <select id="editRole" class="modal-input">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
         <button onclick="saveEditUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer; font-weight:bold;">Opslaan</button>
         <button onclick="closeEditModal()" style="width:100%; background:#444; color:white; padding:10px; border:none; cursor:pointer;">Annuleren</button>
     </div>
