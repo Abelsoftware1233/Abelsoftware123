@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,10 @@
     <script src="admin-script.js"></script>
 
     <style>
-        /* Jouw Signature Neon Theme */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            background-color: #333333;
+            background-color: #333;
             color: #f0f0f0;
             display: flex;
             justify-content: center;
@@ -21,178 +20,148 @@
             min-height: 100vh;
         }
 
-        .content-section {
+        .login-card {
             background-color: #1a1a1a;
-            color: #f0f0f0;
-            padding: 30px;
+            padding: 40px;
             width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-        }
-
-        h2 {
-            font-size: 24px;
-            color: #00f0ff;
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
-            margin-top: 0;
-            margin-bottom: 20px;
+            max-width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.4);
             text-align: center;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+        h2 { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); margin-bottom: 25px; }
 
-        label {
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #cccccc;
-        }
-
+        .form-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #ccc; font-size: 14px; }
+        
         input {
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 4px;
+            width: 100%;
             padding: 12px;
-            margin-bottom: 20px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 5px;
             color: #fff;
             outline: none;
-            transition: border 0.3s ease;
+            box-sizing: border-box;
         }
 
-        input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-        }
+        input:focus { border-color: #00f0ff; box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
 
         button {
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 2px solid #00f0ff;
+            color: #00f0ff;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
-            border: 2px solid #00FFFF;
-            transition: all 0.3s ease-in-out;
+            transition: 0.3s;
             margin-top: 10px;
+            border-radius: 5px;
         }
 
-        button:hover {
-            background-color: #00FFFF;
-            color: #000;
-            box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
-        }
+        button:hover { background: #00f0ff; color: #000; box-shadow: 0 0 15px #00f0ff; }
 
-        .error-msg {
+        .error-box {
             color: #ff4d4d;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 14px;
+            background: rgba(255, 77, 77, 0.1);
             border: 1px solid #ff4d4d;
             padding: 10px;
-            border-radius: 4px;
-            background: rgba(255, 77, 77, 0.1);
+            margin-bottom: 20px;
+            border-radius: 5px;
             display: none;
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #00f0ff;
-            text-decoration: none;
             font-size: 14px;
         }
+
+        .footer-links { margin-top: 20px; font-size: 13px; color: #888; }
+        .footer-links a { color: #00f0ff; text-decoration: none; }
     </style>
 </head>
 <body>
 
-<section class="content-section">
-    <h2>🔒 Log In</h2>
+<div class="login-card">
+    <h2>🔒 Echo AI Login</h2>
     
-    <div id="loginError" class="error-msg">❌ Onjuiste gebruikersnaam of wachtwoord</div>
+    <div id="loginError" class="error-box">❌ Gebruikersnaam of wachtwoord onjuist</div>
 
     <form id="loginForm">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Enter username" required>
+        <div class="form-group">
+            <label>Gebruikersnaam</label>
+            <input type="text" id="username" placeholder="Gebruikersnaam" required>
+        </div>
         
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="••••••••" required>
+        <div class="form-group">
+            <label>Wachtwoord</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+        </div>
         
-        <button type="submit">Log In</button>
-        
-        <p style="text-align: center; margin-top: 15px; font-size: 14px;">
-            Don't have an account? <a href="registreer.html" style="color: #00f0ff; text-decoration: none;">Register here</a>
-        </p>
+        <button type="submit">Inloggen</button>
     </form>
 
-    <a href="index.html" class="back-link">Return to Home</a>
-</section>
+    <div class="footer-links">
+        Nog geen account? <a href="registreer.html">Registreer hier</a>
+    </div>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Wis eventuele foute sessies bij het laden van de loginpagina
-    // Dit voorkomt dat je direct "Toegang geweigerd" krijgt als je hier komt.
+    // RESET: Wis oude sessies zodra de login pagina laadt. 
+    // Dit stopt de "Toegang geweigerd" pop-up loop.
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
 
     const loginForm = document.getElementById('loginForm');
-    const errorDiv = document.getElementById('loginError');
+    const errorBox = document.getElementById('loginError');
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            errorDiv.style.display = 'none'; // Reset error message
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        errorBox.style.display = 'none';
 
-            const usernameInput = document.getElementById('username').value.trim();
-            const passwordInput = document.getElementById('password').value;
+        const userInp = document.getElementById('username').value.trim();
+        const passInp = document.getElementById('password').value;
 
-            // --- DE LOGIN LOGICA ---
+        // --- 1. DE MASTER ADMIN LOGIN (Hardcoded) ---
+        // Je hoeft voor deze GEEN account te maken in de database.
+        if (userInp === "admin" && passInp === "admin1501") {
+            const adminSession = {
+                username: "System Admin",
+                role: "Admin"
+            };
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentUser', JSON.stringify(adminSession));
+            window.location.href = 'admin.html';
+            return; // Stop de rest van de functie
+        }
 
-            // A. Noodtoegang / Hardcoded Admin Check
-            const isAdminFallback = (usernameInput === "Abel_Admin" && passwordInput === "Welkom01") || 
-                                    (usernameInput === "admin" && passwordInput === "admin1501");
+        // --- 2. REGULIERE GEBRUIKERS CHECK ---
+        // Zoek in de database die je via admin-script.js / database.js hebt geladen
+        const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
+        const foundUser = allUsers.find(u => 
+            u.username.toLowerCase() === userInp.toLowerCase() && 
+            u.password === passInp
+        );
 
-            // B. Database Check (Haalt gebruikers uit database.js + localStorage)
-            // We zorgen dat getStoredUsers altijd een array teruggeeft
-            const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
-            const foundUser = allUsers.find(u => 
-                u.username.toLowerCase() === usernameInput.toLowerCase() && 
-                u.password === passwordInput
-            );
+        if (foundUser) {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentUser', JSON.stringify({
+                username: foundUser.username,
+                role: foundUser.role
+            }));
 
-            if (isAdminFallback || foundUser) {
-                // Sessie instellen
-                localStorage.setItem('isLoggedIn', 'true');
-                
-                // Bepaal de definitieve data (geef altijd rol 'Admin' aan de fallbacks)
-                let sessionUser;
-                if (isAdminFallback) {
-                    sessionUser = { username: usernameInput, role: 'Admin' };
-                } else {
-                    sessionUser = { username: foundUser.username, role: foundUser.role };
-                }
-                
-                localStorage.setItem('currentUser', JSON.stringify(sessionUser));
-
-                // Routing op basis van rol
-                if (sessionUser.role === 'Admin') {
-                    window.location.href = 'admin.html';
-                } else {
-                    window.location.href = 'profiel.html';
-                }
+            // Stuur door op basis van rol
+            if (foundUser.role === 'Admin') {
+                window.location.href = 'admin.html';
             } else {
-                // Toon error bij foutieve inlog
-                errorDiv.style.display = 'block';
+                window.location.href = 'profiel.html';
             }
-        });
-    }
+        } else {
+            // Toon foutmelding
+            errorBox.style.display = 'block';
+        }
+    });
 });
 </script>
 
