@@ -4,166 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Abelsoftware123</title>
-    
-    <script src="database.js"></script>
-    <script src="admin-script.js"></script>
-
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background-color: #333;
-            color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .login-card {
-            background-color: #1a1a1a;
-            padding: 40px;
-            width: 100%;
-            max-width: 380px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            text-align: center;
-        }
-
-        h2 { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); margin-bottom: 25px; }
-
-        .form-group { text-align: left; margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #ccc; font-size: 14px; }
-        
-        input {
-            width: 100%;
-            padding: 12px;
-            background: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 5px;
-            color: #fff;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        input:focus { border-color: #00f0ff; box-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background: transparent;
-            border: 2px solid #00f0ff;
-            color: #00f0ff;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-
-        button:hover { background: #00f0ff; color: #000; box-shadow: 0 0 15px #00f0ff; }
-
-        .error-box {
-            color: #ff4d4d;
-            background: rgba(255, 77, 77, 0.1);
-            border: 1px solid #ff4d4d;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            display: none;
-            font-size: 14px;
-        }
-
-        .footer-links { margin-top: 20px; font-size: 13px; color: #888; }
-        .footer-links a { color: #00f0ff; text-decoration: none; }
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #333; color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .content-section { background-color: #1a1a1a; padding: 30px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); border: 1px solid rgba(0, 240, 255, 0.3); }
+        h2 { font-size: 24px; color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); text-align: center; }
+        form { display: flex; flex-direction: column; }
+        label { margin-bottom: 8px; font-weight: bold; color: #cccccc; }
+        input { background-color: #2a2a2a; border: 1px solid #444; border-radius: 4px; padding: 12px; margin-bottom: 20px; color: #fff; outline: none; }
+        button { padding: 12px; border: 2px solid #00FFFF; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00FFFF; transition: 0.3s; }
+        button:hover { background-color: #00FFFF; color: #000; box-shadow: 0 0 20px #00FFFF; }
+        .error-msg { color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; margin-bottom: 15px; display: none; text-align: center; background: rgba(255, 77, 77, 0.1); }
     </style>
 </head>
 <body>
 
-<div class="login-card">
-    <h2>🔒 Echo AI Login</h2>
-    
-    <div id="loginError" class="error-box">❌ Gebruikersnaam of wachtwoord onjuist</div>
-
+<section class="content-section">
+    <h2>🔒 Log In</h2>
+    <div id="loginError" class="error-msg">❌ Gebruikersnaam of wachtwoord onjuist</div>
     <form id="loginForm">
-        <div class="form-group">
-            <label>Gebruikersnaam</label>
-            <input type="text" id="username" placeholder="Gebruikersnaam" required>
-        </div>
-        
-        <div class="form-group">
-            <label>Wachtwoord</label>
-            <input type="password" id="password" placeholder="••••••••" required>
-        </div>
-        
-        <button type="submit">Inloggen</button>
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+        <label>Password</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+        <button type="submit">Log In</button>
     </form>
-
-    <div class="footer-links">
-        Nog geen account? <a href="registreer.html">Registreer hier</a>
-    </div>
-</div>
+    <p style="text-align:center;">Geen account? <a href="registreer.html" style="color:#00f0ff;">Registreer hier</a></p>
+</section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // RESET: Wis oude sessies zodra de login pagina laadt. 
-    // Dit stopt de "Toegang geweigerd" pop-up loop.
+    // STOP DE LOOP: Wis alle oude sessies direct bij het openen van de login
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
 
-    const loginForm = document.getElementById('loginForm');
-    const errorBox = document.getElementById('loginError');
-
-    loginForm.addEventListener('submit', function(e) {
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        errorBox.style.display = 'none';
-
         const userInp = document.getElementById('username').value.trim();
         const passInp = document.getElementById('password').value;
 
-        // --- 1. DE MASTER ADMIN LOGIN (Hardcoded) ---
-        // Je hoeft voor deze GEEN account te maken in de database.
+        // 1. MASTER LOGIN (admin / admin1501)
         if (userInp === "admin" && passInp === "admin1501") {
-            const adminSession = {
-                username: "System Admin",
-                role: "Admin"
-            };
             localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', JSON.stringify(adminSession));
+            localStorage.setItem('currentUser', JSON.stringify({username: "Admin", role: "Admin"}));
             window.location.href = 'admin.html';
-            return; // Stop de rest van de functie
+            return;
         }
 
-        // --- 2. REGULIERE GEBRUIKERS CHECK ---
-        // Zoek in de database die je via admin-script.js / database.js hebt geladen
-        const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
-        const foundUser = allUsers.find(u => 
-            u.username.toLowerCase() === userInp.toLowerCase() && 
-            u.password === passInp
-        );
+        // 2. DATABASE CHECK
+        const users = JSON.parse(localStorage.getItem('echo_users')) || [];
+        const found = users.find(u => u.username.toLowerCase() === userInp.toLowerCase() && u.password === passInp);
 
-        if (foundUser) {
+        if (found) {
             localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', JSON.stringify({
-                username: foundUser.username,
-                role: foundUser.role
-            }));
-
-            // Stuur door op basis van rol
-            if (foundUser.role === 'Admin') {
-                window.location.href = 'admin.html';
-            } else {
-                window.location.href = 'profiel.html';
-            }
+            localStorage.setItem('currentUser', JSON.stringify({username: found.username, role: found.role}));
+            window.location.href = (found.role === 'Admin') ? 'admin.html' : 'profiel.html';
         } else {
-            // Toon foutmelding
-            errorBox.style.display = 'block';
+            document.getElementById('loginError').style.display = 'block';
         }
     });
-});
 </script>
-
 </body>
 </html>
