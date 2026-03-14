@@ -73,7 +73,7 @@
         }
         
         if (pass !== confirm) {
-            status.textContent = "❌ Wachtwoorden ongelijk."; 
+            status.textContent = "❌ Password Not The Same."; 
             status.className = "error"; 
             status.style.display = "block"; 
             return;
@@ -84,7 +84,7 @@
         const exists = allUsers.some(u => u.username.toLowerCase() === user.toLowerCase() || u.email.toLowerCase() === email.toLowerCase());
 
         if (exists) {
-            status.textContent = "❌ Gebruikersnaam of e-mail al in gebruik."; 
+            status.textContent = "❌ Username or e-mail already exists."; 
             status.className = "error"; 
             status.style.display = "block"; 
             return;
@@ -112,7 +112,7 @@
             console.log("Email notificatie kon niet verzonden worden.");
         }
 
-        status.textContent = "✅ Succes! Je wordt doorgestuurd naar login..."; 
+        status.textContent = "✅ Succes! You will send to login..."; 
         status.className = "success"; 
         status.style.display = "block";
 
