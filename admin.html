@@ -11,16 +11,16 @@
     <style>
         /* Jouw Signature Neon Theme */
         body { font-family: Arial, sans-serif; margin: 0; background-color: #1a1a1a; color: #f0f0f0; display: flex; min-height: 100vh; }
-        .sidebar { width: 260px; background-color: #111; border-right: 1px solid rgba(0, 240, 255, 0.3); padding: 30px 20px; display: flex; flex-direction: column; box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5); }
+        .sidebar { width: 260px; background-color: #111; border-right: 1px solid rgba(0, 240, 255, 0.3); padding: 30px 20px; display: flex; flex-direction: column; box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5); position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
         .sidebar h2 { font-size: 22px; color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.7); margin-bottom: 30px; text-align: center; }
         .sidebar hr { border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin: 20px 0; }
         .sidebar a { color: #cccccc; text-decoration: none; padding: 12px; border-radius: 4px; transition: 0.3s; margin-bottom: 10px; display: block; }
         .sidebar a:hover { color: #00f0ff; background: rgba(0, 240, 255, 0.1); }
-        .main-content { flex-grow: 1; padding: 40px; background-color: #1a1a1a; }
+        .main-content { flex-grow: 1; padding: 40px; background-color: #1a1a1a; overflow-y: auto; }
         .stats-container { display: flex; gap: 20px; margin-bottom: 25px; }
         .stat-card { background: #222; padding: 15px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.2); flex: 1; text-align: center; }
         .stat-value { display: block; font-size: 24px; color: #00f0ff; font-weight: bold; }
-        .card { background-color: #222; padding: 30px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.3); box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); }
+        .card { background-color: #222; padding: 30px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.3); box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); margin-bottom: 20px; }
         h2 { color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); }
         table { width: 100%; border-collapse: collapse; margin-top: 25px; }
         th { text-align: left; padding: 15px; border-bottom: 2px solid #00f0ff; color: #00f0ff; text-transform: uppercase; font-size: 13px; }
@@ -36,27 +36,31 @@
         .btn-reset { background: none; border: 1px solid #ffa500; color: #ffa500; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin-right: 5px; }
         .btn-reset:hover { background: #ffa500; color: white; }
 
-        .logout-btn { margin-top: auto; color: #ff4d4d !important; border: 1px solid #ff4d4d; text-align: center; padding: 10px; border-radius: 4px; cursor: pointer; }
+        .logout-btn { margin-top: auto; color: #ff4d4d !important; border: 1px solid #ff4d4d; text-align: center; padding: 10px; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .logout-btn:hover { background: #ff4d4d; color: white !important; }
         
-        /* Paginering Styling */
         .pagination { margin-top: 20px; display: flex; justify-content: center; gap: 5px; }
         .btn-page { background: #111; border: 1px solid #00f0ff; color: #00f0ff; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
         .btn-page.active { background: #00f0ff; color: #000; font-weight: bold; }
         .btn-page:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        /* Modal styling */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-        .modal-input { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; box-sizing: border-box; }
+        .modal-input { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; box-sizing: border-box; outline: none; }
         
-        /* Zoekbalk styling */
-        #userSearch { width: 250px; padding: 8px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; margin-right: 15px; }
+        #userSearch { width: 250px; padding: 8px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; margin-right: 15px; outline: none; }
+
+        /* Log Section Styling */
+        .log-container { max-height: 250px; overflow-y: auto; background: #111; padding: 10px; border-radius: 4px; border: 1px solid #333; }
+        .log-entry { padding: 8px; border-bottom: 1px solid #222; font-family: 'Courier New', monospace; font-size: 13px; }
+        .log-timestamp { color: #888; margin-right: 10px; }
+        .log-admin { color: #00f0ff; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
     <h2>Abel Admin</h2>
-    <p style="font-size: 14px; color: #888;">Ingelogd als: <br><span id="adminName" style="color: #00f0ff; font-weight: bold;">...</span></p>
+    <p style="font-size: 14px; color: #888;">Ingelogd als: <br><span id="adminName" style="color: #00f0ff; font-weight: bold;">Laden...</span></p>
     <hr>
     <a href="index.html">🏠 Home Dashboard</a>
     <a href="profiel.html">👤 My Profile</a>
@@ -94,6 +98,15 @@
         </table>
 
         <div id="pagination" class="pagination"></div>
+    </div>
+
+    <div class="card" style="border-color: rgba(0, 240, 255, 0.1);">
+        <h3 style="color: #00f0ff; margin-top: 0; display: flex; align-items: center; gap: 10px;">
+            <span>📜 Systeem Activiteit</span>
+        </h3>
+        <div id="logTableBody" class="log-container">
+            <i style="color: #666; padding: 10px; display: block;">Laden van activiteiten...</i>
+        </div>
     </div>
 </div>
 
