@@ -1,23 +1,34 @@
 /**
  * Echo AI - Ultimate Admin Management System
- * Version: 2.4 (Database Integrated)
+ * Version: 2.5 (Fix: Geen Kick-Loop)
  * Owner: Abelsoftware123
  */
 
-// --- 1. STRIKTE TOEGANGSCONTROLE ---
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const isLoggedIn = localStorage.getItem('isLoggedIn');
-
+// --- 1. SLIMMERE TOEGANGSCONTROLE (Voorkomt Loops op Login/Registreer) ---
 function checkAccess() {
-    if (!isLoggedIn || !currentUser) return false;
-    const usernameLow = currentUser.username.toLowerCase();
-    const roleLow = (currentUser.role || "").toLowerCase();
-    return (usernameLow === 'abelsoftware123_admin' || usernameLow === 'admin' || roleLow === 'admin');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    
+    // Alleen controleren als we daadwerkelijk op de admin-pagina zijn
+    const isPageAdmin = window.location.pathname.includes('admin.html');
+    
+    if (isPageAdmin) {
+        if (!isLoggedIn || !currentUser) return false;
+        
+        const usernameLow = currentUser.username.toLowerCase();
+        const roleLow = (currentUser.role || "").toLowerCase();
+        
+        // Check of de gebruiker admin-rechten heeft
+        return (usernameLow === 'abelsoftware123_admin' || usernameLow === 'admin' || roleLow === 'admin');
+    }
+    
+    return true; // Sta toegang toe op login/registreer pagina's
 }
 
+// Voer de check uit. Als we op de admin pagina zijn en geen recht hebben -> Kick.
 if (!checkAccess()) {
     alert("Toegang geweigerd: Je hebt niet de juiste rechten.");
-    window.location.href = 'profiel.html';
+    window.location.href = 'login.html'; // Stuur terug naar login bij fout
 }
 
 // Global variables voor paginering
@@ -25,8 +36,12 @@ let currentPage = 1;
 const rowsPerPage = 10;
 
 document.addEventListener('DOMContentLoaded', function() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const adminNameElement = document.getElementById('adminName');
-    if (adminNameElement) adminNameElement.textContent = currentUser.username;
+    
+    if (adminNameElement && currentUser) {
+        adminNameElement.textContent = currentUser.username;
+    }
 
     const searchInput = document.getElementById('userSearch');
     if (searchInput) {
@@ -35,19 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
             renderUsers(e.target.value.toLowerCase());
         });
     }
-    renderUsers();
+    // Alleen renderen als de tabel bestaat op de huidige pagina
+    if (document.getElementById('userTableBody')) {
+        renderUsers();
+    }
 });
 
 // --- 2. DATABASE LOGICA (PERMANENT + LOCAL + GENERATOR) ---
 function getStoredUsers() {
-    // A. Haal vaste gebruikers uit database.js
     const permanentUsers = (typeof getPermanentUsers === 'function') ? getPermanentUsers() : [];
-
-    // B. Haal cache uit localStorage
     let savedUsers = localStorage.getItem('echo_users');
     let localUsers = savedUsers ? JSON.parse(savedUsers) : [];
 
-    // C. Samenvoegen (voorkom dubbelingen op username)
     let combinedUsers = [...permanentUsers];
     localUsers.forEach(lUser => {
         if (!combinedUsers.some(pUser => pUser.username.toLowerCase() === lUser.username.toLowerCase())) {
@@ -55,7 +69,6 @@ function getStoredUsers() {
         }
     });
 
-    // D. Generator: Als de lijst leeg is (of alleen admins bevat), vul aan tot 500
     if (combinedUsers.length <= 2) {
         const vNamen = ["Gerlinde", "Noah", "Gabriel", "Michaël", "Finn", "Levi", "Britney", "Mila", "James", "Yasmina", "Nora", "Hugo", "Jessica", "Tessa", "Evelien", "Luca", "Xavi", "Bibi", "Lotte", "Halim", "Hakim", "Mohammed", "Ali", "Sem", "Sophie", "Bram", "Daan", "Milan", "Zoe"];
         const domains = ["outlook.com", "gmail.com", "hotmail.com", "live.nl", "protonmail.com"];
@@ -77,10 +90,20 @@ function getStoredUsers() {
 }
 
 // --- 3. MODAL FUNCTIES (ADD & EDIT) ---
-window.openAddUserModal = () => document.getElementById('addUserModal').style.display = 'block';
+window.openAddUserModal = () => {
+    const modal = document.getElementById('addUserModal');
+    if (modal) modal.style.display = 'block';
+};
+
 window.closeAddUserModal = () => {
-    document.getElementById('addUserModal').style.display = 'none';
-    ['newUsername', 'newEmail', 'newPassword'].forEach(id => document.getElementById(id).value = '');
+    const modal = document.getElementById('addUserModal');
+    if (modal) {
+        modal.style.display = 'none';
+        ['newUsername', 'newEmail', 'newPassword'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+        });
+    }
 };
 
 window.openEditModal = (id) => {
@@ -95,7 +118,10 @@ window.openEditModal = (id) => {
     }
 };
 
-window.closeEditModal = () => document.getElementById('editUserModal').style.display = 'none';
+window.closeEditModal = () => {
+    const modal = document.getElementById('editUserModal');
+    if (modal) modal.style.display = 'none';
+};
 
 // --- 4. CORE ACTIES ---
 window.saveNewUser = function() {
@@ -153,7 +179,7 @@ window.deleteUser = function(id) {
 // --- 5. RENDER LOGICA ---
 function updateStats(users) {
     if(document.getElementById('totalUsersCount')) document.getElementById('totalUsersCount').textContent = users.length;
-    if(document.getElementById('adminCount')) document.getElementById('adminCount').textContent = users.filter(u => u.role.toLowerCase() === 'admin').length;
+    if(document.getElementById('adminCount')) document.getElementById('adminCount').textContent = users.filter(u => (u.role || "").toLowerCase() === 'admin').length;
 }
 
 function renderUsers(filter = '') {
@@ -164,14 +190,14 @@ function renderUsers(filter = '') {
     tableBody.innerHTML = ''; 
 
     const filteredUsers = users.filter(user => 
-        user.username.toLowerCase().includes(filter) || user.email.toLowerCase().includes(filter)
+        (user.username || "").toLowerCase().includes(filter) || (user.email || "").toLowerCase().includes(filter)
     );
 
     const start = (currentPage - 1) * rowsPerPage;
     const paginatedUsers = filteredUsers.slice(start, start + rowsPerPage);
 
     paginatedUsers.forEach(user => {
-        const uLow = user.username.toLowerCase();
+        const uLow = (user.username || "").toLowerCase();
         const isProtected = (uLow === 'abelsoftware123_admin' || uLow === 'admin');
         
         tableBody.innerHTML += `
@@ -179,7 +205,7 @@ function renderUsers(filter = '') {
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.email}</td>
-                <td><span class="badge ${user.role.toLowerCase()}">${user.role}</span></td>
+                <td><span class="badge ${(user.role || "User").toLowerCase()}">${user.role}</span></td>
                 <td>
                     ${!isProtected ? `
                         <button class="btn-edit" onclick="openEditModal(${user.id})">Edit</button>
