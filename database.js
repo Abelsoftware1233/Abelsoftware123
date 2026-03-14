@@ -15,7 +15,7 @@ const PERMANENT_USERS = [
         id: 2, 
         username: 'admin', 
         email: 'info@abelsoftware.nl', 
-        role: 'Admin', 
+        role: 'admin', 
         password: 'admin1501' 
     },
     // --- VOEG HIERONDER NIEUWE GEBRUIKERS TOE UIT JE MAIL ---
