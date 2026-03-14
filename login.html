@@ -137,43 +137,58 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // 1. Wis eventuele foute sessies bij het laden van de loginpagina
+    // Dit voorkomt dat je direct "Toegang geweigerd" krijgt als je hier komt.
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('currentUser');
+
     const loginForm = document.getElementById('loginForm');
     const errorDiv = document.getElementById('loginError');
 
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault(); 
+            errorDiv.style.display = 'none'; // Reset error message
 
-            const usernameInput = document.getElementById('username').value;
+            const usernameInput = document.getElementById('username').value.trim();
             const passwordInput = document.getElementById('password').value;
 
-            // 1. Check in de gecombineerde database van admin-script.js
-            // Deze functie haalt nu permanent + local + generator op
-            const allUsers = getStoredUsers();
+            // --- DE LOGIN LOGICA ---
+
+            // A. Noodtoegang / Hardcoded Admin Check
+            const isAdminFallback = (usernameInput === "Abel_Admin" && passwordInput === "Welkom01") || 
+                                    (usernameInput === "admin" && passwordInput === "admin1501");
+
+            // B. Database Check (Haalt gebruikers uit database.js + localStorage)
+            // We zorgen dat getStoredUsers altijd een array teruggeeft
+            const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
             const foundUser = allUsers.find(u => 
                 u.username.toLowerCase() === usernameInput.toLowerCase() && 
                 u.password === passwordInput
             );
 
-            // 2. Extra check voor de hoofd-admin (fallback)
-            const isAdminFallback = (usernameInput === "admin" && passwordInput === "admin1501");
-
-            if (foundUser || isAdminFallback) {
-                // Sessie opslaan
+            if (isAdminFallback || foundUser) {
+                // Sessie instellen
                 localStorage.setItem('isLoggedIn', 'true');
                 
-                const finalUser = foundUser || { username: 'admin', role: 'Admin' };
+                // Bepaal de definitieve data (geef altijd rol 'Admin' aan de fallbacks)
+                let sessionUser;
+                if (isAdminFallback) {
+                    sessionUser = { username: usernameInput, role: 'Admin' };
+                } else {
+                    sessionUser = { username: foundUser.username, role: foundUser.role };
+                }
                 
-                const userData = {
-                    username: finalUser.username,
-                    role: finalUser.role
-                };
-                localStorage.setItem('currentUser', JSON.stringify(userData));
+                localStorage.setItem('currentUser', JSON.stringify(sessionUser));
 
-                // Doorsturen naar dashboard
-                window.location.href = 'admin.html';
+                // Routing op basis van rol
+                if (sessionUser.role === 'Admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'profiel.html';
+                }
             } else {
-                // Toon error
+                // Toon error bij foutieve inlog
                 errorDiv.style.display = 'block';
             }
         });
