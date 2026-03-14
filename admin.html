@@ -9,9 +9,9 @@
     <script src="admin-script.js"></script>
 
     <style>
-        /* Jouw Signature Neon Theme */
+        /* Jouw Signature Neon Theme - Hersteld & Compact */
         body { font-family: Arial, sans-serif; margin: 0; background-color: #1a1a1a; color: #f0f0f0; display: flex; min-height: 100vh; }
-        .sidebar { width: 260px; background-color: #111; border-right: 1px solid rgba(0, 240, 255, 0.3); padding: 30px 20px; display: flex; flex-direction: column; box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5); }
+        .sidebar { width: 260px; background-color: #111; border-right: 1px solid rgba(0, 240, 255, 0.3); padding: 30px 20px; display: flex; flex-direction: column; box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5); position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
         .sidebar h2 { font-size: 22px; color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.7); margin-bottom: 30px; text-align: center; }
         .sidebar hr { border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin: 20px 0; }
         .sidebar a { color: #cccccc; text-decoration: none; padding: 12px; border-radius: 4px; transition: 0.3s; margin-bottom: 10px; display: block; }
@@ -22,34 +22,38 @@
         .stat-value { display: block; font-size: 24px; color: #00f0ff; font-weight: bold; }
         .card { background-color: #222; padding: 30px; border-radius: 8px; border: 1px solid rgba(0, 240, 255, 0.3); box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); }
         h2 { color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); }
+
+        /* COMPACTE TABEL (Foto 2 Stijl) */
         table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th { text-align: left; padding: 15px; border-bottom: 2px solid #00f0ff; color: #00f0ff; text-transform: uppercase; font-size: 13px; }
-        td { padding: 15px; border-bottom: 1px solid #444; font-size: 14px; }
+        th { text-align: left; padding: 10px; border-bottom: 2px solid #00f0ff; color: #00f0ff; text-transform: uppercase; font-size: 13px; }
+        td { padding: 8px 10px; border-bottom: 1px solid #444; font-size: 14px; vertical-align: middle; }
+        
+        /* KNOPPEN ONDER ELKAAR */
+        .btn-group { display: flex; flex-direction: column; gap: 4px; width: 80px; }
+        .btn-edit, .btn-delete, .btn-reset { background: none; border: 1px solid; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-size: 11px; text-align: center; }
+        
+        .btn-edit { border-color: #00f0ff; color: #00f0ff; }
+        .btn-edit:hover { background: #00f0ff; color: #000; }
+        .btn-reset { border-color: #ffa500; color: #ffa500; }
+        .btn-reset:hover { background: #ffa500; color: white; }
+        .btn-delete { border-color: #ff4d4d; color: #ff4d4d; }
+        .btn-delete:hover { background: #ff4d4d; color: white; }
+
         .badge { padding: 4px 10px; border-radius: 4px; font-size: 12px; text-transform: uppercase; }
         .badge.admin { border: 1px solid #00f0ff; color: #00f0ff; background: rgba(0, 240, 255, 0.1); }
         .badge.user { border: 1px solid #00ff00; color: #00ff00; background: rgba(0, 255, 0, 0.1); }
         
-        .btn-edit { background: none; border: 1px solid #00f0ff; color: #00f0ff; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin-right: 5px; }
-        .btn-edit:hover { background: #00f0ff; color: #000; }
-        .btn-delete { background: none; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 6px 12px; cursor: pointer; border-radius: 4px; }
-        .btn-delete:hover { background: #ff4d4d; color: white; }
-        .btn-reset { background: none; border: 1px solid #ffa500; color: #ffa500; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin-right: 5px; }
-        .btn-reset:hover { background: #ffa500; color: white; }
-
         .logout-btn { margin-top: auto; color: #ff4d4d !important; border: 1px solid #ff4d4d; text-align: center; padding: 10px; border-radius: 4px; cursor: pointer; }
-        
-        /* Paginering Styling */
         .pagination { margin-top: 20px; display: flex; justify-content: center; gap: 5px; }
         .btn-page { background: #111; border: 1px solid #00f0ff; color: #00f0ff; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
         .btn-page.active { background: #00f0ff; color: #000; font-weight: bold; }
-        .btn-page:disabled { opacity: 0.3; cursor: not-allowed; }
-
-        /* Modal styling */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
         .modal-input { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; box-sizing: border-box; }
-        
-        /* Zoekbalk styling */
         #userSearch { width: 250px; padding: 8px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; margin-right: 15px; }
+
+        /* Log Sectie onderaan */
+        .log-section { margin-top: 25px; padding: 20px; background: #111; border: 1px solid #333; border-radius: 8px; }
+        .log-box { max-height: 150px; overflow-y: auto; font-family: monospace; font-size: 12px; color: #888; }
     </style>
 </head>
 <body>
@@ -86,14 +90,18 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Rol</th>
-                    <th>Acties</th>
+                    <th style="width: 100px;">Acties</th>
                 </tr>
             </thead>
-            <tbody id="userTableBody">
-                </tbody>
+            <tbody id="userTableBody"></tbody>
         </table>
 
         <div id="pagination" class="pagination"></div>
+    </div>
+
+    <div class="log-section">
+        <h3 style="color: #00f0ff; margin-top: 0; font-size: 16px;">📜 Systeem Activiteit</h3>
+        <div id="logTableBody" class="log-box"><i>Laden...</i></div>
     </div>
 </div>
 
@@ -103,10 +111,7 @@
         <input type="text" id="newUsername" class="modal-input" placeholder="Gebruikersnaam">
         <input type="email" id="newEmail" class="modal-input" placeholder="Email">
         <input type="password" id="newPassword" class="modal-input" placeholder="Wachtwoord">
-        <select id="newRole" class="modal-input">
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-        </select>
+        <select id="newRole" class="modal-input"><option value="User">User</option><option value="Admin">Admin</option></select>
         <button onclick="saveNewUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer; font-weight:bold;">Opslaan</button>
         <button onclick="closeAddUserModal()" style="width:100%; background:#444; color:white; padding:10px; border:none; cursor:pointer;">Annuleren</button>
     </div>
@@ -114,18 +119,12 @@
 
 <div id="editUserModal" class="modal">
     <div class="card" style="width: 350px; margin: 100px auto;">
-        <h3 style="color:#00f0ff;">Gebruiker Bewerken</h3>
+        <h3 style="color:#00f0ff;">Bewerken</h3>
         <input type="hidden" id="editUserId">
-        <label style="font-size:12px; color:#888;">Username</label>
         <input type="text" id="editUsername" class="modal-input">
-        <label style="font-size:12px; color:#888;">Email</label>
         <input type="email" id="editEmail" class="modal-input">
-        <label style="font-size:12px; color:#888;">Rol</label>
-        <select id="editRole" class="modal-input">
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-        </select>
-        <button onclick="saveEditUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer; font-weight:bold;">Wijzigingen Opslaan</button>
+        <select id="editRole" class="modal-input"><option value="User">User</option><option value="Admin">Admin</option></select>
+        <button onclick="saveEditUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer; font-weight:bold;">Opslaan</button>
         <button onclick="closeEditModal()" style="width:100%; background:#444; color:white; padding:10px; border:none; cursor:pointer;">Annuleren</button>
     </div>
 </div>
