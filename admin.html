@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Echo AI</title>
+    
+    <script src="database.js"></script>
+    <script src="admin-script.js"></script>
+
     <style>
         /* Jouw Signature Neon Theme */
         body { font-family: Arial, sans-serif; margin: 0; background-color: #1a1a1a; color: #f0f0f0; display: flex; min-height: 100vh; }
@@ -24,9 +28,15 @@
         .badge { padding: 4px 10px; border-radius: 4px; font-size: 12px; text-transform: uppercase; }
         .badge.admin { border: 1px solid #00f0ff; color: #00f0ff; background: rgba(0, 240, 255, 0.1); }
         .badge.user { border: 1px solid #00ff00; color: #00ff00; background: rgba(0, 255, 0, 0.1); }
+        
+        .btn-edit { background: none; border: 1px solid #00f0ff; color: #00f0ff; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin-right: 5px; }
+        .btn-edit:hover { background: #00f0ff; color: #000; }
         .btn-delete { background: none; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 6px 12px; cursor: pointer; border-radius: 4px; }
         .btn-delete:hover { background: #ff4d4d; color: white; }
-        .logout-btn { margin-top: auto; color: #ff4d4d !important; border: 1px solid #ff4d4d; text-align: center; padding: 10px; border-radius: 4px; }
+        .btn-reset { background: none; border: 1px solid #ffa500; color: #ffa500; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin-right: 5px; }
+        .btn-reset:hover { background: #ffa500; color: white; }
+
+        .logout-btn { margin-top: auto; color: #ff4d4d !important; border: 1px solid #ff4d4d; text-align: center; padding: 10px; border-radius: 4px; cursor: pointer; }
         
         /* Paginering Styling */
         .pagination { margin-top: 20px; display: flex; justify-content: center; gap: 5px; }
@@ -34,8 +44,12 @@
         .btn-page.active { background: #00f0ff; color: #000; font-weight: bold; }
         .btn-page:disabled { opacity: 0.3; cursor: not-allowed; }
 
+        /* Modal styling */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
         .modal-input { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; box-sizing: border-box; }
+        
+        /* Zoekbalk styling */
+        #userSearch { width: 250px; padding: 8px; background: #111; border: 1px solid #00f0ff; color: white; border-radius: 4px; margin-right: 15px; }
     </style>
 </head>
 <body>
@@ -46,20 +60,23 @@
     <hr>
     <a href="index.html">🏠 Home Dashboard</a>
     <a href="profiel.html">👤 My Profile</a>
-    <a href="#" onclick="performLogout()" class="logout-btn">🚪 Logout</a>
+    <div onclick="performLogout()" class="logout-btn">🚪 Logout</div>
 </div>
 
 <div class="main-content">
     <div class="stats-container">
-        <div class="stat-card"><span id="totalUsersCount" class="stat-value">0</span><span style="color:#888">Gebruikers</span></div>
+        <div class="stat-card"><span id="totalUsersCount" class="stat-value">0</span><span style="color:#888">Totaal Gebruikers</span></div>
         <div class="stat-card"><span id="adminCount" class="stat-value">0</span><span style="color:#888">Admins</span></div>
         <div class="stat-card"><span class="stat-value" style="color:#00ff00">Online</span><span style="color:#888">Systeem Status</span></div>
     </div>
 
     <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
             <h2 style="margin:0;">Gebruikersbeheer</h2>
-            <button onclick="openAddUserModal()" style="background:#00f0ff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold; color:#000;">+ NIEUW</button>
+            <div style="display: flex; align-items: center;">
+                <input type="text" id="userSearch" placeholder="Zoek op naam of email...">
+                <button onclick="openAddUserModal()" style="background:#00f0ff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold; color:#000;">+ NIEUW</button>
+            </div>
         </div>
         
         <table id="userTable">
@@ -69,10 +86,11 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Rol</th>
-                    <th>Actie</th>
+                    <th>Acties</th>
                 </tr>
             </thead>
-            <tbody id="userTableBody"></tbody>
+            <tbody id="userTableBody">
+                </tbody>
         </table>
 
         <div id="pagination" class="pagination"></div>
@@ -81,7 +99,7 @@
 
 <div id="addUserModal" class="modal">
     <div class="card" style="width: 350px; margin: 100px auto;">
-        <h3>Nieuwe Gebruiker</h3>
+        <h3 style="color:#00f0ff;">Nieuwe Gebruiker</h3>
         <input type="text" id="newUsername" class="modal-input" placeholder="Gebruikersnaam">
         <input type="email" id="newEmail" class="modal-input" placeholder="Email">
         <input type="password" id="newPassword" class="modal-input" placeholder="Wachtwoord">
@@ -94,141 +112,23 @@
     </div>
 </div>
 
-<script>
-/**
- * 1. TOEGANGSCONTROLE & INITIALISATIE
- */
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const isLoggedIn = localStorage.getItem('isLoggedIn');
-let currentPage = 1;
-const rowsPerPage = 10;
+<div id="editUserModal" class="modal">
+    <div class="card" style="width: 350px; margin: 100px auto;">
+        <h3 style="color:#00f0ff;">Gebruiker Bewerken</h3>
+        <input type="hidden" id="editUserId">
+        <label style="font-size:12px; color:#888;">Username</label>
+        <input type="text" id="editUsername" class="modal-input">
+        <label style="font-size:12px; color:#888;">Email</label>
+        <input type="email" id="editEmail" class="modal-input">
+        <label style="font-size:12px; color:#888;">Rol</label>
+        <select id="editRole" class="modal-input">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+        <button onclick="saveEditUser()" style="width:100%; background:#00f0ff; padding:10px; border:none; margin-bottom:5px; cursor:pointer; font-weight:bold;">Wijzigingen Opslaan</button>
+        <button onclick="closeEditModal()" style="width:100%; background:#444; color:white; padding:10px; border:none; cursor:pointer;">Annuleren</button>
+    </div>
+</div>
 
-// Strikte check
-if (!isLoggedIn || !currentUser || (currentUser.username.toLowerCase() !== 'admin' && currentUser.username.toLowerCase() !== 'abelsoftware123_admin')) {
-    alert("Toegang geweigerd!");
-    window.location.href = 'profiel.html'; 
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('adminName').textContent = currentUser.username;
-    checkAndGenerateUsers(); // Zorg dat de 500 klanten er zijn
-    loadData();
-});
-
-/**
- * 2. DATA GENERATOR (500 ACCOUNTS)
- */
-function checkAndGenerateUsers() {
-    let users = JSON.parse(localStorage.getItem('echo_users'));
-    if (!users || users.length < 10) {
-        users = [
-            { id: 1, username: 'Abelsoftware123_Admin', email: 'admin@abelsoftware.nl', role: 'Admin' },
-            { id: 2, username: 'admin', email: 'info@abelsoftware.nl', role: 'Admin' }
-        ];
-        const namen = ["Liam", "Noah", "Lucas", "Yara", "Finn", "Levi", "Zoe", "Mila", "James", "Sara", "Nora", "Hugo", "Liv", "Tess", "Evi", "Luca", "Xavi"];
-        for (let i = 3; i <= 500; i++) {
-            const n = namen[Math.floor(Math.random() * namen.length)];
-            users.push({ id: i, username: n + i, email: n.toLowerCase() + i + "@echoai.com", role: 'User' });
-        }
-        localStorage.setItem('echo_users', JSON.stringify(users));
-    }
-}
-
-/**
- * 3. RENDER LOGICA (10 PER PAGINA)
- */
-function loadData() {
-    const users = JSON.parse(localStorage.getItem('echo_users')) || [];
-    document.getElementById('totalUsersCount').textContent = users.length;
-    document.getElementById('adminCount').textContent = users.filter(u => u.role === 'Admin').length;
-
-    const tbody = document.getElementById('userTableBody');
-    tbody.innerHTML = '';
-
-    // Bereken welke 10 we laten zien
-    const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedUsers = users.slice(start, end);
-
-    paginatedUsers.forEach(user => {
-        const row = `<tr>
-            <td>${user.id}</td>
-            <td>${user.username}</td>
-            <td>${user.email}</td>
-            <td><span class="badge ${user.role.toLowerCase()}">${user.role}</span></td>
-            <td>${(user.username.toLowerCase() !== 'admin' && user.username !== 'Abelsoftware123_Admin') ? 
-                `<button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>` : 'Protected'}</td>
-        </tr>`;
-        tbody.innerHTML += row;
-    });
-
-    renderPagination(users.length);
-}
-
-function renderPagination(totalItems) {
-    const totalPages = Math.ceil(totalItems / rowsPerPage);
-    const container = document.getElementById('pagination');
-    container.innerHTML = '';
-
-    // Vorige knop
-    let prevBtn = `<button class="btn-page" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">«</button>`;
-    
-    // Pagina nummers (beperkt tot 5 rondom huidige pagina)
-    let start = Math.max(1, currentPage - 2);
-    let end = Math.min(totalPages, currentPage + 2);
-    
-    let pagesHtml = '';
-    for (let i = start; i <= end; i++) {
-        pagesHtml += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
-    }
-
-    // Volgende knop
-    let nextBtn = `<button class="btn-page" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">»</button>`;
-    
-    container.innerHTML = prevBtn + pagesHtml + nextBtn;
-}
-
-window.changePage = function(page) {
-    currentPage = page;
-    loadData();
-}
-
-/**
- * 4. ACTIES
- */
-function deleteUser(id) {
-    if (confirm("Gebruiker verwijderen?")) {
-        let users = JSON.parse(localStorage.getItem('echo_users'));
-        users = users.filter(u => u.id !== id);
-        localStorage.setItem('echo_users', JSON.stringify(users));
-        loadData();
-    }
-}
-
-function openAddUserModal() { document.getElementById('addUserModal').style.display = 'block'; }
-function closeAddUserModal() { document.getElementById('addUserModal').style.display = 'none'; }
-
-function saveNewUser() {
-    const u = document.getElementById('newUsername').value;
-    const e = document.getElementById('newEmail').value;
-    const p = document.getElementById('newPassword').value;
-    const r = document.getElementById('newRole').value;
-    if(!u || !p) return alert("Vul gegevens in!");
-
-    let users = JSON.parse(localStorage.getItem('echo_users'));
-    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
-    users.unshift({ id: newId, username: u, email: e, password: p, role: r });
-    localStorage.setItem('echo_users', JSON.stringify(users));
-    
-    closeAddUserModal();
-    loadData();
-}
-
-function performLogout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
-}
-</script>
 </body>
 </html>
