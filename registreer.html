@@ -10,18 +10,15 @@
         (function() { emailjs.init("RoeA9BgwLyBeUbv5i"); })();
     </script>
 
-    <script src="database.js"></script>
-    <script src="admin-script.js"></script>
-
     <style>
         body { font-family: Arial, sans-serif; margin: 0; background-color: #333; color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .content-section { background-color: #1a1a1a; padding: 30px; width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); border: 1px solid rgba(0, 240, 255, 0.3); }
         h2 { font-size: 24px; color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); text-align: center; }
         form { display: flex; flex-direction: column; }
         label { margin-bottom: 8px; font-weight: bold; color: #cccccc; }
-        input { background-color: #2a2a2a; border: 1px solid #444; border-radius: 4px; padding: 12px; margin-bottom: 20px; color: #fff; outline: none; }
+        input { background-color: #2a2a2a; border: 1px solid #444; border-radius: 4px; padding: 12px; margin-bottom: 20px; color: #fff; outline: none; box-sizing: border-box; width: 100%; }
         input:focus { border-color: #00f0ff; box-shadow: 0 0 5px rgba(0, 240, 255, 0.5); }
-        button { padding: 12px; border: 2px solid #00FFFF; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00FFFF; transition: 0.3s; }
+        button { padding: 12px; border: 2px solid #00FFFF; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00FFFF; transition: 0.3s; width: 100%; }
         button:hover { background-color: #00FFFF; color: #000; box-shadow: 0 0 20px #00FFFF; }
         #statusMessage { text-align: center; margin-bottom: 15px; padding: 10px; border-radius: 4px; display: none; font-size: 14px; }
         .error { color: #ff4d4d; border: 1px solid #ff4d4d; background: rgba(255, 77, 77, 0.1); }
@@ -48,33 +45,81 @@
     <p style="text-align:center;">Heb je al een account? <a href="login.html" style="color:#00f0ff;">Login hier</a></p>
 </section>
 
+<script src="database.js"></script>
+<script src="admin-script.js"></script>
+
 <script>
-document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const status = document.getElementById('statusMessage');
-    const user = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const pass = document.getElementById('password').value;
-    const confirm = document.getElementById('password_confirm').value;
+    // 1. EXTRA BEVEILIGING: Wis oude sessies zodat je niet gekickt wordt tijdens registreren
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('currentUser');
 
-    if (user.toLowerCase() === 'admin') {
-        status.textContent = "❌ Naam gereserveerd."; status.className = "error"; status.style.display = "block"; return;
-    }
-    if (pass !== confirm) {
-        status.textContent = "❌ Wachtwoorden ongelijk."; status.className = "error"; status.style.display = "block"; return;
-    }
+    document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const status = document.getElementById('statusMessage');
+        const user = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const pass = document.getElementById('password').value;
+        const confirm = document.getElementById('password_confirm').value;
 
-    // Gebruikers ophalen en toevoegen
-    let users = JSON.parse(localStorage.getItem('echo_users')) || [];
-    users.push({ username: user, email: email, password: pass, role: 'User', id: Date.now() });
-    localStorage.setItem('echo_users', JSON.stringify(users));
+        // Reset status
+        status.style.display = "none";
 
-    // EmailJS melding
-    await emailjs.send('service_uyi3cur', 'template_ctg1y99', { username: user, email: email });
+        // 2. CONTROLES
+        if (user.toLowerCase() === 'admin' || user.toLowerCase() === 'abel_admin') {
+            status.textContent = "❌ Naam gereserveerd voor systeem."; 
+            status.className = "error"; 
+            status.style.display = "block"; 
+            return;
+        }
+        
+        if (pass !== confirm) {
+            status.textContent = "❌ Wachtwoorden ongelijk."; 
+            status.className = "error"; 
+            status.style.display = "block"; 
+            return;
+        }
 
-    status.textContent = "✅ Succes! Ga naar login..."; status.className = "success"; status.style.display = "block";
-    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
-});
+        // 3. OPSLAAN (Check of gebruiker al bestaat via getStoredUsers)
+        const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
+        const exists = allUsers.some(u => u.username.toLowerCase() === user.toLowerCase() || u.email.toLowerCase() === email.toLowerCase());
+
+        if (exists) {
+            status.textContent = "❌ Gebruikersnaam of e-mail al in gebruik."; 
+            status.className = "error"; 
+            status.style.display = "block"; 
+            return;
+        }
+
+        // Nieuwe gebruiker toevoegen aan de lokale lijst
+        let localUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
+        localUsers.push({ 
+            username: user, 
+            email: email, 
+            password: pass, 
+            role: 'User', 
+            id: Date.now() 
+        });
+        localStorage.setItem('echo_users', JSON.stringify(localUsers));
+
+        // 4. EMAILJS
+        try {
+            await emailjs.send('service_uyi3cur', 'template_ctg1y99', { 
+                username: user, 
+                email: email,
+                notes: "Nieuwe registratie Echo AI"
+            });
+        } catch (err) {
+            console.log("Email notificatie kon niet verzonden worden.");
+        }
+
+        status.textContent = "✅ Succes! Je wordt doorgestuurd naar login..."; 
+        status.className = "success"; 
+        status.style.display = "block";
+
+        setTimeout(() => { 
+            window.location.replace('login.html'); 
+        }, 2000);
+    });
 </script>
 </body>
 </html>
