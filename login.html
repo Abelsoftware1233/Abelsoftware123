@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Abelsoftware123</title>
+    
+    <script src="database.js"></script>
+    <script src="admin-script.js"></script>
+
     <style>
         /* Jouw Signature Neon Theme */
         body {
@@ -131,8 +135,6 @@
     <a href="index.html" class="back-link">Return to Home</a>
 </section>
 
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
@@ -140,35 +142,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Voorkom server-fout
+            e.preventDefault(); 
 
             const usernameInput = document.getElementById('username').value;
             const passwordInput = document.getElementById('password').value;
 
-            // 1. Admin controle (hardcoded)
-            const ADMIN_USER = "admin";
-            const ADMIN_PASS = "admin1501";
+            // 1. Check in de gecombineerde database van admin-script.js
+            // Deze functie haalt nu permanent + local + generator op
+            const allUsers = getStoredUsers();
+            const foundUser = allUsers.find(u => 
+                u.username.toLowerCase() === usernameInput.toLowerCase() && 
+                u.password === passwordInput
+            );
 
-            // 2. Haal geregistreerde gebruikers op uit localStorage
-            const storedUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
-            
-            // 3. Check of het de admin is OF een geregistreerde gebruiker
-            const foundUser = storedUsers.find(u => u.username === usernameInput && u.password === passwordInput);
+            // 2. Extra check voor de hoofd-admin (fallback)
+            const isAdminFallback = (usernameInput === "admin" && passwordInput === "admin1501");
 
-            if ((usernameInput === ADMIN_USER && passwordInput === ADMIN_PASS) || foundUser) {
+            if (foundUser || isAdminFallback) {
                 // Sessie opslaan
                 localStorage.setItem('isLoggedIn', 'true');
                 
+                const finalUser = foundUser || { username: 'admin', role: 'Admin' };
+                
                 const userData = {
-                    username: usernameInput,
-                    role: (usernameInput === ADMIN_USER) ? 'Admin' : 'User'
+                    username: finalUser.username,
+                    role: finalUser.role
                 };
                 localStorage.setItem('currentUser', JSON.stringify(userData));
 
                 // Doorsturen naar dashboard
                 window.location.href = 'admin.html';
             } else {
-                // Laat neon-stijl error zien
+                // Toon error
                 errorDiv.style.display = 'block';
             }
         });
