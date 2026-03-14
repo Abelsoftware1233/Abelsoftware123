@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // 4. Gebruiker object
+            // 4. Gebruiker object maken
             const newUser = {
                 id: users.length + 1,
                 username: username,
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 regDate: new Date().toLocaleDateString()
             };
 
-            // --- EMAIL NOTIFICATIE ---
+            // --- EMAIL NOTIFICATIE (PING) ---
             const templateParams = {
                 username: username,
                 email: email,
@@ -204,19 +204,19 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             try {
-                // VERVANG 'HIER_JE_TEMPLATE_ID' DOOR JE EIGEN TEMPLATE ID UIT EMAILJS
-                await emailjs.send('service_uyi3cur', 'HIER_JE_TEMPLATE_ID', templateParams);
-                console.log("Ping verzonden naar admin.");
+                // Jouw IDs zijn hier nu volledig ingevuld:
+                await emailjs.send('service_uyi3cur', 'template_ctg1y99', templateParams);
+                console.log("Notificatie succesvol verzonden naar admin.");
             } catch (err) {
                 console.error("EmailJS Fout:", err);
             }
             // --------------------------
 
-            // 5. Opslaan
+            // 5. Opslaan in LocalStorage
             users.push(newUser);
             localStorage.setItem('echo_users', JSON.stringify(users));
 
-            showStatus("✅ Account aangemaakt! De admin is op de hoogte gebracht.", "success");
+            showStatus("✅ Account aangemaakt! De admin heeft een melding ontvangen.", "success");
 
             setTimeout(() => {
                 window.location.href = 'login.html';
