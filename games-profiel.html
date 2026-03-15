@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads- Abelsoftware123</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS voor de neonblauwe knoppen en hun positionering */
+        header {
+            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        }
+
+        .header-controls {
+            position: absolute; /* Absolute positionering in de header */
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px; 
+            z-index: 10; 
+        }
+        
+        .neon-blue-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: #fff; /* Witte tekst */
+           3 background-color: transparent; /* Transparante achtergrond */
+            /* Neon blauw effect */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
+            border: 2px solid #00FFFF; /* Neon blauwe rand */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-blue-button:hover {
+            background-color: #00FFFF;
+            color: #000; /* Zwarte tekst bij hover */
+            box-shadow: 0 0 5px #00FFFF, 
+                        0 0 10px #00FFFF, 
+                        0 0 20px #00FFFF, 
+                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+        }
+    /* --- CHATBOT STIJLEN MET ANIMATIE --- */
+        #chat-launcher { 
+            position: fixed; bottom: 20px; right: 20px; 
+            width: 65px; height: 55px; background: #00ffff; 
+            border-radius: 18px; display: flex; justify-content: center; 
+            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
+            z-index: 1001; font-size: 30px; border: none;
+            animation: float 3s ease-in-out infinite;
+        }
+        #chat-launcher::after {
+            content: ""; position: absolute; bottom: -8px; right: 12px;
+            border-width: 12px 12px 0 0; border-style: solid;
+            border-color: #00ffff transparent transparent transparent;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        #chat-container { 
+            position: fixed; bottom: 90px; right: 20px; 
+            width: 320px; height: 520px; background: #2a2a2a; 
+            border: 2px solid #00ffff; border-radius: 15px; 
+            display: none; flex-direction: column; overflow: hidden; 
+            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        }
+        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
+        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
+        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
+        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
+        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
+        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
+        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
+        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+    </style>
+</head>
+<body>
+<header> 
+        
+    <h1>🕹️🎮Downloads Games🎮🕹️</h1>
+    <p>Download our newest GAMES and Apps here.</p>
+    
+    <nav>
+        <ul>
+            <li><a href="payments.html">Payments</a></li>
+<li><a 
+href="emulator.html">Mobile Games Emulator</a></li>
+<li><a 
+href="profiel.html">My Profile</a></li>
+        </ul>
+      </nav>
+</header>
+<main>
+    <section class="downloads-content">
+        <h2>Available Downloads</h2>
+        <p>Below you will find a list of software you can download directly:</p>
+
+        <div class="app-item">
+            <h3>🎮Abel Game Launcher🎮</h3>
+            <p>With the Abel Game Launcher, you have access to all our games in one place. Thank You for Purchase the game. You can download your App/Game below. your download buttons for your game is now unlocked.  Only PC Games click on the download button and you can play without installation. (Supports Apple/Windows/Android chromebook)</p>
+
+<div class="app-item">
+            <h3>Abel123 Emulator NES Player</h3>          
+<p>With 8 Fanmade development crew made levels and crazy themes of the year 2026!</p>
+<a href="https://www.dropbox.com/scl/fo/6166lsvr7w1uuk2qbnw4r/AIL12u3u9Oh67LSH549Qtl0?rlkey=xc3vjd97ofaztuqzbzbnj0x9h&st=gal21hrz&dl=0" download>
+                <button>Download Abel123 Emulator NES Player Launcher</button>
+            </a>
+        </div>
+      
+<div class="app-item">
+            <h3>WMWario & Luigi 3D Happy World Online Only for PC/Laptop</h3>          
+<p>best WMWario World Online with Luigi, an 3D adventure game of the year 2026 Only for PC and Laptop Game</p>
+<a href="https://ipodtouch0218.itch.io/nsmb-mariovsluigi" download>
+                <button>Download WmWario & Luigi 3D Happy World Online The Game Launcher</button>
+            </a>
+        </div>
+
+            <div class="app-item">
+            <h3>1.WMWario Super M World (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1 Crazy Mario Game and Themes from broś to world with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/super-mario-for-snes.php" download>
+                <button>Download WmWario World Super M World 2026 The Game Launcher</button>
+            </a>
+        </div>
+            
+<div class="app-item">
+            <h3>2.WMWario New strange M Bros (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1 Crazy Mario Game and Themes from broś to world with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/new-strange-mario-bros.php" download>
+                <button>Download WmWario World  Strange M Bros 2026 The Game Launcher</button>
+            </a>
+        </div>
+                    <div class="app-item">
+            <h3>3.WMWario M Bros World 2 2026 Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1 Crazy Mario Game and Themes from broś to world with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/smb-part-2.php" download>
+                <button>Download WmWario World Bros 2 2026 The Game Launcher</button>
+            </a>
+        </div>
+
+                   <div class="app-item">
+            <h3>4.WMWario Super M Allstars Edition (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 5  Crazy Mario Games and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/super-mario-all-stars.php" download>
+                <button>Download WmWario World 2026 Super M Allstars The Game Launcher</button>
+            </a>
+        </div>
+
+                       <div class="app-item">
+            <h3>5.WMWario  Super M Princess Rescue (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/smw-princess-rescue.php" download>
+                <button>Download WmWario World Super M Princess Rescue 2026 The Game Launcher</button>
+            </a>
+        </div>
+               <div class="app-item">
+            <h3>6.WMWario Super M Land 2 (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/super-mario-land-2-dx.php" download>
+                <button>Download WmWario World Super M Land 2 The Game Launcher</button>
+            </a>
+        </div>
+
+              <div class="app-item">
+            <h3>7.WMWario Super M Banzai World (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/banzai-mario-world.php" download>
+                <button>Download WmWario World Super M Banzai World The Game Launcher</button>
+            </a>
+        </div>
+
+                 <div class="app-item">
+            <h3>8.WMWario Super M Land 1 (2026) Only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
+<a href="https://www.smbgames.be/super-mario-land-dx.php" download>
+                <button>Download WmWario World Super M Land 1 The Game Launcher</button>
+            </a>
+        </div>
+
+           <div class="app-item">
+            <h3>WMWario Happy World Fantasy only for PC/Laptop</h3>          
+<p>best WMWario World 2026 adventure game of the year 2026! with many worlds and maps. Only for PC and Laptop Game</p>
+<a href="https://www.smbgames.be/super-mario-for-snes.php" download>
+                <button>Download WmWario Hapy World Fantasy The Game Launcher</button>
+            </a>
+        </div>
+
+            <div class="app-item">
+            <h3>WMWario The Game Android App</h3>          
+<p>best adventure game of the year 2025-2026 on Android App</p>
+<a href="https://www.dropbox.com/scl/fi/kan1xfr4plcfy8flmnbmt/_Happy_Mario_19141767.apk?rlkey=pm42mvizbqckncrqc6dp18k4n&st=rou7d80m&dl=0" download>
+                <button>Download WmWario The Game Launcher</button>
+            </a>
+</div>
+            <div class="app-item">
+            <h3>WMWario Happy World 12 Only for PC/Laptop</h3>          
+<p>best WMWario World adventure game of the year 2025-2026 Only for PC and Laptop Game</p>
+<a href="https://tylerreichle.github.io/mario_js/" download>
+                <button>Download WmWario Hapy World 12 The Game Launcher</button>
+            </a>
+        </div>
+            
+     <div class="app-item">
+            <h3>WMWario Happy World 11 Only for PC and Laptop</h3>          
+<p>best WMWario 64 adventure game of the year 2025-2026 on PC and Laptop</p>
+<a href="https://manscod.github.io/other/sm64/" download>
+                <button>Download WmWario Hapy World 11 The Game Launcher</button>
+            </a>
+        </div>
+            
+<div class="app-item">
+            <h3>WMWario Happy World 10 only for PC/Laptop</h3>
+            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
+            <a href="https://js-dos.com/mario/" download>
+                <button>Download WMWario Happy World 10 The Game Launcher</button>
+            </a>
+</div>   
+            
+<div class="app-item">
+            <h3>WMWario Happy World 9 only for PC/Laptop Webserver Game!</h3>
+            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
+            <a href="https://openhtml5games.github.io/games-mirror/dist/mariohtml5/main.html" download>
+                <button>Download WMWario Happy World 9 The Game Launcher</button>
+            </a>
+</div>   
+            <div class="app-item">
+            <h3>WMWario Happy World 8 The Android App and PC/Laptop Game!</h3>
+            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-8/" download>
+                <button>Download WMWario Happy World 8 The Game Launcher</button>
+            </a>
+        </div>
+
+<div class="app-item">
+            <h3>WMWario Happy World 7 The Game Launcher The Android App and PC/Laptop Game!</h3>
+            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
+            <a href="https://super-mario-bros-online.github.io/" download>
+                <button>Download WMWario Happy World 7 The Game Launcher</button>
+            </a>
+        </div>
+            
+            <div class="app-item">
+            <h3>WMWario Happy World 6 PC/Laptop Webserver Game!</h3>
+            <p>best memory game of the year 2025-2026.  Complete with many memory features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-6/" download>
+                <button>Download WMWario Happy World 6 The Game Launcher</button>
+            </a>
+        </div>
+
+      <div class="app-item">
+            <h3>WMWario Happy World 4 Android App. Also on PC/Laptop Webserver Game!</h3>
+            <p>best adventure game of the year 2025-2026 Ghost House World.  Complete with many features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-4-/" download>
+                <button>Download WMWario Happy World 4 The Game Launcher</button>
+            </a>
+        </div>
+
+     <div class="app-item">
+            <h3>WMWario Happy World 3 Android App. Also on PC/Laptop Webserver Game!</h3>
+            <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-3-The-Game-/" download>
+                <button>Download WMWario Happy World 3 The Game Launcher</button>
+            </a>
+        </div>
+
+<div class="app-item">
+            <h3>WMWario Happy World 2 Android App & PC/Laptop Webserver Game</h3>
+            <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
+            <a href="https://jipham510.github.io/Super-Mario-World/dist/" download>
+                <button>Download WMWario Happy World 2 The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>WMWario Happy World 1 Android App & PC/Laptop Webserver Game</h3>
+            <p>best adventure game of the year 2025-2026,Complete with many features. the game for young and old</p>
+            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-1-The-Game/" download>
+                <button>Download WMWario Happy World 1 The Game Launcher</button>
+            </a>
+        </div>
+ 
+            <div class="app-item">
+            <h3>Blumgi Slime Android App and PC/Laptop Webserver Game</h3>
+            <p>best tactical Game of the year 2025-2026, Complete with many features. the game for young and old</p>
+            <a href="https://git-hub-games.github.io/play/blumgi-slime" download>
+                <button>Download Blumgi Slime The Game Launcher</button>
+            </a>
+        </div>
+
+             <div class="app-item">
+            <h3>Madalin Stunt Cars 2 Only for PC/Laptop Webserver Game</h3>
+            <p>best RACE Game of the year 2025-2026, Complete with many features. the game for young and old</p>
+            <a href="https://git-hub-games.github.io/play/madalin-stunt-cars-2" download>
+                <button>Download Madalin Stunt Cars 2 The Game Launcher</button>
+            </a>
+        </div>
+            
+<div class="app-item">
+            <h3>WMWario Happy World 0 Only for PC/Laptop</h3>          
+<p>best WMWario World adventure game of the year 2025-2026 Only for PC and Laptop Game</p>
+<a href="https://gold872.github.io/games/super_mario_bros/" download>
+                <button>Download WmWario Hapy World 0 The Game Launcher</button>
+            </a>
+        </div>
+            
+
+<div class="app-item">
+            <h3>GTA Grand T Auto 1997 The Android App and PC/Laptop (Free Game)</h3>
+            <p>GTA 1997 get you back in the year 1997, in New York. do ever what you want in this game! Fun for young and old</p>
+            <a href="https://dos.zone/grand-theft-auto-1997/" download>
+                <button>Download Grand T Auto 1997 The Game Launcher</button>
+            </a>
+        </div>
+            
+        <div class="app-item">
+            <h3>Fluppy Burd Blocks The Game (Android App)</h3>
+            <p>Fluppy Burd Blocks The Game, The Best old school classic from the 2010s, re-released in the year 2025!</p>
+            <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" download>
+                <button>Download Fluppy Burd Blocks The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>WMWario Crush Saga The Game (Android App)</h3>
+            <p>best puzzle game of the year 2025. with many possibilities and features, this is the game for young and old.</p>
+            <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" download>
+                <button>Download WMWario Crush Saga The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>Kross and Zero The Game (Android App)</h3>
+            <p>Kross and Zero re-released in 2025 with a futuristic design.</p>
+            <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" download>
+                <button>Download Kross and Zero The Game Launcher</button>
+            </a>
+        </div>
+        
+        <div class="app-item">
+            <h3>Abels Roullette 18+ The Game (Android App)</h3>
+            <p>The best Gamble Game of the year 2025-2026! You pay a one-time fee for the app and can gamble unlimitedly. the game is in a modern design, with many chances to win.</p>
+            <a href="https://www.dropbox.com/scl/fi/jkc013uz0atfub36vryva/_Abels_Roullette_19141814.apk?rlkey=qri8l821qcazebppl7spllg5u&st=6e10q8sn&dl=0" download>
+                <button>Download Abels Roullette 18+ The Game Launcher</button>
+            </a>
+        </div>
+<div class="app-item">
+            <h3>WMWario Slotpipes (Android App)</h3>
+            <p>A complete gamble game slot machine, best gamble game of the year 2025.</p>
+            <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" download>
+                <button>Download WMWario Slotpipes The Game Launcher</button>
+            </a>
+        </div>
+
+        <div class="app-item">
+            <h3>YF Arrows The Game (Android App)</h3>
+            <p>Best arrow and bow game of the year 2025.</p>
+            <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&
