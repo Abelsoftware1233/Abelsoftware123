@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,13 @@
     
     <style>
         /* ================================================= */
-        /* == NIEUWE MODERNE NEON LAYOUT (Abelsoftware123) == */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
         /* ================================================= */
         
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            background-color: #121212; /* Dieper zwart voor meer contrast */
+            background-color: #121212;
             color: #f0f0f0; 
             min-height: 100vh;
         }
@@ -26,7 +26,7 @@
             border-bottom: 1px solid #333;
         }
 
-        /* Rechtsboven knoppen */
+        /* Register & Login Buttons (Top Right) */
         .header-controls {
             position: absolute;
             top: 15px;
@@ -47,6 +47,7 @@
             background: rgba(0, 242, 255, 0.1);
             box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
             transition: 0.3s;
+            text-decoration: none;
         }
 
         .neon-blue-button:hover {
@@ -69,7 +70,7 @@
             margin-bottom: 25px;
         }
 
-        /* DE NIEUWE HORIZONTALE NAVIGATIE BALK */
+        /* HORIZONTAL NAVIGATION BAR */
         nav.main-nav {
             max-width: 1100px;
             margin: 0 auto;
@@ -86,12 +87,12 @@
         }
 
         nav.main-nav a {
-            background-color: #333; /* Grijze knop stijl */
+            background-color: #333;
             color: #00f2ff;
             padding: 8px 14px;
             text-decoration: none;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
             transition: 0.2s;
             border: 1px solid transparent;
         }
@@ -108,10 +109,10 @@
             font-weight: bold;
         }
 
-        /* CONTENT SECTIES */
+        /* CONTENT SECTIONS */
         main {
             padding: 40px 20px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -124,9 +125,29 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        h2 { color: #00f2ff; margin-top: 0; }
-        
-        .groene-knop {
+        h2 { 
+            color: #00f2ff; 
+            margin-top: 0; 
+            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .feature-list li::before {
+            content: "⚡";
+            margin-right: 10px;
+            color: #00f2ff;
+        }
+
+        .green-btn {
             background-color: #00ff00;
             color: #000;
             padding: 15px 30px;
@@ -138,15 +159,16 @@
             transition: 0.3s;
             border: none;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .groene-knop:hover { transform: scale(1.05); box-shadow: 0 0 25px #00ff00; }
+        .green-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px #00ff00; }
 
-        /* CHATBOT STIJLEN (Behouden) */
+        /* CHATBOT STYLES */
         #chat-launcher { 
             position: fixed; bottom: 20px; right: 20px; 
-            width: 60px; height: 60px; background: #00ffff; 
-            border-radius: 50%; display: flex; justify-content: center; 
+            width: 65px; height: 55px; background: #00ffff; 
+            border-radius: 18px; display: flex; justify-content: center; 
             align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
             z-index: 1001; font-size: 30px; border: none;
             animation: float 3s ease-in-out infinite;
@@ -160,11 +182,11 @@
         #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
         #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
         .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; }
+        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; }
-        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: none; }
-        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px; border-radius: 10px; cursor: pointer; font-size: 10px; }
+        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
+        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px 8px; border-radius: 10px; cursor: pointer; font-size: 11px; }
         
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
@@ -173,8 +195,8 @@
     
 <header> 
     <div class="header-controls">
-        <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
-        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+        <a href="register.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">Log in</a>
     </div>
         
     <h1 class="brand-title">Abelsoftware123</h1>
@@ -184,7 +206,7 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertentie.html">Advertising on Apps</a></li>  
+            <li><a href="advertising.html">Advertising on Apps</a></li>  
             <li><a href="company.html">Company</a></li>
             <li><a href="payments.html">Payments</a></li>
             <li><a href="apps.html">Apps</a></li>
@@ -202,37 +224,58 @@
 <main>
     <section class="content-section">
         <h2>Custom Websites and Apps</h2>
-        <p>We design and build **responsive websites and apps** that look good on every device.</p>
-        <a href="payments.html" class="groene-knop">Start Your Project</a>
+        <p>We design and build **responsive websites and apps** that look professional on every device. From simple landing pages to complex webshops.</p>
+        
+        <h3>Our Expertise:</h3>
+        <ul class="feature-list">
+            <li>Analysis of requirements and goals</li>
+            <li>Modern UX/UI Design</li>
+            <li>Full-stack Development (HTML, CSS, JS)</li>
+            <li>Complete testing and deployment</li>
+        </ul>
+        <div style="margin-top: 25px;">
+            <a href="payments.html" class="green-btn">Start Your Project</a>
+            <a href="mailto:abelsoftware123@hotmail.com" class="green-btn" style="background-color: #444; color: #fff; margin-left: 10px;">Contact Us</a>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>🔥 Neon Technologies</h2>
+        <p>Our applications are powered by the latest and fastest technologies for maximum security and performance.</p>
+        <ul class="feature-list">
+            <li>**Frontend:** React, Vue.js, NeonBlue Framework</li>
+            <li>**Backend:** Node.js, Python, Serverless</li>
+            <li>**Database:** MongoDB & PostgreSQL</li>
+        </ul>
     </section>
 </main>
 
 <footer>
-    <p style="text-align:center; color: #666;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
+    <p style="text-align:center; color: #666; font-size: 14px; padding-bottom: 40px;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
 </footer>
 
 <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
 <div id="chat-container">
     <div id="chat-header">
-        <span>🤖 AI Assistent</span>
+        <span>🤖 AI Assistant</span>
         <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
     </div>
-    <div style="padding: 5px; background: #111; display: flex; justify-content: center;">
+    <div style="padding: 5px; background: #111; display: flex; justify-content: center; border-bottom: 1px solid #444;">
         <button class="quick-btn" onclick="handleQuickReply('prices')">Prices</button>
-        <button class="quick-btn" onclick="handleQuickReply('contact')">Contact</button>
+        <button class="quick-btn" onclick="handleQuickReply('payments')">Payments</button>
+        <button class="quick-btn" onclick="handleQuickReply('support')">Support</button>
     </div>
     <div id="messages">
-        <div class="msg bot-msg">Welcome! How can I help you?</div>
+        <div class="msg bot-msg">Welcome to Abelsoftware123! How can I help you today?</div>
     </div>
     <div id="input-area">
-        <input type="text" id="user-input" placeholder="Type..." onkeypress="window.handleKey(event)">
-        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; font-size:20px; cursor:pointer;">➤</button>
+        <input type="text" id="user-input" placeholder="Ask something..." onkeypress="window.handleKey(event)">
+        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; font-size:20px; cursor:pointer; margin-left: 10px;">➤</button>
     </div>
 </div>
 
 <script src="chatbot.js"></script>
 <script>
-    /* DEZELFDE SCRIPT LOGICA */
     let echo = null;
 
     window.toggleChat = function() {
@@ -266,7 +309,7 @@
         container.scrollTop = container.scrollHeight;
 
         try {
-            const response = echo ? await echo.chat(text) : "Connecting to Echo...";
+            const response = echo ? await echo.chat(text) : "AI Connecting...";
             setTimeout(() => {
                 container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
                 container.scrollTop = container.scrollHeight;
