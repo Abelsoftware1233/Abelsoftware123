@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* --- ABELSOFTWARE123 BASE STYLE --- */
-        body { background-color: #1a1a1a; color: #e0e0e0; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #1a1a1a; color: #e0e0e0; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
         .header-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
         .neon-blue-button { padding: 8px 15px; border: 2px solid #00ffff; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00ffff; transition: 0.3s; }
@@ -109,10 +109,11 @@
 
         /* NAVIGATION */
         nav ul { list-style: none; padding: 0; text-align: center; }
-        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 8px; transition: 0.3s; font-size: 14px; }
+        nav li { display: inline-block; }
+        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 8px 12px; transition: 0.3s; font-size: 14px; }
         nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
-/* EINDE TOEVOEGING */
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
+
+        /* --- CHATBOT STIJLEN --- */
         #chat-launcher { 
             position: fixed; bottom: 20px; right: 20px; 
             width: 65px; height: 55px; background: #00ffff; 
@@ -148,8 +149,8 @@
         .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
         #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
- </style>
+        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; font-size: 20px; }
+    </style>
 </head>
 <body>
 
@@ -164,16 +165,16 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="chatbot.html">Order Your Chatbot</a></li>
-                <li><a href="advertentie.html">Advertising on Apps</a></li>  
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
+                <li><a href="advertentie.html">Advertising</a></li>  
+                <li><a href="company.html">Company</a></li>
                 <li><a href="payments.html">Payments</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
+                <li><a href="apps.html">Apps</a></li>
                 <li><a href="hacktools.html">Hacktools</a></li>
                 <li><a href="ai.html">AI Software</a></li>  
-                <li><a href="website.html">Order Your Own Website</a></li>
-                <li><a href="domain.html">Order Your Own Domain</a></li>
-                <li><a href="emulator.html">Mobile Emulator</a></li>
-                <li><a href="music.html" style="font-weight:bold; color:white;">Music Studio Software</a></li>  
+                <li><a href="website.html">Websites</a></li>
+                <li><a href="domain.html">Domains</a></li>
+                <li><a href="emulator.html">Emulator</a></li>
+                <li><a href="music.html" style="font-weight:bold; color:white;">Music Studio</a></li>  
                 <li><a href="reviews.html">Reviews</a></li>
             </ul>
         </nav>
@@ -205,13 +206,26 @@
                 After payment, you will receive immediate full access to the Echo AI Music Suite.
             </p>
         </div>
+    </div>
 
-<div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
+    <button id="chat-launcher" onclick="toggleChat()">💬</button>
+
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Echo AI Assistant</span>
+            <span style="cursor:pointer" onclick="toggleChat()">✖</span>
+        </div>
+        <div class="mode-selector">
+            <button class="quick-btn" onclick="handleQuickReply('Price')">Price</button>
+            <button class="quick-btn" onclick="handleQuickReply('Features')">Features</button>
+            <button class="quick-btn" onclick="handleQuickReply('Support')">Support</button>
+        </div>
+        <div id="messages">
+            <div class="msg bot-msg">Welcome to Abelsoftware123 AI Assistant! How can I help you today?</div>
         </div>
         <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
+            <input type="text" id="user-input" placeholder="Ask something..." onkeypress="handleKey(event)">
+            <button onclick="askBot()">➤</button>
         </div>
     </div>
 
@@ -220,11 +234,10 @@
     <script>
         let echo = null;
 
-        window.toggleChat = function() {
+        function toggleChat() {
             const chat = document.getElementById("chat-container");
             const launcher = document.getElementById("chat-launcher");
             
-            // Wissel tussen tonen en verbergen
             if (chat.style.display === "flex") {
                 chat.style.display = "none";
                 launcher.style.animation = "float 3s ease-in-out infinite";
@@ -232,63 +245,54 @@
                 chat.style.display = "flex";
                 launcher.style.animation = "none";
                 
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
+                // Zorg dat de bot geladen is
                 if (!echo && typeof BasicBot !== 'undefined') {
                     echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
                 }
             }
-        };
+        }
 
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
+        function handleKey(e) { 
+            if(e.key === "Enter") askBot(); 
+        }
 
-        window.askBot = async function() {
+        function handleQuickReply(keyword) {
+            const input = document.getElementById("user-input");
+            if (input) {
+                input.value = keyword;
+                askBot();
+            }
+        }
+
+        async function askBot() {
             const input = document.getElementById("user-input");
             const container = document.getElementById("messages");
             const text = input.value.trim();
-            if (!text || !echo) return;
+            
+            if (!text) return;
 
+            // Voeg bericht van gebruiker toe
             container.innerHTML += `<div class="msg user-msg">${text}</div>`;
             input.value = "";
             container.scrollTop = container.scrollHeight;
 
+            // Fake loading of echte bot call
             try {
-                const response = await echo.chat(text);
+                let response = "I'm connecting...";
+                if (echo) {
+                    response = await echo.chat(text);
+                } else {
+                    response = "System is starting up. Please try again in a second.";
+                }
+
                 setTimeout(() => {
                     container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
                     container.scrollTop = container.scrollHeight;
                 }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
+            } catch (err) { 
+                console.error("Error in chat:", err); 
             }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
+        }
     </script>
 </body>
 </html>
