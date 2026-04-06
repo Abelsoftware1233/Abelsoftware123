@@ -7,422 +7,273 @@
     
     <style>
         /* ================================================= */
-        /* == NEON KNOPPEN STIJL (toegevoegd voor consistentie) == */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
         /* ================================================= */
-        header {
-            position: relative; /* Zorgt ervoor dat de header een positioneringscontext is */
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #f0f0f0; 
+            min-height: 100vh;
         }
 
+        header {
+            text-align: center;
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
+            position: relative;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Register & Login Buttons */
         .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px; 
-            z-index: 10; 
+            gap: 10px;
         }
         
         .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 11px;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
+            text-decoration: none;
         }
 
         .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
-        }
-        /* ================================================= */
-        /* == ORIGINELE PAGINA STIJLEN == */
-        /* ================================================= */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #333333; 
-            color: #f0f0f0; 
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
         }
 
-        /* De header-stijl wordt nu gecombineerd met de position: relative van hierboven */
-        header {
-            text-align: center;
-            padding: 30px 0 20px 0; 
-            background-color: #333333; 
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: #ffffff; 
-            padding: 0 20px;
-        }
-
-        header p {
-            font-size: 16px;
-            color: #cccccc; 
-            margin-bottom: 30px; 
-            padding: 0 20px;
-        }
-
-        nav {
-            padding: 0;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0 20px; 
-            margin: 0; 
-        }
-
-        nav li {
-            margin: 0; 
-        }
-
-        nav a {
-            display: block;
-            background-color: #555555; 
-            color: #00f0ff; 
-            padding: 18px 20px; 
-            text-decoration: none;
-            border-radius: 0; 
-            margin: 0;
-            width: 100%; 
-            font-size: 18px;
-            transition: background-color 0.1s ease, box-shadow 0.3s ease; 
-            text-align: left; 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2); 
-        }
-
-        nav ul li:first-child a {
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3);
-        }
-
-        nav ul li:last-child a {
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            border-bottom: none; 
-            margin-bottom: 30px; 
-            box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3); 
-        }
-
-
-        nav a:hover {
-            background-color: #4a4a4a; 
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8); 
-        }
-
-        main {
-            padding: 0; 
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #333333; 
-        }
-
-        .apps-list, .content-section {
-            background-color: #444444; 
-            color: #f0f0f0; 
-            padding: 20px;
-            margin: 0 20px 20px 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
-        }
-
-        h2 {
-            font-size: 24px;
-            color: #00f0ff; 
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #cccccc; 
-        }
-        
-        .app-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #555555; 
-        }
-        
-        .app-item:last-child {
-            border-bottom: none;
-        }
-        
-        .app-item h3 {
-            color: #ffffff; 
-            margin: 0 0 5px 0;
-        }
-        
-        .app-item p {
-            color: #cccccc;
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
             margin: 0;
         }
-        
-        .responsive-image {
-            max-width: 100%;    
-            height: auto;       
-            display: block;
-            margin: 20px auto;  
-            border-radius: 8px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
-        }
 
-        .app-image-container {
-            text-align: center; 
-            margin-bottom: 30px; 
-        }
-
-        .app-image-container figcaption {
-            margin-top: 10px;
-            font-style: italic;
-            color: #00f0ff; 
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #999999;
+        .brand-subtitle {
+            color: #888;
             font-size: 14px;
-            background-color: #222222; 
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* HORIZONTAL NAVIGATION */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333;
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+            border-color: #00f2ff;
+        }
+
+        /* APP LIST CONTENT */
+        main {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        h2 { 
+            color: #00f2ff; 
+            margin-top: 0; 
+            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+            text-align: center;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
             margin-top: 20px;
         }
-    /* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+
+        .app-item {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #00f2ff;
+            transition: 0.3s;
         }
 
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        .app-item:hover {
+            background: #2a2a2a;
+            transform: translateX(5px);
         }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+
+        .app-item h3 {
+            color: #fff;
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .app-item p {
+            color: #aaa;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .responsive-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: #00f2ff;
+            font-style: italic;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* CHATBOT STYLES */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
-<header> <div class="header-controls">
-      <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
-<button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+
+<header> 
+    <div class="header-controls">
+        <a href="registreer.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">Log in</a>
     </div>
         
-    <h1>List of Apps</h1>
-    <p>Discover our full range of offerings.</p>
-    
-    <nav>
+    <h1 class="brand-title">List of Apps</h1>
+    <p class="brand-subtitle">Explore our 2025-2026 Collection of Games & Software</p>
+
+    <nav class="main-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="chatbot.html">Order Your Chatbot</a></li>
+            <li><a href="advertentie.html">Advertising</a></li>  
+            <li><a href="company.html">Company</a></li>
             <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="apps.html" class="active">Apps List</a></li>
             <li><a href="hacktools.html">Hacktools</a></li>
- <li><a href="ai.html">AI Software</a></li>           
- <li><a href="website.html">Order Your Own Website and Apps</a></li>
-            <li><a href="domain.html">Order Your Own Domain Name</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>
-          </ul>
+            <li><a href="ai.html">AI Software</a></li>           
+            <li><a href="website.html">Order Website</a></li>
+            <li><a href="domain.html">Order Domain</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
+       </ul>
     </nav>
 </header>
+
 <main>
-    <section class="apps-list">
-        <h2>🎮Our Applications🎮</h2>
+    <section class="content-section">
+        <h2>🎮 Our Applications</h2>
         
-        <figure class="app-image-container">
-            <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Game Icon 1" class="responsive-image">
-            <figcaption>Featured Game Icon</figcaption>
-        </figure>
-
-        <figure class="app-image-container">
-            <img src="https://img.itch.zone/aW1hZ2UvNjc1NTc4LzQzODYxNDQucG5n/original/SA0WYW.png" alt="Featured Game Icon 2" class="responsive-image">
-            <figcaption>Additional Game Image</figcaption>
-        </figure>
-
-        <div class="app-item">
-            <h3>WMWario Happy The Game Android App</h3>
-            <p>adventure game with pipes and wmwarios greatest game app 2025.</p>
-        </div>
-        <div class="app-item">
-            <h3>WMWario Slotpipes Android App</h3>
-            <p>Gamble app of the year 2025. adventure wmwario slot</p>
-        </div>
-        <div class="app-item">
-            <h3>YF Arrows The Game Android App</h3>
-            <p>The newest addition to our collection, available now.</p>
-        </div>
-        <div class="app-item">
-            <h3>Fluppy Burd Blocks Android App</h3>
-            <p>the one and only tweety blocks that avoids pipes.</p>
-        </div>
-        <div class="app-item">
-            <h3>SlotMoji Android App</h3>
-            <p>The most fun emoji slot machine game of the year 2025.</p>
-        </div>
-        
-        <div class="app-item">
-            <h3>WMWario Crush Saga Android App</h3>
-            <p>The most fun WMWario Crush game of the year 2025.</p>
+        <div style="text-align: center;">
+            <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Icon" class="responsive-image">
+            <p class="image-caption">Featured Game Collection</p>
         </div>
 
-        <div class="app-item">
-            <h3>Kross and Zero Android App</h3>
-            <p>the best Classic Game re-released in 2025 with a futuristic design.</p>
-    
-        </div>
-        <div class="app-item">
-            <h3>Abels Roullette 18+ Game Android App</h3>
-            <p>The best Gamble Game of the year 2025-2026 available in the webshop or app! Released for Android devices, you pay a one-time fee for the game and can then gamble unlimitedly.</p>
-    
-        </div>
-        <div class="app-item">
-            <h3>Flying Dutchman The Game Android App</h3>
-            <p>Flying Dutchman tap the gold bar and many other power ups to score as many points as possible! a beautiful game in a futuristic design.</p>
-    
-        </div>
-
-<div class="app-item">
-            <h3>WMWario Happy World 0 Only for PC/Laptop Game</h3>
-            <p>WMWario Happy World 0! With whole new levels, you can choose your levels. Save Your Game on any time. 80s style game. 2025-2026</p>
-
-        <div class="app-item">
-            <h3>WMWario Happy World 1 Android App & Webserver PC/Laptop Game</h3>
-            <p>WMWario Happy World 1! With whole new levels. Level editor for futuristic levels. Save Your Game on any time. 2025-2026</p>
-        
-        </div>
-    
-        <div class="app-item">
-            <h3>WMWario Happy World 2! Android App & Webserver PC/Laptop Game</h3>
-            <p>WMWario Happy World 2! With whole new levels. Level editor for futuristic levels. Save Your Game on any time.2026</p>
-    
-        </div>
-        
-        <div class="app-item">
-            <h3>WMWario Happy World 3! Android App & PC/Laptop Webserver Game.</h3>
-            <p>the biggest adventure game of 2026, with many levels and level editors, you can create or modify your own levels. </p>
-    
-        </div>
-        
-        <div class="app-item">
-            <h3>WMWario Happy World 4! Android App & Webserver PC/Laptop Game</h3>
-            <p>WMWario Happy World 4! With whole new level and hours of fun. with ghosthouse theme 2025-2026</p>
-  </div>
-       
-        <div class="app-item">
-            <h3>WMWario Happy World 5! Webserver PC/Laptop Game</h3>
-            <p>WMWario Happy World 5! With whole new level and hours of fun.2025-2026</p>    
- </div>
-  
-        <div class="app-item">
-            <h3>WMWario Happy World 6 The Android App and Webserver PC/Laptop Game</h3>
-            <p>WMWario Happy World 6! With whole new level and hours of funplay. with memory theme 2025-2026</p>
+        <div class="app-grid">
+            <div class="app-item">
+                <h3>WMWario Happy The Game</h3>
+                <p>Adventure game with pipes and WMWarios greatest challenges. App 2025.</p>
+            </div>
+            <div class="app-item">
+                <h3>WMWario Slotpipes</h3>
+                <p>Gamble app of the year 2025. Adventure meets slots.</p>
+            </div>
+            <div class="app-item">
+                <h3>Abels Roulette 18+</h3>
+                <p>Premium gamble game for 2025-2026. One-time fee for unlimited access.</p>
+            </div>
+            <div class="app-item">
+                <h3>Flying Dutchman</h3>
+                <p>Tap gold bars and collect power-ups in this futuristic high-score chaser.</p>
+            </div>
+            <div class="app-item">
+                <h3>WMWario Happy World 2026</h3>
+                <p>The flagship 2026 release. Includes 5 original WMWario games in one app.</p>
+            </div>
+            <div class="app-item">
+                <h3>Madalin Stunt Cars 2</h3>
+                <p>3D high-speed racing and stunts for PC/Laptop users.</p>
+            </div>
+            <div class="app-item">
+                <h3>WMWario Happy World 3D</h3>
+                <p>The first 3D WMWario experience with online multiplayer functions.</p>
+            </div>
         </div>
 
-        <div class="app-item">
-            <h3>WMWario Happy World 7! Only for (Windows) PC/Laptop.</h3>
-            <p>WMWario Happy World 7! With whole new level and hours play fun. 2025-2026</p>
+        <div style="text-align: center; margin-top: 40px;">
+            <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Preview" class="responsive-image">
+            <p class="image-caption">Best Sneak Preview 2026</p>
         </div>
-        
- <div class="app-item">
-            <h3>WMWario Happy World 8 The Android App and Webserver PC/Laptop Game.</h3>
-            <p>WMWario Happy World 8! With whole new level and hours play fun. 2025-2026</p>
-        </div>
-
-        <div class="app-item">
-            <h3>WMWario Happy World 9 Only for PC/ Laptop Webserver Game.</h3>
-            <p>WMWario Happy World 9! With whole new level and hours play fun. and a whole levelworlds. best PC game of the year 2025-2026</p>
-        </div>
-
-        <div class="app-item">
-            <h3>WMWario Happy World 10 Only for PC/ Laptop Webserver Game.</h3>
-            <p>WMWario Happy World 10 With whole new level and hours play fun. and a whole levelworlds. best PC game of the year 2025-2026</p>
-        </div>
-       
-        <div class="app-item">
-            <h3>WMWario Happy World 11 Only for PC/ Laptop Webserver Game.</h3>
-            <p>WMWario 64 Happy World 11 With whole new level and hours play fun. and a whole levelworlds. best PC game of the year 2025-2026</p>
-        </div> 
-
-        <div class="app-item">
-            <h3>WMWario Happy World 12 Only for PC/ Laptop Webserver Game.</h3>
-            <p>WMWario Happy World 12 With whole new level and hours play fun. and a whole levelworlds. best PC game of the year 2025-2026</p>
-        </div> 
-        
-<div class="app-item">
-            <h3>WMWario Happy World 3D online Only for PC/ Laptop Webserver Game.</h3>
-            <p>WMWario Happy World 3D Online With multiplayer functions. With whole new level and hours play fun. and a whole levelworlds. best PC game of the year 2026</p>
-        </div> 
-        
-<div class="app-item">
-            <h3>WMWario Happy World 2026 Android App and PC/Laptop Game</h3>
-            <p>WMWario Happy World 2026 the best app game for this year. Play 5 original WMWario games, every theme and level world you can play. game of the year 2026</p>
-        </div> 
-
-    <div class="app-item">
-            <h3>Blumgi Slime Android App and PC/Laptop Game</h3>
-            <p>Tactical Slime the best app game for this year. game of the year 2026</p>
-        </div> 
-
-     <div class="app-item">
-            <h3>Madalin Stunt Cars 2 Only for PC/Laptop Game</h3>
-            <p>Race with 3d features and gameplay, the best app game for this year. (game of the year 2026)</p>
-        </div> 
-    
-        </div>
-        <figure 
-        class="app-image-container">
-            <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Laatste Game Video Preview" class="responsive-image">
-            <figcaption>Best Sneak Preview</figcaption>
-        </figure>
-      
     </section>
 </main>
 
@@ -430,103 +281,39 @@ href="reviews.html">Reviews Abelsoftware123</a></li>
     <p>&copy; 2026 Abelsoftware123. All rights reserved.</p>
 </footer>
 
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
+<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<div id="chat-container">
+    <div id="chat-header"><span>🤖 AI Assistant</span><span style="cursor:pointer" onclick="window.toggleChat()">✕</span></div>
+    <div id="messages">
+        <div class="msg bot-msg">Welcome! Looking for a specific app or game?</div>
+    </div>
+    <div id="input-area">
+        <input type="text" id="user-input" placeholder="Ask about games..." onkeypress="window.handleKey(event)">
+        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; cursor:pointer;">➤</button>
+    </div>
 </div>
 
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
-    </div>
-
-    <script src="chatbot.js"></script>
-
-    <script>
-        let echo = null;
-
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
-
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
-
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
-
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
+<script src="chatbot.js"></script>
+<script>
+    let echo = null;
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        if (chat.style.display === "flex") { chat.style.display = "none"; } 
+        else { chat.style.display = "flex"; if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); } }
+    };
+    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+        if (!text) return;
+        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        input.value = "";
+        try {
+            const response = echo ? await echo.chat(text) : "AI Connecting...";
+            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${response}</div>`; container.scrollTop = container.scrollHeight; }, 400);
+        } catch (err) { console.error(err); }
+    };
+</script>
 </body>
 </html>
-
