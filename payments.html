@@ -4,510 +4,304 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payments - Abelsoftware123</title>
-
     
     <script 
       src="https://www.paypal.com/sdk/js?client-id=BAACVxE9etmbo8FK-n-yPcOFEuVSOvZ9GXBW7tbNwnkY4GPpJpj_zE_GNEnYaLq3HpwWm4h3IdBL5MSS88&components=hosted-buttons&disable-funding=venmo&currency=EUR">
     </script>
-    <link rel="stylesheet" href="style.css">
+
     <style>
-        /* CSS voor de neonblauwe knoppen en hun positionering */
-        header {
-            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        /* ================================================= */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
+        /* ================================================= */
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #f0f0f0; 
+            min-height: 100vh;
         }
 
+        header {
+            text-align: center;
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
+            position: relative;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Register & Login Buttons */
         .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px; 
-            z-index: 10; 
+            gap: 10px;
         }
         
         .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 11px;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
+            text-decoration: none;
         }
 
         .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
-        }
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
         }
 
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            margin: 0;
         }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+
+        .brand-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* NAVIGATION BAR */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333;
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+            border-color: #00f2ff;
+        }
+
+        /* PAYMENTS SECTION */
+        main {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .intro-box {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 { color: #00f2ff; text-shadow: 0 0 5px rgba(0, 242, 255, 0.5); }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .paypal-item {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .paypal-item:hover {
+            border-color: #00f2ff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .paypal-item h3 {
+            color: #fff;
+            font-size: 16px;
+            margin-top: 0;
+            min-height: 45px;
+        }
+
+        .price-tag {
+            color: #00f2ff;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        /* CHATBOT */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
-<header> <div class="header-controls">
-  <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>   
- <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+
+<header> 
+    <div class="header-controls">
+        <a href="registreer.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">Log in</a>
     </div>
         
-    <h1>💳Payments💳</h1>
-    <p>Information about our payment methods.</p>
-    
-    <nav>
+    <h1 class="brand-title">💳 Payments</h1>
+    <p class="brand-subtitle">Secure Software & Game Purchases</p>
+
+    <nav class="main-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="chatbot.html">Order Your Chatbot</a></li>
+            <li><a href="advertentie.html">Advertising</a></li>  
+            <li><a href="company.html">Company</a></li>
+            <li><a href="payments.html" class="active">Payments</a></li>
+            <li><a href="apps.html">Apps List</a></li>
             <li><a href="hacktools.html">Hacktools</a></li>
- <li><a href="ai.html">AI Software</a></li>           
- <li><a href="website.html">Order Your Own Website and Apps</a></li>
-            <li><a href="domain.html">Order Your Domain Name</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>  
-   </ul>
+            <li><a href="ai.html">AI Software</a></li>           
+            <li><a href="website.html">Order Website</a></li>
+            <li><a href="domain.html">Order Domain</a></li>
+            <li><a href="emulator.html">Emulator</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
+       </ul>
     </nav>
 </header>
+
 <main>
-    <section class="payments-info">
-        <h2>Payment Options via PayPal</h2>
-        <p>Purchase our apps directly and securely via PayPal. Select the desired application below and click the button to pay. After purchasing the game, PayPal will automatically redirect you to the downloads page, where you can download, install, and play your game.</p>
-
-
-<div class="paypal-item">
-            <h3>Abel123 Emulator</h3>
-<p>Price: €4,99</p>
-<div id="paypal-container-JE3WG2B8ADT28"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "JE3WG2B8ADT28",
-  }).render("#paypal-container-JE3WG2B8ADT28")
-</script>
-
-<div class="paypal-item">
-            <h3>PSP Gaming Portable 7inch screen, With 30+ Games. you can download your own games from your pc on your PSP.</h3>
-<p>Price: €100</p>
-<div id="paypal-container-BNTR9J25Q3DW2"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "BNTR9J25Q3DW2",
-  }).render("#paypal-container-BNTR9J25Q3DW2")
-</script>
-
-<div class="paypal-item">
-            <h3>WMWario & Luigi 3D Happy World Online Only for PC/Laptop Multiplayer Webserver Game</h3>
-<p>Price: €9,99</p>
-<div id="paypal-container-U5GBLF47SEUC6"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "U5GBLF47SEUC6",
-  }).render("#paypal-container-U5GBLF47SEUC6")
-</script>
-
-<div class="paypal-item">
-            <h3>WMWario Happy World 2026 8 different huge Mario Games. Witth many complete Mario World Games,1-8 you can play on downloads page with many countless levels! you can play all 8! Only for PC/Laptop Game</h3>
-<p>Price: €9,99</p>
-<div id="paypal-container-MNRG8ZTCQE9LJ"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "MNRG8ZTCQE9LJ",
-  }).render("#paypal-container-MNRG8ZTCQE9LJ")
-</script>
-
-      <h3>WMWario Happy World Fanasy Only for PC/Laptop Webserver Game</h3>
-<p>Price: €4,99</p>
-<div id="paypal-container-USH33D3ECTQBN"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "USH33D3ECTQBN",
-  }).render("#paypal-container-USH33D3ECTQBN")
-</script>
-    
-    <h3>WMWario Happy World 12 Only for PC/Laptop Webserver Game</h3>
-<p>Price: €2,99</p>
-<div id="paypal-container-9DYATEXHR22U4"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "9DYATEXHR22U4",
-  }).render("#paypal-container-9DYATEXHR22U4")
-</script>
-    
-<div class="paypal-item">
-            <h3>WMWario Happy World 11 Only for PC/Laptop Webserver Game</h3>
-<p>Price: €4,99</p>
-<div id="paypal-container-WXQZ6GHP3S8KG"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "WXQZ6GHP3S8KG",
-  }).render("#paypal-container-WXQZ6GHP3S8KG")
-</script>
-
-    
-<div class="paypal-item">
-            <h3>WMWario Happy World 10 Only for PC/Laptop Webserver Game</h3>
-<p>Price: €9,99</p>
-<div id="paypal-container-NEDQ4N36E8HCG"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "NEDQ4N36E8HCG",
-  }).render("#paypal-container-NEDQ4N36E8HCG")
-</script>
-
-    <div class="paypal-item">
-            <h3>WMWario Happy World 9 Only for PC/Laptop Webserver Game</h3>
-<p>Price: €9,99</p>
-<div id="paypal-container-LXTBSKQCJW3AY"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "LXTBSKQCJW3AY",
-  }).render("#paypal-container-LXTBSKQCJW3AY")
-</script>
-    
-<div class="paypal-item">
-            <h3>WMWario Happy World 8 The Android App and PC/ Laptop Game</h3>
-<p>Price: €4,99</p>
-<div id="paypal-container-U5CKDXUJ66V74"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "U5CKDXUJ66V74",
-  }).render("#paypal-container-U5CKDXUJ66V74")
-</script>
-
-<div class="paypal-item">
-            <h3>WMWario Happy World 7 The Android App and PC/Laptop Game</h3>
-<p>Price: €2,50</p>
-<div id="paypal-container-UWSXG463G8QL2"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "UWSXG463G8QL2",
-  }).render("#paypal-container-UWSXG463G8QL2")
-</script>
-
-
-<div class="paypal-item">
-            <h3>WMWario Happy World 6 The Android App and PC/ Laptop Game</h3>
-<p>Price: €2,99</p>
-<div id="paypal-container-UZJJKSP9FLMQ8"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "UZJJKSP9FLMQ8",
-  }).render("#paypal-container-UZJJKSP9FLMQ8")
-</script>
-
-<div class="paypal-item">
-            <h3>WMWario Happy World 4 The Android App and PC Laptop Game</h3>
-<p>Price: €2,50</p>
-<div id="paypal-container-LKDVU4S7693HA"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "LKDVU4S7693HA",
-  }).render("#paypal-container-LKDVU4S7693HA")
-</script>
-
-   <div class="paypal-item">
-            <h3>WMWario Happy World 3 The Android App and PC/Laptop Game</h3>
-            <p>Price: €9,99</p>
-            <div id="paypal-container-E5NAUQHKLVA86"></div>
-            <script>
-                paypal.HostedButtons({
-                    hostedButtonId: "E5NAUQHKLVA86",
-                }).render("#paypal-container-E5NAUQHKLVA86")
-            </script>
-        </div>
-        
-       <div class="paypal-item">
-            <h3>WMWario Happy World 2 The Android App and PC/ Laptop Game</h3>
-            <p>Price: €9,99</p>
-            <div id="paypal-container-YHY5GEYZB6NB8"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "YHY5GEYZB6NB8",
-  }).render("#paypal-container-YHY5GEYZB6NB8")
-</script>
-      </div>
-
-        <div class="paypal-item">
-            <h3>WMWario Happy World 1 The Android App and PC/Laptop Game</h3>
-            <p>Price: €9,99</p>
-            <div id="paypal-container-KPHFXFJ5SAFKJ"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "KPHFXFJ5SAFKJ",
-              }).render("#paypal-container-KPHFXFJ5SAFKJ")
-            </script>
-        </div>     
-
-<div class="paypal-item">
-            <h3>Application WMWario Happy The Android App Game</h3>
-            <p>Price: €2,50</p>
-            <div id="paypal-container-7L36E2XCNG9B2"></div>
-            <script>
-                paypal.HostedButtons({
-                    hostedButtonId: "7L36E2XCNG9B2",
-                }).render("#paypal-container-7L36E2XCNG9B2");
-            </script>
-        </div>
-
-    <div class="paypal-item">
-            <h3>Application Blumgi Slime The Android App and PC / Laptop Game</h3>
-            <p>Price: €1,50</p>
-         <div id="paypal-container-W49JHNAVYYF7W"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "W49JHNAVYYF7W",
-  }).render("#paypal-container-W49JHNAVYYF7W")
-</script>
-
-      <div class="paypal-item">
-            <h3>Application Madalin Stunt Cars 3D Only For PC and Laptop Game</h3>
-            <p>Price: €2,50</p>
-            <div id="paypal-container-JP6NNHBV4V8DE"></div>
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "JP6NNHBV4V8DE",
-  }).render("#paypal-container-JP6NNHBV4V8DE")
-</script>
-    
-        <div class="paypal-item">
-            <h3>WMWario Slotpipes The Android App Game</h3>
-            <p>Price:  €2,50 </p>
-            <div id="paypal-container-AS8XU2UTZUFDA"></div>
-            <script>
-                paypal.HostedButtons({
-                    hostedButtonId: "AS8XU2UTZUFDA",
-                }).render("#paypal-container-AS8XU2UTZUFDA");
-            </script>
-        </div>
-   
-<div class="paypal-item">
-            <h3>Fluppy Burd Blocks The Android App Game</h3>
-            <p>Price: €1,50</p>
-            <div id="paypal-container-CSJAKU42XZLG6"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "CSJAKU42XZLG6",
-              }).render("#paypal-container-CSJAKU42XZLG6")
-            </script>
-        </div>
-
-        <div class="paypal-item">
-            <h3>SlotMoji The Android App Game</h3>
-            <p>Price: €2,50</p>
-            <div id="paypal-container-YT7YX5KJUAC94"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "YT7YX5KJUAC94",
-              }).render("#paypal-container-YT7YX5KJUAC94")
-            </script>
-        </div>
-       
-    <div class="paypal-item">
-            <h3>WMWario Crush Saga The Android App Game</h3>
-            <p>Price: €2,50</p>
-            <div id="paypal-container-FJCQPYBAD5UG4"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "FJCQPYBAD5UG4",
-              }).render("#paypal-container-FJCQPYBAD5UG4")
-            </script>
-        </div>
-
-        <div class="paypal-item">
-            <h3>Kross and Zero The Android App Game</h3>
-            <p>Price: €2,50</p>
-            <div id="paypal-container-7K2GYD5LUSSJ4"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "7K2GYD5LUSSJ4",
-              }).render("#paypal-container-7K2GYD5LUSSJ4")
-            </script>
-        </div>
-
-        <div class="paypal-item">
-            <h3>Abels Roullette 18+ The Android App Game</h3>
-            <p>Price: €5,00</p>
-            <div id="paypal-container-2SHNHYH29BZW4"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "2SHNHYH29BZW4",
-              }).render("#paypal-container-2SHNHYH29BZW4")
-            </script>
-        </div>
-<div class="paypal-item">
-            <h3>YF Arrows The Android App Game</h3>
-            <p>Price: €2,00</p>
-            <div id="paypal-container-6GVUTFNE3KLDU"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "6GVUTFNE3KLDU",
-              }).render("#paypal-container-6GVUTFNE3KLDU")
-            </script>
-        </div>
-       
- <div class="paypal-item">
-            <h3>Flying Dutchman The Android App Game</h3>
-            <p>Price: €2,50</p>       
-            <div id="paypal-container-YJUU798QTPPHY"></div>
-            <script>
-              paypal.HostedButtons({
-                hostedButtonId: "YJUU798QTPPHY",
-              }).render("#paypal-container-YJUU798QTPPHY")
-            </script>
-        </div>
+    <section class="intro-box">
+        <h2>Secure Checkout via PayPal</h2>
+        <p>Choose your application below. After payment, you will be redirected to the download page automatically.</p>
     </section>
+
+    <div class="payment-grid">
+        
+        <div class="paypal-item">
+            <h3>PSP Portable 7" + 30 Games</h3>
+            <p class="price-tag">€100,00</p>
+            <div id="paypal-container-BNTR9J25Q3DW2"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "BNTR9J25Q3DW2" }).render("#paypal-container-BNTR9J25Q3DW2")</script>
+        </div>
+
+        <div class="paypal-item">
+            <h3>WMWario Happy World 2026 (PC)</h3>
+            <p class="price-tag">€9,99</p>
+            <div id="paypal-container-MNRG8ZTCQE9LJ"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "MNRG8ZTCQE9LJ" }).render("#paypal-container-MNRG8ZTCQE9LJ")</script>
+        </div>
+
+        <div class="paypal-item">
+            <h3>WMWario 3D Happy World Online</h3>
+            <p class="price-tag">€9,99</p>
+            <div id="paypal-container-U5GBLF47SEUC6"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "U5GBLF47SEUC6" }).render("#paypal-container-U5GBLF47SEUC6")</script>
+        </div>
+
+        <div class="paypal-item">
+            <h3>Abel123 Emulator</h3>
+            <p class="price-tag">€4,99</p>
+            <div id="paypal-container-JE3WG2B8ADT28"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "JE3WG2B8ADT28" }).render("#paypal-container-JE3WG2B8ADT28")</script>
+        </div>
+
+        <div class="paypal-item">
+            <h3>Abels Roulette 18+ (Android)</h3>
+            <p class="price-tag">€5,00</p>
+            <div id="paypal-container-2SHNHYH29BZW4"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "2SHNHYH29BZW4" }).render("#paypal-container-2SHNHYH29BZW4")</script>
+        </div>
+
+        <div class="paypal-item">
+            <h3>Blumgi Slime (Android/PC)</h3>
+            <p class="price-tag">€1,50</p>
+            <div id="paypal-container-W49JHNAVYYF7W"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "W49JHNAVYYF7W" }).render("#paypal-container-W49JHNAVYYF7W")</script>
+        </div>
+
+        <div class="paypal-item">
+            <h3>Madalin Stunt Cars 3D (PC)</h3>
+            <p class="price-tag">€2,50</p>
+            <div id="paypal-container-JP6NNHBV4V8DE"></div>
+            <script>paypal.HostedButtons({ hostedButtonId: "JP6NNHBV4V8DE" }).render("#paypal-container-JP6NNHBV4V8DE")</script>
+        </div>
+
+    </div>
 </main>
 
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<footer>
+    <p style="text-align:center; padding: 40px 0;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
+</footer>
 
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
+<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<div id="chat-container">
+    <div id="chat-header"><span>🤖 AI Assistant</span><span style="cursor:pointer" onclick="window.toggleChat()">✕</span></div>
+    <div id="messages"><div class="msg bot-msg">How can I help you with your purchase?</div></div>
+    <div id="input-area"><input type="text" id="user-input" placeholder="Ask about payments..."><button onclick="window.askBot()">➤</button></div>
 </div>
 
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
-    </div>
-
-    <script src="chatbot.js"></script>
-
-    <script>
-        let echo = null;
-
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
-
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
-
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
-
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
+<script src="chatbot.js"></script>
+<script>
+    let echo = null;
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        if (chat.style.display === "flex") { chat.style.display = "none"; } 
+        else { chat.style.display = "flex"; if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); } }
+    };
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+        if (!text) return;
+        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        input.value = "";
+        try {
+            const resp = echo ? await echo.chat(text) : "AI Offline...";
+            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${resp}</div>`; container.scrollTop = container.scrollHeight; }, 400);
+        } catch (e) { console.error(e); }
+    };
+</script>
 </body>
 </html>
-
