@@ -1,489 +1,254 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abelsoftware123 - AI Software Store | Neon Theme</title>
+    <title>AI Software Store - Abelsoftware123</title>
     
     <style>
         /* ================================================= */
-        /* == NEON BLAUW DARK THEME STIJLEN (Aangepast) == */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
         /* ================================================= */
         
-        /* Algemene stijlen voor het donkere thema */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            background-color: #333333; /* De donkere achtergrondkleur van de app-interface */
+            background-color: #121212;
             color: #f0f0f0; 
-            min-height: 100vh; /* Zorgt voor volledige hoogte */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Responsive Afbeelding bovenaan - Vullen de breedte */
-        .header-image {
-            width: 100%;
-            height: auto;
-            display: block;
+            min-height: 100vh;
         }
 
         header {
             text-align: center;
-            padding: 30px 0 20px 0; /* Extra padding bovenaan */
-            background-color: #333333;
-            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: #ffffff; 
-            padding: 0 20px;
-        }
-
-        header p {
-            font-size: 16px;
-            color: #cccccc; 
-            margin-bottom: 30px; 
-            padding: 0 20px;
-        }
-
-        /* Navigatie sectie voor de strakke knoppen */
-        nav {
-            padding: 0;
-            max-width: 800px;
-            margin: 0 auto; /* Centreer de navigatie */
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0 20px; 
-            margin: 0; 
-        }
-
-        nav li {
-            margin: 0; 
-        }
-
-        /* NEONBLAUWE STIJL VOOR DE VERTICALE NAVIGATIEKNOPPEN */
-        nav a {
-            display: block;
-            background-color: #555555; 
-            color: #00f0ff; /* Tekstkleur nu Neonblauw */
-            padding: 18px 20px; 
-            text-decoration: none;
-            border-radius: 0; 
-            margin: 0;
-            width: 100%; 
-            font-size: 18px;
-            transition: background-color 0.1s ease, box-shadow 0.3s ease; 
-            text-align: left; 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2); /* Subtiele blauwe scheidingslijn */
-            box-sizing: border-box; /* Zorgt ervoor dat padding binnen de breedte blijft */
-        }
-
-        /* Afgeronde hoeken en gloed voor de knoppengroep */
-        nav ul li:first-child a {
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3), 0 1px 0 rgba(0, 240, 255, 0.2); 
-        }
-
-        nav ul li:last-child a {
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            border-bottom: none; 
-            margin-bottom: 30px; 
-            box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3), 0 -1px 0 rgba(0, 240, 255, 0.2); 
-        }
-
-        /* Hover-effect: knop wordt iets donkerder en krijgt een intense blauwe gloed */
-        nav a:hover {
-            background-color: #4a4a4a; 
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 5px rgba(0, 240, 255, 0.8); 
-        }
-
-        main {
-            padding: 0 20px; /* Padding om de secties in te laten vallen */
-            max-width: 800px;
-            margin: 0 auto;
-            flex-grow: 1; /* Zorgt ervoor dat main de beschikbare ruimte inneemt */
-        }
-
-        /* De algemene content sectie stijl */
-        .content-section {
-            background-color: #1a1a1a; /* Donkergrijs/zwart voor contrast */
-            color: #f0f0f0; 
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px; /* Afgeronde hoeken voor de content secties */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtiele schaduw */
-            border: 1px solid rgba(0, 240, 255, 0.3); /* Neon rand */
-        }
-
-        h2 {
-            font-size: 24px;
-            color: #00f0ff; /* Neonblauw voor titels */
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); /* Neon gloed op de titel */
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 20px;
-            color: #ffffff;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #cccccc;
-        }
-
-        .content-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .content-section ul li {
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: #f0f0f0;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Register & Login Buttons (Top Right) */
+        .header-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
         }
         
-        .content-section ul li::before {
-            content: '»'; /* Gebruik een opvallend teken als opsommingsteken */
-            color: #00f0ff; /* Neonblauw opsommingsteken */
+        .neon-blue-button {
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
+            border-radius: 5px;
             font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+            text-transform: uppercase;
+            font-size: 11px;
+            cursor: pointer;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
+            text-decoration: none;
         }
 
+        .neon-blue-button:hover {
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
+        }
 
-        .groene-knop {
-            /* De groene knop voor "Start Your Project" */
-            background-color: #4CAF50; 
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* HORIZONTAL NAVIGATION BAR */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333;
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+            border-color: #00f2ff;
+        }
+
+        /* CONTENT SECTIONS */
+        main {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        h2 { 
+            color: #00f2ff; 
+            margin-top: 0; 
+            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 { color: #fff; margin-bottom: 10px; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "»";
+            color: #00f2ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background-color: #4CAF50;
             color: white;
-            padding: 15px 30px;
+            padding: 12px 25px;
             text-decoration: none;
             border-radius: 5px;
             display: inline-block;
             font-weight: bold;
             margin-top: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .groene-knop:hover {
-            background-color: #45a049;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background-color: #222222; 
-            color: #999999;
-            font-size: 14px;
-        }
-        
-        /* Media Query voor kleinere schermen (optioneel, maar goed voor responsiviteit) */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 24px;
-            }
-            header p {
-                font-size: 14px;
-            }
-            nav ul {
-                padding: 0 10px;
-            }
-            main {
-                padding: 0 10px;
-            }
-            .content-section {
-                padding: 15px;
-            }
-        }
-        
-        /* ================================================= */
-        /* == TOEVOEGING VOOR NEON KNOPPEN (Cruciaal) == */
-        /* ================================================= */
-        .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px; 
-            z-index: 10; 
-        }
-        
-        .neon-blue-button {
-            padding: 8px 15px;
+            transition: 0.3s;
             border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
         }
 
-        .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
-        }
-        /* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+        .cta-button:hover { background-color: #45a049; transform: translateY(-2px); }
 
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
-        }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+        /* CHATBOT STYLES */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
+        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px 8px; border-radius: 10px; cursor: pointer; font-size: 11px; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
-   <header> <div class="header-controls">
-        <button class="neon-blue-button" onclick="location.href='registreer.html'">Register</button>
-        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
-    </div>
     
-<h1>🤖AI Software Store🤖</h1>
-   
- <nav>
+<header> 
+    <div class="header-controls">
+        <a href="register.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">Log in</a>
+    </div>
+        
+    <h1 class="brand-title">AI Software Store</h1>
+    <p class="brand-subtitle">Advanced Autonomous Solutions & Machine Learning</p>
+
+    <nav class="main-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="chatbot.html">Order Your Chatbot</a></li>
+            <li><a href="advertising.html">Advertising</a></li>  
+            <li><a href="company.html">Company</a></li>
             <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="apps.html">Apps</a></li>
             <li><a href="hacktools.html">Hacktools</a></li>
-  <li><a href="ai.html">AI Software</a></li> 
-<li><a href="website.html">Order Your Own Website and Apps</a></li>
-            <li><a href="domain.html">Order Your Own Domain Name</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>
-         </ul>
+            <li><a href="ai.html" class="active">AI Software</a></li> 
+            <li><a href="website.html">Order Websites</a></li>
+            <li><a href="domain.html">Order Domains</a></li>
+            <li><a href="emulator.html">Emulator</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
+       </ul>
     </nav>
 </header>
 
 <main>
-     <section class="content-section">
-        <h2>🤖AI Face Recognition Software🤖</h2>
-        <p>🤖AI Face Recognition Software🤖
-Our work is powered by the latest, most efficient **frontend and backend technologies**, ensuring your application is fast, secure, and scalable.</p>
-
-        <h3>🤖AI Software Development🤖</h3>
-        <ul>
-            🧠AI Face Recognition Software🧠This project builds a local face recognition and search engine. It combines Computer Vision (with the face-recognition library) with a local database (SQLite) to quickly match unknown faces with an indexed collection of photos.
-</li>
-            <li>**Kali/ Linux/ Android/ Python3!!! Disclaimer: This project is intended exclusively for educational purposes and demonstrating Computer Vision technology. The unauthorized collection and processing of personal, biometric data is illegal under privacy legislation (such as the AVG/GDPR). Always use this tool responsibly and with the explicit consent of the photographed individuals.</li>
-            <li>**AI Database Cloud:** database.py</li>
-   
-<section class="content-section">    
-<h2>🤖🎮AI Drone Swarm Software🎮🤖</h2>
-        <ul>
-<h3>🎮🤖AI Drone Swarm Software🤖🎮</h3>
-            <ul>⚠️AI Drone Swarm Software Technology⚠️🧠</li>
-<p>Our AI drone swarm software is an advanced system designed to enable a large group of drones (a swarm) to function as a single, coordinated unit. It utilizes Artificial Intelligence (AI) and swarm intelligence algorithms to facilitate autonomous, decentralized mission execution.
-🧠 🤖 Autonomous Swarm Coordination (Swarm Intelligence)
-This focuses on the control and management of a large number (tens to hundreds) of inexpensive drones working together as a single unit.
-Software Focus: Decentralized Control Algorithms. The drones must make decisions without a single central command post, which makes them resilient to jamming or the failure of an individual drone.
-</p>
-
-
-<section class="content-section">
-<h2>🤖🧁AI Humanitarian Food Delivery🧁🤖</h2>
-<ul>
-🚁 Precision Air Drop System with AI 🎯</li>
-<p>This project implements a Machine Learning (ML) model for Computer Vision to improve the accuracy of humanitarian food package drops via drones. The system corrects the GPS location by visually detecting a pre-placed marker on the ground.</p>
-
-<section class="content-section"> <h2>🤖🕹️ Software Custom Made🤖🕹️</h2>
-<ul>
-AI Software Custom Made in order of your wishes and orders. We made custom brand new AI Autonome Software.🛡️</li> 
-
-<section class="content-section"> <h2>🤖🎮AI Search and Rescue Software🤖🎮</h2>
-<ul>
-AI Search Missing Person Face Recognition Software, Search for the missing person, live saving counts every second.🛡️</li> 
-
-<section class="content-section"> <h2>AI Chatbot🤖💻</h2>
-<ul>
-AI Software Custom Made in order of your wishes and orders. We made custom brand new AI Chatbot Software for more info and prices go at the chatbot page.🛡️</li> 
-
-<a href="chatbot.html" class="groene-knop">Chatbot Page Button</a>
+    <section class="content-section">
+        <h2>🤖 AI Face Recognition</h2>
+        <p>This engine combines Computer Vision with local SQLite databases to match faces against indexed collections. Perfect for security and identification systems.</p>
+        <ul class="feature-list">
+            <li>Compatible with Kali Linux, Android, and Python3.</li>
+            <li>Local database for maximum privacy and speed.</li>
+            <li><strong>Disclaimer:</strong> Intended for educational use. Always comply with GDPR/AVG regulations.</li>
+        </ul>
     </section>
 
- <section class="content-section">
-        <h2>🤖Buy AI Software🤖</h2>
-     <h3>Send Us Email 📬 to buy AI💾💽</h3>
-      <ul>
-Click the button below to contact us if you want to order and buy our AI Software Technology we respond within 24 hours. quotes are non-binding and free of charge. send an email!📬 </li>
-
-</ul>
-</section>
-        <a href="index.html" class="groene-knop">Start Your AI Project</a>
+    <section class="content-section">
+        <h2>🎮 AI Drone Swarm Software</h2>
+        <h3>Decentralized Coordination</h3>
+        <p>Advanced swarm intelligence algorithms allowing dozens of drones to act as a single unit without a central command post.</p>
+        <ul class="feature-list">
+            <li>Resilient against jamming and individual unit failure.</li>
+            <li>Autonomous mission execution through Swarm Intelligence.</li>
+            <li>Custom decentralized control algorithms.</li>
+        </ul>
     </section>
-<a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
-            <button id="contact-knop" class="groene-knop">Contact</button>
-        </a>
+
+    <section class="content-section">
+        <h2>🧁 AI Humanitarian Delivery</h2>
+        <p>Machine Learning models designed for Precision Air Drops. The AI detects markers on the ground to correct GPS drift during drone deliveries.</p>
     </section>
-    
-</main>
 
-<footer>
-    <p>&copy; 2026 Abelsoftware123. All rights reserved.</p>
-</footer>
+    <section class="content-section">
+        <h2>🕹️ Custom AI Development</h2>
+        <p>We build brand new, autonomous AI software tailored to your specific requirements. From Search & Rescue systems to life-saving face recognition for missing persons.</p>
+        <a href="chatbot.html" class="cta-button">View Chatbot Solutions</a>
+    </section>
 
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
-</div>
-
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
-    </div>
-
-    <script src="chatbot.js"></script>
-
-    <script>
-        let echo = null;
-
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
-
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
-
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
-
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
-</body>
-</html>
-
-
+    <section class="content-section"
