@@ -165,7 +165,6 @@
                 <div id="paypal-container-JE3WG2B8ADT28"></div>
             </div>
 
-  <div class="product-grid">
             <div class="paypal-item" style="border: 2px solid #00ff00;">
                 <h3>Abelsoftware123 AI Music Studio</h3>
                 <p>€14,99</p>
@@ -202,7 +201,6 @@
             <div class="paypal-item"><h3>WMWario Happy World 2 (Android/PC)</h3><p>€9,99</p><div id="paypal-container-YHY5GEYZB6NB8"></div></div>
             <div class="paypal-item"><h3>WMWario Happy World 1 (Android/PC)</h3><p>€9,99</p><div id="paypal-container-KPHFXFJ5SAFKJ"></div></div>
             <div class="paypal-item"><h3>WMWario Happy (Android App)</h3><p>€2,50</p><div id="paypal-container-7L36E2XCNG9B2"></div></div>
-
             <div class="paypal-item"><h3>Blumgi Slime (Android/PC)</h3><p>€1,50</p><div id="paypal-container-W49JHNAVYYF7W"></div></div>
             <div class="paypal-item"><h3>Madalin Stunt Cars 3D (PC)</h3><p>€2,50</p><div id="paypal-container-JP6NNHBV4V8DE"></div></div>
             <div class="paypal-item"><h3>WMWario Slotpipes (Android)</h3><p>€2,50</p><div id="paypal-container-AS8XU2UTZUFDA"></div></div>
@@ -218,10 +216,9 @@
 </main>
 
 <script>
-   // Alle product ID's inclusief je nieuwe Music Studio
+    // Alle product ID's in één array
     const buttons = [
         { id: "EF7N5A3CMKHEL", container: "#paypal-container-EF7N5A3CMKHEL" }, // AI Music Studio
-    const buttons = [
         { id: "BNTR9J25Q3DW2", container: "#paypal-container-BNTR9J25Q3DW2" },
         { id: "JE3WG2B8ADT28", container: "#paypal-container-JE3WG2B8ADT28" },
         { id: "U5GBLF47SEUC6", container: "#paypal-container-U5GBLF47SEUC6" },
@@ -252,7 +249,8 @@
     ];
 
     buttons.forEach(btn => {
-        if(document.querySelector(btn.container)) {
+        const target = document.querySelector(btn.container);
+        if(target) {
             paypal.HostedButtons({ hostedButtonId: btn.id }).render(btn.container);
         }
     });
@@ -261,13 +259,13 @@
 <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
 <div id="chat-container">
     <div id="chat-header"><span>🤖 AI Assistant</span><span onclick="window.toggleChat()" style="cursor:pointer">✕</span></div>
-    <div class="mode-selector">
+    <div class="mode-selector" style="padding: 10px; display: flex; gap: 5px;">
         <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices</button>
         <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments</button>
     </div>
     <div id="messages"><div class="msg bot-msg">Welcome to Abelsoftware123 Payments! Need help with a checkout?</div></div>
-    <div id="input-area">
-        <input type="text" id="user-input" placeholder="Type here...">
+    <div id="input-area" style="padding: 10px; display: flex;">
+        <input type="text" id="user-input" style="flex: 1; padding: 5px;" placeholder="Type here...">
         <button onclick="window.askBot()">➤</button>
     </div>
 </div>
@@ -278,17 +276,30 @@
     window.toggleChat = function() {
         const chat = document.getElementById("chat-container");
         chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+        // Alleen initialiseren als BasicBot bestaat
         if (!echo && typeof BasicBot !== 'undefined') echo = new BasicBot();
     };
     window.askBot = async function() {
         const input = document.getElementById("user-input");
         const container = document.getElementById("messages");
         const text = input.value.trim();
-        if (!text || !echo) return;
+        if (!text) return;
+        
         container.innerHTML += `<div class="msg user-msg">${text}</div>`;
         input.value = "";
-        const response = await echo.chat(text);
-        setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${response}</div>`; container.scrollTop = container.scrollHeight; }, 400);
+        
+        if(echo) {
+            const response = await echo.chat(text);
+            setTimeout(() => { 
+                container.innerHTML += `<div class="msg bot-msg">${response}</div>`; 
+                container.scrollTop = container.scrollHeight; 
+            }, 400);
+        } else {
+            setTimeout(() => { 
+                container.innerHTML += `<div class="msg bot-msg">System ready. How can I help?</div>`; 
+                container.scrollTop = container.scrollHeight; 
+            }, 400);
+        }
     };
 </script>
 </body>
