@@ -1,340 +1,354 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Development - Abelsoftware123</title>
+    <title>Chatbot Development | Abelsoftware123</title>
     
-    <link rel="stylesheet" href="style.css">
-
     <style>
-        /* --- INTEGRATION OF ALL STYLES --- */
-        body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+        /* ================================================= */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
+        /* ================================================= */
         
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #f0f0f0; 
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
+            position: relative;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Register & Login Buttons */
         .header-controls {
-            position: absolute; 
-            top: 10px;
-            right: 10px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px; 
+            gap: 10px;
         }
         
         .neon-blue-button {
-            padding: 8px 15px;
-            border: 2px solid #00ffff;
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 11px;
             cursor: pointer;
-            color: #fff; 
-            background-color: transparent; 
-            box-shadow: 0 0 10px #00ffff; 
-            transition: all 0.3s ease-in-out;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
             text-decoration: none;
         }
 
         .neon-blue-button:hover {
-            background-color: #00ffff;
-            color: #000; 
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
         }
 
-        .neon-title {
-            color: #00ffff; 
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* NAVIGATION BAR */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333;
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+            border-color: #00f2ff;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.6;
+            color: #ccc;
         }
 
-        .control-panel {
-            text-align: center; 
-            margin-top: 20px;
+        h2.section-title {
+            text-align: center;
+            color: #00f2ff;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+            margin-bottom: 30px;
         }
 
-        .galant-red-button {
-            padding: 10px 20px;
-            border: 2px solid #ff4500;
-            border-radius: 8px; 
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: #8b0000;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7); 
-            transition: all 0.3s ease-in-out;
-            margin: 5px; 
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .galant-red-button:hover {
-            background-color: #ff4500;
-            color: #000;
-        }
-
-        .groene-knop {
-            padding: 15px 25px;
-            border: 2px solid #00ff00;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff;
-            background-color: transparent;
-            box-shadow: 0 0 15px #00ff00;
-            transition: all 0.3s ease-in-out;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .groene-knop:hover {
-            background-color: #00ff00;
-            color: #000;
-        }
-
-        nav ul { list-style: none; padding: 0; text-align: center; }
-        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 10px; transition: 0.3s; }
-        nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
-
-        /* --- ADVERTISEMENT LAYOUT --- */
-        .pricing-section {
+        /* PRICING CARDS */
+        .pricing-grid {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 30px;
             flex-wrap: wrap;
-            padding: 40px 20px;
         }
 
         .card {
-            background: #222;
-            border: 2px solid #444;
+            background-color: #1a1a1a;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 40px 30px;
             border-radius: 15px;
-            padding: 25px;
             width: 320px;
             text-align: center;
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #00f2ff;
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+        }
+
+        .card.premium {
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.05);
+        }
+
+        .card.premium:hover {
+            border-color: #00ff00;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.15);
+        }
+
+        .price-tag {
+            display: block;
+            font-size: 42px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .card.premium .price-tag { color: #00ff00; }
+        .card.standard .price-tag { color: #00f2ff; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            text-align: left;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00f2ff;
+        }
+
+        .card.premium li::before { color: #00ff00; }
+
+        .order-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .card:hover { border-color: #00ffff; transform: scale(1.02); }
-        .card.premium { border-color: #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+        .standard-btn { border: 2px solid #00f2ff; color: #00f2ff; }
+        .standard-btn:hover { background: #00f2ff; color: #000; box-shadow: 0 0 15px #00f2ff; }
 
-        .price-big { font-size: 2.5em; font-weight: bold; margin: 15px 0; color: #fff; display: block; }
-    
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .premium-btn { border: 2px solid #00ff00; color: #00ff00; }
+        .premium-btn:hover { background: #00ff00; color: #000; box-shadow: 0 0 15px #00ff00; }
+
+        .info-box {
+            background: rgba(255, 69, 0, 0.05);
+            border: 1px solid #ff4500;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 60px;
+            text-align: center;
         }
 
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            font-size: 14px;
         }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+
+        /* CHATBOT UI */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
 
-    <header style="position: relative; text-align: center; padding-top: 50px;"> 
-        <div class="header-controls">
-            <a href="registreer.html" class="neon-blue-button">register</a>
-            <a href="login.html" class="neon-blue-button">log in</a>
-        </div>
+<header> 
+    <div class="header-controls">
+        <a href="registreer.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">log in</a>
+    </div>
         
-        <h1 class="neon-title">Abelsoftware123</h1>
-        <p>Advanced Chatbot Development Services</p>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>
-                <li><a href="company.html">Abelsoftware123 Company</a></li>
-                <li><a href="payments.html">Payments</a></li>
-                <li><a href="apps.html">Games List of Apps</a></li>
-                <li><a href="hacktools.html">Hacktools</a></li>
-                <li><a href="ai.html">AI Software</a></li>             
-                <li><a href="website.html">Order Your Own Website and Apps</a></li>
-                <li><a href="domain.html">Order Your Own Domain Name</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>
-            </ul>
-         </header>
+    <h1 class="brand-title">Abelsoftware123</h1>
+    <p class="brand-subtitle">Advanced Chatbot Development Services</p>
 
-    <main style="padding: 20px;">
-        <h2 class="neon-title">🚀 Chatbot Development & Sales</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto;">We build the most advanced chatbots of 2026. Whether you need a standard automated system or a self-thinking AI with human emotions: Abelsoftware123 delivers the code.</p>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chatbot.html" class="active">Order Your Chatbot</a></li>
+            <li><a href="advertentie.html">Advertising</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="payments.html">Payments</a></li>
+            <li><a href="apps.html">Games List</a></li>
+            <li><a href="hacktools.html">Hacktools</a></li>
+            <li><a href="ai.html">AI Software</a></li>           
+            <li><a href="website.html">Order Website</a></li>
+            <li><a href="domain.html">Order Domain</a></li>
+            <li><a href="emulator.html">Emulator</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
+       </ul>
+    </nav>
+</header>
 
-        <section class="pricing-section">
-            <div class="card">
-                <h3 style="color: #00ffff;">Standard Chatbot</h3>
-                <p>Keyword-based automation for your business.</p>
-                <span class="price-big">€1000</span>
-                <ul style="text-align: left; margin-bottom: 25px;">
-                    <li>Fixed response structure</li>
-                    <li>Full Website integration</li>
-                    <li>Bilingual (EN/NL) Management</li>
-                    <li>Custom UI Design</li>
-                </ul>
-                <a href="mailto:abelsoftware123@hotmail.com?subject=Order Standard Chatbot" class="groene-knop">Order Now</a>
-            </div>
-
-            <div class="card premium">
-                <h3 style="color: #00ff00;">Premium AI Chatbot</h3>
-                <p>Deep Learning & Emotion Engine technology.</p>
-                <span class="price-big" style="color: #00ff00;">€1500</span>
-                <ul style="text-align: left; margin-bottom: 25px;">
-                    <li><strong>Autonomous Thinking Logic</strong></li>
-                    <li>Human Moods & Empathy</li>
-                    <li>Internal Monologue (Console Thoughts)</li>
-                    <li>Self-Learning Capabilities</li>
-                </ul>
-                <a href="mailto:abelsoftware123@hotmail.com?subject=Order Premium AI Chatbot" class="groene-knop">Order Now</a>
-            </div>
-        </section>
-
-        <div style="background: #222; border: 1px solid #ff4500; padding: 20px; border-radius: 10px; margin-top: 40px; text-align: center;">
-            <h3 style="color: #ff4500;">Why invest €1000+ in our Chatbot?</h3>
-            <p>An Abelsoftware123 chatbot works 24/7. It saves on labor costs, increases customer satisfaction, and gives your brand a futuristic edge. Our AI software is unique in the current market, featuring a "Human Soul" algorithm that connects with your users on a deeper level.</p>
-        </div>
-    </main>
-
-    <footer>
-        <p style="text-align: center; padding: 40px;">&copy; 2026 abelsoftware123. all rights reserved.</p>
-    </footer>
-
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
-</div>
-
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
+<main>
+    <div class="intro-text">
+        <h2 class="section-title">🚀 Future-Proof AI Systems</h2>
+        <p>We build the most advanced chatbots of 2026. Whether you need a standard automated system for lead generation or a self-thinking AI with human empathy: Abelsoftware123 delivers the ultimate code.</p>
     </div>
 
-    <script src="chatbot.js"></script>
+    <section class="pricing-grid">
+        <div class="card standard">
+            <h3 style="color: #00f2ff; margin: 0;">Standard Chatbot</h3>
+            <p style="font-size: 13px; color: #888;">Keyword-Based Automation</p>
+            <span class="price-tag">€1000</span>
+            <ul class="feature-list">
+                <li>Fixed response structure</li>
+                <li>Full Website integration</li>
+                <li>Bilingual (EN/NL) Management</li>
+                <li>Custom UI Design & Branding</li>
+                <li>24/7 Availability</li>
+            </ul>
+            <a href="mailto:abelsoftware123@hotmail.com?subject=Order Standard Chatbot" class="order-btn standard-btn">Order Standard</a>
+        </div>
 
-    <script>
-        let echo = null;
+        <div class="card premium">
+            <div style="position: absolute; top: 15px; right: 15px; background: #00ff00; color: #000; font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: bold;">TOP TIER</div>
+            <h3 style="color: #00ff00; margin: 0;">Premium AI Chatbot</h3>
+            <p style="font-size: 13px; color: #888;">Deep Learning Technology</p>
+            <span class="price-tag">€1500</span>
+            <ul class="feature-list">
+                <li><strong>Autonomous Thinking Logic</strong></li>
+                <li>Human Moods & Empathy engine</li>
+                <li>Internal Monologue processing</li>
+                <li>Self-Learning Capabilities</li>
+                <li>Advanced Context Recognition</li>
+            </ul>
+            <a href="mailto:abelsoftware123@hotmail.com?subject=Order Premium AI Chatbot" class="order-btn premium-btn">Order Premium</a>
+        </div>
+    </section>
 
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
+    <div class="info-box">
+        <h3 style="color: #ff4500; margin-top: 0;">The ROI of AI</h3>
+        <p style="font-size: 15px; color: #ccc; margin-bottom: 0;">An Abelsoftware123 chatbot works 24/7 without breaks. It reduces labor costs, eliminates human error, and gives your business a futuristic edge. Our "Human Soul" algorithm is the only one in the market that truly connects with users.</p>
+    </div>
+</main>
 
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
+<footer>
+    <p>&copy; 2026 Abelsoftware123. All rights reserved.</p>
+</footer>
 
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
+<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<div id="chat-container">
+    <div id="chat-header"><span>🤖 AI Assistant</span><span style="cursor:pointer" onclick="window.toggleChat()">✕</span></div>
+    <div id="messages"><div class="msg bot-msg">Welcome! Want to know more about our custom chatbots?</div></div>
+    <div id="input-area"><input type="text" id="user-input" placeholder="Ask me anything..."><button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; cursor:pointer;">➤</button></div>
+</div>
 
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
-
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
+<script src="chatbot.js"></script>
+<script>
+    let echo = null;
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        if (chat.style.display === "flex") { chat.style.display = "none"; } 
+        else { chat.style.display = "flex"; if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); } }
+    };
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+        if (!text) return;
+        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        input.value = "";
+        try {
+            const resp = echo ? await echo.chat(text) : "Connecting...";
+            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${resp}</div>`; container.scrollTop = container.scrollHeight; }, 400);
+        } catch (e) { console.error(e); }
+    };
+</script>
 </body>
 </html>
-
