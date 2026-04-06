@@ -1,156 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Studio Software - Abelsoftware123</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- ABELSOFTWARE123 BASE STYLE --- */
-        body { background-color: #1a1a1a; color: #e0e0e0; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
-        
-        .header-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
-        .neon-blue-button { padding: 8px 15px; border: 2px solid #00ffff; border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; color: #fff; background-color: transparent; box-shadow: 0 0 10px #00ffff; transition: 0.3s; }
-        .neon-blue-button:hover { background-color: #00ffff; color: #000; }
-        .neon-title { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; text-align: center; }
-
-        /* --- PRODUCT PRESENTATION --- */
-        .main-content {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .welcome-card {
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 20px;
-            border: 2px solid rgba(0, 240, 255, 0.5);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .badge-role {
-            display: inline-block;
-            margin-bottom: 15px;
-            padding: 6px 18px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid #00f0ff;
-            color: #00f0ff;
-            border-radius: 20px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .studio-preview {
-            width: 100%;
-            max-width: 320px;
-            border: 4px solid #00ffff;
-            border-radius: 25px;
-            margin: 25px auto;
-            display: block;
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
-        }
-
-        .price-container {
-            margin: 30px 0;
-        }
-
-        .price-label { font-size: 14px; opacity: 0.7; color: #fff; }
-        .price-value { 
-            font-size: 56px; 
-            color: #00ff00; 
-            font-weight: 900; 
-            text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-            display: block;
-        }
-
-        /* --- PAYMENT BUTTON --- */
-        .green-button { 
-            padding: 18px 45px; 
-            border: 2px solid #00ff00; 
-            border-radius: 12px; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            color: #000000 !important; 
-            background-color: #00ff00 !important; 
-            box-shadow: 0 0 25px #00ff00, inset 0 0 10px #ffffff; 
-            text-decoration: none; 
-            display: inline-block; 
-            font-size: 20px;
-            letter-spacing: 1px;
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-
-        .green-button:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 40px #00ff00;
-        }
-
-        .feature-list {
-            text-align: left;
-            display: inline-block;
-            margin: 20px 0;
-            padding: 0;
-            list-style: none;
-            color: #fff;
-        }
-
-        .feature-list li { margin: 10px 0; font-size: 16px; }
-        .feature-list li::before { content: "⚡"; margin-right: 10px; color: #00ffff; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* NAVIGATION */
-        nav ul { list-style: none; padding: 0; text-align: center; }
-        nav li a { color: #00ffff; text-decoration: none; display: block; padding: 8px; transition: 0.3s; font-size: 14px; }
-        nav li a:hover { color: #fff; text-shadow: 0 0 5px #00ffff; }
-/* EINDE TOEVOEGING */
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
-        }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
- </style>
-</head>
 <body>
 
     <header style="position: relative; text-align: center; padding-top: 50px;"> 
@@ -205,92 +52,32 @@
                 After payment, you will receive immediate full access to the Echo AI Music Suite.
             </p>
         </div>
+    </div>
 
-<div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
+    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+    
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Echo AI Assistant</span>
+            <span style="cursor:pointer" onclick="window.toggleChat()">✖</span>
+        </div>
+        <div class="mode-selector">
+            <button class="quick-btn" onclick="window.changeBotMode('professional')">Pro</button>
+            <button class="quick-btn" onclick="window.changeBotMode('friendly')">Friendly</button>
+        </div>
+        <div id="messages">
+            <div class="msg bot-msg">Welcome to Abelsoftware123 AI Assistant! How can I help you today?</div>
         </div>
         <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
+            <input type="text" id="user-input" placeholder="Ask something..." onkeypress="window.handleKey(event)">
             <button onclick="window.askBot()">➤</button>
         </div>
     </div>
 
     <script src="chatbot.js"></script>
+    ```
 
-    <script>
-        let echo = null;
-
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
-
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
-
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
-
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
-</body>
-</html>
-
-
+### Quick Tips for your Repository:
+* **Image Path:** Ensure `music.jpg` is in the same folder as this HTML file so the preview loads.
+* **CSS file:** You have a `<link rel="stylesheet" href="style.css">` at the top. Make sure your neon styles aren't being overwritten by that external file.
+* **Script Load:** Since `chatbot.js` contains the `BasicBot` class, it must be loaded before the `toggleChat` function tries to create a `new BasicBot()`.
