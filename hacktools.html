@@ -4,368 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacktools - Abelsoftware123</title>
-    <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* CSS voor de neonblauwe knoppen en hun positionering */
-        header {
-            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        /* ================================================= */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
+        /* ================================================= */
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #f0f0f0; 
+            min-height: 100vh;
         }
 
+        header {
+            text-align: center;
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
+            position: relative;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Register & Login Buttons (Top Right) */
         .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px; 
-            z-index: 10; 
+            gap: 10px;
         }
         
         .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 11px;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
+            text-decoration: none;
         }
 
         .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
         }
 
-        /* Specifieke styling voor deze pagina om de afbeeldingen te centreren */
-        .hacktools-content {
-            background-color: white; /* Zorgt voor de witte achtergrond */
-            padding: 20px;
-            margin: 20px auto; /* Centreert het witte vak zelf */
-            max-width: 800px; /* Maximale breedte van het witte vak */
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* HORIZONTAL NAVIGATION BAR */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333;
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+            border-color: #00f2ff;
+        }
+
+        /* CONTENT SECTIONS */
+        main {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        h2 { 
+            color: #00f2ff; 
+            margin-top: 0; 
+            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+        }
+
+        h3, h4 { color: #fff; margin-top: 20px; }
+
+        p { line-height: 1.6; color: #ccc; }
+
+        .tool-list {
+            column-count: 2;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tool-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #f0f0f0;
+        }
+
+        .tool-list li::before {
+            content: "⚡ ";
+            color: #00f2ff;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .hack-img {
+            max-width: 100%;
+            height: auto;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #333;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
         }
 
-        .image-center-container {
-            /* Gebruik flexbox om de inhoud van de div horizontaal te centreren */
-            display: flex; 
-            justify-content: center; 
-            margin-top: 20px; /* Ruimte boven de afbeelding */
-            margin-bottom: 20px; /* Ruimte onder de afbeelding */
-        }
-
-        .hacktools-image {
-            /* Zorgt ervoor dat de afbeeldingen responsief zijn en niet vervormen */
-            max-width: 100%; 
-            height: auto; 
-            /* Algemene styling */
-            display: block; 
-            border: 2px solid #ddd; 
-            border-radius: 5px; 
-        }
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
-        }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+        /* CHATBOT STYLES */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
+        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
+    
 <header> 
     <div class="header-controls">
- <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
- <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+        <a href="register.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">Log in</a>
     </div>
         
-    <h1>Hacktools</h1>
-    <p>Overview of our tools and ethical hacking services.</p>
-    
-    <nav>
+    <h1 class="brand-title">Hacktools</h1>
+    <p class="brand-subtitle">Ethical Hacking & Security Auditing Resources</p>
+
+    <nav class="main-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="chatbot.html">Order Your Chatbot</a></li>
+            <li><a href="advertising.html">Advertising</a></li>  
+            <li><a href="company.html">Company</a></li>
             <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
-            <li><a href="hacktools.html">Hacktools</a></li>
-  <li><a 
-href="ai.html">AI Software</a></li>           
- <li><a 
-href="website.html">Order Your Own Website and Apps</a></li>
-            <li><a href="domain.html">Order Your Own Domain Name</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="hacktools.html" class="active">Hacktools</a></li>
+            <li><a href="ai.html">AI Software</a></li> 
+            <li><a href="website.html">Order Websites</a></li>
+            <li><a href="domain.html">Order Domains</a></li>
+            <li><a href="emulator.html">Emulator</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
        </ul>
     </nav>
 </header>
 
 <main>
-    <section class="hacktools-content">
-        <h2>💻Our Ethical Hacking Resources💻</h2>
-        <p>Here you will find information about the **hack tools** we develop and use. We specialize in testing security vulnerabilities to make systems more robust (ethical hacking).</p>
+    <section class="content-section">
+        <h2>💻 Ethical Hacking Resources</h2>
+        <p>Explore our specialized toolset designed for penetration testing and vulnerability assessment. We empower security professionals to build more robust systems through ethical hacking practices.</p>
         
-        <h3>💻Safety First💻</h3>
-        <p>All our tools are intended for legal and ethical purposes, such als penetration testing and security audits, with the explicit permission of the system owner.</p>
+        <h3>Safety & Ethics</h3>
+        <p><strong>Strict Policy:</strong> All tools provided are intended for legal and ethical purposes only, such as authorized security audits and academic research.</p>
         
-        <h4>🖥️List of Hacktools: Linux-Kali -Android</h4>
-        <p>1. Spyware Software<br>
-        2. DDoS-Attack Software <br>
-        3. SQL-Map Software <br>
-        4. Phishing Software<br>
-        5. Pentest Software<br>
-        6. Metasploit Framework Software<br>
-        7. Sniffing and Spoofing Software <br>
-        8. Network Scanner Software <br>
-        9. Password Attacks Software <br>
-        10. SQL-Injection Software<br>
-        11. People Hunt Software <br>
-        12. API Scanner <br>
-        13. Wordpress scanner<br>
-        14. IP location tracker software<br>
-        15. Stresstest Software <br>
-        16. Forensics Tools Software <br>
-        17. Information Gathering Software <br>
-        18. Web Hacking Software <br>
-        19. Vulnerability Scanner Software <br>
-        20. Web Servers Software <br>
-        21. Nmap Software
-        <br>---------------------<br>
-        Send an Email to order the Hacking software. You will then receive an invoice from us. After payment, the software will be emailed to you.</p>
-        
-        <div class="image-center-container">
-            <img 
-                src="https://steamlabs.co.th/wp-content/uploads/2021/09/Yellow-and-Blue-Colorful-Brushstroke-Art-Education-YouTube-Thumbnail-2.png" 
-                alt="Yellow and Blue Colorful Brushstroke Art Education YouTube Thumbnail"
-                class="hacktools-image"
-            >
-        </div>
-        
-        <div class="image-center-container">
-            <img 
-                src="https://repository-images.githubusercontent.com/304629930/8a867980-1c8c-11eb-9372-0550867118ee" 
-                alt="GitHub repository afbeelding van een logo of project"
-                class="hacktools-image"
-            >
-        </div>
+        <h4>Available Software Suite (Linux/Kali/Android)</h4>
+        <ul class="tool-list">
+            <li>Spyware Software</li>
+            <li>DDoS-Attack Software</li>
+            <li>SQL-Map Software</li>
+            <li>Phishing Frameworks</li>
+            <li>Pentest Suites</li>
+            <li>Metasploit Framework</li>
+            <li>Sniffing & Spoofing</li>
+            <li>Network Scanners</li>
+            <li>Password Attacks</li>
+            <li>SQL-Injection Tools</li>
+            <li>OSINT Hunt Tools</li>
+            <li>API Scanners</li>
+            <li>Wordpress Scanners</li>
+            <li>IP Location Trackers</li>
+            <li>Stresstest Tools</li>
+            <li>Forensics Software</li>
+            <li>Nmap Tools</li>
+        </ul>
+        <p style="border-top: 1px solid #333; padding-top: 15px; font-size: 14px; color: #00f2ff;">
+            Send an Email to order software. Invoices are sent via email; delivery follows payment confirmation.
+        </p>
+    </section>
 
-        <div class="image-center-container">
-            <img 
-                src="https://sqlmap.org/images/screenshot.png" 
-                alt="SQLmap screenshot"
-                class="hacktools-image"
-            >
-        </div>
-        
-        <div class="image-center-container">
-            <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOlcmVsywVQCoAVOsBf8swR18DaklEED4jNPq_ll14Qg1o-bYENByzAWk&s=10" 
-                alt="Gerelateerde afbeelding van Google"
-                class="hacktools-image"
-            >
-        </div>
-        
-        <div class="image-center-container">
-            <img 
-                src="https://docs.rapid7.com/images/metasploit/msf-console.png" 
-                alt="Metasploit console screenshot"
-                class="hacktools-image"
-            >
-        </div>
+    <div class="image-container"><img src="https://sqlmap.org/images/screenshot.png" alt="SQLmap" class="hack-img"></div>
+    <div class="image-container"><img src="https://docs.rapid7.com/images/metasploit/msf-console.png" alt="Metasploit" class="hack-img"></div>
+    <div class="image-container"><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/nmap_demo_7.PNG" alt="Nmap" class="hack-img"></div>
 
-        <div class="image-center-container">
-            <img 
-                src="https://www.simplilearn.com/ice9/free_resources_article_thumb/nmap_demo_7.PNG" 
-                alt="Nmap demo screenshot"
-                class="hacktools-image"
-            >
-        </div>
-  
-        <h3>🖥️Extra Information about our Hacktools 🖥️</h3>
+    <section class="content-section">
+        <h2>🖥️ Deep Dive Information</h2>
         
-        <h4>1. Network and Vulnerability Mapping</h4>
-        <p>These tools are crucial for discovering network topology and identifying weak points.</p>
-        <ul>
-            <li>**Nmap (Network Mapper):** An open-source utility for network discovery and security auditing. It can detect hosts, services, operating systems, and open ports on a network.</li>
-            <li>**Wireshark:** The world's foremost network protocol analyzer. It allows you to interactively browse and inspect data packets captured from a live network or from a file.</li>
-            <li>**Nessus:** A popular vulnerability scanner (available in free/paid versions) that performs comprehensive checks for configuration weaknesses and missing patches.</li>
-            <li>**Nikto:** A simple but powerful open-source web server scanner that checks for dangerous files/CGIs, outdated server software, and other configuration issues.</li>
-        </ul>
+        <h4>1. Network Mapping</h4>
+        <p><strong>Nmap:</strong> The industry standard for network discovery. Identify hosts, open ports, and operating system versions instantly.</p>
         
-        <h4>2. Web Application Security and Proxies</h4>
-        <p>Essential tools for testing the security of modern web applications.</p>
-        <ul>
-            <li>**Burp Suite (Community/Professional):** An integrated platform of tools used for performing security testing of web applications. It acts as a proxy to intercept, inspect, and modify traffic between the browser and the web server.</li>
-            <li>**OWASP ZAP (Zed Attack Proxy):** A free, open-source security tool maintained by the international OWASP community, used for finding vulnerabilities in web applications.</li>
-        </ul>
+        <h4>2. Web Security</h4>
+        <p><strong>Burp Suite & OWASP ZAP:</strong> Essential proxies for intercepting and modifying traffic to find hidden vulnerabilities in web applications.</p>
         
-        <h4>3. Password Cracking and Authentication</h4>
-        <p>Tools for testing the strength of authentication mechanisms and credentials.</p>
-        <ul>
-            <li>**John the Ripper (JtR):** A fast password cracker that is commonly used to detect weak Unix passwords, but supports many hash and cipher types.</li>
-            <li>**Hashcat:** Touted as the world's fastest and most advanced password recovery tool, supporting five unique modes of attack and a massive number of hash types.</li>
-            <li>**Hydra:** A powerful, fast network logon cracker that supports numerous protocols to attack login services such as SSH, FTP, Telnet, and more.</li>
-        </ul>
-        
-        <h4>4. Wireless Network Auditing</h4>
-        <p>Specific tools for assessing the security of Wi-Fi networks.</p>
-        <ul>
-            <li>**Aircrack-ng Suite:** A complete set of tools for assessing WiFi network security. It focuses on monitoring, attacking, testing, and cracking wireless connections.</li>
-        </ul>
-
+        <h4>3. Password Auditing</h4>
+        <p><strong>Hashcat & John the Ripper:</strong> World-class tools for testing password strength using advanced cracking modes and GPU acceleration.</p>
     </section>
 </main>
 
 <footer>
-    <p>&copy; 2026 Abelsoftware123. All rights reserved.</p>
+    <p style="text-align:center; color: #666; font-size: 14px; padding-bottom: 40px;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
 </footer>
 
-
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
+<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<div id="chat-container">
+    <div id="chat-header"><span>🤖 AI Assistant</span><span style="cursor:pointer" onclick="window.toggleChat()">✕</span></div>
+    <div id="messages">
+        <div class="msg bot-msg">Welcome to Hacktools support. How can I assist you with our security resources?</div>
+    </div>
+    <div id="input-area">
+        <input type="text" id="user-input" placeholder="Ask about tools..." onkeypress="window.handleKey(event)">
+        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; cursor:pointer;">➤</button>
+    </div>
 </div>
 
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
-    </div>
-
-    <script src="chatbot.js"></script>
-
-    <script>
-        let echo = null;
-
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
-
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
-
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
-
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
-
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
+<script src="chatbot.js"></script>
+<script>
+    let echo = null;
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        if (chat.style.display === "flex") { chat.style.display = "none"; } 
+        else { chat.style.display = "flex"; if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); } }
+    };
+    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+        if (!text) return;
+        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        input.value = "";
+        try {
+            const response = echo ? await echo.chat(text) : "AI Offline...";
+            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${response}</div>`; container.scrollTop = container.scrollHeight; }, 400);
+        } catch (err) { console.error(err); }
+    };
+</script>
 </body>
 </html>
