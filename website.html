@@ -3,321 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abelsoftware123 - Website & App Development | Neon Theme</title>
+    <title>Abelsoftware123 - Website & App Development</title>
     
     <style>
         /* ================================================= */
-        /* == NEON BLAUW DARK THEME STIJLEN (Aangepast) == */
+        /* == NIEUWE MODERNE NEON LAYOUT (Abelsoftware123) == */
         /* ================================================= */
         
-        /* Algemene stijlen voor het donkere thema */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            background-color: #333333; /* De donkere achtergrondkleur van de app-interface */
+            background-color: #121212; /* Dieper zwart voor meer contrast */
             color: #f0f0f0; 
-            min-height: 100vh; /* Zorgt voor volledige hoogte */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Responsive Afbeelding bovenaan - Vullen de breedte */
-        .header-image {
-            width: 100%;
-            height: auto;
-            display: block;
+            min-height: 100vh;
         }
 
         header {
             text-align: center;
-            padding: 30px 0 20px 0; /* Extra padding bovenaan */
-            background-color: #333333;
-            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: #ffffff; 
-            padding: 0 20px;
-        }
-
-        header p {
-            font-size: 16px;
-            color: #cccccc; 
-            margin-bottom: 30px; 
-            padding: 0 20px;
-        }
-
-        /* Navigatie sectie voor de strakke knoppen */
-        nav {
-            padding: 0;
-            max-width: 800px;
-            margin: 0 auto; /* Centreer de navigatie */
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0 20px; 
-            margin: 0; 
-        }
-
-        nav li {
-            margin: 0; 
-        }
-
-        /* NEONBLAUWE STIJL VOOR DE VERTICALE NAVIGATIEKNOPPEN */
-        nav a {
-            display: block;
-            background-color: #555555; 
-            color: #00f0ff; /* Tekstkleur nu Neonblauw */
-            padding: 18px 20px; 
-            text-decoration: none;
-            border-radius: 0; 
-            margin: 0;
-            width: 100%; 
-            font-size: 18px;
-            transition: background-color 0.1s ease, box-shadow 0.3s ease; 
-            text-align: left; 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2); /* Subtiele blauwe scheidingslijn */
-            box-sizing: border-box; /* Zorgt ervoor dat padding binnen de breedte blijft */
-        }
-
-        /* Afgeronde hoeken en gloed voor de knoppengroep */
-        nav ul li:first-child a {
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            box-shadow: 0 -1px 8px rgba(0, 240, 255, 0.3), 0 1px 0 rgba(0, 240, 255, 0.2); 
-        }
-
-        nav ul li:last-child a {
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            border-bottom: none; 
-            margin-bottom: 30px; 
-            box-shadow: 0 1px 8px rgba(0, 240, 255, 0.3), 0 -1px 0 rgba(0, 240, 255, 0.2); 
-        }
-
-        /* Hover-effect: knop wordt iets donkerder en krijgt een intense blauwe gloed */
-        nav a:hover {
-            background-color: #4a4a4a; 
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 5px rgba(0, 240, 255, 0.8); 
-        }
-
-        main {
-            padding: 0 20px; /* Padding om de secties in te laten vallen */
-            max-width: 800px;
-            margin: 0 auto;
-            flex-grow: 1; /* Zorgt ervoor dat main de beschikbare ruimte inneemt */
-        }
-
-        /* De algemene content sectie stijl */
-        .content-section {
-            background-color: #1a1a1a; /* Donkergrijs/zwart voor contrast */
-            color: #f0f0f0; 
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px; /* Afgeronde hoeken voor de content secties */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtiele schaduw */
-            border: 1px solid rgba(0, 240, 255, 0.3); /* Neon rand */
-        }
-
-        h2 {
-            font-size: 24px;
-            color: #00f0ff; /* Neonblauw voor titels */
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); /* Neon gloed op de titel */
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 20px;
-            color: #ffffff;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #cccccc;
-        }
-
-        .content-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .content-section ul li {
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: #f0f0f0;
-        }
-        
-        .content-section ul li::before {
-            content: '»'; /* Gebruik een opvallend teken als opsommingsteken */
-            color: #00f0ff; /* Neonblauw opsommingsteken */
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+            border-bottom: 1px solid #333;
         }
 
-
-        .groene-knop {
-            /* De groene knop voor "Start Your Project" */
-            background-color: #4CAF50; 
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .groene-knop:hover {
-            background-color: #45a049;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background-color: #222222; 
-            color: #999999;
-            font-size: 14px;
-        }
-        
-        /* Media Query voor kleinere schermen (optioneel, maar goed voor responsiviteit) */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 24px;
-            }
-            header p {
-                font-size: 14px;
-            }
-            nav ul {
-                padding: 0 10px;
-            }
-            main {
-                padding: 0 10px;
-            }
-            .content-section {
-                padding: 15px;
-            }
-        }
-        
-        /* ================================================= */
-        /* == TOEVOEGING VOOR NEON KNOPPEN (Cruciaal) == */
-        /* ================================================= */
+        /* Rechtsboven knoppen */
         .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px; 
-            z-index: 10; 
+            gap: 10px;
         }
         
         .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 11px;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
         }
 
         .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
         }
-        /* EINDE TOEVOEGING */
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
+
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* DE NIEUWE HORIZONTALE NAVIGATIE BALK */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333; /* Grijze knop stijl */
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* CONTENT SECTIES */
+        main {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background-color: #1a1a1a;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        h2 { color: #00f2ff; margin-top: 0; }
+        
+        .groene-knop {
+            background-color: #00ff00;
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .groene-knop:hover { transform: scale(1.05); box-shadow: 0 0 25px #00ff00; }
+
+        /* CHATBOT STIJLEN (Behouden) */
         #chat-launcher { 
             position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
+            width: 60px; height: 60px; background: #00ffff; 
+            border-radius: 50%; display: flex; justify-content: center; 
             align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
             z-index: 1001; font-size: 30px; border: none;
             animation: float 3s ease-in-out infinite;
         }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
         #chat-container { 
             position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
+            width: 320px; height: 500px; background: #2a2a2a; 
             border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+            display: none; flex-direction: column; overflow: hidden; z-index: 1000; 
         }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
- </style>
+        #input-area { display: flex; padding: 10px; background: #2a2a2a; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: none; }
+        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px; border-radius: 10px; cursor: pointer; font-size: 10px; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    </style>
 </head>
 <body>
     
-<header> <div class="header-controls">
- <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
-<button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+<header> 
+    <div class="header-controls">
+        <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
+        <button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
     </div>
         
-    <h1>Website and App Development</h1>
-    <p>Professional custom websites and apps for your business.</p>
+    <h1 class="brand-title">Abelsoftware123</h1>
+    <p class="brand-subtitle">Premium Software Solutions</p>
 
-    <nav>
+    <nav class="main-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="chatbot.html">Order Your Chatbot</a></li>
+            <li><a href="advertentie.html">Advertising on Apps</a></li>  
+            <li><a href="company.html">Company</a></li>
             <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="apps.html">Apps</a></li>
             <li><a href="hacktools.html">Hacktools</a></li>
-  <li><a href="ai.html">AI Software</a></li> 
-<li><a href="website.html">Order Your Own Website and Apps</a></li>
-            <li><a href="domain.html">Order Your Own Domain Name</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>
+            <li><a href="ai.html">AI Software</a></li> 
+            <li><a href="website.html" class="active">Order Websites</a></li>
+            <li><a href="domain.html">Order Domains</a></li>
+            <li><a href="emulator.html">Emulator</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
        </ul>
     </nav>
 </header>
@@ -325,134 +202,78 @@ href="reviews.html">Reviews Abelsoftware123</a></li>
 <main>
     <section class="content-section">
         <h2>Custom Websites and Apps</h2>
-        <p>We design and build **responsive websites and apps** that look good on every device. Whether you need a simple landing page or a complex webshop, we deliver custom solutions.</p>
-
-        <h3>Our Process</h3>
-        <ul>
-            <li>Analysis of your wishes and goals.</li>
-            <li>Design of the layout and user experience (UX).</li>
-            <li>Development and programming (HTML, CSS, JavaScript).</li>
-            <li>Testing and delivery.</li>
-        </ul>
-    </section>
-    
-    <section class="content-section">
-        <h2>🔥 Neon Technologies</h2>
-        <p>Our work is powered by the latest, most efficient **frontend and backend technologies**, ensuring your application is fast, secure, and scalable.</p>
-
-        <h3>Key Tools</h3>
-        <ul>
-            <li>**Frontend:** React, Vue.js, NeonBlue CSS Framework</li>
-            <li>**Backend:** Node.js, Python/Django, Serverless Architectures</li>
-            <li>**Database:** MongoDB, PostgreSQL (with a focus on speed)</li>
-        </ul>
+        <p>We design and build **responsive websites and apps** that look good on every device.</p>
         <a href="payments.html" class="groene-knop">Start Your Project</a>
-     <a href="mailto:abelsoftware123@hotmail.com" id="contact-link">
-            <button id="contact-knop" class="groene-knop">Contact</button>
-        </a>
+    </section>
 </main>
 
 <footer>
-    <p>&copy; 2026 Abelsoftware123. All rights reserved.</p>
+    <p style="text-align:center; color: #666;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
 </footer>
 
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
+<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<div id="chat-container">
+    <div id="chat-header">
+        <span>🤖 AI Assistent</span>
+        <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
+    </div>
+    <div style="padding: 5px; background: #111; display: flex; justify-content: center;">
+        <button class="quick-btn" onclick="handleQuickReply('prices')">Prices</button>
+        <button class="quick-btn" onclick="handleQuickReply('contact')">Contact</button>
+    </div>
+    <div id="messages">
+        <div class="msg bot-msg">Welcome! How can I help you?</div>
+    </div>
+    <div id="input-area">
+        <input type="text" id="user-input" placeholder="Type..." onkeypress="window.handleKey(event)">
+        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; font-size:20px; cursor:pointer;">➤</button>
+    </div>
 </div>
 
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
-    </div>
+<script src="chatbot.js"></script>
+<script>
+    /* DEZELFDE SCRIPT LOGICA */
+    let echo = null;
 
-    <script src="chatbot.js"></script>
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        const launcher = document.getElementById("chat-launcher");
+        if (chat.style.display === "flex") {
+            chat.style.display = "none";
+            launcher.style.animation = "float 3s ease-in-out infinite";
+        } else {
+            chat.style.display = "flex";
+            launcher.style.animation = "none";
+            if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); }
+        }
+    };
 
-    <script>
-        let echo = null;
+    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
 
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
+    window.handleQuickReply = function(keyword) {
+        document.getElementById("user-input").value = keyword;
         window.askBot();
-    }
-};
+    };
 
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+        if (!text) return;
 
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
+        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        input.value = "";
+        container.scrollTop = container.scrollHeight;
 
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
+        try {
+            const response = echo ? await echo.chat(text) : "Connecting to Echo...";
+            setTimeout(() => {
+                container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 400);
+        } catch (err) { console.error(err); }
+    };
+</script>
 
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
 </body>
 </html>
-
