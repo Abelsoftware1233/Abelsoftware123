@@ -4,49 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domain Name Registration - Abelsoftware123</title>
-    <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* START VAN DE BENODIGDE CSS VOOR DE NEON KNOPPEN */
-        header {
-            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
+        /* ================================================= */
+        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
+        /* ================================================= */
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #f0f0f0; 
+            min-height: 100vh;
         }
 
+        header {
+            text-align: center;
+            padding: 60px 20px 30px 20px;
+            background-color: #1a1a1a;
+            position: relative;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Register & Login Buttons (Top Right) */
         .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px; 
-            z-index: 10; 
+            gap: 10px;
         }
         
         .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
+            padding: 6px 12px;
+            border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 11px;
             cursor: pointer;
-            color: #fff; /* Witte tekst */
-            background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
+            color: #fff;
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
+            text-decoration: none;
         }
 
         .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
+            background-color: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f2ff;
         }
-        /* --- CHATBOT STIJLEN MET ANIMATIE --- */
+
+        h1.brand-title {
+            color: #00f2ff;
+            font-size: 32px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* HORIZONTAL NAVIGATION BAR */
+        nav.main-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        nav.main-nav a {
+            background-color: #333;
+            color: #00f2ff;
+            padding: 8px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        nav.main-nav a:hover {
+            background-color: #444;
+            color: #fff;
+            border-color: #00f2ff;
+        }
+
+        nav.main-nav a.active {
+            background-color: #444;
+            color: #fff;
+            font-weight: bold;
+            border-color: #00f2ff;
+        }
+
+        /* CONTENT STYLING */
+        main {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .domain-card {
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            color: #00f2ff;
+            font-size: 28px;
+            margin-top: 0;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+
+        .service-list li {
+            background: #252525;
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00f2ff;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .service-list li::before {
+            content: "✓";
+            color: #00f2ff;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        /* CHATBOT STYLES */
         #chat-launcher { 
             position: fixed; bottom: 20px; right: 20px; 
             width: 65px; height: 55px; background: #00ffff; 
@@ -55,225 +165,140 @@
             z-index: 1001; font-size: 30px; border: none;
             animation: float 3s ease-in-out infinite;
         }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
         #chat-container { 
             position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
+            width: 320px; height: 500px; background: #2a2a2a; 
             border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+            display: none; flex-direction: column; overflow: hidden; z-index: 1000; 
         }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
+        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
+        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
         .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
         #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
-    
-/* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
-        }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
+        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
+        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px 8px; border-radius: 10px; cursor: pointer; font-size: 11px; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
-
+    
 <header> 
     <div class="header-controls">
-   <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
-<button class="neon-blue-button" onclick="location.href='login.html'">Log in</button>
+        <a href="register.html" class="neon-blue-button">register</a>
+        <a href="login.html" class="neon-blue-button">Log in</a>
     </div>
         
-    <h1>Domain Name and Hosting</h1>
-    <p>Assistance with registration, management, and hosting.</p>
-    
-    <nav>
+    <h1 class="brand-title">Abelsoftware123</h1>
+    <p class="brand-subtitle">Domain Name & Hosting Solutions</p>
+
+    <nav class="main-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
-<li><a
-href="chatbot.html">Order Your Chatbot</a></li>
-<li><a
- href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
+            <li><a href="chatbot.html">Order Your Chatbot</a></li>
+            <li><a href="advertising.html">Advertising</a></li>  
+            <li><a href="company.html">Company</a></li>
             <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Games List of Apps</a></li>
+            <li><a href="apps.html">Apps</a></li>
             <li><a href="hacktools.html">Hacktools</a></li>
- <li><a href="ai.html">AI Software</a></li>             
-<li><a href="website.html">Order Your Own Website and Apps</a></li>
-            <li><a href="domain.html">Order Your Own Domain Name</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a
- href="music.html">Music Studio Software</a></li>  
-<li><a 
-href="reviews.html">Reviews Abelsoftware123</a></li>
-  </ul>
+            <li><a href="ai.html">AI Software</a></li> 
+            <li><a href="website.html">Order Websites</a></li>
+            <li><a href="domain.html" class="active">Order Domains</a></li>
+            <li><a href="emulator.html">Emulator</a></li>
+            <li><a href="music.html">Music Studio</a></li>  
+            <li><a href="reviews.html">Reviews</a></li>
+       </ul>
     </nav>
 </header>
 
 <main>
-    <section class="domain-info">
+    <div class="domain-card">
         <h2>Your Online Identity</h2>
-        <p>A **domain name** is essential for your online presence. We offer advice and assistance with registering, transferring, and managing your domain name, including the associated web hosting.</p>
+        <p>A professional domain name is the foundation of your online presence. We provide expert advice and technical assistance with registering, transferring, and managing your domain names and high-performance hosting.</p>
         
-        <h3>Our Domain Name Services</h3>
-        <ol>
-            <li>Advice on the best domain name choice.</li>
-            <li>Fast registration of various extensions (.nl, .com, .be, etc.).</li>
-            <li>Professional, secure hosting packages.</li>
-            <li>Creating an email address linked to your domain.</li>
-        </ol>
-    </section>
+        <h3>Our Domain Services</h3>
+        <ul class="service-list">
+            <li>Expert advice on selecting the perfect domain name</li>
+            <li>Rapid registration for all extensions (.com, .net, .org, etc.)</li>
+            <li>Secure and professional high-speed web hosting</li>
+            <li>Custom professional email addresses (you@yourdomain.com)</li>
+            <li>DNS management and secure SSL certificates</li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="payments.html" class="neon-blue-button" style="padding: 15px 30px;">Inquire About Domain Registration</a>
+        </div>
+    </div>
 </main>
 
 <footer>
-    <p>&copy; 2026 Abelsoftware123. All rights reserved.</p>
+    <p style="text-align:center; color: #666; font-size: 14px; padding: 40px 0;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
 </footer>
 
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
+<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+<div id="chat-container">
+    <div id="chat-header">
+        <span>🤖 AI Assistant</span>
+        <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
+    </div>
+    <div style="padding: 5px; background: #111; display: flex; justify-content: center; border-bottom: 1px solid #444;">
+        <button class="quick-btn" onclick="handleQuickReply('domain prices')">Domain Prices</button>
+        <button class="quick-btn" onclick="handleQuickReply('hosting')">Hosting Info</button>
+    </div>
+    <div id="messages">
+        <div class="msg bot-msg">Hello! Need help choosing a domain name or setting up hosting? Ask me anything.</div>
+    </div>
+    <div id="input-area">
+        <input type="text" id="user-input" placeholder="Ask about domains..." onkeypress="window.handleKey(event)">
+        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; font-size:20px; cursor:pointer; margin-left: 10px;">➤</button>
+    </div>
 </div>
 
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
-    </div>
+<script src="chatbot.js"></script>
+<script>
+    let echo = null;
 
-    <script src="chatbot.js"></script>
+    window.toggleChat = function() {
+        const chat = document.getElementById("chat-container");
+        const launcher = document.getElementById("chat-launcher");
+        if (chat.style.display === "flex") {
+            chat.style.display = "none";
+            launcher.style.animation = "float 3s ease-in-out infinite";
+        } else {
+            chat.style.display = "flex";
+            launcher.style.animation = "none";
+            if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); }
+        }
+    };
 
-    <script>
-        let echo = null;
+    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
 
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
-
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
+    window.handleQuickReply = function(keyword) {
+        document.getElementById("user-input").value = keyword;
         window.askBot();
-    }
-};
+    };
 
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
+    window.askBot = async function() {
+        const input = document.getElementById("user-input");
+        const container = document.getElementById("messages");
+        const text = input.value.trim();
+        if (!text) return;
 
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
+        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
+        input.value = "";
+        container.scrollTop = container.scrollHeight;
 
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
+        try {
+            const response = echo ? await echo.chat(text) : "Connecting to Echo AI...";
+            setTimeout(() => {
+                container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 400);
+        } catch (err) { console.error(err); }
+    };
+</script>
 
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
-
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
 </body>
 </html>
-
