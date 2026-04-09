@@ -36,7 +36,7 @@
         }
         
         .neon-blue-button {
-            padding: 6px 12px;
+            padding: 8px 15px;
             border: 2px solid #00f2ff;
             border-radius: 5px;
             font-weight: bold;
@@ -113,7 +113,7 @@
         /* APP LIST CONTENT */
         main {
             padding: 40px 20px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -126,18 +126,20 @@
             margin-bottom: 30px;
         }
 
-        h2 { 
-            color: #00f2ff; 
-            margin-top: 0; 
-            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
-            text-align: center;
+        .category-title {
+            color: #00f2ff;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+            text-transform: uppercase;
+            font-size: 20px;
+            letter-spacing: 1px;
         }
 
         .app-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
-            margin-top: 20px;
         }
 
         .app-item {
@@ -146,23 +148,27 @@
             border-radius: 8px;
             border-left: 4px solid #00f2ff;
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .app-item:hover {
             background: #2a2a2a;
-            transform: translateX(5px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.1);
         }
 
         .app-item h3 {
             color: #fff;
             margin: 0 0 5px 0;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .app-item p {
             color: #aaa;
             margin: 0;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .responsive-image {
@@ -232,47 +238,53 @@
 
 <main>
     <section class="content-section">
-        <h2>🎮 Our Applications</h2>
-        
         <div style="text-align: center;">
             <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Icon" class="responsive-image">
-            <p class="image-caption">Featured Game Collection</p>
+            <p class="image-caption">Featured Collection 2026</p>
         </div>
 
+        <h2 class="category-title">🚀 Hardware & Studio</h2>
         <div class="app-grid">
             <div class="app-item">
-                <h3>WMWario Happy The Game</h3>
-                <p>Adventure game with pipes and WMWarios greatest challenges. App 2025.</p>
+                <h3>PSP Gaming Portable 7"</h3>
+                <p>Custom portable hardware with 30+ pre-installed games.</p>
             </div>
             <div class="app-item">
-                <h3>WMWario Slotpipes</h3>
-                <p>Gamble app of the year 2025. Adventure meets slots.</p>
+                <h3>Abel123 Emulator</h3>
+                <p>The ultimate multi-platform emulator for retro gaming.</p>
             </div>
             <div class="app-item">
-                <h3>Abels Roulette 18+</h3>
-                <p>Premium gamble game for 2025-2026. One-time fee for unlimited access.</p>
+                <h3>AI Music Studio</h3>
+                <p>Professional grade AI-powered music production software.</p>
             </div>
-            <div class="app-item">
-                <h3>Flying Dutchman</h3>
-                <p>Tap gold bars and collect power-ups in this futuristic high-score chaser.</p>
-            </div>
-            <div class="app-item">
-                <h3>WMWario Happy World 2026</h3>
-                <p>The flagship 2026 release. Includes 5 original WMWario games in one app.</p>
-            </div>
-            <div class="app-item">
-                <h3>Madalin Stunt Cars 2</h3>
-                <p>3D high-speed racing and stunts for PC/Laptop users.</p>
-            </div>
-            <div class="app-item">
-                <h3>WMWario Happy World 3D</h3>
-                <p>The first 3D WMWario experience with online multiplayer functions.</p>
-            </div>
+        </div>
+
+        <h2 class="category-title">🌍 WMWario Happy World Series</h2>
+        <div class="app-grid">
+            <div class="app-item"><h3>WMWario & Luigi 3D Happy World</h3><p>Multiplayer 3D adventure.</p></div>
+            <div class="app-item"><h3>WMWario Happy World 2026</h3><p>8-in-1 PC Collection.</p></div>
+            <div class="app-item"><h3>WMWario Happy World Fantasy</h3><p>Webserver Edition.</p></div>
+            <div class="app-item"><h3>WMWario Happy World 12 - 9</h3><p>Individual PC releases.</p></div>
+            <div class="app-item"><h3>WMWario Happy World 8 - 1</h3><p>Android & PC Legacy titles.</p></div>
+            <div class="app-item"><h3>WMWario Happy</h3><p>The original Android App experience.</p></div>
+        </div>
+
+        <h2 class="category-title">🕹️ Games & Entertainment</h2>
+        <div class="app-grid">
+            <div class="app-item"><h3>Blumgi Slime</h3><p>Available for Android & PC.</p></div>
+            <div class="app-item"><h3>Madalin Stunt Cars 3D</h3><p>High-speed PC stunt racing.</p></div>
+            <div class="app-item"><h3>WMWario Slotpipes</h3><p>Adventure meets slots on Android.</p></div>
+            <div class="app-item"><h3>Fluppy Burd Blocks</h3><p>Arcade action for Android.</p></div>
+            <div class="app-item"><h3>SlotMoji</h3><p>The emoji-based slot game.</p></div>
+            <div class="app-item"><h3>WMWario Crush Saga</h3><p>Puzzle fun for Android.</p></div>
+            <div class="app-item"><h3>Kross and Zero</h3><p>Classic strategy for Android.</p></div>
+            <div class="app-item"><h3>Abels Roullette 18+</h3><p>Premium gambling simulator.</p></div>
+            <div class="app-item"><h3>YF Arrows & Flying Dutchman</h3><p>Fast-paced Android arcade games.</p></div>
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
-            <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Preview" class="responsive-image">
-            <p class="image-caption">Best Sneak Preview 2026</p>
+            <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Preview" class="responsive-image" style="border: 2px solid #00f2ff;">
+            <p class="image-caption">Exclusive 2026 Development Roadmap</p>
         </div>
     </section>
 </main>
