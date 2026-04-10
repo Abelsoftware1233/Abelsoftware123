@@ -171,6 +171,12 @@
                 <div id="paypal-container-EF7N5A3CMKHEL"></div>
             </div>
 
+            <div class="paypal-item" style="border: 2px solid #00ffff;">
+                <h3>Abel123 Apps Maker</h3>
+                <p>€49,99</p>
+                <div id="paypal-container-LN7JZRSCZ2EL8"></div>
+            </div>
+
             <div class="paypal-item">
                 <h3>WMWario & Luigi 3D Happy World (Multiplayer)</h3>
                 <p>€9,99</p>
@@ -216,9 +222,9 @@
 </main>
 
 <script>
-    // Alle product ID's in één array
     const buttons = [
-        { id: "EF7N5A3CMKHEL", container: "#paypal-container-EF7N5A3CMKHEL" }, // AI Music Studio
+        { id: "EF7N5A3CMKHEL", container: "#paypal-container-EF7N5A3CMKHEL" }, 
+        { id: "LN7JZRSCZ2EL8", container: "#paypal-container-LN7JZRSCZ2EL8" }, // Apps Maker ID
         { id: "BNTR9J25Q3DW2", container: "#paypal-container-BNTR9J25Q3DW2" },
         { id: "JE3WG2B8ADT28", container: "#paypal-container-JE3WG2B8ADT28" },
         { id: "U5GBLF47SEUC6", container: "#paypal-container-U5GBLF47SEUC6" },
@@ -276,7 +282,6 @@
     window.toggleChat = function() {
         const chat = document.getElementById("chat-container");
         chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
-        // Alleen initialiseren als BasicBot bestaat
         if (!echo && typeof BasicBot !== 'undefined') echo = new BasicBot();
     };
     window.askBot = async function() {
