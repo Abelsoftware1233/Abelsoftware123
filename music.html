@@ -16,7 +16,7 @@
 
         /* --- PRODUCT PRESENTATION --- */
         .main-content {
-            max-width: 800px;
+            max-width: 900px; /* Iets breder gemaakt voor twee foto's */
             margin: 40px auto;
             padding: 20px;
         }
@@ -44,14 +44,27 @@
             letter-spacing: 2px;
         }
 
+        /* Container voor afbeeldingen naast elkaar */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
         .studio-preview {
             width: 100%;
             max-width: 320px;
             border: 4px solid #00ffff;
             border-radius: 25px;
-            margin: 25px auto;
             display: block;
             box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+            transition: 0.3s;
+        }
+        
+        .studio-preview:hover {
+            transform: scale(1.02);
         }
 
         .price-container {
@@ -173,7 +186,7 @@
                 <li><a href="ai.html">AI Software</a></li>  
                 <li><a href="website.html">Order Websites</a></li>
                 <li><a href="domain.html">Order Domains</a></li>
-                <li><a href="emulator.html">Mobile Games  Emulator</a></li>
+                <li><a href="emulator.html">Mobile Games Emulator</a></li>
                 <li><a href="music.html" style="font-weight:bold; color:white;">Music Studio Software</a></li>  
                 <li><a href="reviews.html">Reviews</a></li>
             </ul>
@@ -186,7 +199,10 @@
             <h1>Abelsoftware123 <span style="color:#00ffff;">AI Studio</span></h1>
             <p>Professional vocals and beats, directly from your app or browser.</p>
 
-            <img src="music.jpg" alt="Abelsoftware123 AI Studio Preview" class="studio-preview">
+            <div class="image-container">
+                <img src="music.jpg" alt="Abelsoftware123 AI Studio Preview 1" class="studio-preview">
+                <img src="foto2.jpg" alt="Abelsoftware123 AI Studio Preview 2" class="studio-preview">
+            </div>
 
             <ul class="feature-list">
                 <li>Real-time AI Autotune & Pitch Correction</li>
@@ -245,7 +261,6 @@
                 chat.style.display = "flex";
                 launcher.style.animation = "none";
                 
-                // Zorg dat de bot geladen is
                 if (!echo && typeof BasicBot !== 'undefined') {
                     echo = new BasicBot();
                 }
@@ -271,12 +286,10 @@
             
             if (!text) return;
 
-            // Voeg bericht van gebruiker toe
             container.innerHTML += `<div class="msg user-msg">${text}</div>`;
             input.value = "";
             container.scrollTop = container.scrollHeight;
 
-            // Fake loading of echte bot call
             try {
                 let response = "I'm connecting...";
                 if (echo) {
