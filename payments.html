@@ -150,51 +150,17 @@
 <main>
     <section class="payments-info">
         <h2>Safe & Instant Access</h2>
-        <p>After purchase, PayPal will automatically redirect you to the <strong>downloads page</strong> to get your software instantly.</p>
-
         <div class="product-grid">
-            <div class="paypal-item">
-                <h3>PSP Gaming Portable 7" (30+ Games)</h3>
-                <p>€100,00</p>
-                <div id="paypal-container-BNTR9J25Q3DW2"></div>
-            </div>
-
-            <div class="paypal-item">
-                <h3>Abel123 Emulator</h3>
-                <p>€4,99</p>
-                <div id="paypal-container-JE3WG2B8ADT28"></div>
-            </div>
-
-            <div class="paypal-item" style="border: 2px solid #00ff00;">
-                <h3>Abelsoftware123 AI Music Studio</h3>
-                <p>€14,99</p>
-                <div id="paypal-container-EF7N5A3CMKHEL"></div>
-            </div>
-
-            <div class="paypal-item" style="border: 2px solid #00ffff;">
-                <h3>Abel123 Apps Maker</h3>
-                <p>€49,99</p>
-                <div id="paypal-container-LN7JZRSCZ2EL8"></div>
-            </div>
-
-            <div class="paypal-item">
-                <h3>WMWario & Luigi 3D Happy World (Multiplayer)</h3>
-                <p>€9,99</p>
-                <div id="paypal-container-U5GBLF47SEUC6"></div>
-            </div>
-
-            <div class="paypal-item">
-                <h3>WMWario Happy World 2026 (8-in-1 PC)</h3>
-                <p>€9,99</p>
-                <div id="paypal-container-MNRG8ZTCQE9LJ"></div>
-            </div>
-
-            <div class="paypal-item">
-                <h3>WMWario Happy World Fantasy (Webserver)</h3>
-                <p>€4,99</p>
-                <div id="paypal-container-USH33D3ECTQBN"></div>
-            </div>
-
+            <div class="paypal-item"><h3>PSP Gaming Portable 7" (30+ Games)</h3><p>€100,00</p><div id="paypal-container-BNTR9J25Q3DW2"></div></div>
+            <div class="paypal-item"><h3>Abel123 Emulator</h3><p>€4,99</p><div id="paypal-container-JE3WG2B8ADT28"></div></div>
+            <div class="paypal-item" style="border: 2px solid #00ff00;"><h3>Abelsoftware123 AI Music Studio</h3><p>€14,99</p><div id="paypal-container-EF7N5A3CMKHEL"></div></div>
+            <div class="paypal-item" style="border: 2px solid #00ffff;"><h3>Abel123 Apps Maker</h3><p>€49,99</p><div id="paypal-container-LN7JZRSCZ2EL8"></div></div>
+            <div class="paypal-item"><h3>WMWario & Luigi 3D Happy World (Multiplayer)</h3><p>€9,99</p><div id="paypal-container-U5GBLF47SEUC6"></div></div>
+            <div class="paypal-item"><h3>WMWario Happy World 2026 (8-in-1 PC)</h3><p>€9,99</p><div id="paypal-container-MNRG8ZTCQE9LJ"></div></div>
+            
+            <div class="paypal-item"><h3>Mario 90s</h3><p>€4,99</p><div id="paypal-container-P3TZE99UGD9EY"></div></div>
+            
+            <div class="paypal-item"><h3>WMWario Happy World Fantasy (Webserver)</h3><p>€4,99</p><div id="paypal-container-USH33D3ECTQBN"></div></div>
             <div class="paypal-item"><h3>WMWario Happy World 12 (PC)</h3><p>€2,99</p><div id="paypal-container-9DYATEXHR22U4"></div></div>
             <div class="paypal-item"><h3>WMWario Happy World 11 (PC)</h3><p>€4,99</p><div id="paypal-container-WXQZ6GHP3S8KG"></div></div>
             <div class="paypal-item"><h3>WMWario Happy World 10 (PC)</h3><p>€9,99</p><div id="paypal-container-NEDQ4N36E8HCG"></div></div>
@@ -223,8 +189,9 @@
 
 <script>
     const buttons = [
+        { id: "P3TZE99UGD9EY", container: "#paypal-container-P3TZE99UGD9EY" },
         { id: "EF7N5A3CMKHEL", container: "#paypal-container-EF7N5A3CMKHEL" }, 
-        { id: "LN7JZRSCZ2EL8", container: "#paypal-container-LN7JZRSCZ2EL8" }, // Apps Maker ID
+        { id: "LN7JZRSCZ2EL8", container: "#paypal-container-LN7JZRSCZ2EL8" },
         { id: "BNTR9J25Q3DW2", container: "#paypal-container-BNTR9J25Q3DW2" },
         { id: "JE3WG2B8ADT28", container: "#paypal-container-JE3WG2B8ADT28" },
         { id: "U5GBLF47SEUC6", container: "#paypal-container-U5GBLF47SEUC6" },
@@ -265,11 +232,7 @@
 <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
 <div id="chat-container">
     <div id="chat-header"><span>🤖 AI Assistant</span><span onclick="window.toggleChat()" style="cursor:pointer">✕</span></div>
-    <div class="mode-selector" style="padding: 10px; display: flex; gap: 5px;">
-        <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices</button>
-        <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments</button>
-    </div>
-    <div id="messages"><div class="msg bot-msg">Welcome to Abelsoftware123 Payments! Need help with a checkout?</div></div>
+    <div id="messages"><div class="msg bot-msg">Welcome to Abelsoftware123! Need help?</div></div>
     <div id="input-area" style="padding: 10px; display: flex;">
         <input type="text" id="user-input" style="flex: 1; padding: 5px;" placeholder="Type here...">
         <button onclick="window.askBot()">➤</button>
@@ -289,21 +252,11 @@
         const container = document.getElementById("messages");
         const text = input.value.trim();
         if (!text) return;
-        
         container.innerHTML += `<div class="msg user-msg">${text}</div>`;
         input.value = "";
-        
         if(echo) {
             const response = await echo.chat(text);
-            setTimeout(() => { 
-                container.innerHTML += `<div class="msg bot-msg">${response}</div>`; 
-                container.scrollTop = container.scrollHeight; 
-            }, 400);
-        } else {
-            setTimeout(() => { 
-                container.innerHTML += `<div class="msg bot-msg">System ready. How can I help?</div>`; 
-                container.scrollTop = container.scrollHeight; 
-            }, 400);
+            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${response}</div>`; container.scrollTop = container.scrollHeight; }, 400);
         }
     };
 </script>
