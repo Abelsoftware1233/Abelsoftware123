@@ -153,18 +153,38 @@
             color: #00f2ff;
         }
 
+        /* IMAGE GALLERY STYLES */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
         .image-container {
             display: flex;
-            justify-content: center;
-            margin: 30px 0;
+            flex-direction: column;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #333;
         }
 
         .hack-img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            border: 1px solid #333;
             box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .img-caption {
+            margin-top: 10px;
+            color: #00f2ff;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* CHATBOT STYLES */
@@ -211,6 +231,33 @@
 </header>
 
 <main>
+    <div class="image-gallery">
+        <div class="image-container">
+            <img src="abel.jpg" alt="Abel123 Hack-Dashboard" class="hack-img">
+            <div class="img-caption">Abel123 Hack-Dashboard</div>
+        </div>
+
+        <div class="image-container">
+            <img src="tool.jpg" alt="ZeroThreat Tool List" class="hack-img">
+            <div class="img-caption">Top Penetration Testing Tools Interface</div>
+        </div>
+
+        <div class="image-container">
+            <img src="pen.jpg" alt="PentestKit Host Discovery" class="hack-img">
+            <div class="img-caption">PentestKit v1.0 - Recon & Discovery</div>
+        </div>
+
+        <div class="image-container">
+            <img src="osin.jpg" alt="Ghost OSINT Intelligence" class="hack-img">
+            <div class="img-caption">Ghost OSINT Email Intelligence v2.4</div>
+        </div>
+
+        <div class="image-container">
+            <img src="os.jpg" alt="Crypt-OS Decryption" class="hack-img">
+            <div class="img-caption">Swiss Army | Crypt-OS</div>
+        </div>
+    </div>
+
     <section class="content-section">
         <h2>💻 Ethical Hacking Resources</h2>
         <p>Explore our specialized toolset designed for penetration testing and vulnerability assessment. We empower security professionals to build more robust systems through ethical hacking practices.</p>
@@ -242,10 +289,6 @@
             Send an Email to order software. Invoices are sent via email; delivery follows payment confirmation.
         </p>
     </section>
-
-    <div class="image-container"><img src="https://sqlmap.org/images/screenshot.png" alt="SQLmap" class="hack-img"></div>
-    <div class="image-container"><img src="https://docs.rapid7.com/images/metasploit/msf-console.png" alt="Metasploit" class="hack-img"></div>
-    <div class="image-container"><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/nmap_demo_7.PNG" alt="Nmap" class="hack-img"></div>
 
     <section class="content-section">
         <h2>🖥️ Deep Dive Information</h2>
