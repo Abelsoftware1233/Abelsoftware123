@@ -1,6 +1,6 @@
 Copyright 2026 abelsoftware123@ Company 
 
-scripts are forbidden for outsiders.
+Scripts are forbidden for outsiders.
 
 Scripts are blocked, sharing is forbidden. 
 
