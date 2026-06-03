@@ -159,6 +159,22 @@
 
         .price { color: #00f0ff; font-weight: bold; }
 
+        .price { color: #00f0ff; font-weight: bold; }
+
+        /* --- RESPONSIVE IMAGE FIX FOR PSP --- */
+        .responsive-img {
+            display: block;
+            max-width: 350px; /* Mooie compacte grootte op PC */
+            width: 100%;       /* Schlaalt automatisch mee op mobiel */
+            height: auto;
+            border-radius: 8px;
+            margin: 20px auto; /* Centreert de afbeelding netjes */
+        }
+
+        /* --- CHATBOT --- */
+        #chat-launcher { position: fixed; bottom: 20px; right: 20px; ... }
+
+
         /* --- CHATBOT --- */
         #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s infinite; }
         #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 520px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
