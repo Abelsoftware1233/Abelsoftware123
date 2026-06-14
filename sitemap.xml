@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Hoofdpagina -->
+  <url>
+    <loc>https://abelsoftware123.com/</loc>
+    <lastmod>2026-06-14</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <!-- Belangrijke secties -->
+  <url>
+    <loc>https://abelsoftware123.com/ai.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/apps.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/company.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/chatbot.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/hacktools.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/music.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/payments.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/reviews.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abelsoftware123.com/website.html</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>
