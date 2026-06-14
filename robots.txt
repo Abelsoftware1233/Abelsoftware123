@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://abelsoftware123.com/sitemap.xml
