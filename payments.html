@@ -16,7 +16,7 @@
     }
 
     body {
-      background-color: #121212;
+      background-color: #0f0f0f;
       color: #eaeaea;
       font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
@@ -26,8 +26,8 @@
     /* ===== HEADER ===== */
     .modern-header {
       position: relative;
-      padding: 40px 20px 25px;
-      background: #1a1a1a;
+      padding: 30px 20px 20px;
+      background: #161616;
       border-bottom: 1px solid #2a2a2a;
       border-radius: 0 0 32px 32px;
       margin-bottom: 30px;
@@ -51,12 +51,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
     }
     .brand p {
       color: #aaa;
-      font-size: 0.95rem;
-      margin-top: 4px;
+      font-size: 0.9rem;
+      margin-top: 2px;
     }
 
     .header-actions {
@@ -72,12 +72,12 @@
       background: transparent;
       color: #00ffff;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
       transition: 0.25s ease;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
@@ -90,21 +90,21 @@
       transform: scale(1.02);
     }
     .neon-btn-outline {
-      border-color: #888;
-      color: #ccc;
+      border-color: #555;
+      color: #aaa;
       box-shadow: none;
     }
     .neon-btn-outline:hover {
       border-color: #00ffff;
       color: #00ffff;
       background: transparent;
-      box-shadow: 0 0 18px rgba(0, 255, 255, 0.25);
+      box-shadow: 0 0 18px rgba(0, 255, 255, 0.2);
     }
 
     /* ===== NAV ===== */
     .nav-scroll {
       max-width: 1400px;
-      margin: 20px auto 0;
+      margin: 18px auto 0;
       overflow-x: auto;
       padding-bottom: 8px;
       scrollbar-width: thin;
@@ -128,7 +128,7 @@
     .nav-links li a {
       color: #b0b0b0;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       padding: 6px 4px;
       border-bottom: 2px solid transparent;
@@ -139,7 +139,7 @@
     .nav-links li a.active {
       color: #ffffff;
       border-bottom-color: #00ffff;
-      text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
+      text-shadow: 0 0 6px rgba(0, 255, 255, 0.25);
     }
 
     /* ===== HOOFDCONTENT ===== */
@@ -152,76 +152,70 @@
       margin-bottom: 16px;
     }
     .page-title h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
     .page-title h2 span {
       background: #00ffff;
       color: #121212;
-      font-size: 1rem;
+      font-size: 0.9rem;
       padding: 2px 16px;
       border-radius: 40px;
       font-weight: 500;
     }
     .page-title p {
       color: #aaa;
-      margin-top: 6px;
-      font-size: 1.05rem;
+      margin-top: 4px;
+      font-size: 1rem;
     }
 
     /* ===== PRODUCT GRID ===== */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 28px;
-      margin-top: 32px;
+      gap: 24px;
+      margin-top: 28px;
     }
 
     .paypal-card {
-      background: #1e1e1e;
+      background: #1a1a1a;
       border-radius: 24px;
       padding: 22px 18px 20px;
       border: 1px solid #2c2c2c;
       transition: 0.25s ease;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
     }
     .paypal-card:hover {
       border-color: #00ffff;
-      transform: translateY(-6px);
-      box-shadow: 0 16px 30px rgba(0, 255, 255, 0.08);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 30px rgba(0, 255, 255, 0.06);
     }
 
     .paypal-card .product-name {
       font-weight: 600;
-      font-size: 1.1rem;
-      min-height: 3.4rem;
+      font-size: 1rem;
+      min-height: 3.2rem;
       color: #f0f0f0;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       line-height: 1.3;
-    }
-    .paypal-card .product-name small {
-      font-weight: 400;
-      color: #999;
-      font-size: 0.8rem;
-      display: block;
-      margin-top: 4px;
     }
 
     .paypal-card .price-tag {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #00ff88;
-      margin: 6px 0 14px;
-      letter-spacing: -0.5px;
+      margin: 4px 0 14px;
+      letter-spacing: -0.3px;
     }
     .paypal-card .price-tag small {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #aaa;
       font-weight: 400;
     }
@@ -237,11 +231,11 @@
     /* speciale accenten */
     .card-premium {
       border: 1.5px solid #00ff88;
-      background: #1a2a22;
+      background: #16221a;
     }
     .card-popular {
       border: 1.5px solid #00ffff;
-      background: #1a262e;
+      background: #16222a;
     }
 
     /* ===== CHATBOT (zwevend) ===== */
@@ -249,13 +243,13 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      width: 64px;
-      height: 64px;
+      width: 62px;
+      height: 62px;
       background: #00ffff;
       border: none;
       border-radius: 40px;
-      font-size: 30px;
-      box-shadow: 0 0 24px rgba(0, 255, 255, 0.4);
+      font-size: 28px;
+      box-shadow: 0 0 24px rgba(0, 255, 255, 0.35);
       cursor: pointer;
       z-index: 999;
       transition: 0.2s;
@@ -282,7 +276,7 @@
       width: 340px;
       max-width: calc(100vw - 40px);
       height: 480px;
-      background: #202020;
+      background: #1c1c1c;
       border: 1.5px solid #00ffff;
       border-radius: 28px;
       display: none;
@@ -320,7 +314,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      background: #181818;
+      background: #141414;
     }
     .msg {
       max-width: 85%;
@@ -331,9 +325,9 @@
       word-break: break-word;
     }
     .bot-msg {
-      background: #2a2a2a;
+      background: #282828;
       color: #aaffff;
-      border: 1px solid #00ffff40;
+      border: 1px solid #00ffff30;
       align-self: flex-start;
       border-bottom-left-radius: 6px;
     }
@@ -348,7 +342,7 @@
       display: flex;
       gap: 8px;
       border-top: 1px solid #2e2e2e;
-      background: #1a1a1a;
+      background: #161616;
     }
     #input-area input {
       flex: 1;
@@ -387,14 +381,13 @@
         gap: 12px;
       }
       .brand h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
       .header-actions {
         justify-content: flex-start;
       }
       .page-title h2 {
-        font-size: 1.7rem;
-        flex-wrap: wrap;
+        font-size: 1.6rem;
       }
       .product-grid {
         grid-template-columns: 1fr 1fr;
@@ -408,7 +401,7 @@
         width: calc(100vw - 40px);
         right: 20px;
         bottom: 90px;
-        height: 420px;
+        height: 400px;
       }
     }
   </style>
@@ -439,10 +432,7 @@
       <li><a href="hacktools.html">Hacktools</a></li>
       <li><a href="ai.html">AI Software</a></li>
       <li><a href="website.html">Web & Apps</a></li>
-      <li><a href="domain.html">Domain Name</a></li>
-      <li><a href="emulator.html">Emulator</a></li>
-      <li><a href="music.html">Music Studio</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="domain.html">Domain</a></li>
     </ul>
   </nav>
 </header>
@@ -455,7 +445,7 @@
   </div>
 
   <div class="product-grid" id="productGrid">
-    <!-- alle producten worden dynamisch gegenereerd via JS, zodat de layout consistent blijft -->
+    <!-- producten worden dynamisch gegenereerd -->
   </div>
 </main>
 
@@ -475,19 +465,21 @@
   </div>
 </div>
 
-<!-- Externe chatbot.js met BasicBot klasse -->
+<!-- Externe chatbot.js -->
 <script src="chatbot.js"></script>
 
 <script>
   (function() {
     // ============================================================
-    // 1. PRODUCTDATA + PAYPAL BUTTONS
+    // 1. ALLE PRODUCTEN (uit de afbeelding + de rest)
     // ============================================================
     const productList = [
+      // Eerste 4 zoals in de afbeelding
       { id: 'BNTR9J25Q3DW2', name: 'Abel123 PSP Gaming Portable (10.000+ Games)', price: '€149,99', premium: false },
       { id: 'JE3WG2B8ADT28', name: 'Abel123 Emulator', price: '€4,99', premium: false },
       { id: 'EF7N5A3CMKHEL', name: 'Abelsoftware123 AI Music Studio', price: '€14,99', premium: true, popular: true },
       { id: 'LN7JZRSCZ2EL8', name: 'Abel123 Apps Maker', price: '€49,99', premium: true },
+      // Alle overige producten uit de originele lijst
       { id: 'P3TZE99UGD9EY', name: 'WMWario 90s · 2030 · Builder · WMWatrix · Dimension (Android)', price: '€30,00', premium: false },
       { id: 'U5GBLF47SEUC6', name: 'WMWario & Luigi 3D Happy World (Multiplayer)', price: '€9,99', premium: false },
       { id: 'MNRG8ZTCQE9LJ', name: 'WMWario Happy World 2026 (8-in-1 PC)', price: '€9,99', premium: false },
@@ -514,7 +506,7 @@
       { id: 'YJUU798QTPPHY', name: 'Flying Dutchman (Android)', price: '€2,50', premium: false }
     ];
 
-    // extra IDs die in de oude lijst stonden maar niet in productList
+    // Extra IDs uit de originele buttons array
     const extraIds = ['W49JHNAVYYF7W', '2SHNHYH29BZW4'];
     extraIds.forEach(id => {
       if (!productList.find(p => p.id === id)) {
@@ -534,7 +526,13 @@
 
       const nameDiv = document.createElement('div');
       nameDiv.className = 'product-name';
-      nameDiv.innerHTML = item.name + (item.popular ? ' <span style="color:#00ffff;font-size:0.7rem;background:#00ffff20;padding:2px 10px;border-radius:30px;margin-left:6px;">POPULAIR</span>' : '');
+      nameDiv.textContent = item.name;
+      if (item.popular) {
+        const badge = document.createElement('span');
+        badge.style.cssText = 'color:#00ffff;font-size:0.65rem;background:#00ffff20;padding:2px 10px;border-radius:30px;margin-left:8px;display:inline-block;';
+        badge.textContent = 'POPULAIR';
+        nameDiv.appendChild(badge);
+      }
 
       const priceDiv = document.createElement('div');
       priceDiv.className = 'price-tag';
@@ -554,13 +552,13 @@
         try {
           paypal.HostedButtons({ hostedButtonId: item.id }).render(`#paypal-container-${item.id}`);
         } catch (e) {
-          console.warn('Paypal button fout voor', item.id, e);
+          console.warn('PayPal button fout voor', item.id, e);
         }
       }
     });
 
     // ============================================================
-    // 2. CHATBOT LOGICA - Gebruik BasicBot uit chatbot.js
+    // 2. CHATBOT - gebruik BasicBot uit chatbot.js
     // ============================================================
     const chatLauncher = document.getElementById('chat-launcher');
     const chatContainer = document.getElementById('chat-container');
@@ -569,13 +567,11 @@
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('sendBtn');
 
-    // Initializeer de bot als BasicBot beschikbaar is
     let bot = null;
     if (typeof BasicBot !== 'undefined') {
       bot = new BasicBot();
     } else {
-      console.warn('BasicBot niet gevonden in chatbot.js. Gebruik fallback.');
-      // Fallback: simpele antwoorden
+      // Fallback als chatbot.js niet laadt
       bot = {
         async chat(text) {
           const lower = text.toLowerCase();
@@ -611,7 +607,6 @@
       addMessage(text, 'user');
       userInput.value = '';
 
-      // Roep de bot aan (async)
       try {
         const reply = await bot.chat(text);
         setTimeout(() => addMessage(reply, 'bot'), 200);
@@ -626,14 +621,9 @@
       if (e.key === 'Enter') handleSend();
     });
 
-    // Welkomstbericht alleen als er nog geen berichten zijn
-    if (messagesEl.children.length === 0) {
-      addMessage('Hallo! Heb je een vraag over een product?', 'bot');
-    }
-
-    console.log('✅ Layout & betalingen geladen – chatbot gebruikt BasicBot uit chatbot.js');
+    console.log('✅ Abelsoftware123 betaalpagina geladen – alle producten aanwezig');
   })();
 </script>
 
 </body>
-  </html>
+</html>
