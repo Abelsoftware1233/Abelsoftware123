@@ -1,342 +1,762 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy Abelsoftware123 NES Player Premium | Neon Theme</title>
-    
-    <style>
-        /* ================================================= */
-        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
-        /* ================================================= */
-        
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background-color: #121212;
-            color: #f0f0f0; 
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Emulator · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 30px 20px;
-            background-color: #1a1a1a;
-            position: relative;
-            border-bottom: 1px solid #333;
-        }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        /* Register & Login Buttons (Top Right) */
-        .header-controls {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .neon-blue-button {
-            padding: 6px 12px;
-            border: 2px solid #00f2ff;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11px;
-            cursor: pointer;
-            color: #fff;
-            background: rgba(0, 242, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
-            transition: 0.3s;
-            text-decoration: none;
-        }
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
 
-        .neon-blue-button:hover {
-            background-color: #00f2ff;
-            color: #000;
-            box-shadow: 0 0 20px #00f2ff;
-        }
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
 
-        h1.brand-title {
-            color: #00f2ff;
-            font-size: 32px;
-            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
-            margin: 0;
-        }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-        .brand-subtitle {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-            margin-bottom: 25px;
-        }
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
 
-        /* HORIZONTAL NAVIGATION BAR */
-        nav.main-nav {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
 
-        nav.main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-        }
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
 
-        nav.main-nav a {
-            background-color: #333;
-            color: #00f2ff;
-            padding: 8px 14px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 12px;
-            transition: 0.2s;
-            border: 1px solid transparent;
-        }
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        nav.main-nav a:hover {
-            background-color: #444;
-            color: #fff;
-            border-color: #00f2ff;
-        }
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
 
-        nav.main-nav a.active {
-            background-color: #444;
-            color: #fff;
-            font-weight: bold;
-        }
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
 
-        /* CONTENT SECTIONS */
-        main {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
 
-        .content-section {
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: center;
-        }
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
 
-        .hero-image {
-            flex: 1;
-            min-width: 280px;
-            max-width: 100%;
-            border: 3px solid #00f0ff;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
 
-        .hero-content {
-            flex: 1;
-            min-width: 280px;
-        }
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
 
-        h2 { 
-            color: #00f2ff; 
-            margin-top: 0; 
-            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
-        }
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
 
-        .price-big {
-            font-size: 48px;
-            color: #00f2ff;
-            font-weight: bold;
-            margin: 15px 0;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
 
-        .feature-list {
-            list-style: none;
-            padding: 0;
-        }
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
 
-        .feature-list li {
-            margin-bottom: 12px;
-            font-size: 16px;
-        }
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
 
-        .feature-list li::before {
-            content: "🎮";
-            margin-right: 10px;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
 
-        .order-btn {
-            background-color: #00ff00;
-            color: #000;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
 
-        .order-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px #00ff00; }
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
 
-        /* CHATBOT STYLES */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 500px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; z-index: 1000; 
-        }
-        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
-        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
-        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px 8px; border-radius: 10px; cursor: pointer; font-size: 11px; }
-        
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    </style>
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+    }
+
+    .feature-list li::before {
+      content: "🎮";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .price-tag {
+      color: #00f2ff;
+      font-weight: 900;
+      font-size: 3rem;
+      display: block;
+      text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+      margin: 0.5rem 0;
+    }
+
+    .price-label {
+      font-size: 0.8rem;
+      color: #8899aa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00ff44, #00cc33);
+      border: none;
+      color: #0b0d10;
+      padding: 0.8rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 25px rgba(0, 255, 68, 0.4);
+      transition: 0.25s;
+      letter-spacing: 0.5px;
+      border: 1px solid #00ff44aa;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #33ff66, #00dd44);
+      box-shadow: 0 6px 45px rgba(0, 255, 68, 0.6);
+      color: #000;
+    }
+
+    .emulator-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 1.2rem;
+      border: 2px solid #00f2ff44;
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+      transition: 0.3s;
+      background: #1a1f2a;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .emulator-image:hover {
+      transform: scale(1.02);
+      border-color: #00f2ff;
+      box-shadow: 0 0 50px rgba(0, 242, 255, 0.25);
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .emulator-image {
+        max-width: 100%;
+      }
+      .price-tag {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    .footer-disclaimer {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #3a4a5a;
+      margin-top: 0.3rem;
+    }
+  </style>
 </head>
 <body>
-    
-<header> 
-    <div class="header-controls">
-        <a href="register.html" class="neon-blue-button">register</a>
-        <a href="login.html" class="neon-blue-button">Log in</a>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Premium NES Experience</span>
     </div>
-        
-    <h1 class="brand-title">Abel123 Android Emulator</h1>
-    <p class="brand-subtitle">Premium NES Experience</p>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
+    </div>
+  </div>
 
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Apps List</a></li>
-            <li><a href="hacktools.html">Hacktools</a></li>
-            <li><a href="ai.html">AI Software</a></li> 
-            <li><a href="website.html">Order Websites</a></li>
-            <li><a href="domain.html">Order Domains</a></li>
-            <li><a href="emulator.html" class="active">Emulator</a></li>
-            <li><a href="music.html">Music Studio</a></li>  
-            <li><a href="reviews.html">Reviews</a></li>
-       </ul>
-    </nav>
-</header>
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html" class="active">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
 
-<main>
-    <section class="content-section">
-        <img src="emulator.jpg" alt="NES Player Preview" class="hero-image">
-        
-        <div class="hero-content">
-            <h2>Mario Premium Pack</h2>
-            <p>Upgrade your Abelsoftware123 NES Player today and unlock the ultimate retro collection.</p>
-            
-            <div class="price-big">€4.99</div>
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
 
-            <ul class="feature-list">
-                <li><strong>8 Awesome Mario Games</strong> (Exclusive Hacks)</li>
-                <li><strong>Optimized</strong> for all Android Mobile devices</li>
-                <li><strong>Ad-Free</strong> experience inside the app</li>
-                <li><strong>Instant access</strong> after payment</li>
-            </ul>
+    <!-- EMULATOR CARD (full width) -->
+    <div class="card full-width">
+      <span class="badge-role"><i class="fas fa-gamepad"></i> PREMIUM NES PLAYER</span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-gamepad"></i>
+        <h2>Abel123 Android Emulator</h2>
+      </div>
+      
+      <p style="text-align: center; color: #8899aa;">Upgrade your Abelsoftware123 NES Player today and unlock the ultimate retro collection.</p>
 
-            <div style="margin-top: 25px;">
-                <a href="payments.html" class="order-btn">ORDER DIRECTLY</a>
-            </div>
-        </div>
-    </section>
-</main>
+      <!-- AFBEELDING -->
+      <img src="emulator.jpg" alt="NES Player Preview" class="emulator-image" onerror="this.style.display='none'">
 
-<footer>
-    <p style="text-align:center; color: #666; font-size: 14px; padding-top: 20px;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
-    <p style="text-align:center; color: #444; font-size: 11px; padding-bottom: 40px;">Mario is a trademark of Nintendo. Collection contains fan-made hacks for research.</p>
-</footer>
+      <!-- TITEL -->
+      <h3 style="text-align: center; margin-top: 1rem;">Mario Premium Pack</h3>
 
-<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-<div id="chat-container">
+      <!-- FUNCTIES -->
+      <ul class="feature-list" style="text-align: left; max-width: 400px; margin: 0 auto;">
+        <li><strong>8 Awesome Mario Games</strong> (Exclusive Hacks)</li>
+        <li><strong>Optimized</strong> for all Android Mobile devices</li>
+        <li><strong>Ad-Free</strong> experience inside the app</li>
+        <li><strong>Instant access</strong> after payment</li>
+      </ul>
+
+      <!-- PRIJS -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span class="price-label">LIMITED OFFER</span>
+        <span class="price-tag">€4.99</span>
+      </div>
+
+      <!-- KNOP -->
+      <div style="text-align: center;">
+        <a href="payments.html" class="cta-btn">
+          <i class="fas fa-shopping-cart"></i> ORDER DIRECTLY
+        </a>
+      </div>
+
+      <p style="margin-top: 1.2rem; font-size: 0.7rem; color: #3a4a5a; text-align: center;">
+        <i class="fas fa-info-circle"></i> Mario is a trademark of Nintendo. Collection contains fan-made hacks for research.
+      </p>
+    </div>
+
+  </div> <!-- /page-grid -->
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
     <div id="chat-header">
-        <span>🤖 AI Assistant</span>
-        <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Assistant</span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
     </div>
-    <div style="padding: 5px; background: #111; display: flex; justify-content: center; border-bottom: 1px solid #444;">
-        <button class="quick-btn" onclick="handleQuickReply('prices')">Prices</button>
-        <button class="quick-btn" onclick="handleQuickReply('payments')">Payments</button>
-        <button class="quick-btn" onclick="handleQuickReply('support')">Support</button>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('Prices')">💰 Prices</button>
+      <button class="quick-btn" onclick="quickReply('Payments')">💳 Payments</button>
+      <button class="quick-btn" onclick="quickReply('Support')">🛠️ Support</button>
+      <button class="quick-btn" onclick="quickReply('Games')">🎮 Games</button>
     </div>
     <div id="messages">
-        <div class="msg bot-msg">Welcome to the Emulator Support! How can I help you today?</div>
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Welcome to the Emulator Support! How can I help you today?
+        <span class="msg-time">Just now</span>
+      </div>
     </div>
     <div id="input-area">
-        <input type="text" id="user-input" placeholder="Ask something..." onkeypress="window.handleKey(event)">
-        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; font-size:20px; cursor:pointer; margin-left: 10px;">➤</button>
+      <input type="text" id="chat-input" placeholder="Ask something..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
     </div>
-</div>
+  </div>
 
-<script src="chatbot.js"></script>
+  <div class="footer-note">
+    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · Premium AI Software, Games &amp; Development
+  </div>
+
+</div> <!-- /page-wrapper -->
+
 <script>
-    let echo = null;
+  // ===== CHAT FUNCTIONS (uses chatbot.js) =====
+  let botInstance = null;
 
-    window.toggleChat = function() {
-        const chat = document.getElementById("chat-container");
-        const launcher = document.getElementById("chat-launcher");
-        if (chat.style.display === "flex") {
-            chat.style.display = "none";
-            launcher.style.animation = "float 3s ease-in-out infinite";
+  function toggleChat() {
+    const container = document.getElementById('chat-container');
+    container.classList.toggle('open');
+    if (container.classList.contains('open')) {
+      document.getElementById('chat-input').focus();
+      // Initialize bot if not yet done
+      if (!botInstance && typeof BasicBot !== 'undefined') {
+        botInstance = new BasicBot();
+      }
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById('messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user-msg';
+    userDiv.innerHTML = msg + '<span class="msg-time">Just now</span>';
+    messages.appendChild(userDiv);
+
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Get bot response from chatbot.js
+    setTimeout(async () => {
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot-msg';
+      
+      let response = "I'm still learning. Please ask me about our emulator! 🎮";
+      
+      try {
+        if (botInstance && typeof botInstance.chat === 'function') {
+          response = await botInstance.chat(msg);
+        } else if (typeof BasicBot !== 'undefined') {
+          botInstance = new BasicBot();
+          response = await botInstance.chat(msg);
         } else {
-            chat.style.display = "flex";
-            launcher.style.animation = "none";
-            if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); }
+          // Fallback responses if chatbot.js is not loaded
+          const fallback = [
+            "That's a great question! Let me think about that... 🤔",
+            "I'm Abel123 AI, your autonomous assistant. How can I help you today?",
+            "The Emulator is optimized for all Android devices! 📱",
+            "We have 8 awesome Mario games in the Premium Pack! 🎮",
+            "Check our Payments page for pricing details! 💳",
+            "You can contact us at abelsoftware123@hotmail.com 📧",
+            "The Mario Premium Pack costs only €4.99! 🎉"
+          ];
+          response = fallback[Math.floor(Math.random() * fallback.length)];
         }
-    };
+      } catch (err) {
+        console.error('Chat error:', err);
+        response = "Sorry, I'm having trouble connecting. Please try again later. 🙏";
+      }
+      
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + response + '<span class="msg-time">Just now</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+    }, 500);
+  }
 
-    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-
-    window.handleQuickReply = function(keyword) {
-        document.getElementById("user-input").value = keyword;
-        window.askBot();
-    };
-
-    window.askBot = async function() {
-        const input = document.getElementById("user-input");
-        const container = document.getElementById("messages");
-        const text = input.value.trim();
-        if (!text) return;
-
-        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-        input.value = "";
-        container.scrollTop = container.scrollHeight;
-
-        try {
-            const response = echo ? await echo.chat(text) : "AI Connecting...";
-            setTimeout(() => {
-                container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 400);
-        } catch (err) { console.error(err); }
-    };
-</script>
-
-</body>
-</html>
+  f
