@@ -1,314 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews - Abelsoftware123</title>
-    
-    <style>
-        /* ================================================= */
-        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
-        /* ================================================= */
-        
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background-color: #121212;
-            color: #f0f0f0; 
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Reviews · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 30px 20px;
-            background-color: #1a1a1a;
-            position: relative;
-            border-bottom: 1px solid #333;
-        }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .header-controls {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .neon-blue-button {
-            padding: 6px 12px;
-            border: 2px solid #00f2ff;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11px;
-            cursor: pointer;
-            color: #fff;
-            background: rgba(0, 242, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
-            transition: 0.3s;
-            text-decoration: none;
-        }
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
 
-        .neon-blue-button:hover {
-            background-color: #00f2ff;
-            color: #000;
-            box-shadow: 0 0 20px #00f2ff;
-        }
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
 
-        h1.brand-title {
-            color: #00f2ff;
-            font-size: 32px;
-            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
-            margin: 0;
-        }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-        .brand-subtitle {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-            margin-bottom: 25px;
-        }
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
 
-        /* HORIZONTAL NAVIGATION BAR */
-        nav.main-nav {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
 
-        nav.main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-        }
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
 
-        nav.main-nav a {
-            background-color: #333;
-            color: #00f2ff;
-            padding: 8px 14px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 12px;
-            transition: 0.2s;
-            border: 1px solid transparent;
-        }
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        nav.main-nav a:hover {
-            background-color: #444;
-            color: #fff;
-            border-color: #00f2ff;
-        }
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
 
-        nav.main-nav a.active {
-            background-color: #444;
-            color: #fff;
-            font-weight: bold;
-        }
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
 
-        /* REVIEWS SECTION */
-        main {
-            padding: 40px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
 
-        h2.section-title {
-            text-align: center;
-            color: #00f2ff;
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-            margin-bottom: 40px;
-        }
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
 
-        .review-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
 
-        .review-card {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            transition: 0.3s;
-        }
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
 
-        .review-card:hover {
-            border-color: #00f2ff;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.1);
-        }
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
 
-        .stars { color: #00ff00; margin-bottom: 10px; letter-spacing: 2px; }
-        .review-text { font-style: italic; color: #ccc; line-height: 1.5; margin-bottom: 15px; }
-        .review-author { color: #00f2ff; font-weight: bold; font-size: 13px; }
+    /* ===== REVIEWS SECTION ===== */
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
 
-        /* CHATBOT STYLES (Same as previous) */
-        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
-        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
-        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
-        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
-        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px 8px; border-radius: 10px; cursor: pointer; font-size: 11px; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    </style>
+    .reviews-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .reviews-header p {
+      color: #8899aa;
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #00f2ff40;
+      border-color: #00f2ff44;
+    }
+
+    .stars {
+      color: #ffd700;
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-style: italic;
+      color: #c8d6e5;
+      line-height: 1.6;
+      font-size: 0.92rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .review-text::before {
+      content: '"';
+      color: #00f2ff;
+      font-size: 1.2rem;
+    }
+
+    .review-text::after {
+      content: '"';
+      color: #00f2ff;
+      font-size: 1.2rem;
+    }
+
+    .review-author {
+      color: #00f2ff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .review-author i {
+      font-size: 0.7rem;
+      opacity: 0.6;
+    }
+
+    .review-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      background: #00f2ff11;
+      border: 1px solid #00f2ff33;
+      color: #8899aa;
+      margin-top: 0.4rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+      .reviews-header h2 {
+        font-size: 1.5rem;
+      }
+      .review-card {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    
-<header> 
-    <div class="header-controls">
-        <a href="register.html" class="neon-blue-button">register</a>
-        <a href="login.html" class="neon-blue-button">Log in</a>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Premium Software Solutions</span>
     </div>
-    <h1 class="brand-title">Abelsoftware123</h1>
-    <p class="brand-subtitle">Premium Software Solutions</p>
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertising.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Apps List</a></li>
-            <li><a href="hacktools.html">Hacktools</a></li>
-            <li><a href="ai.html">AI Software</a></li> 
-            <li><a href="website.html">Order Websites</a></li>
-            <li><a href="domain.html">Order Domains</a></li>
-            <li><a href="emulator.html">Emulator</a></li>
-            <li><a href="music.html">Music Studio</a></li>  
-            <li><a href="reviews.html" class="active">Reviews</a></li>
-       </ul>
-    </nav>
-</header>
-
-<main>
-    <h2 class="section-title">Client Reviews & Trust</h2>
-    <div class="review-grid">
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The AI Chatbot I ordered has completely transformed my workflow. It's smart, fast, and exactly what I needed for my support desk."</p>
-            <span class="review-author">- Alex R. (AI Chatbot Client)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Instant delivery on the game keys! I was playing within minutes after my purchase. Great prices compared to other stores."</p>
-            <span class="review-author">- Jordan T. (Game Store Customer)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The hacktools are top-tier. Everything is clean, easy to install, and the tutorials explain exactly how to use them safely."</p>
-            <span class="review-author">- 'Ghost' (Software & Tools User)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★☆</div>
-            <p class="review-text">"Finally a mobile emulator that doesn't lag. Perfect for testing my apps and playing heavy games on my PC."</p>
-            <span class="review-author">- Michael B. (Emulator User)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Abelsoftware123 handled my domain registration and custom website design. The neon aesthetic is exactly what I wanted!"</p>
-            <span class="review-author">- Maria G. (Web Design Client)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Professional advertising services. My app visibility increased significantly after a short campaign with this team."</p>
-            <span class="review-author">- Liam V. (Advertising Partner)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The automation tools from Abelsoftware123 have saved our team hours of manual work. The code is efficient and extremely well-documented."</p>
-            <span class="review-author">- Sarah L. (Software Developer)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Great experience with the web hosting. My site is lightning fast and the uptime has been 100% so far. Highly recommended for small business owners."</p>
-            <span class="review-author">- Thomas D. (E-commerce Owner)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★☆</div>
-            <p class="review-text">"The custom scripts work perfectly. Had a minor issue during setup, but support responded within the hour and fixed it immediately."</p>
-            <span class="review-author">- Kevin J. (Tech Enthusiast)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Finally a reliable source for game keys. The activation code was visible in my dashboard instantly. No hassle, just great prices."</p>
-            <span class="review-author">- Rick V. (Gamer)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The neon design for my portfolio turned out amazing. I get daily compliments on the unique visual style of my website."</p>
-            <span class="review-author">- Elena M. (Graphic Designer)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The marketing strategy they implemented for my webshop increased my conversion rate by 40%. A very professional team."</p>
-            <span class="review-author">- Jasper H. (Entrepreneur)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★☆</div>
-            <p class="review-text">"I've been using the emulator for development for a week now, and it's by far the most stable environment I've tested so far."</p>
-            <span class="review-author">- Anouk T. (App Developer)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Top-notch Android Apps and PC Laptop Games for months of fun and gaming pleasure. The integration with my existing phone and games was seamless."</p>
-            <span class="review-author">- 'GameNerd Andy' (Games Analyst)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Fast domain transfer and excellent SEO advice. Abelsoftware123 truly thinks along with the growth of your company."</p>
-            <span class="review-author">- Mark S. (Start-up Founder)</span>
-        </div>
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The AI integration in our customer service is performing beyond expectations. The chatbot understands complex queries and learns very fast."</p>
-            <span class="review-author">- Sophie W. (Support Manager)</span>
-        </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
     </div>
-</main>
+  </div>
 
-<footer>
-    <p style="text-align:center; color: #666; font-size: 14px; padding-bottom: 40px;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
-</footer>
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html" class="active">Reviews</a></li>
+    </ul>
+  </nav>
 
-<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-<div id="chat-container">
-    <div id="chat-header"><span>🤖 AI Assistant</span><span style="cursor:pointer" onclick="window.toggleChat()">✕</span></div>
-    <div id="messages"></div>
+  <!-- ===== REVIEWS SECTION ===== -->
+  <div class="reviews-header">
+    <h2><i class="fas fa-star" style="color: #ffd700; font-size: 1.8rem;"></i> Client Reviews &amp; Trust</h2>
+    <p>What our customers say about Abelsoftware123</p>
+  </div>
+
+  <div class="review-grid">
+    <!-- Review 1 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The AI Chatbot I ordered has completely transformed my workflow. It's smart, fast, and exactly what I needed for my support desk.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Alex R. <span class="review-tag">AI Chatbot Client</span></span>
+    </div>
+
+    <!-- Review 2 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Instant delivery on the game keys! I was playing within minutes after my purchase. Great prices compared to other stores.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Jordan T. <span class="review-tag">Game Store Customer</span></span>
+    </div>
+
+    <!-- Review 3 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The hacktools are top-tier. Everything is clean, easy to install, and the tutorials explain exactly how to use them safely.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> 'Ghost' <span class="review-tag">Software &amp; Tools User</span></span>
+    </div>
+
+    <!-- Review 4 -->
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">Finally a mobile emulator that doesn't lag. Perfect for testing my apps and playing heavy games on my PC.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Michael B. <span class="review-tag">Emulator User</span></span>
+    </div>
+
+    <!-- Review 5 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Abelsoftware123 handled my domain registration and custom website design. The neon aesthetic is exactly what I wanted!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Maria G. <span class="review-tag">Web Design Client</span></span>
+    </div>
+
+    <!-- Review 6 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Professional advertising services. My app visibility increased significantly after a short campaign with this team.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Liam V. <span class="review-tag">Advertising Partner</span></span>
+    </div>
+
+    <!-- Review 7 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The automation tools from Abelsoftware123 have saved our team hours of manual work. The code is efficient and extremely well-documented.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Sarah L. <span class="review-tag">Software Developer</span></span>
+    </div>
+
+    <!-- Review 8 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Great experience with the web hosting. My site is lightning fast and the uptime has been 100% so far. Highly recommended for small business owners.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Thomas D. <span class="review-tag">E-commerce Owner</span></span>
+    </div>
+
+    <!-- Review 9 -->
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">The custom scripts work perfectly. Had a minor issue during setup, but support responded within the hour and fixed it immediately.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Kevin J. <span class="review-tag">Tech Enthusiast</span></span>
+    </div>
+
+    <!-- Review 10 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Finally a reliable source for game keys. The activation code was visible in my dashboard instantly. No hassle, just great prices.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Rick V. <span class="review-tag">Gamer</span></span>
+    </div>
+
+    <!-- Review 11 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The neon design for my portfolio turned out amazing. I get daily compliments on the unique visual style of my website.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Elena M. <span class="review-tag">Graphic Designer</span></span>
+    </div>
+
+    <!-- Review 12 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The marketing strategy they implemented for my webshop increased my conversion rate by 40%. A very professional team.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Jasper H. <span class="review-tag">Entrepreneur</span></span>
+    </div>
+
+    <!-- Review 13 -->
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">I've been using the emulator for development for a week now, and it's by far the most stable environment I've tested so far.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Anouk T. <span class="review-tag">App Developer</span></span>
+    </div>
+
+    <!-- Review 14 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Top-notch Android Apps and PC Laptop Games for months of fun and gaming pleasure. The integration with my existing phone and games was seamless.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> 'GameNerd Andy' <span class="review-tag">Games Analyst</span></span>
+    </div>
+
+    <!-- Review 15 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Fast domain transfer and excellent SEO advice. Abelsoftware123 truly thinks along with the growth of your company.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Mark S. <span class="review-tag">Start-up Founder</span></span>
+    </div>
+
+    <!-- Review 16 -->
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The AI integration in our customer service is performing beyond expectations. The chatbot understands complex queries and learns very fast.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Sophie W. <span class="review-tag">Support Manager</span></span>
+    </div>
+  </div>
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Assistant</span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('Products')">📦 Products</button>
+      <button class="quick-btn" onclick="quickReply('Pricing')">💰 Pricing</button>
+      <button class="quick-btn" onclick="quickReply('Support')">🛠️ Support</button>
+    </div>
+    <div id="messages">
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Welcome to Abelsoftware123! I am your AI Assistant. How can I help you today?
+        <span class="msg-time">Just now</span>
+      </div>
+    </div>
     <div id="input-area">
-        <input type="text" id="user-input" placeholder="Ask something..." onkeypress="window.handleKey(event)">
-        <button onclick="window.askBot()">➤</button>
-    </div>
-</div>
-
-<script src="chatbot.js"></script>
-<script>
-    let echo = null;
-    window.toggleChat = function() {
-        const chat = document.getElementById("chat-container");
-        if (chat.style.display === "flex") { chat.style.display = "none"; } 
-        else { chat.style.display = "flex"; if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); } }
-    };
-    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-    window.askBot = async function() {
-        const input = document.getElementById("user-input");
-        const container = document.getElementById("messages");
-        const text = input.value.trim();
-        if (!text) return;
-        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-        input.value = "";
-        try {
-            const response = echo ? await echo.chat(text) : "AI Connecting...";
-            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${response}</div>`; container.scrollTop = container.scrollHeight; }, 400);
-        } catch (err) { console.error(err); }
-    };
-</script>
-</body>
-</html>
+      <input type="text" id="chat-input" 
