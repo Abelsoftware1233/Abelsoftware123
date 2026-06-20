@@ -1,329 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Abelsoftware123</title>
-    
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>AI Software Store · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <style>
-        /* --- ABELSOFTWARE123 CORE STYLE --- */
-        body { 
-            background-color: #1a1a1a; 
-            color: #e0e0e0; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6;
-        }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        header {
-            position: relative;
-            text-align: center;
-            padding: 60px 20px 30px;
-            background: #1a1a1a;
-            border-bottom: 1px solid #333;
-        }
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
 
-        .header-controls { 
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            display: flex; 
-            gap: 10px; 
-            z-index: 10;
-        }
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
 
-        .neon-blue-button { 
-            padding: 8px 15px; 
-            border: 2px solid #00f0ff; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            color: #fff; 
-            background-color: transparent; 
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); 
-            transition: 0.3s;
-            text-decoration: none;
-            font-size: 12px;
-        }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-        .neon-blue-button:hover { 
-            background-color: #00f0ff; 
-            color: #000; 
-            box-shadow: 0 0 20px #00f0ff; 
-        }
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
 
-        .neon-title { 
-            color: #00f0ff; 
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6); 
-            font-size: 36px;
-            margin: 0;
-        }
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
 
-        /* --- NAVIGATION --- */
-        nav ul { 
-            list-style: none; 
-            padding: 0; 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 10px; 
-            margin-top: 25px; 
-        }
-        
-        nav li a { 
-            color: #00f0ff; 
-            text-decoration: none; 
-            padding: 8px 12px; 
-            transition: 0.3s; 
-            font-size: 13px;
-        }
-        
-        nav li a:hover { 
-            color: #fff; 
-            text-shadow: 0 0 5px #00f0ff; 
-        }
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
 
-        /* --- WELCOME CARD --- */
-        .welcome-card {
-            max-width: 800px;
-            margin: 30px auto;
-            background: #222;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            animation: fadeIn 0.8s ease-out;
-        }
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        .welcome-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 3px solid #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-            object-fit: cover;
-        }
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
 
-        .badge-role {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 4px 12px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid #00f0ff;
-            color: #00f0ff;
-            border-radius: 20px;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
 
-        /* --- BUTTONS & SECTIONS --- */
-        .groene-knop { 
-            padding: 12px 20px; 
-            border: none;
-            border-radius: 8px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            color: #000; 
-            background-color: #00ff00; 
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4); 
-            text-decoration: none; 
-            display: inline-block; 
-            margin: 10px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
 
-        .groene-knop:hover { transform: scale(1.05); box-shadow: 0 0 25px #00ff00; }
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
 
-        .content-section {
-            background: #222;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            margin: 30px auto;
-            max-width: 900px;
-        }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
 
-        /* HIER IS DE RODE KLEUR TOEGEVOEGD VOOR DE LIJST */
-        .rates-list li {
-            color: #ff4444; 
-            margin-bottom: 5px;
-        }
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
 
-        .price { color: #00f0ff; font-weight: bold; }
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
 
-        .price { color: #00f0ff; font-weight: bold; }
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
 
-        /* --- RESPONSIVE IMAGE FIX FOR PSP --- */
-        .responsive-img {
-            display: block;
-            max-width: 350px; /* Mooie compacte grootte op PC */
-            width: 100%;       /* Schlaalt automatisch mee op mobiel */
-            height: auto;
-            border-radius: 8px;
-            margin: 20px auto; /* Centreert de afbeelding netjes */
-        }
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
 
-        /* --- CHATBOT --- */
-        #chat-launcher { position: fixed; bottom: 20px; right: 20px; ... }
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
 
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
 
-        /* --- CHATBOT --- */
-        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s infinite; }
-        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 520px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    .price-tag {
+      color: #00f2ff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00d4e6, #0088aa);
+      border: none;
+      color: #0b0d10;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid #00f2ffaa;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #00f2ff, #00aacc);
+      box-shadow: 0 6px 40px #00f2ff66;
+      color: #000;
+    }
+
+    .btn-orange {
+      background: linear-gradient(145deg, #ff6a00, #e05500);
+      border-color: #ff6a00aa;
+      box-shadow: 0 4px 20px rgba(255, 69, 0, 0.3);
+    }
+
+    .btn-orange:hover {
+      background: linear-gradient(145deg, #ff7a22, #ff5500);
+      box-shadow: 0 6px 40px rgba(255, 69, 0, 0.5);
+    }
+
+    .btn-green {
+      background: linear-gradient(145deg, #00d484, #00aa66);
+      border-color: #00d484aa;
+      box-shadow: 0 4px 20px rgba(0, 212, 132, 0.3);
+    }
+
+    .btn-green:hover {
+      background: linear-gradient(145deg, #00ee99, #00cc77);
+      box-shadow: 0 6px 40px rgba(0, 212, 132, 0.5);
+    }
+
+    /* ===== WELCOME CARD ===== */
+    .welcome-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #00f2ff;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+      object-fit: cover;
+      background: #1a1f2a;
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 3px 14px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .welcome-text h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: #eaeef2;
+    }
+
+    .welcome-text .session-info {
+      color: #8899aa;
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+
+    .welcome-text .session-info span {
+      color: #00f2ff;
+    }
+
+    /* ===== PSP SECTION ===== */
+    .psp-image {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 1rem;
+      border: 2px solid #ff6a0044;
+      box-shadow: 0 0 30px rgba(255, 69, 0, 0.15);
+      margin: 0.8rem auto;
+      display: block;
+      background: #1a1f2a;
+    }
+
+    .psp-section {
+      border: 1px solid #ff6a0044;
+      background: rgba(255, 69, 0, 0.05);
+      border-radius: 1.2rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .psp-section h3 {
+      color: #ff6a00;
+      font-size: 1.3rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .welcome-avatar {
+        width: 60px;
+        height: 60px;
+      }
+      .welcome-text h1 {
+        font-size: 1.2rem;
+      }
+      .psp-image {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
+<div class="page-wrapper">
 
-<header> 
-    <div class="header-controls">
-        <button class="neon-blue-button" onclick="location.href='registreer.html'">register</button>
-        <button class="neon-blue-button" onclick="location.href='login.html'">log in</button>
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Premium AI & Development</span>
     </div>
-    <h1 class="neon-title">Abelsoftware123</h1>
-    <p>Premium AI Software, Games & Development</p>
-    
-    <nav>
-        <ul>
-            <li><a href="index.html" style="color: #fff; font-weight: bold;">Home</a></li>
-            <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertentie.html">Advertising on Apps</a></li>  
-            <li><a href="company.html">Abelsoftware123 Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Apps List</a></li>
-            <li><a href="hacktools.html">Hacktools</a></li>
-            <li><a href="ai.html">AI Software</a></li>  
-            <li><a href="website.html">Order Your Own Website & Apps</a></li>
-            <li><a href="domain.html">Order Your Domain Name</a></li>
-            <li><a href="emulator.html">Mobile Games Emulator</a></li>
-            <li><a href="music.html">Music Studio Software</a></li>  
-            <li><a href="reviews.html">Reviews Abelsoftware123</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-    <div class="welcome-card" id="welcomeSection">
-        <img id="displayPic" src="https://via.placeholder.com/120" class="welcome-avatar">
-        <div class="welcome-text">
-            <h1 style="margin:0; font-size: 24px;">Welcome to the Portal</h1>
-            <p id="userRoleBadge" class="badge-role">System Guest</p>
-            <p style="color: #888; font-size: 12px; margin-top: 10px;">Session Active: <span id="currentDate" style="color: #00f0ff;"></span></p>
-        </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
     </div>
+  </div>
 
-    <div class="content-section">
-        <h2 style="color: #00f0ff;">💰 Our Rates</h2>
-        <ul class="rates-list" style="list-style: none; padding: 0;">
-            <li>🎤🎧 <strong>Music Studio Software:</strong> Costs <span class="price">€14.99</span></li>
-            <li>🕹️ <strong>Mobile Games Emulator:</strong> Costs <span class="price">€4.99</span></li>
-            <li>🎮 <strong>Games:</strong> Starting at <span class="price">€4.99</span></li>
-            <li>🌐 <strong>Websites & Apps:</strong> Starting at <span class="price">€200</span></li>
-            <li>🤖 <strong>Standard Chatbots:</strong> From <span class="price">€1000</span></li>
-            <li>🛰️ <strong>AI Software License:</strong> <span class="price">€150</span></li>
-            <li>🔑 <strong>AI Chatbot (API Integrated):</strong> <span class="price">€1500</span></li>
-        </ul>
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="mailto:abelsoftware123@hotmail.com" class="groene-knop">Contact Us</a>
-            <a href="https://www.dropbox.com/scl/fi/cygtht6xthhy2i3867bd7/11800_Abelsoftware123.apk?rlkey=d2m24pcf6mso27fnn70x8vovn&st=ooz2c4wu&dl=0" class="groene-knop">Download Abelsoftware123 Android App</a>
-        </div>
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
+
+    <!-- WELCOME CARD (full width) -->
+    <div class="card full-width" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
+      <img src="https://via.placeholder.com/120" alt="Avatar" class="welcome-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect fill=%22%231a1f2a%22 width=%22120%22 height=%22120%22/%3E%3Ctext x=%2230%22 y=%2270%22 fill=%22%2300f2ff%22 font-size=%2240%22%3E🤖%3C/text%3E%3C/svg%3E'">
+      <div style="flex: 1;">
+        <h1 style="margin: 0; font-size: 1.5rem; color: #eaeef2;">Welcome to Abelsoftware123</h1>
+        <span class="badge-role"><i class="fas fa-user"></i> System Guest</span>
+        <p class="session-info">Session Active: <span id="currentDate"></span></p>
+      </div>
     </div>
 
-    <div class="content-section" style="text-align: center;">
-        <h2 class="neon-title" style="font-size: 24px; margin-bottom: 20px;">Ethical Hacking & AI Resources</h2>
-        <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="matrix" style="max-width: 100%; border: 2px solid #00f0ff; border-radius: 10px; margin-bottom: 20px;">
+    <!-- OUR RATES -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-coins"></i>
+        <h2>Our Rates</h2>
+      </div>
+      <ul class="feature-list">
+        <li>🎤 <strong>Music Studio Software:</strong> <span class="price-tag">€14.99</span></li>
+        <li>🕹️ <strong>Mobile Games Emulator:</strong> <span class="price-tag">€4.99</span></li>
+        <li>🎮 <strong>Games:</strong> Starting at <span class="price-tag">€4.99</span></li>
+        <li>🌐 <strong>Websites & Apps:</strong> Starting at <span class="price-tag">€200</span></li>
+        <li>🤖 <strong>Standard Chatbots:</strong> From <span class="price-tag">€1000</span></li>
+        <li>🛰️ <strong>AI Software License:</strong> <span class="price-tag">€150</span></li>
+        <li>🔑 <strong>AI Chatbot (API Integrated):</strong> <span class="price-tag">€1500</span></li>
+      </ul>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.2rem;">
+        <a href="mailto:abelsoftware123@hotmail.com" class="cta-btn btn-green"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="https://www.dropbox.com/scl/fi/cygtht6xthhy2i3867bd7/11800_Abelsoftware123.apk?rlkey=d2m24pcf6mso27fnn70x8vovn&st=ooz2c4wu&dl=0" class="cta-btn"><i class="fas fa-download"></i> Download Android App</a>
+      </div>
+    </div>
+
+    <!-- ETHICAL HACKING & AI -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-shield-alt"></i>
+        <h2>Ethical Hacking &amp; AI</h2>
+      </div>
+      <img src="https://aiptcomics.com/wp-content/uploads/2021/02/matrixneocover-min.jpeg" alt="Matrix" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+      <p>Explore the future of AI and ethical hacking. Our tools are designed for security research and educational purposes.</p>
+      <a href="hacktools.html" class="cta-btn" style="background: linear-gradient(145deg, #8800ff, #6600cc); border-color: #8800ffaa; box-shadow: 0 4px 20px rgba(136, 0, 255, 0.3);">
+        <i class="fas fa-terminal"></i> View Hacktools
+      </a>
+    </div>
+
+    <!-- PSP GAMING PORTABLE (full width) -->
+    <div class="card full-width">
+      <div class="psp-section">
+        <h3><i class="fas fa-fire" style="color: #ff6a00;"></i> NEW: PSP Gaming Portable! <span style="color: #ff6a00;">€149,99</span></h3>
+        <p>The iconic PSP with 10.000+ games now available on our Payments page. Play any console in one handheld. PlayStation-GBA-Nintendo series-Gamecube and many more. Release date: 2026</p>
         
-        <div style="border: 1px solid #ff4500; padding: 20px; border-radius: 10px; background: rgba(255, 69, 0, 0.05);">
-            <h3 style="color: #ff4500;">🔥 New: PSP Gaming Portable! €149,99 🔥</h3>
-            <p>The iconic PSP with 10.000+ games now available on our Payments page. Play any console in one handheld. PlayStation-GBA-Nintendo series-Gamecube and many more. Releasedate: 2026</p>
+        <img src="psp.jpg" alt="PSP Console" class="psp-image" onerror="this.style.display='none'">
 
-<img src="psp.jpg" alt="PSP Console" class="responsive-img" style="margin: 0 auto;">
-
-            <a href="payments.html" class="groene-knop" style="background-color: #ff4500;">View PSP Offers</a>
-        </div>
+        <a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> View PSP Offers</a>
+      </div>
     </div>
-</main>
 
-<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
+  </div> <!-- /page-grid -->
 
-<div id="chat-container">
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
     <div id="chat-header">
-        <span>🤖AI Customer Service</span>
-        <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Customer Service</span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
     </div>
-    <div style="padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px;">
-        <button class="neon-blue-button" style="font-size: 10px; padding: 4px 8px;" onclick="handleQuickReply('prices')">Prices</button>
-        <button class="neon-blue-button" style="font-size: 10px; padding: 4px 8px;" onclick="handleQuickReply('payments')">Payments</button>
-        <button class="neon-blue-button" style="font-size: 10px; padding: 4px 8px;" onclick="handleQuickReply('contact')">Contact</button>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('prices')">💰 Prices</button>
+      <button class="quick-btn" onclick="quickReply('payments')">💳 Payments</button>
+      <button class="quick-btn" onclick="quickReply('contact')">📧 Contact</button>
+      <button class="quick-btn" onclick="quickReply('help')">❓ Help</button>
     </div>
     <div id="messages">
-        <div class="msg bot-msg">Welcome to Abelsoftware123! I am your AI Assistant. How can I help you today?</div>
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Welcome to Abelsoftware123! I am your AI Assistant. How can I help you today?
+        <span class="msg-time">Just now</span>
+      </div>
     </div>
-    <div style="display: flex; padding: 10px; background: #2a2a2a;">
-        <input type="text" id="user-input" placeholder="Type a message..." style="flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; border-radius: 5px; outline: none;">
-        <button onclick="window.askBot()" style="background: none; border: none; color: #00ffff; cursor: pointer; font-size: 20px; margin-left: 5px;">➤</button>
-    </div>
-</div>
-
-<script src="chatbot.js"></script>
-<script>
-    // Update live date
-    document.getElementById('currentDate').innerText = new Date().toLocaleString();
-
-    let echo = null;
-
-    window.toggleChat = function() {
-        const chat = document.getElementById("chat-container");
-        chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
-        if (!echo && typeof BasicBot !== 'undefined') {
-            echo = new BasicBot();
-        }
-    };
-
-    window.askBot = async function() {
-        const input = document.getElementById("user-input");
-        const container = document.getElementById("messages");
-        const text = input.value.trim();
-        if (!text) return;
-
-        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-        input.value = "";
-        
-        try {
-            const response = echo ? await echo.chat(text) : "Connecting to Echo AI...";
-            setTimeout(() => {
-                container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 400);
-        } catch (err) { console.error(err); }
-    };
-
-    window.handleQuickReply = function(keyword) {
-        document.getElementById("user-input").value = keyword;
-        window.askBot();
-    };
-
-    // Enter key support
-    document.getElementById("user-input").addEventListener("keypress", (e) => {
-        if(e.key === "Enter") window.askBot();
-    });
-</script>
-
-</body>
-</html>
-
-
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Type a mess
