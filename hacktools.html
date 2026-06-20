@@ -1,380 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacktools - Abelsoftware123</title>
-    
-    <style>
-        /* ================================================= */
-        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
-        /* ================================================= */
-        
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background-color: #121212;
-            color: #f0f0f0; 
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Hacktools · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 30px 20px;
-            background-color: #1a1a1a;
-            position: relative;
-            border-bottom: 1px solid #333;
-        }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        /* Register & Login Buttons (Top Right) */
-        .header-controls {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .neon-blue-button {
-            padding: 6px 12px;
-            border: 2px solid #00f2ff;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11px;
-            cursor: pointer;
-            color: #fff;
-            background: rgba(0, 242, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
-            transition: 0.3s;
-            text-decoration: none;
-        }
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
 
-        .neon-blue-button:hover {
-            background-color: #00f2ff;
-            color: #000;
-            box-shadow: 0 0 20px #00f2ff;
-        }
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
 
-        h1.brand-title {
-            color: #00f2ff;
-            font-size: 32px;
-            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
-            margin: 0;
-        }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-        .brand-subtitle {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-            margin-bottom: 25px;
-        }
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
 
-        /* HORIZONTAL NAVIGATION BAR */
-        nav.main-nav {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
 
-        nav.main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-        }
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
 
-        nav.main-nav a {
-            background-color: #333;
-            color: #00f2ff;
-            padding: 8px 14px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 12px;
-            transition: 0.2s;
-            border: 1px solid transparent;
-        }
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        nav.main-nav a:hover {
-            background-color: #444;
-            color: #fff;
-            border-color: #00f2ff;
-        }
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
 
-        nav.main-nav a.active {
-            background-color: #444;
-            color: #fff;
-            font-weight: bold;
-            border-color: #00f2ff;
-        }
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
 
-        /* CONTENT SECTIONS */
-        main {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
 
-        .content-section {
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-        }
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
 
-        h2 { 
-            color: #00f2ff; 
-            margin-top: 0; 
-            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
-        }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
 
-        h3, h4 { color: #fff; margin-top: 20px; }
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
 
-        p { line-height: 1.6; color: #ccc; }
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
 
-        .tool-list {
-            column-count: 2;
-            padding: 0;
-            list-style: none;
-        }
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
 
-        .tool-list li {
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #f0f0f0;
-        }
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
 
-        .tool-list li::before {
-            content: "⚡ ";
-            color: #00f2ff;
-        }
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
 
-        /* IMAGE GALLERY STYLES */
-        .image-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin: 30px 0;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
 
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #1a1a1a;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #333;
-        }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
 
-        .hack-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
-        }
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
 
-        .img-caption {
-            margin-top: 10px;
-            color: #00f2ff;
-            font-size: 13px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
 
-        /* CHATBOT STYLES */
-        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
-        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
-        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
-        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    </style>
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card h4 {
+      color: #eaeef2;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0.8rem 0 0.3rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tool-list {
+      columns: 2;
+      column-gap: 1.5rem;
+      padding: 0;
+      list-style: none;
+      margin: 0.5rem 0;
+    }
+
+    .tool-list li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      color: #d0dcee;
+      break-inside: avoid;
+    }
+
+    .tool-list li::before {
+      content: "⚡";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    .warning-text {
+      border-top: 1px solid #2a3344;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      color: #ff6a00;
+      font-size: 0.9rem;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .image-item {
+      background: #12161f;
+      border-radius: 1rem;
+      padding: 0.8rem;
+      border: 1px solid #1f2a38;
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .image-item:hover {
+      border-color: #00f2ff44;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.6rem;
+      border: 1px solid #2a3344;
+    }
+
+    .image-item .img-caption {
+      font-size: 0.7rem;
+      color: #8899aa;
+      margin-top: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .tool-list {
+        columns: 1;
+      }
+      .image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    
-<header> 
-    <div class="header-controls">
-        <a href="register.html" class="neon-blue-button">register</a>
-        <a href="login.html" class="neon-blue-button">Log in</a>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Ethical Hacking &amp; Security</span>
     </div>
-        
-    <h1 class="brand-title">Hacktools</h1>
-    <p class="brand-subtitle">Ethical Hacking & Security Auditing Resources</p>
-
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertising.html">Advertising</a></li>  
-            <li><a href="company.html">Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Apps List</a></li>
-            <li><a href="hacktools.html" class="active">Hacktools</a></li>
-            <li><a href="ai.html">AI Software</a></li> 
-            <li><a href="website.html">Order Websites</a></li>
-            <li><a href="domain.html">Order Domains</a></li>
-            <li><a href="emulator.html">Emulator</a></li>
-            <li><a href="music.html">Music Studio</a></li>  
-            <li><a href="reviews.html">Reviews</a></li>
-       </ul>
-    </nav>
-</header>
-
-<main>
-    <div class="image-gallery">
-        <div class="image-container">
-            <img src="abel.jpg" alt="Abel123 Hack-Dashboard" class="hack-img">
-            <div class="img-caption">Abel123 Hack-Dashboard</div>
-        </div>
-
-        <div class="image-container">
-            <img src="tool.jpg" alt="ZeroThreat Tool List" class="hack-img">
-            <div class="img-caption">Top Penetration Testing Tools Interface</div>
-        </div>
-
-        <div class="image-container">
-            <img src="pen.jpg" alt="PentestKit Host Discovery" class="hack-img">
-            <div class="img-caption">PentestKit v1.0 - Recon & Discovery</div>
-        </div>
-
-        <div class="image-container">
-            <img src="osin.jpg" alt="Ghost OSINT Intelligence" class="hack-img">
-            <div class="img-caption">Ghost OSINT Email Intelligence v2.4</div>
-        </div>
-
-        <div class="image-container">
-            <img src="os.jpg" alt="Crypt-OS Decryption" class="hack-img">
-            <div class="img-caption">Swiss Army | Crypt-OS</div>
-        </div>
-
-<div class="image-container">
-            <img src="mail.jpg" alt="Bulk Mail Sender" class="hack-img">
-            <div class="img-caption">Abel123 Bulk Mail Sender| Abel123</div>
-        </div>
-
-<div class="image-container">
-            <img src="whisper.jpg" alt="Network Whisper" class="hack-img">
-            <div class="img-caption">Abel123 Network Whisper| Abel123</div>
-        </div>
-
-<div class="image-container">
-            <img src="network.jpg" alt="Network Whisper" class="hack-img">
-            <div class="img-caption">Abel123 Network Whisper| Abel123</div>
-        </div>
-
-<div class="image-container">
-            <img src="Scanner.jpg" alt="Abel123 Network Scanner and Spoofer" class="hack-img">
-            <div class="img-caption">Abel123 Network Scanner| Abel123</div>
-        </div>
-
-
-<div class="image-container">
-            <img src="people.jpg" alt="Abel123 People Hunter" class="hack-img">
-            <div class="img-caption">Abel123 Url Fuzzer- Api Scanner-OSINT People Hunter| Abel123</div>
-
-<div class="image-container">
-            <img src="password.jpg" alt="Abel123 Password Ripper" class="hack-img">
-            <div class="img-caption">Abel123 Password Ripper| Abel123</div>
-
-
-<div class="image-container">
-            <img src="voice.jpg" alt="Abel123 Deep Voice Echo" class="hack-img">
-            <div class="img-caption">Abel123 Deep Voice Echo Social Engineering| Abel123</div>
-        </div>
-
-    <section class="content-section">
-        <h2>💻 Ethical Hacking Resources</h2>
-        <p>Explore our specialized toolset designed for penetration testing and vulnerability assessment. We empower security professionals to build more robust systems through ethical hacking practices.</p>
-        
-        <h3>Safety & Ethics</h3>
-        <p><strong>Strict Policy:</strong> All tools provided are intended for legal and ethical purposes only, such as authorized security audits and academic research.</p>
-        
-        <h4>Available Software Suite (Linux/Kali/Android)</h4>
-        <ul class="tool-list">
-            <li>Spyware Software (Only Government can buy this)</li>
-            <li>DDos-Attack Software (Only Government can buy this)</li>
-            <li>SQL-Map Software</li>
-            <li>Phishing Frameworks</li>
-            <li>Pentest Suites</li>
-            <li>Metasploit Framework</li>
-            <li>Sniffing & Spoofing</li>
-            <li>Network Scanners</li>
-            <li>Password Attacks (Only Government can buy this)</li>
-            <li>SQL-Injection Tools</li>
-            <li>OSINT Hunt Tools</li>
-            <li>API Scanners</li>
-            <li>Wordpress Scanners</li>
-            <li>IP Location Trackers</li>
-            <li>Stresstest Tools</li>
-            <li>Forensics Software</li>
-            <li>Nmap Tools</li>
-        </ul>
-        <p style="border-top: 1px solid #333; padding-top: 15px; font-size: 14px; color: #00f2ff;">
-            Send an Email to order software. Invoices are sent via email; delivery follows payment confirmation.
-        </p>
-    </section>
-
-    <section class="content-section">
-        <h2>🖥️ Deep Dive Information</h2>
-        
-        <h4>1. Network Mapping</h4>
-        <p><strong>Nmap:</strong> The industry standard for network discovery. Identify hosts, open ports, and operating system versions instantly.</p>
-        
-        <h4>2. Web Security</h4>
-        <p><strong>Burp Suite & OWASP ZAP:</strong> Essential proxies for intercepting and modifying traffic to find hidden vulnerabilities in web applications.</p>
-        
-        <h4>3. Password Auditing</h4>
-        <p><strong>Hashcat & John the Ripper:</strong> World-class tools for testing password strength using advanced cracking modes and GPU acceleration.</p>
-    </section>
-</main>
-
-<footer>
-    <p style="text-align:center; color: #666; font-size: 14px; padding-bottom: 40px;">&copy; 2026 Abelsoftware123. All rights reserved.</p>
-</footer>
-
-<button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-<div id="chat-container">
-    <div id="chat-header"><span>🤖 AI Assistant</span><span style="cursor:pointer" onclick="window.toggleChat()">✕</span></div>
-    <div id="messages">
-        <div class="msg bot-msg">Welcome to Hacktools support. How can I assist you with our security resources?</div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
     </div>
-    <div id="input-area">
-        <input type="text" id="user-input" placeholder="Ask about tools..." onkeypress="window.handleKey(event)">
-        <button onclick="window.askBot()" style="background:none; border:none; color:#00ffff; cursor:pointer;">➤</button>
-    </div>
-</div>
+  </div>
 
-<script src="chatbot.js"></script>
-<script>
-    let echo = null;
-    window.toggleChat = function() {
-        const chat = document.getElementById("chat-container");
-        if (chat.style.display === "flex") { chat.style.display = "none"; } 
-        else { chat.style.display = "flex"; if (!echo && typeof BasicBot !== 'undefined') { echo = new BasicBot(); } }
-    };
-    window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-    window.askBot = async function() {
-        const input = document.getElementById("user-input");
-        const container = document.getElementById("messages");
-        const text = input.value.trim();
-        if (!text) return;
-        container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-        input.value = "";
-        try {
-            const response = echo ? await echo.chat(text) : "AI Offline...";
-            setTimeout(() => { container.innerHTML += `<div class="msg bot-msg">${response}</div>`; container.scrollTop = container.scrollHeight; }, 400);
-        } catch (err) { console.error(err); }
-    };
-</script>
-</body>
-</html>
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html" class="active">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
+
+    <!-- IMAGE GALLERY (full width) -->
+    <div class="card full-width">
+      <span class="badge-role"><i class="fas fa-shield-alt"></i> SECURITY RESOURCES</span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-terminal"></i>
+        <h2>Hacktools</h2>
+      </div>
+      
+      <p style="text-align: center;">Ethical Hacking &amp; Security Auditing Resources</p>
+
+      <div class="image-grid">
+        <div class="image-item">
+          <img src="abel.jpg" alt="Abel123 Hack-Dashboard" onerror="this.style.display='none'">
+          <div class="img-caption">Abel123 Hack-Dashboard</div>
+        </div>
+        <div class="image-item">
+          <img src="tool.jpg" alt="ZeroThreat Tool List" onerror="this.style.display='none'">
+          <div class="img-caption">Top Penetration Testing Tools</div>
+        </div>
+        <div class="image-item">
+          <img src="pen.jpg" alt="PentestKit Host Discovery" onerror="this.style.display='none'">
+          <div class="img-caption">PentestKit v1.0 - Recon</div>
+        </div>
+        <div class="image-item">
+          <img src="osin.jpg" alt="Ghost OSINT Intelligence" onerror="this.style.display='none'">
+          <div class="img-caption">Ghost OSINT v2.4</div>
+        </div>
+        <div class="image-item">
+          <img src="os.jpg" alt="Crypt-OS Decryption" onerror="this.style.display='none'">
+          <div class="img-caption">Swiss Army | Crypt-OS</div>
+        </div>
+        <div class="image-item">
+          <img src="mail.jpg" alt="Bulk Mail Sender" onerror="this.style.display='none'">
+          <div class="img-caption">Abel123 Bulk Mail Sender</div>
+        </div>
+        <div class="image-item">
+          <img src="whisper.jpg" alt="Network Whisper" onerror="this.style.display='none'">
+          <div class="img-caption">Abel123 Network Whisper</div>
+        </div>
+        <div class="image-item">
+          <img src="network.jpg" alt="Network Whisper" onerror="this.style.display='none'">
+          <div class="img-caption">Abel123 Network Whisper</div>
+        </div>
+        <div class="image-item">
+          <img src="Scanner.jpg" alt="Network Scanner and Spoofer" onerror="this.style.display='none'">
+          <div class="img-caption">Abel123 Network Scanner</div>
+        </div>
+        <div class="image-item">
+          <img src="people.jpg" alt="Abel123 People Hunter" onerror="this.style.display='none'">
+          <div class="img-caption">Url Fuzzer · API Scanner · OSINT</div>
+        </div>
+        <div class="image-item">
+          <img src="password.jpg" alt="Abel123 Password Ripper" onerror="this.style.display='none'">
+          <div class="img-caption">Abel123 Password Ripper</div>
+        </div>
+        <div class="image-item">
+          <img src="voice.jpg" alt="Abel123 Deep Voice Echo" onerror="this.style.display='none'">
+          <div class="img-caption">Deep Voice Echo · Social Engineering</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETHICAL HACKING RESOURCES -->
+    <div class="card full-width">
+      <div class="card-header">
+        <i class="fas fa-laptop"></i>
+        <h2>Ethical Hacking Resources</h2>
+      </div>
+      <p>Explore our specialized toolset designed for penetration testing and vulnerability assessment. We empower security professionals to build more robust systems through ethical hacking practices.</p>
+      
+      <h3>Safety &amp; Ethics</h3>
+      <p><strong>Strict Policy:</strong> All tools provided are intended for legal and ethical purposes only, such as authorized security audits and academic research.</p>
+      
+      <h4>Available Software Suite <span style="color: #8899aa; font-size: 0.8rem;">(Linux/Kali/Android)</span></h4>
+      <ul class="tool-list">
+        <li>Spyware Software <span style="color: #ff6a00; font-size: 0.7rem;">(Government only)</span></li>
+        <li>DDoS-Attack Software <span style="color: #ff6a00; font-size: 0.7rem;">(Government only)</span></li>
+        <li>SQL-Map Software</li>
+        <li>Phishing Frameworks</li>
+        <li>Pentest Suites</li>
+        <li>Metasploit Framework</li>
+        <li>Sniffing &amp; Spoofing</li>
+        <li>Network Scanners</li>
+        <li>Password Attacks <span style="color: #ff6a00; font-size: 0.7rem;">(Government only)</span></li>
+        <li>SQL-Injection Tools</li>
+        <li>OSINT Hunt Tools</li>
+        <li>API Scanners</li>
+        <li>Wordpress Scanners</li>
+        <li>IP Location Trackers</li>
+        <li>Stresstest Tools</li>
+        <li>Forensics Software</li>
+        <li>Nmap Tools</li>
+      </ul>
+      
+      <div class="warning-text">
+        <i class="fas fa-envelope" style="color: #00f2ff;"></i> Send an Email to order software. Invoices are sent via email; delivery follows payment confirmation.
+      </div>
+    </div>
+
+    <!-- DEEP DIVE INFORMATION -->
+    <div class="card full-width">
+      <div class="card-header">
+        <i class="fas fa-search"></i>
+        <h2>Deep Dive Information</h2>
+      </div>
+      
+      <h4><i class="fas fa-network-wired" style="color: #00f2ff;"></i> 1. Network Mapping</h4>
+      <p><strong>Nmap:</strong> The industry standard for network discovery. Identify hosts, open ports, and operating system versions instantly.</p>
+      
+      <h4><i class="fas fa-globe" style="color: #00f2ff;"></i> 2. Web Security</h4>
+      <p><strong>Burp Suite &amp; OWASP ZAP:</strong> Essential proxies for intercepting and modifying traffic to find hidden vulnerabilities in web applications.</p>
+      
+      <h4><i class="fas fa-key" style="color: #00f2ff;"></i> 3. Password Auditing</h4>
+      <p><strong>Hashcat &amp; John the Ripper:</strong> World-class tools for testing password strength using advanced cracking modes and GPU acceleration.</p>
+    </div>
+
+  </div> <!-- /page-grid -->
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4r
