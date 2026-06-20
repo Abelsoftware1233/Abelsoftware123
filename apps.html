@@ -1,1 +1,856 @@
-j
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Apps List · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
+
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .category-title {
+      color: #00f2ff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #1f2a38;
+      margin: 0 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .app-item {
+      background: #12161f;
+      padding: 0.8rem 1rem;
+      border-radius: 0.8rem;
+      border-left: 3px solid #00f2ff;
+      transition: 0.3s;
+    }
+
+    .app-item:hover {
+      background: #1a1f2a;
+      transform: translateX(3px);
+      box-shadow: 0 4px 15px rgba(0, 242, 255, 0.08);
+    }
+
+    .app-item h3 {
+      color: #eaeef2;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 0.2rem 0;
+    }
+
+    .app-item p {
+      color: #8899aa;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    .app-item .coming-soon {
+      display: inline-block;
+      font-size: 0.6rem;
+      background: #ff6a0022;
+      color: #ff6a00;
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+      border: 1px solid #ff6a0044;
+      margin-top: 0.2rem;
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .responsive-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 1rem;
+      border: 1px solid #1f2a38;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .image-caption {
+      text-align: center;
+      color: #8899aa;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .featured-icon {
+      display: block;
+      margin: 0 auto 0.5rem;
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.2));
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .app-grid {
+        grid-template-columns: 1fr;
+      }
+      .category-title {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Apps &amp; Games Collection</span>
+    </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html" class="active">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
+
+    <!-- APPS LIST (full width) -->
+    <div class="card full-width">
+      <span class="badge-role"><i class="fas fa-th-list"></i> 2025-2026 COLLECTION</span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-mobile-alt"></i>
+        <h2>List of Apps</h2>
+      </div>
+      
+      <p style="text-align: center;">Explore our 2025-2026 Collection of Games &amp; Software</p>
+
+      <!-- Featured Icon -->
+      <img src="https://www.spriters-resource.com/media/game_icons/2/1227.png" alt="Featured Icon" class="featured-icon" onerror="this.style.display='none'">
+      <p class="image-caption">Featured Collection 2026</p>
+
+      <!-- ===== ABEL123 BRAND ===== -->
+      <div class="category-title">
+        <i class="fas fa-rocket"></i> Our Abel123 Brand
+      </div>
+      <div class="app-grid">
+        <div class="app-item">
+          <h3>Abel123 PSP Gaming Portable</h3>
+          <p>Custom portable hardware with 1000+ pre-installed games. PlayStation, Nintendo, Game Boy and more in one device.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Emulator</h3>
+          <p>The ultimate multi-platform emulator for retro gaming.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 AI Music Studio</h3>
+          <p>Professional grade AI-powered music production software.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 AI Studio</h3>
+          <p>Professional grade AI-powered music production software.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Apps Maker</h3>
+          <p>Professional apps maker software. Make unlimited apps, be a software developer. Easy to make apps.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Bulk Mail</h3>
+          <p>Professional Bulk Mail software. Send unlimited mails, easy to use.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 OSINT Software</h3>
+          <p>Professional Open Source Intelligence software. Search for any Intel worldwide, be an OSINT expert.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Network Whisper</h3>
+          <p>Professional Spy software. Live parameters, IP address and many more. Live monitor.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Pentest Software</h3>
+          <p>Professional Pentest software. Use unlimited tools, be an Ethical Hacker. Easy to use.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Swiss Army</h3>
+          <p>Professional Password Hasher and cracker. Crack unlimited accounts, be an Ethical Hacker.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 People Hunter</h3>
+          <p>Professional Tools and software. Use unlimited hacktools, be an Ethical Hacker. Many tools.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Network Scanner &amp; Spoofer</h3>
+          <p>Professional Tools. Use unlimited hacktools, be a cyber security expert.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 DeepVoice Echo</h3>
+          <p>Professional Tools. Use social engineering with Abel123 Deep Voice Echo. Copy any voice.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Hack Dashboard</h3>
+          <p>Professional Tools. Use unlimited hacktools, be an Ethical Hacker. Many tools.</p>
+        </div>
+        <div class="app-item">
+          <h3>Abel123 Demolition The Game</h3>
+          <p>Demolition buildings with many explosives. Destroy every brick to complete levels.</p>
+          <span class="coming-soon"><i class="fas fa-clock"></i> Coming Soon!!!</span>
+        </div>
+        <div class="app-item">
+          <h3>Super Abel123 World</h3>
+          <p>Play the new Super Abel123 World with many levels and enemies. Beautiful modern design.</p>
+          <span class="coming-soon"><i class="fas fa-clock"></i> Coming Soon!!!</span>
+        </div>
+      </div>
+
+      <!-- ===== WMWARIO HAPPY WORLD ===== -->
+      <div class="category-title">
+        <i class="fas fa-globe"></i> WMWario Happy World Series
+      </div>
+      <div class="app-grid">
+        <div class="app-item"><h3>WMWario 90's</h3><p>Classic retro side-scrolling adventure.</p></div>
+        <div class="app-item"><h3>WMWario Dimension</h3><p>Classic retro level worlds adventure.</p></div>
+        <div class="app-item"><h3>WMWario Builder</h3><p>Create, share, and play your own custom levels.</p></div>
+        <div class="app-item"><h3>WMWario Matrix</h3><p>A glitch-bending, action-packed digital world.</p></div>
+        <div class="app-item"><h3>WMWario Year 2030</h3><p>Futuristic platforming in a high-tech Mushroom Kingdom.</p></div>
+        <div class="app-item"><h3>WMWario &amp; WLWuigi 3D Happy World</h3><p>Multiplayer 3D adventure.</p></div>
+        <div class="app-item"><h3>WMWario Happy World 2026</h3><p>8-in-1 PC Collection.</p></div>
+        <div class="app-item"><h3>WMWario Happy World Fantasy</h3><p>Webserver Edition.</p></div>
+        <div class="app-item"><h3>WMWario Happy World 12 - 9</h3><p>Individual PC releases.</p></div>
+        <div class="app-item"><h3>WMWario Happy World 8 - 1</h3><p>Android &amp; PC Legacy titles.</p></div>
+        <div class="app-item"><h3>WMWario Happy</h3><p>The original Android App experience.</p></div>
+      </div>
+
+      <!-- ===== GAMES & ENTERTAINMENT ===== -->
+      <div class="category-title">
+        <i class="fas fa-gamepad"></i> Games &amp; Entertainment
+      </div>
+      <div class="app-grid">
+        <div class="app-item"><h3>Madalin Stunt Cars 3D</h3><p>High-speed PC stunt racing.</p></div>
+        <div class="app-item"><h3>WMWario Slotpipes</h3><p>Adventure meets slots on Android.</p></div>
+        <div class="app-item"><h3>Fluppy Burd Blocks</h3><p>Arcade action for Android.</p></div>
+        <div class="app-item"><h3>SlotMoji</h3><p>The emoji-based slot game.</p></div>
+        <div class="app-item"><h3>WMWario Crush Saga</h3><p>Puzzle fun for Android.</p></div>
+        <div class="app-item"><h3>Kross and Zero</h3><p>Classic strategy for Android.</p></div>
+        <div class="app-item"><h3>YF Arrows &amp; Flying Dutchman</h3><p>Fast-paced Android arcade games.</p></div>
+      </div>
+
+      <!-- Preview Image -->
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <img src="https://i.ytimg.com/vi/bbavT_clRzk/maxresdefault.jpg" alt="Preview" class="responsive-image" style="border: 2px solid #00f2ff33; max-width: 500px;" onerror="this.style.display='none'">
+        <p class="image-caption">Exclusive 2026 Development Roadmap</p>
+      </div>
+    </div>
+
+  </div> <!-- /page-grid -->
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Assistant</span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('Games')">🎮 Games</button>
+      <button class="quick-btn" onclick="quickReply('Abel123')">🚀 Abel123</button>
+      <button class="quick-btn" onclick="quickReply('WMWario')">🌍 WMWario</button>
+      <button class="quick-btn" onclick="quickReply('Prices')">💰 Prices</button>
+    </div>
+    <div id="messages">
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Welcome! Looking for a specific app or game?
+        <span class="msg-time">Just now</span>
+      </div>
+    </div>
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Ask about games..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · Premium AI Software, Games &amp; Development
+  </div>
+
+</div> <!-- /page-wrapper -->
+
+<script>
+  // ===== CHAT FUNCTIONS (uses chatbot.js) =====
+  let botInstance = null;
+
+  function toggleChat() {
+    const container = document.getElementById('chat-container');
+    container.classList.toggle('open');
+    if (container.classList.contains('open')) {
+      document.getElementById('chat-input').focus();
+      // Initialize bot if not yet done
+      if (!botInstance && typeof BasicBot !== 'undefined') {
+        botInstance = new BasicBot();
+      }
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById('messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user-msg';
+    userDiv.innerHTML = msg + '<span class="msg-time">Just now</span>';
+    messages.appendChild(userDiv);
+
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Get bot response from chatbot.js
+    setTimeout(async () => {
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot-msg';
+      
+      let response = "I'm still learning. Please ask me about our apps and games! 🎮";
+      
+      try {
+        if (botInstance && typeof botInstance.chat === 'function') {
+          response = await botInstance.chat(msg);
+        } else if (typeof BasicBot !== 'undefined') {
+          botInstance = new BasicBot();
+          response = await botInstance.chat(msg);
+        } else {
+          // Fallback responses if chatbot.js is not loaded
+          const fallback = [
+            "That's a great question! Let me think about that... 🤔",
+            "We have over 30 apps and games in our collection! 🎮",
+            "The Abel123 brand offers many professional software tools! 🚀",
+            "WMWario Happy World has 11 amazing games! 🌍",
+            "Contact us at abelsoftware123@hotmail.com for orders! 📧",
+            "New games are coming soon! Stay tuned! ⏰"
+          ];
+          response = fallback[Math.floor(Math.random() * fallback.length)];
+        }
+      } catch (err) {
+        console.error('Chat error:', err);
+        response = "Sorry, I'm having trouble connecting. Please try again later. 🙏";
+      }
+      
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + response + '<span class="msg-time">Just now</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+    }, 500);
+  }
+
+  function quickReply(text) {
+    document.getElementById('chat-input').value = text;
+    sendMessage();
+  }
+
+  // Escape to close chat
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const container = document.getElementById('chat-container');
+      if (container.classList.contains('open')) {
+        container.classList.remove('open');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
