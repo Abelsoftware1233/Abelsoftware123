@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abelsoftware123 · Betalingen</title>
+  <title>Abelsoftware123 · Payments</title>
   <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAACVxE9etmbo8FK-n-yPcOFEuVSOvZ9GXBW7tbNwnkY4GPpJpj_zE_GNEnYaLq3HpwWm4h3IdBL5MSS88&components=hosted-buttons&disable-funding=venmo&currency=EUR">
   </script>
   <style>
-    /* ===== RESET & BASIS ===== */
+    /* ===== RESET & BASE ===== */
     * {
       margin: 0;
       padding: 0;
@@ -16,21 +16,21 @@
     }
 
     body {
-      background-color: #0f0f0f;
+      background-color: #0d0d0d;
       color: #eaeaea;
       font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
-      padding: 0 20px;
+      padding: 0 12px;
     }
 
     /* ===== HEADER ===== */
     .modern-header {
       position: relative;
-      padding: 30px 20px 20px;
-      background: #161616;
+      padding: 24px 16px 18px;
+      background: #141414;
       border-bottom: 1px solid #2a2a2a;
-      border-radius: 0 0 32px 32px;
-      margin-bottom: 30px;
+      border-radius: 0 0 28px 28px;
+      margin-bottom: 24px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
     }
 
@@ -41,53 +41,55 @@
       justify-content: space-between;
       max-width: 1400px;
       margin: 0 auto;
+      gap: 12px;
     }
 
     .brand h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
       background: linear-gradient(135deg, #00ffff, #0088ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.12);
     }
     .brand p {
-      color: #aaa;
-      font-size: 0.9rem;
-      margin-top: 2px;
+      color: #999;
+      font-size: 0.8rem;
+      margin-top: 0px;
     }
 
     .header-actions {
       display: flex;
-      gap: 12px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .neon-btn {
-      padding: 8px 22px;
+      padding: 6px 16px;
       border: 2px solid #00ffff;
-      border-radius: 40px;
+      border-radius: 30px;
       background: transparent;
       color: #00ffff;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       cursor: pointer;
       transition: 0.25s ease;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.08);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+      white-space: nowrap;
     }
     .neon-btn:hover {
       background: #00ffff;
       color: #0b0b0b;
-      box-shadow: 0 0 28px #00ffff;
-      transform: scale(1.02);
+      box-shadow: 0 0 24px #00ffff;
+      transform: scale(1.03);
     }
     .neon-btn-outline {
       border-color: #555;
@@ -98,19 +100,19 @@
       border-color: #00ffff;
       color: #00ffff;
       background: transparent;
-      box-shadow: 0 0 18px rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 14px rgba(0, 255, 255, 0.15);
     }
 
     /* ===== NAV ===== */
     .nav-scroll {
       max-width: 1400px;
-      margin: 18px auto 0;
+      margin: 14px auto 0;
       overflow-x: auto;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
       scrollbar-width: thin;
     }
     .nav-scroll::-webkit-scrollbar {
-      height: 4px;
+      height: 3px;
       background: #222;
     }
     .nav-scroll::-webkit-scrollbar-thumb {
@@ -120,17 +122,17 @@
 
     .nav-links {
       display: flex;
-      gap: 6px 18px;
+      gap: 4px 14px;
       flex-wrap: nowrap;
       list-style: none;
-      padding: 0 4px;
+      padding: 0 2px;
     }
     .nav-links li a {
       color: #b0b0b0;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      padding: 6px 4px;
+      padding: 4px 2px;
       border-bottom: 2px solid transparent;
       transition: 0.2s;
       white-space: nowrap;
@@ -139,117 +141,171 @@
     .nav-links li a.active {
       color: #ffffff;
       border-bottom-color: #00ffff;
-      text-shadow: 0 0 6px rgba(0, 255, 255, 0.25);
+      text-shadow: 0 0 6px rgba(0, 255, 255, 0.2);
     }
 
-    /* ===== HOOFDCONTENT ===== */
+    /* ===== MAIN CONTENT ===== */
     main {
       max-width: 1400px;
-      margin: 0 auto 60px;
+      margin: 0 auto 50px;
     }
 
     .page-title {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .page-title h2 {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
     .page-title h2 span {
       background: #00ffff;
       color: #121212;
-      font-size: 0.9rem;
-      padding: 2px 16px;
-      border-radius: 40px;
+      font-size: 0.75rem;
+      padding: 2px 14px;
+      border-radius: 30px;
       font-weight: 500;
     }
     .page-title p {
-      color: #aaa;
-      margin-top: 4px;
-      font-size: 1rem;
+      color: #999;
+      margin-top: 2px;
+      font-size: 0.9rem;
     }
 
-    /* ===== PRODUCT GRID ===== */
+    /* ===== PRODUCT GRID - MOBILE FIRST ===== */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 24px;
-      margin-top: 28px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 20px;
     }
 
     .paypal-card {
-      background: #1a1a1a;
-      border-radius: 24px;
-      padding: 22px 18px 20px;
-      border: 1px solid #2c2c2c;
-      transition: 0.25s ease;
+      background: #181818;
+      border-radius: 18px;
+      padding: 16px 14px 14px;
+      border: 1px solid #2a2a2a;
+      transition: 0.2s ease;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     .paypal-card:hover {
       border-color: #00ffff;
-      transform: translateY(-5px);
-      box-shadow: 0 16px 30px rgba(0, 255, 255, 0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.04);
     }
 
     .paypal-card .product-name {
       font-weight: 600;
-      font-size: 1rem;
-      min-height: 3.2rem;
+      font-size: 0.95rem;
       color: #f0f0f0;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       line-height: 1.3;
+      min-height: 2.6rem;
     }
 
     .paypal-card .price-tag {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #00ff88;
-      margin: 4px 0 14px;
-      letter-spacing: -0.3px;
+      margin: 2px 0 10px;
+      letter-spacing: -0.2px;
     }
     .paypal-card .price-tag small {
-      font-size: 0.9rem;
-      color: #aaa;
+      font-size: 0.8rem;
+      color: #999;
       font-weight: 400;
     }
 
     .paypal-card .paypal-button-container {
       margin-top: auto;
-      min-height: 44px;
+      min-height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
     }
 
-    /* speciale accenten */
+    /* PayPal iframe / button inside container - force proper sizing */
+    .paypal-button-container iframe,
+    .paypal-button-container div {
+      max-width: 100% !important;
+      width: 100% !important;
+      min-width: unset !important;
+    }
+
+    /* special accents */
     .card-premium {
       border: 1.5px solid #00ff88;
-      background: #16221a;
+      background: #14221a;
     }
     .card-popular {
       border: 1.5px solid #00ffff;
-      background: #16222a;
+      background: #14222a;
     }
 
-    /* ===== CHATBOT (zwevend) ===== */
+    /* ===== TABLET & DESKTOP ===== */
+    @media (min-width: 480px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      body {
+        padding: 0 16px;
+      }
+      .brand h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .paypal-card {
+        padding: 20px 16px 16px;
+      }
+      .paypal-card .product-name {
+        font-size: 1rem;
+        min-height: 3rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .paypal-card {
+        padding: 22px 18px 18px;
+      }
+      .paypal-card .product-name {
+        font-size: 1.05rem;
+        min-height: 3.2rem;
+      }
+      .paypal-card .price-tag {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* ===== FLOATING CHATBOT ===== */
     #chat-launcher {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 62px;
-      height: 62px;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
       background: #00ffff;
       border: none;
-      border-radius: 40px;
-      font-size: 28px;
-      box-shadow: 0 0 24px rgba(0, 255, 255, 0.35);
+      border-radius: 50%;
+      font-size: 26px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       cursor: pointer;
       z-index: 999;
       transition: 0.2s;
@@ -260,45 +316,44 @@
       animation: float 3.5s ease-in-out infinite;
     }
     #chat-launcher:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 40px #00ffff;
+      transform: scale(1.06);
+      box-shadow: 0 0 32px #00ffff;
     }
     @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     #chat-container {
       position: fixed;
-      bottom: 100px;
-      right: 24px;
-      width: 340px;
-      max-width: calc(100vw - 40px);
-      height: 480px;
-      background: #1c1c1c;
+      bottom: 88px;
+      right: 16px;
+      width: 320px;
+      max-width: calc(100vw - 32px);
+      height: 440px;
+      background: #1a1a1a;
       border: 1.5px solid #00ffff;
-      border-radius: 28px;
+      border-radius: 24px;
       display: none;
       flex-direction: column;
       overflow: hidden;
       z-index: 1000;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
     }
     #chat-header {
       background: #00ffff;
       color: #111;
-      padding: 14px 18px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       align-items: center;
+      flex-shrink: 0;
     }
     #chat-header span:last-child {
       cursor: pointer;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       line-height: 1;
       opacity: 0.7;
       transition: 0.2s;
@@ -309,50 +364,52 @@
     }
     #messages {
       flex: 1;
-      padding: 16px 14px;
+      padding: 14px 12px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      background: #141414;
+      gap: 6px;
+      background: #121212;
     }
     .msg {
       max-width: 85%;
-      padding: 10px 14px;
-      border-radius: 18px;
-      font-size: 0.9rem;
+      padding: 8px 14px;
+      border-radius: 16px;
+      font-size: 0.85rem;
       line-height: 1.4;
       word-break: break-word;
     }
     .bot-msg {
-      background: #282828;
+      background: #262626;
       color: #aaffff;
       border: 1px solid #00ffff30;
       align-self: flex-start;
-      border-bottom-left-radius: 6px;
+      border-bottom-left-radius: 4px;
     }
     .user-msg {
       background: #00ffff;
       color: #0b0b0b;
       align-self: flex-end;
-      border-bottom-right-radius: 6px;
+      border-bottom-right-radius: 4px;
     }
     #input-area {
-      padding: 10px 14px 14px;
+      padding: 8px 12px 12px;
       display: flex;
       gap: 8px;
       border-top: 1px solid #2e2e2e;
-      background: #161616;
+      background: #151515;
+      flex-shrink: 0;
     }
     #input-area input {
       flex: 1;
-      padding: 10px 14px;
+      padding: 8px 14px;
       border-radius: 30px;
       border: 1px solid #3a3a3a;
       background: #111;
       color: #eee;
       outline: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      min-width: 0;
     }
     #input-area input:focus {
       border-color: #00ffff;
@@ -361,47 +418,25 @@
       background: #00ffff;
       border: none;
       border-radius: 30px;
-      padding: 0 18px;
+      padding: 0 16px;
       font-weight: 700;
       color: #111;
       cursor: pointer;
       transition: 0.2s;
       font-size: 1rem;
+      flex-shrink: 0;
     }
     #input-area button:hover {
       background: #66ffff;
-      box-shadow: 0 0 16px #00ffff60;
+      box-shadow: 0 0 14px #00ffff60;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 700px) {
-      .header-grid {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-      }
-      .brand h1 {
-        font-size: 1.6rem;
-      }
-      .header-actions {
-        justify-content: flex-start;
-      }
-      .page-title h2 {
-        font-size: 1.6rem;
-      }
-      .product-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    @media (max-width: 480px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (min-width: 480px) {
       #chat-container {
-        width: calc(100vw - 40px);
-        right: 20px;
-        bottom: 90px;
-        height: 400px;
+        right: 24px;
+        width: 340px;
+        bottom: 96px;
+        height: 480px;
       }
     }
   </style>
@@ -413,7 +448,7 @@
   <div class="header-grid">
     <div class="brand">
       <h1>💳 Abelsoftware123</h1>
-      <p>Veilig betalen · Directe toegang</p>
+      <p>Secure Payments · Instant Access</p>
     </div>
     <div class="header-actions">
       <a href="registreer.html" class="neon-btn">📝 Register</a>
@@ -440,12 +475,12 @@
 <!-- ===== MAIN ===== -->
 <main>
   <div class="page-title">
-    <h2>💎 Kies jouw product <span>PayPal</span></h2>
-    <p>Veilige afhandeling via PayPal · Alle prijzen in €</p>
+    <h2>💎 Choose your product <span>PayPal</span></h2>
+    <p>Secure checkout via PayPal · All prices in €</p>
   </div>
 
   <div class="product-grid" id="productGrid">
-    <!-- producten worden dynamisch gegenereerd -->
+    <!-- Products are generated dynamically -->
   </div>
 </main>
 
@@ -457,60 +492,57 @@
     <span id="closeChat">✕</span>
   </div>
   <div id="messages">
-    <div class="msg bot-msg">Hallo! Heb je een vraag over een product?</div>
+    <div class="msg bot-msg">Hello! Do you have a question about a product?</div>
   </div>
   <div id="input-area">
-    <input type="text" id="user-input" placeholder="Typ je bericht...">
+    <input type="text" id="user-input" placeholder="Type your message...">
     <button id="sendBtn">➤</button>
   </div>
 </div>
 
-<!-- Externe chatbot.js -->
+<!-- External chatbot.js -->
 <script src="chatbot.js"></script>
 
 <script>
   (function() {
     // ============================================================
-    // 1. ALLE PRODUCTEN (uit de afbeelding + de rest)
+    // 1. ALL PRODUCTS
     // ============================================================
     const productList = [
-      // Eerste 4 zoals in de afbeelding
-      { id: 'BNTR9J25Q3DW2', name: 'Abel123 PSP Gaming Portable (10.000+ Games)', price: '€149,99', premium: false },
-      { id: 'JE3WG2B8ADT28', name: 'Abel123 Emulator', price: '€4,99', premium: false },
-      { id: 'EF7N5A3CMKHEL', name: 'Abelsoftware123 AI Music Studio', price: '€14,99', premium: true, popular: true },
-      { id: 'LN7JZRSCZ2EL8', name: 'Abel123 Apps Maker', price: '€49,99', premium: true },
-      // Alle overige producten uit de originele lijst
-      { id: 'P3TZE99UGD9EY', name: 'WMWario 90s · 2030 · Builder · WMWatrix · Dimension (Android)', price: '€30,00', premium: false },
-      { id: 'U5GBLF47SEUC6', name: 'WMWario & Luigi 3D Happy World (Multiplayer)', price: '€9,99', premium: false },
-      { id: 'MNRG8ZTCQE9LJ', name: 'WMWario Happy World 2026 (8-in-1 PC)', price: '€9,99', premium: false },
-      { id: 'USH33D3ECTQBN', name: 'WMWario Happy World Fantasy (Webserver)', price: '€4,99', premium: false },
-      { id: '9DYATEXHR22U4', name: 'WMWario Happy World 12 (PC)', price: '€2,99', premium: false },
-      { id: 'WXQZ6GHP3S8KG', name: 'WMWario Happy World 11 (PC)', price: '€4,99', premium: false },
-      { id: 'NEDQ4N36E8HCG', name: 'WMWario Happy World 10 (PC)', price: '€9,99', premium: false },
-      { id: 'LXTBSKQCJW3AY', name: 'WMWario Happy World 9 (PC)', price: '€9,99', premium: false },
-      { id: 'U5CKDXUJ66V74', name: 'WMWario Happy World 8 (Android/PC)', price: '€4,99', premium: false },
-      { id: 'UWSXG463G8QL2', name: 'WMWario Happy World 7 (Android/PC)', price: '€2,50', premium: false },
-      { id: 'UZJJKSP9FLMQ8', name: 'WMWario Happy World 6 (Android/PC)', price: '€2,99', premium: false },
-      { id: 'LKDVU4S7693HA', name: 'WMWario Happy World 4 (Android/PC)', price: '€2,50', premium: false },
-      { id: 'E5NAUQHKLVA86', name: 'WMWario Happy World 3 (Android/PC)', price: '€9,99', premium: false },
-      { id: 'YHY5GEYZB6NB8', name: 'WMWario Happy World 2 (Android/PC)', price: '€9,99', premium: false },
-      { id: 'KPHFXFJ5SAFKJ', name: 'WMWario Happy World 1 (Android/PC)', price: '€9,99', premium: false },
-      { id: '7L36E2XCNG9B2', name: 'WMWario Happy (Android App)', price: '€2,50', premium: false },
-      { id: 'JP6NNHBV4V8DE', name: 'Madalin Stunt Cars 3D (PC)', price: '€2,50', premium: false },
-      { id: 'AS8XU2UTZUFDA', name: 'WMWario Slotpipes (Android)', price: '€2,50', premium: false },
-      { id: 'CSJAKU42XZLG6', name: 'Fluppy Burd Blocks (Android)', price: '€1,50', premium: false },
-      { id: 'YT7YX5KJUAC94', name: 'SlotMoji (Android)', price: '€2,50', premium: false },
-      { id: 'FJCQPYBAD5UG4', name: 'WMWario Crush Saga (Android)', price: '€2,50', premium: false },
-      { id: '7K2GYD5LUSSJ4', name: 'Kross and Zero (Android)', price: '€2,50', premium: false },
-      { id: '6GVUTFNE3KLDU', name: 'YF Arrows (Android)', price: '€2,00', premium: false },
-      { id: 'YJUU798QTPPHY', name: 'Flying Dutchman (Android)', price: '€2,50', premium: false }
+      { id: 'BNTR9J25Q3DW2', name: 'Abel123 PSP Gaming Portable (10,000+ Games)', price: '€149.99', premium: false },
+      { id: 'JE3WG2B8ADT28', name: 'Abel123 Emulator', price: '€4.99', premium: false },
+      { id: 'EF7N5A3CMKHEL', name: 'Abelsoftware123 AI Music Studio', price: '€14.99', premium: true, popular: true },
+      { id: 'LN7JZRSCZ2EL8', name: 'Abel123 Apps Maker', price: '€49.99', premium: true },
+      { id: 'P3TZE99UGD9EY', name: 'WMWario 90s · 2030 · Builder · WMWatrix · Dimension (Android)', price: '€30.00', premium: false },
+      { id: 'U5GBLF47SEUC6', name: 'WMWario & Luigi 3D Happy World (Multiplayer)', price: '€9.99', premium: false },
+      { id: 'MNRG8ZTCQE9LJ', name: 'WMWario Happy World 2026 (8-in-1 PC)', price: '€9.99', premium: false },
+      { id: 'USH33D3ECTQBN', name: 'WMWario Happy World Fantasy (Webserver)', price: '€4.99', premium: false },
+      { id: '9DYATEXHR22U4', name: 'WMWario Happy World 12 (PC)', price: '€2.99', premium: false },
+      { id: 'WXQZ6GHP3S8KG', name: 'WMWario Happy World 11 (PC)', price: '€4.99', premium: false },
+      { id: 'NEDQ4N36E8HCG', name: 'WMWario Happy World 10 (PC)', price: '€9.99', premium: false },
+      { id: 'LXTBSKQCJW3AY', name: 'WMWario Happy World 9 (PC)', price: '€9.99', premium: false },
+      { id: 'U5CKDXUJ66V74', name: 'WMWario Happy World 8 (Android/PC)', price: '€4.99', premium: false },
+      { id: 'UWSXG463G8QL2', name: 'WMWario Happy World 7 (Android/PC)', price: '€2.50', premium: false },
+      { id: 'UZJJKSP9FLMQ8', name: 'WMWario Happy World 6 (Android/PC)', price: '€2.99', premium: false },
+      { id: 'LKDVU4S7693HA', name: 'WMWario Happy World 4 (Android/PC)', price: '€2.50', premium: false },
+      { id: 'E5NAUQHKLVA86', name: 'WMWario Happy World 3 (Android/PC)', price: '€9.99', premium: false },
+      { id: 'YHY5GEYZB6NB8', name: 'WMWario Happy World 2 (Android/PC)', price: '€9.99', premium: false },
+      { id: 'KPHFXFJ5SAFKJ', name: 'WMWario Happy World 1 (Android/PC)', price: '€9.99', premium: false },
+      { id: '7L36E2XCNG9B2', name: 'WMWario Happy (Android App)', price: '€2.50', premium: false },
+      { id: 'JP6NNHBV4V8DE', name: 'Madalin Stunt Cars 3D (PC)', price: '€2.50', premium: false },
+      { id: 'AS8XU2UTZUFDA', name: 'WMWario Slotpipes (Android)', price: '€2.50', premium: false },
+      { id: 'CSJAKU42XZLG6', name: 'Fluppy Burd Blocks (Android)', price: '€1.50', premium: false },
+      { id: 'YT7YX5KJUAC94', name: 'SlotMoji (Android)', price: '€2.50', premium: false },
+      { id: 'FJCQPYBAD5UG4', name: 'WMWario Crush Saga (Android)', price: '€2.50', premium: false },
+      { id: '7K2GYD5LUSSJ4', name: 'Kross and Zero (Android)', price: '€2.50', premium: false },
+      { id: '6GVUTFNE3KLDU', name: 'YF Arrows (Android)', price: '€2.00', premium: false },
+      { id: 'YJUU798QTPPHY', name: 'Flying Dutchman (Android)', price: '€2.50', premium: false }
     ];
 
-    // Extra IDs uit de originele buttons array
     const extraIds = ['W49JHNAVYYF7W', '2SHNHYH29BZW4'];
     extraIds.forEach(id => {
       if (!productList.find(p => p.id === id)) {
-        productList.push({ id, name: 'Extra product (WMWario variant)', price: '€4,99', premium: false });
+        productList.push({ id, name: 'Extra product (WMWario variant)', price: '€4.99', premium: false });
       }
     });
 
@@ -529,8 +561,8 @@
       nameDiv.textContent = item.name;
       if (item.popular) {
         const badge = document.createElement('span');
-        badge.style.cssText = 'color:#00ffff;font-size:0.65rem;background:#00ffff20;padding:2px 10px;border-radius:30px;margin-left:8px;display:inline-block;';
-        badge.textContent = 'POPULAIR';
+        badge.style.cssText = 'color:#00ffff;font-size:0.6rem;background:#00ffff20;padding:2px 10px;border-radius:30px;margin-left:6px;display:inline-block;vertical-align:middle;';
+        badge.textContent = 'POPULAR';
         nameDiv.appendChild(badge);
       }
 
@@ -552,13 +584,13 @@
         try {
           paypal.HostedButtons({ hostedButtonId: item.id }).render(`#paypal-container-${item.id}`);
         } catch (e) {
-          console.warn('PayPal button fout voor', item.id, e);
+          console.warn('PayPal button error for', item.id, e);
         }
       }
     });
 
     // ============================================================
-    // 2. CHATBOT - gebruik BasicBot uit chatbot.js
+    // 2. CHATBOT
     // ============================================================
     const chatLauncher = document.getElementById('chat-launcher');
     const chatContainer = document.getElementById('chat-container');
@@ -571,15 +603,14 @@
     if (typeof BasicBot !== 'undefined') {
       bot = new BasicBot();
     } else {
-      // Fallback als chatbot.js niet laadt
       bot = {
         async chat(text) {
           const lower = text.toLowerCase();
-          if (lower.includes('prijs') || lower.includes('kosten')) return '💰 Alle prijzen staan bij de producten. Betalen gaat veilig via PayPal.';
-          if (lower.includes('help')) return '🤝 Natuurlijk! Stel gerust je vraag.';
-          if (lower.includes('bedankt')) return 'Graag gedaan! 😊';
-          if (lower.includes('hallo')) return 'Hallo! 👋 Waarmee kan ik je helpen?';
-          return '📦 Ik begrijp je vraag. Kijk even bij de producten of stel je vraag opnieuw.';
+          if (lower.includes('price') || lower.includes('cost')) return '💰 All prices are listed with the products. Payment is secure via PayPal.';
+          if (lower.includes('help')) return '🤝 Of course! Feel free to ask your question.';
+          if (lower.includes('thank')) return 'You\'re welcome! 😊';
+          if (lower.includes('hello') || lower.includes('hi')) return 'Hello! 👋 How can I help you?';
+          return '📦 I understand your question. Please check the products or ask again.';
         }
       };
     }
@@ -612,7 +643,7 @@
         setTimeout(() => addMessage(reply, 'bot'), 200);
       } catch (err) {
         console.error('Bot error:', err);
-        addMessage('⚠️ Er ging iets mis. Probeer het opnieuw.', 'bot');
+        addMessage('⚠️ Something went wrong. Please try again.', 'bot');
       }
     }
 
@@ -621,7 +652,7 @@
       if (e.key === 'Enter') handleSend();
     });
 
-    console.log('✅ Abelsoftware123 betaalpagina geladen – alle producten aanwezig');
+    console.log('✅ Abelsoftware123 payments page loaded – mobile friendly');
   })();
 </script>
 
