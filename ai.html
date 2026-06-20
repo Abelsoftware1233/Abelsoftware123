@@ -1,257 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Software Store - Abelsoftware123</title>
-    
-    <style>
-        /* ================================================= */
-        /* == ABELSOFTWARE123 MODERN NEON LAYOUT == */
-        /* ================================================= */
-        
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background-color: #121212;
-            color: #f0f0f0; 
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>AI Software Store · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 30px 20px;
-            background-color: #1a1a1a;
-            position: relative;
-            border-bottom: 1px solid #333;
-        }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        /* Register & Login Buttons (Top Right) */
-        .header-controls {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .neon-blue-button {
-            padding: 6px 12px;
-            border: 2px solid #00f2ff;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11px;
-            cursor: pointer;
-            color: #fff;
-            background: rgba(0, 242, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
-            transition: 0.3s;
-            text-decoration: none;
-        }
+    /* ===== LUXE ADVERTISEMENT CONTAINER ===== */
+    .advertentie-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
 
-        .neon-blue-button:hover {
-            background-color: #00f2ff;
-            color: #000;
-            box-shadow: 0 0 20px #00f2ff;
-        }
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
 
-        h1.brand-title {
-            color: #00f2ff;
-            font-size: 32px;
-            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
-            margin: 0;
-        }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-        .brand-subtitle {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-            margin-bottom: 25px;
-        }
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
 
-        /* HORIZONTAL NAVIGATION BAR */
-        nav.main-nav {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
 
-        nav.main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-        }
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
 
-        nav.main-nav a {
-            background-color: #333;
-            color: #00f2ff;
-            padding: 8px 14px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 12px;
-            transition: 0.2s;
-            border: 1px solid transparent;
-        }
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        nav.main-nav a:hover {
-            background-color: #444;
-            color: #fff;
-            border-color: #00f2ff;
-        }
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: default;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+    }
 
-        nav.main-nav a.active {
-            background-color: #444;
-            color: #fff;
-            font-weight: bold;
-            border-color: #00f2ff;
-        }
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
 
-        /* CONTENT SECTIONS */
-        main {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
 
-        .content-section {
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-        }
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
 
-        h2 { 
-            color: #00f2ff; 
-            margin-top: 0; 
-            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
 
-        h3 { color: #fff; margin-bottom: 10px; }
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
 
-        .feature-list {
-            list-style: none;
-            padding: 0;
-        }
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
 
-        .feature-list li {
-            margin-bottom: 12px;
-            font-size: 15px;
-            line-height: 1.5;
-            padding-left: 25px;
-            position: relative;
-        }
+    /* ===== GRID LAYOUT (LUXE) ===== */
+    .ad-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
 
-        .feature-list li::before {
-            content: "»";
-            color: #00f2ff;
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
+    @media (min-width: 768px) {
+      .ad-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
 
-        .cta-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-        }
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
 
-        .cta-button:hover { background-color: #45a049; transform: translateY(-2px); }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
 
-        /* CHATBOT STYLES */
-        #chat-launcher { position: fixed; bottom: 20px; right: 20px; width: 65px; height: 55px; background: #00ffff; border-radius: 18px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; z-index: 1001; font-size: 30px; border: none; animation: float 3s ease-in-out infinite; }
-        #chat-container { position: fixed; bottom: 90px; right: 20px; width: 320px; height: 500px; background: #2a2a2a; border: 2px solid #00ffff; border-radius: 15px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; }
-        #chat-header { background: #00ffff; color: #000; padding: 10px; display: flex; justify-content: space-between; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #1a1a1a; display: flex; flex-direction: column; }
-        .msg { max-width: 80%; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #444; background: #1a1a1a; color: white; outline: none; }
-        .quick-btn { background: none; border: 1px solid #00ffff; color: #00ffff; margin: 2px; padding: 4px 8px; border-radius: 10px; cursor: pointer; font-size: 11px; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    </style>
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      color: #7b8ba3;
+      border-top: 1px solid #2a3344;
+      padding-top: 0.9rem;
+      margin-top: 0.6rem;
+      font-style: italic;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00d4e6, #0088aa);
+      border: none;
+      color: #0b0d10;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid #00f2ffaa;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #00f2ff, #00aacc);
+      box-shadow: 0 6px 40px #00f2ff66;
+      color: #000;
+    }
+
+    /* ===== ABEL123 AI SPECIAL CARD ===== */
+    .abel-card .abel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin: 1rem 0 0.5rem;
+      color: #b0d0e8;
+      font-size: 0.9rem;
+    }
+
+    .abel-card .abel-meta i {
+      color: #00f2ff;
+      margin-right: 0.4rem;
+    }
+
+    .image-placeholder {
+      background: linear-gradient(145deg, #1c2636, #10161f);
+      border-radius: 1.6rem;
+      padding: 1.5rem 1rem;
+      margin: 1rem 0 0.5rem;
+      text-align: center;
+      border: 1px dashed #00f2ff55;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .image-placeholder i {
+      font-size: 3.2rem;
+      color: #00f2ffaa;
+      filter: drop-shadow(0 0 12px #00f2ff44);
+    }
+
+    .image-caption {
+      color: #8eaac0;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== CHAT BADGE ===== */
+    .chat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #00f2ff22;
+      border-radius: 60px;
+      padding: 0.3rem 1.2rem 0.3rem 0.8rem;
+      border: 1px solid #00f2ff66;
+      font-size: 0.8rem;
+      color: #b0f0ff;
+      margin-top: 0.5rem;
+    }
+
+    .chat-badge i {
+      color: #00f2ff;
+    }
+
+    /* ===== RESPONSIVE FINE-TUNE ===== */
+    @media (max-width: 600px) {
+      .advertentie-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING (minimal) ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: default;
+      z-index: 999;
+      transition: 0.2s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .chat-indicator {
+      background: #2a3344;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      color: #b0c8dd;
+      border: 1px solid #00f2ff33;
+      margin-top: 0.8rem;
+    }
+
+    .chat-indicator i {
+      color: #00f2ff;
+    }
+
+    .online-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #44ff88;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #44ff88;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    
-<header> 
-    <div class="header-controls">
-        <a href="register.html" class="neon-blue-button">register</a>
-        <a href="login.html" class="neon-blue-button">Log in</a>
+<div class="advertentie-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">AI Software Store</span>
+      <span class="brand-sub">· Advanced Autonomous</span>
     </div>
-        
-    <h1 class="brand-title">AI Software Store</h1>
-    <p class="brand-subtitle">Advanced Autonomous Solutions & Machine Learning</p>
+    <div class="header-actions">
+      <span class="neon-btn"><i class="fas fa-user-plus"></i> Register</span>
+      <span class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</span>
+    </div>
+  </div>
 
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="chatbot.html">Order Your Chatbot</a></li>
-            <li><a href="advertentie.html">Advertising</a></li>  
-            <li><a href="company.html">Company</a></li>
-            <li><a href="payments.html">Payments</a></li>
-            <li><a href="apps.html">Apps</a></li>
-            <li><a href="hacktools.html">Hacktools</a></li>
-            <li><a href="ai.html" class="active">AI Software</a></li> 
-            <li><a href="website.html">Order Websites</a></li>
-            <li><a href="domain.html">Order Domains</a></li>
-            <li><a href="emulator.html">Emulator</a></li>
-            <li><a href="music.html">Music Studio</a></li>  
-            <li><a href="reviews.html">Reviews</a></li>
-       </ul>
-    </nav>
-</header>
+  <!-- ===== NAVIGATION - FULL LIST (ALL ITEMS) ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html" class="active">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
 
-<main>
+  <!-- GRID ADVERTISEMENT -->
+  <div class="ad-grid">
 
-<section class="content-section">
-        <h2>🪙Abel123 AI</h2>
-        <p>Machine Learning models designed with Chatfunction- Image generator-face recognize software. The AI detects markers on the whole internet and Social Media platforms.</p>
-<div class="image-container">
-            <img src="ai123.jpg" alt="Abel123 AI" class="hack-img">
-            <div class="img-caption">Abel123 AI| Abel123</div>
-</section>
-    <section class="content-section">
-        <h2>🤖 AI Face Recognition</h2>
-        <p>This engine combines Computer Vision with local SQLite databases to match faces against indexed collections. Perfect for security and identification systems.</p>
-        <ul class="feature-list">
-            <li>Compatible with Kali Linux, Android, and Python3.</li>
-            <li>Local database for maximum privacy and speed.</li>
-            <li><strong>Disclaimer:</strong> Intended for educational use. Always comply with GDPR/AVG regulations.</li>
-        </ul>
-    </section>
+    <!-- Abel123 AI (full width on large) -->
+    <div class="card abel-card full-width">
+      <div class="card-header">
+        <i class="fas fa-microchip"></i>
+        <h2>Abel123 AI</h2>
+        <span style="margin-left: auto; background: #00f2ff22; padding: 0.2rem 1rem; border-radius: 40px; font-size: 0.75rem; border: 1px solid #00f2ff55;">
+          <i class="fas fa-circle" style="color: #44ff88; font-size: 0.5rem;"></i> online
+        </span>
+      </div>
+      <p>Machine Learning models with Chat function, Image generator and Face recognition. The AI detects markers across the entire internet and Social Media platforms.</p>
+      
+      <div class="image-placeholder">
+        <i class="fas fa-brain"></i>
+        <span style="font-weight: 300; color: #b0d0e8;">Abel123 AI · Neural Core</span>
+        <span class="image-caption"><i class="far fa-clock"></i> 15:18 · Connected</span>
+        <div style="display: flex; gap: 0.8rem; margin-top: 0.3rem; flex-wrap: wrap; justify-content: center;">
+          <span class="chat-badge"><i class="fas fa-comment"></i> Chat</span>
+          <span class="chat-badge"><i class="fas fa-image"></i> Image</span>
+        </div>
+      </div>
 
-    <section class="content-section">
-        <h2>🎮 AI Drone Swarm Software</h2>
-        <h3>Decentralized Coordination</h3>
-        <p>Advanced swarm intelligence algorithms allowing dozens of drones to act as a single unit without a central command post.</p>
-        <ul class="feature-list">
-            <li>Resilient against jamming and individual unit failure.</li>
-            <li>Autonomous mission execution through Swarm Intelligence.</li>
-            <li>Custom decentralized control algorithms.</li>
-        </ul>
-    </section>
+      <div class="abel-meta">
+        <span><i class="fas fa-clock"></i> 00:00:00</span>
+        <span><i class="fas fa-terminal"></i> sys: Abel123 AI online</span>
+        <span><i class="fas fa-chevron-circle-right"></i> Type a message...</span>
+      </div>
+      <div class="chat-indicator">
+        <span class="online-dot"></span> Abel123 AI · active
+        <i class="fas fa-ellipsis-h" style="margin-left: 0.5rem;"></i>
+      </div>
+    </div>
 
-    <section class="content-section">
-        <h2>🕹️ Custom AI Development</h2>
-        <p>We build brand new, autonomous AI software tailored to your specific requirements. From Search & Rescue systems to life-saving face recognition for missing persons.</p>
-        <a href="chatbot.html" class="cta-button">View Chatbot Solutions</a>
-    </section>
+    <!-- AI Face Recognition -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-user-check"></i>
+        <h2>AI Face Recognition</h2>
+      </div>
+      <p>Computer Vision combined with local SQLite databases to match faces against indexed collections. Perfect for security and identification systems.</p>
+      <ul class="feature-list">
+        <li>Compatible with Kali Linux, Android, and Python3.</li>
+        <li>Local database for maximum privacy and speed.</li>
+      </ul>
+      <div class="disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer: Intended for educational use. Always comply with GDPR/AVG regulations.</div>
+    </div>
 
-    <section class="content-section"
+    <!-- AI Drone Swarm -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-drone"></i>
+        <h2>AI Drone Swarm</h2>
+      </div>
+      <h3><i class="fas fa-project-diagram" style="color: #00f2ff; margin-right: 0.4rem;"></i> Decentralized Coordination</h3>
+      <p>Advanced swarm intelligence algorithms allowing dozens of drones to act as a single unit without a central command post.</p>
+      <ul class="feature-list">
+        <li>Resilient against jamming and individual unit failure.</li>
+        <li>Autonomous mission execution through Swarm Intelligence.</li>
+        <li>Custom decentralized control algorithms.</li>
+      </ul>
+    </div>
+
+    <!-- Custom AI Development + extra luxe -->
+    <div class="card full-width" style="grid-column: 1 / -1;">
+      <div class="card-header">
+        <i class="fas fa-cogs"></i>
+        <h2>Custom AI Development</h2>
+      </div>
+      <p>We build brand new, autonomous AI software tailored to your specific requirements. From Search & Rescue systems to life-saving face recognition for missing persons.</p>
+      <a href="chatbot.html" class="cta-btn"><i class="fas fa-robot"></i> View Chatbot Solutions</a>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
+        <span style="background: #1f2a38; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.7rem; color: #b0d0e8;"><i class="fas fa-check-circle" style="color: #00f2ff;"></i> end-to-end</span>
+        <span style="background: #1f2a38; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.7rem; color: #b0d0e8;"><i class="fas fa-shield-alt" style="color: #00f2ff;"></i> privacy by design</span>
+        <span style="background: #1f2a38; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.7rem; color: #b0d0e8;"><i class="fas fa-cloud-upload-alt" style="color: #00f2ff;"></i> on-premise / cloud</span>
+      </div>
+    </div>
+
+  </div> <!-- /ad-grid -->
+
+  <!-- chat launcher (decorative) -->
+  <div id="chat-launcher">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · AI Software Store &nbsp;|&nbsp; Advanced Autonomous Solutions
+  </div>
+
+</div> <!-- /advertentie-wrapper -->
+</body>
+</html>
