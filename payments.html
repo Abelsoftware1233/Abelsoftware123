@@ -1,1 +1,639 @@
-u
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abelsoftware123 · Betalingen</title>
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAACVxE9etmbo8FK-n-yPcOFEuVSOvZ9GXBW7tbNwnkY4GPpJpj_zE_GNEnYaLq3HpwWm4h3IdBL5MSS88&components=hosted-buttons&disable-funding=venmo&currency=EUR">
+  </script>
+  <style>
+    /* ===== RESET & BASIS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212;
+      color: #eaeaea;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0 20px;
+    }
+
+    /* ===== HEADER ===== */
+    .modern-header {
+      position: relative;
+      padding: 40px 20px 25px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
+      border-radius: 0 0 32px 32px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .header-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .brand h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #00ffff, #0088ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+    .brand p {
+      color: #aaa;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .neon-btn {
+      padding: 8px 22px;
+      border: 2px solid #00ffff;
+      border-radius: 40px;
+      background: transparent;
+      color: #00ffff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .neon-btn:hover {
+      background: #00ffff;
+      color: #0b0b0b;
+      box-shadow: 0 0 28px #00ffff;
+      transform: scale(1.02);
+    }
+    .neon-btn-outline {
+      border-color: #888;
+      color: #ccc;
+      box-shadow: none;
+    }
+    .neon-btn-outline:hover {
+      border-color: #00ffff;
+      color: #00ffff;
+      background: transparent;
+      box-shadow: 0 0 18px rgba(0, 255, 255, 0.25);
+    }
+
+    /* ===== NAV ===== */
+    .nav-scroll {
+      max-width: 1400px;
+      margin: 20px auto 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+    }
+    .nav-scroll::-webkit-scrollbar {
+      height: 4px;
+      background: #222;
+    }
+    .nav-scroll::-webkit-scrollbar-thumb {
+      background: #00ffff;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px 18px;
+      flex-wrap: nowrap;
+      list-style: none;
+      padding: 0 4px;
+    }
+    .nav-links li a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 6px 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #ffffff;
+      border-bottom-color: #00ffff;
+      text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
+    }
+
+    /* ===== HOOFDCONTENT ===== */
+    main {
+      max-width: 1400px;
+      margin: 0 auto 60px;
+    }
+
+    .page-title {
+      margin-bottom: 16px;
+    }
+    .page-title h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-title h2 span {
+      background: #00ffff;
+      color: #121212;
+      font-size: 1rem;
+      padding: 2px 16px;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+    .page-title p {
+      color: #aaa;
+      margin-top: 6px;
+      font-size: 1.05rem;
+    }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 28px;
+      margin-top: 32px;
+    }
+
+    .paypal-card {
+      background: #1e1e1e;
+      border-radius: 24px;
+      padding: 22px 18px 20px;
+      border: 1px solid #2c2c2c;
+      transition: 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+    }
+    .paypal-card:hover {
+      border-color: #00ffff;
+      transform: translateY(-6px);
+      box-shadow: 0 16px 30px rgba(0, 255, 255, 0.08);
+    }
+
+    .paypal-card .product-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      min-height: 3.4rem;
+      color: #f0f0f0;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .paypal-card .product-name small {
+      font-weight: 400;
+      color: #999;
+      font-size: 0.8rem;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .paypal-card .price-tag {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00ff88;
+      margin: 6px 0 14px;
+      letter-spacing: -0.5px;
+    }
+    .paypal-card .price-tag small {
+      font-size: 1rem;
+      color: #aaa;
+      font-weight: 400;
+    }
+
+    .paypal-card .paypal-button-container {
+      margin-top: auto;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* speciale accenten */
+    .card-premium {
+      border: 1.5px solid #00ff88;
+      background: #1a2a22;
+    }
+    .card-popular {
+      border: 1.5px solid #00ffff;
+      background: #1a262e;
+    }
+
+    /* ===== CHATBOT (zwevend) ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 64px;
+      height: 64px;
+      background: #00ffff;
+      border: none;
+      border-radius: 40px;
+      font-size: 30px;
+      box-shadow: 0 0 24px rgba(0, 255, 255, 0.4);
+      cursor: pointer;
+      z-index: 999;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b0b0b;
+      animation: float 3.5s ease-in-out infinite;
+    }
+    #chat-launcher:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px #00ffff;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    #chat-container {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      width: 340px;
+      max-width: calc(100vw - 40px);
+      height: 480px;
+      background: #202020;
+      border: 1.5px solid #00ffff;
+      border-radius: 28px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    #chat-header {
+      background: #00ffff;
+      color: #111;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1rem;
+      align-items: center;
+    }
+    #chat-header span:last-child {
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1;
+      opacity: 0.7;
+      transition: 0.2s;
+    }
+    #chat-header span:last-child:hover {
+      opacity: 1;
+      transform: rotate(90deg);
+    }
+    #messages {
+      flex: 1;
+      padding: 16px 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #181818;
+    }
+    .msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .bot-msg {
+      background: #2a2a2a;
+      color: #aaffff;
+      border: 1px solid #00ffff40;
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+    }
+    .user-msg {
+      background: #00ffff;
+      color: #0b0b0b;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+    }
+    #input-area {
+      padding: 10px 14px 14px;
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid #2e2e2e;
+      background: #1a1a1a;
+    }
+    #input-area input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 30px;
+      border: 1px solid #3a3a3a;
+      background: #111;
+      color: #eee;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    #input-area input:focus {
+      border-color: #00ffff;
+    }
+    #input-area button {
+      background: #00ffff;
+      border: none;
+      border-radius: 30px;
+      padding: 0 18px;
+      font-weight: 700;
+      color: #111;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    #input-area button:hover {
+      background: #66ffff;
+      box-shadow: 0 0 16px #00ffff60;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .header-grid {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .brand h1 {
+        font-size: 1.8rem;
+      }
+      .header-actions {
+        justify-content: flex-start;
+      }
+      .page-title h2 {
+        font-size: 1.7rem;
+        flex-wrap: wrap;
+      }
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      #chat-container {
+        width: calc(100vw - 40px);
+        right: 20px;
+        bottom: 90px;
+        height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="modern-header">
+  <div class="header-grid">
+    <div class="brand">
+      <h1>💳 Abelsoftware123</h1>
+      <p>Veilig betalen · Directe toegang</p>
+    </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn">📝 Register</a>
+      <a href="login.html" class="neon-btn neon-btn-outline">🔐 Log in</a>
+    </div>
+  </div>
+
+  <nav class="nav-scroll">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html" class="active">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Web & Apps</a></li>
+      <li><a href="domain.html">Domain Name</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main>
+  <div class="page-title">
+    <h2>💎 Kies jouw product <span>PayPal</span></h2>
+    <p>Veilige afhandeling via PayPal · Alle prijzen in €</p>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+    <!-- alle producten worden dynamisch gegenereerd via JS, zodat de layout consistent blijft -->
+  </div>
+</main>
+
+<!-- ===== CHATBOT ===== -->
+<button id="chat-launcher" aria-label="Chat">💬</button>
+<div id="chat-container">
+  <div id="chat-header">
+    <span>🤖 Abel Assist</span>
+    <span id="closeChat">✕</span>
+  </div>
+  <div id="messages">
+    <div class="msg bot-msg">Hallo! Heb je een vraag over een product?</div>
+  </div>
+  <div id="input-area">
+    <input type="text" id="user-input" placeholder="Typ je bericht...">
+    <button id="sendBtn">➤</button>
+  </div>
+</div>
+
+<!-- Externe chatbot.js met BasicBot klasse -->
+<script src="chatbot.js"></script>
+
+<script>
+  (function() {
+    // ============================================================
+    // 1. PRODUCTDATA + PAYPAL BUTTONS
+    // ============================================================
+    const productList = [
+      { id: 'BNTR9J25Q3DW2', name: 'Abel123 PSP Gaming Portable (10.000+ Games)', price: '€149,99', premium: false },
+      { id: 'JE3WG2B8ADT28', name: 'Abel123 Emulator', price: '€4,99', premium: false },
+      { id: 'EF7N5A3CMKHEL', name: 'Abelsoftware123 AI Music Studio', price: '€14,99', premium: true, popular: true },
+      { id: 'LN7JZRSCZ2EL8', name: 'Abel123 Apps Maker', price: '€49,99', premium: true },
+      { id: 'P3TZE99UGD9EY', name: 'WMWario 90s · 2030 · Builder · WMWatrix · Dimension (Android)', price: '€30,00', premium: false },
+      { id: 'U5GBLF47SEUC6', name: 'WMWario & Luigi 3D Happy World (Multiplayer)', price: '€9,99', premium: false },
+      { id: 'MNRG8ZTCQE9LJ', name: 'WMWario Happy World 2026 (8-in-1 PC)', price: '€9,99', premium: false },
+      { id: 'USH33D3ECTQBN', name: 'WMWario Happy World Fantasy (Webserver)', price: '€4,99', premium: false },
+      { id: '9DYATEXHR22U4', name: 'WMWario Happy World 12 (PC)', price: '€2,99', premium: false },
+      { id: 'WXQZ6GHP3S8KG', name: 'WMWario Happy World 11 (PC)', price: '€4,99', premium: false },
+      { id: 'NEDQ4N36E8HCG', name: 'WMWario Happy World 10 (PC)', price: '€9,99', premium: false },
+      { id: 'LXTBSKQCJW3AY', name: 'WMWario Happy World 9 (PC)', price: '€9,99', premium: false },
+      { id: 'U5CKDXUJ66V74', name: 'WMWario Happy World 8 (Android/PC)', price: '€4,99', premium: false },
+      { id: 'UWSXG463G8QL2', name: 'WMWario Happy World 7 (Android/PC)', price: '€2,50', premium: false },
+      { id: 'UZJJKSP9FLMQ8', name: 'WMWario Happy World 6 (Android/PC)', price: '€2,99', premium: false },
+      { id: 'LKDVU4S7693HA', name: 'WMWario Happy World 4 (Android/PC)', price: '€2,50', premium: false },
+      { id: 'E5NAUQHKLVA86', name: 'WMWario Happy World 3 (Android/PC)', price: '€9,99', premium: false },
+      { id: 'YHY5GEYZB6NB8', name: 'WMWario Happy World 2 (Android/PC)', price: '€9,99', premium: false },
+      { id: 'KPHFXFJ5SAFKJ', name: 'WMWario Happy World 1 (Android/PC)', price: '€9,99', premium: false },
+      { id: '7L36E2XCNG9B2', name: 'WMWario Happy (Android App)', price: '€2,50', premium: false },
+      { id: 'JP6NNHBV4V8DE', name: 'Madalin Stunt Cars 3D (PC)', price: '€2,50', premium: false },
+      { id: 'AS8XU2UTZUFDA', name: 'WMWario Slotpipes (Android)', price: '€2,50', premium: false },
+      { id: 'CSJAKU42XZLG6', name: 'Fluppy Burd Blocks (Android)', price: '€1,50', premium: false },
+      { id: 'YT7YX5KJUAC94', name: 'SlotMoji (Android)', price: '€2,50', premium: false },
+      { id: 'FJCQPYBAD5UG4', name: 'WMWario Crush Saga (Android)', price: '€2,50', premium: false },
+      { id: '7K2GYD5LUSSJ4', name: 'Kross and Zero (Android)', price: '€2,50', premium: false },
+      { id: '6GVUTFNE3KLDU', name: 'YF Arrows (Android)', price: '€2,00', premium: false },
+      { id: 'YJUU798QTPPHY', name: 'Flying Dutchman (Android)', price: '€2,50', premium: false }
+    ];
+
+    // extra IDs die in de oude lijst stonden maar niet in productList
+    const extraIds = ['W49JHNAVYYF7W', '2SHNHYH29BZW4'];
+    extraIds.forEach(id => {
+      if (!productList.find(p => p.id === id)) {
+        productList.push({ id, name: 'Extra product (WMWario variant)', price: '€4,99', premium: false });
+      }
+    });
+
+    // ===== RENDER GRID =====
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = '';
+
+    productList.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'paypal-card';
+      if (item.premium) card.classList.add('card-premium');
+      if (item.popular) card.classList.add('card-popular');
+
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'product-name';
+      nameDiv.innerHTML = item.name + (item.popular ? ' <span style="color:#00ffff;font-size:0.7rem;background:#00ffff20;padding:2px 10px;border-radius:30px;margin-left:6px;">POPULAIR</span>' : '');
+
+      const priceDiv = document.createElement('div');
+      priceDiv.className = 'price-tag';
+      priceDiv.innerHTML = `${item.price} <small>EUR</small>`;
+
+      const btnContainer = document.createElement('div');
+      btnContainer.className = 'paypal-button-container';
+      btnContainer.id = `paypal-container-${item.id}`;
+
+      card.appendChild(nameDiv);
+      card.appendChild(priceDiv);
+      card.appendChild(btnContainer);
+      grid.appendChild(card);
+
+      // === RENDER PAYPAL BUTTON ===
+      if (window.paypal && window.paypal.HostedButtons) {
+        try {
+          paypal.HostedButtons({ hostedButtonId: item.id }).render(`#paypal-container-${item.id}`);
+        } catch (e) {
+          console.warn('Paypal button fout voor', item.id, e);
+        }
+      }
+    });
+
+    // ============================================================
+    // 2. CHATBOT LOGICA - Gebruik BasicBot uit chatbot.js
+    // ============================================================
+    const chatLauncher = document.getElementById('chat-launcher');
+    const chatContainer = document.getElementById('chat-container');
+    const closeChat = document.getElementById('closeChat');
+    const messagesEl = document.getElementById('messages');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Initializeer de bot als BasicBot beschikbaar is
+    let bot = null;
+    if (typeof BasicBot !== 'undefined') {
+      bot = new BasicBot();
+    } else {
+      console.warn('BasicBot niet gevonden in chatbot.js. Gebruik fallback.');
+      // Fallback: simpele antwoorden
+      bot = {
+        async chat(text) {
+          const lower = text.toLowerCase();
+          if (lower.includes('prijs') || lower.includes('kosten')) return '💰 Alle prijzen staan bij de producten. Betalen gaat veilig via PayPal.';
+          if (lower.includes('help')) return '🤝 Natuurlijk! Stel gerust je vraag.';
+          if (lower.includes('bedankt')) return 'Graag gedaan! 😊';
+          if (lower.includes('hallo')) return 'Hallo! 👋 Waarmee kan ik je helpen?';
+          return '📦 Ik begrijp je vraag. Kijk even bij de producten of stel je vraag opnieuw.';
+        }
+      };
+    }
+
+    function toggleChat() {
+      const isOpen = chatContainer.style.display === 'flex';
+      chatContainer.style.display = isOpen ? 'none' : 'flex';
+      if (!isOpen) userInput.focus();
+    }
+
+    chatLauncher.addEventListener('click', toggleChat);
+    closeChat.addEventListener('click', toggleChat);
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.className = `msg ${sender === 'bot' ? 'bot-msg' : 'user-msg'}`;
+      msg.textContent = text;
+      messagesEl.appendChild(msg);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    async function handleSend() {
+      const text = userInput.value.trim();
+      if (!text) return;
+      addMessage(text, 'user');
+      userInput.value = '';
+
+      // Roep de bot aan (async)
+      try {
+        const reply = await bot.chat(text);
+        setTimeout(() => addMessage(reply, 'bot'), 200);
+      } catch (err) {
+        console.error('Bot error:', err);
+        addMessage('⚠️ Er ging iets mis. Probeer het opnieuw.', 'bot');
+      }
+    }
+
+    sendBtn.addEventListener('click', handleSend);
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSend();
+    });
+
+    // Welkomstbericht alleen als er nog geen berichten zijn
+    if (messagesEl.children.length === 0) {
+      addMessage('Hallo! Heb je een vraag over een product?', 'bot');
+    }
+
+    console.log('✅ Layout & betalingen geladen – chatbot gebruikt BasicBot uit chatbot.js');
+  })();
+</script>
+
+</body>
+  </html>
