@@ -293,29 +293,15 @@
       margin-right: 0.4rem;
     }
 
-    .image-placeholder {
-      background: linear-gradient(145deg, #1c2636, #10161f);
-      border-radius: 1.6rem;
-      padding: 1.5rem 1rem;
-      margin: 1rem 0 0.5rem;
-      text-align: center;
-      border: 1px dashed #00f2ff55;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .image-placeholder i {
-      font-size: 3.2rem;
-      color: #00f2ffaa;
-      filter: drop-shadow(0 0 12px #00f2ff44);
-    }
-
-    .image-caption {
-      color: #8eaac0;
-      font-size: 0.8rem;
-      letter-spacing: 0.5px;
+    .abel-image {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 1.2rem;
+      border: 1px solid #00f2ff33;
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+      margin: 0.5rem 0 0.8rem;
+      background: #1a1f2a;
     }
 
     /* ===== CHAT BADGE ===== */
@@ -364,6 +350,9 @@
         padding: 0.3rem 0.8rem;
         font-size: 0.65rem;
       }
+      .abel-image {
+        max-height: 180px;
+      }
     }
 
     @media (max-width: 430px) {
@@ -377,7 +366,7 @@
       }
     }
 
-    /* ===== CHAT FLOATING (minimal) ===== */
+    /* ===== CHAT FLOATING BUTTON + CONTAINER ===== */
     #chat-launcher {
       position: fixed;
       bottom: 1.5rem;
@@ -393,10 +382,15 @@
       color: #0b0d10;
       box-shadow: 0 0 30px #00f2ffaa;
       border: none;
-      cursor: default;
-      z-index: 999;
-      transition: 0.2s;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
       animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
     }
 
     @keyframes float {
@@ -404,30 +398,181 @@
       50% { transform: translateY(-10px); }
     }
 
-    .chat-indicator {
-      background: #2a3344;
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      display: inline-flex;
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.75rem;
-      color: #b0c8dd;
-      border: 1px solid #00f2ff33;
-      margin-top: 0.8rem;
+      font-weight: 700;
+      font-size: 0.95rem;
     }
 
-    .chat-indicator i {
-      color: #00f2ff;
+    #chat-header .online-status {
+      font-size: 0.7rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .online-dot {
-      display: inline-block;
+    #chat-header .online-status .dot {
       width: 8px;
       height: 8px;
       background: #44ff88;
       border-radius: 50%;
-      box-shadow: 0 0 12px #44ff88;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
     }
 
     /* ===== FOOTER ===== */
@@ -459,7 +604,7 @@
     </div>
   </div>
 
-  <!-- ===== NAVIGATION - FULL LIST (ALL ITEMS) ===== -->
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
   <nav class="main-nav">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -481,34 +626,33 @@
   <!-- GRID ADVERTISEMENT -->
   <div class="ad-grid">
 
-    <!-- Abel123 AI (full width on large) -->
+    <!-- Abel123 AI (full width on large) MET AFBEELDING -->
     <div class="card abel-card full-width">
       <div class="card-header">
         <i class="fas fa-microchip"></i>
         <h2>Abel123 AI</h2>
         <span style="margin-left: auto; background: #00f2ff22; padding: 0.2rem 1rem; border-radius: 40px; font-size: 0.75rem; border: 1px solid #00f2ff55;">
-          <i class="fas fa-circle" style="color: #44ff88; font-size: 0.5rem;"></i> online
+          <i class="fas fa-circle" style="color: #44ff88; font-size: 0.5rem;"></i> Connected
         </span>
       </div>
       <p>Machine Learning models with Chat function, Image generator and Face recognition. The AI detects markers across the entire internet and Social Media platforms.</p>
       
-      <div class="image-placeholder">
-        <i class="fas fa-brain"></i>
-        <span style="font-weight: 300; color: #b0d0e8;">Abel123 AI · Neural Core</span>
-        <span class="image-caption"><i class="far fa-clock"></i> 15:18 · Connected</span>
-        <div style="display: flex; gap: 0.8rem; margin-top: 0.3rem; flex-wrap: wrap; justify-content: center;">
-          <span class="chat-badge"><i class="fas fa-comment"></i> Chat</span>
-          <span class="chat-badge"><i class="fas fa-image"></i> Image</span>
-        </div>
+      <!-- ===== AFBEELDING: ai123.jpg ===== -->
+      <img src="ai123.jpg" alt="Abel123 AI" class="abel-image" onerror="this.style.display='none'">
+
+      <div style="display: flex; gap: 0.8rem; margin-top: 0.3rem; flex-wrap: wrap;">
+        <span class="chat-badge"><i class="fas fa-comment"></i> Chat</span>
+        <span class="chat-badge"><i class="fas fa-image"></i> Image</span>
+        <span class="chat-badge"><i class="fas fa-user"></i> Face</span>
       </div>
 
       <div class="abel-meta">
-        <span><i class="fas fa-clock"></i> 00:00:00</span>
-        <span><i class="fas fa-terminal"></i> sys: Abel123 AI online</span>
+        <span><i class="fas fa-clock"></i> 15:18 &nbsp; 09:19</span>
+        <span><i class="fas fa-terminal"></i> sys: Abel123 AI online. Stel een vraag.</span>
         <span><i class="fas fa-chevron-circle-right"></i> Type a message...</span>
       </div>
-      <div class="chat-indicator">
-        <span class="online-dot"></span> Abel123 AI · active
+      <div class="chat-indicator" style="background: #2a3344; padding: 0.4rem 1rem; border-radius: 40px; display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: #b0c8dd; border: 1px solid #00f2ff33; margin-top: 0.8rem;">
+        <span class="online-dot" style="display: inline-block; width: 8px; height: 8px; background: #44ff88; border-radius: 50%; box-shadow: 0 0 12px #44ff88;"></span> Abel123 AI · active
         <i class="fas fa-ellipsis-h" style="margin-left: 0.5rem;"></i>
       </div>
     </div>
@@ -542,7 +686,7 @@
       </ul>
     </div>
 
-    <!-- Custom AI Development + extra luxe -->
+    <!-- Custom AI Development -->
     <div class="card full-width" style="grid-column: 1 / -1;">
       <div class="card-header">
         <i class="fas fa-cogs"></i>
@@ -559,9 +703,35 @@
 
   </div> <!-- /ad-grid -->
 
-  <!-- chat launcher (decorative) -->
-  <div id="chat-launcher">
+  <!-- ===== CHAT LAUNCHER (klikbaar) ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
     <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER (klapt uit) ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> Abel123 AI</span>
+      <span class="online-status">
+        <span class="dot"></span> Connected
+      </span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
+    </div>
+    <div id="messages">
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Abel123 AI online. Stel een vraag.
+        <span class="msg-time">00:00:00</span>
+      </div>
+    </div>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickMessage('Hallo')">👋 Hallo</button>
+      <button class="quick-btn" onclick="quickMessage('Wie ben je?')">🤖 Wie ben je?</button>
+      <button class="quick-btn" onclick="quickMessage('Wat kun je doen?')">⚡ Wat kun je doen?</button>
+    </div>
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
 
   <div class="footer-note">
@@ -569,5 +739,66 @@
   </div>
 
 </div> <!-- /advertentie-wrapper -->
+
+<script>
+  // ===== CHAT FUNCTIONALITY =====
+  function toggleChat() {
+    const container = document.getElementById('chat-container');
+    container.classList.toggle('open');
+    if (container.classList.contains('open')) {
+      document.getElementById('chat-input').focus();
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById('messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user-msg';
+    userDiv.innerHTML = msg + '<span class="msg-time">Just now</span>';
+    messages.appendChild(userDiv);
+
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Bot response (after 0.8s delay)
+    setTimeout(() => {
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot-msg';
+      const responses = [
+        'That\'s a great question! Let me think about that... 🤔',
+        'I\'m Abel123 AI, your autonomous assistant. How can I help you today?',
+        'I can help with chat, image generation, face recognition, and more!',
+        'Interesting! Tell me more about that.',
+        'I\'m always learning. What would you like to know?'
+      ];
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + randomResponse + '<span class="msg-time">Just now</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+    }, 800);
+  }
+
+  function quickMessage(text) {
+    document.getElementById('chat-input').value = text;
+    sendMessage();
+  }
+
+  // Open chat with Enter key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const container = document.getElementById('chat-container');
+      if (container.classList.contains('open')) {
+        container.classList.remove('open');
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
