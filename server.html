@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>(Game)Servers for Rent · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
+
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    .price-tag {
+      color: #00f2ff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00d4e6, #0088aa);
+      border: none;
+      color: #0b0d10;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid #00f2ffaa;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #00f2ff, #00aacc);
+      box-shadow: 0 6px 40px #00f2ff66;
+      color: #000;
+    }
+
+    .btn-orange {
+      background: linear-gradient(145deg, #ff6a00, #e05500);
+      border-color: #ff6a00aa;
+      box-shadow: 0 4px 20px rgba(255, 69, 0, 0.3);
+    }
+
+    .btn-orange:hover {
+      background: linear-gradient(145deg, #ff7a22, #ff5500);
+      box-shadow: 0 6px 40px rgba(255, 69, 0, 0.5);
+    }
+
+    .btn-green {
+      background: linear-gradient(145deg, #00d484, #00aa66);
+      border-color: #00d484aa;
+      box-shadow: 0 4px 20px rgba(0, 212, 132, 0.3);
+    }
+
+    .btn-green:hover {
+      background: linear-gradient(145deg, #00ee99, #00cc77);
+      box-shadow: 0 6px 40px rgba(0, 212, 132, 0.5);
+    }
+
+    .btn-purple {
+      background: linear-gradient(145deg, #8800ff, #6600cc);
+      border-color: #8800ffaa;
+      box-shadow: 0 4px 20px rgba(136, 0, 255, 0.3);
+    }
+
+    .btn-purple:hover {
+      background: linear-gradient(145deg, #9922ff, #7711dd);
+      box-shadow: 0 6px 40px rgba(136, 0, 255, 0.5);
+    }
+
+    /* ===== WELCOME CARD ===== */
+    .welcome-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #00f2ff;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+      object-fit: cover;
+      background: #1a1f2a;
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 3px 14px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .welcome-text h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: #eaeef2;
+    }
+
+    .welcome-text .session-info {
+      color: #8899aa;
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+
+    .welcome-text .session-info span {
+      color: #00f2ff;
+    }
+
+    /* ===== SERVER SPECS TABLE ===== */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+    }
+
+    .specs-table th {
+      text-align: left;
+      color: #00f2ff;
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .specs-table td {
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      color: #d0dcee;
+    }
+
+    .specs-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .specs-table td.price-cell {
+      color: #00f2ff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ===== PROMO / ADVERTISEMENT SECTION (full width) ===== */
+    .promo-image {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 1rem;
+      border: 2px solid #ff6a0044;
+      box-shadow: 0 0 30px rgba(255, 69, 0, 0.15);
+      margin: 0.8rem auto;
+      display: block;
+      background: #1a1f2a;
+    }
+
+    .promo-section {
+      border: 1px solid #ff6a0044;
+      background: rgba(255, 69, 0, 0.05);
+      border-radius: 1.2rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .promo-section h3 {
+      color: #ff6a00;
+      font-size: 1.3rem;
+    }
+
+    .promo-perks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1rem 0;
+    }
+
+    .promo-perks span {
+      background: rgba(255, 106, 0, 0.1);
+      border: 1px solid #ff6a0055;
+      color: #ffb088;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .welcome-avatar {
+        width: 60px;
+        height: 60px;
+      }
+      .welcome-text h1 {
+        font-size: 1.2rem;
+      }
+      .promo-image {
+        max-width: 100%;
+      }
+      .specs-table {
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      max-width: calc(100vw - 40px);
+      height: 480px;
+      max-height: calc(100vh - 120px);
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      flex-shrink: 0;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Premium AI & Development</span>
+    </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chatbot.html">Order Chatbot</a></li>
+      <li><a href="advertentie.html">Advertising</a></li>
+      <li><a href="company.html">Company</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="apps.html">Apps List</a></li>
+      <li><a href="hacktools.html">Hacktools</a></li>
+      <li><a href="ai.html">AI Software</a></li>
+      <li><a href="website.html">Order Website</a></li>
+      <li><a href="domain.html">Order Domain</a></li>
+      <li><a href="emulator.html">Emulator</a></li>
+      <li><a href="music.html">Music Studio</a></li>
+      <li><a href="server.html" class="active">(Game)Servers for Rent</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
+
+    <!-- WELCOME CARD (full width) -->
+    <div class="card full-width" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
+      <img src="logoo.jpg" alt="Logo" class="welcome-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect fill=%22%231a1f2a%22 width=%22120%22 height=%22120%22/%3E%3Ctext x=%2230%22 y=%2270%22 fill=%22%2300f2ff%22 font-size=%2240%22%3E🤖%3C/text%3E%3C/svg%3E'">
+      <div style="flex: 1;">
+        <h1 style="margin: 0; font-size: 1.5rem; color: #eaeef2;">Game Servers for Rent</h1>
+        <span class="badge-role"><i class="fas fa-server"></i> Hosting Portal</span>
+        <p class="session-info">Session Active: <span id="currentDate"></span></p>
+      </div>
+    </div>
+
+    <!-- SERVER PLANS & PRICING -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-coins"></i>
+        <h2>Server Plans</h2>
+      </div>
+      <p>Rent your own (game) server, fully managed and online in minutes. Pick a plan below or ask for a custom configuration.</p>
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Specs</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🧱 Minecraft Starter</td>
+            <td>4GB RAM, 10 slots</td>
+            <td class="price-cell">€4.99/mo</td>
+          </tr>
+          <tr>
+            <td>🧱 Minecraft Pro</td>
+            <td>8GB RAM, 30 slots, mods</td>
+            <td class="price-cell">€8.99/mo</td>
+          </tr>
+          <tr>
+            <td>🚗 FiveM / GTA RP</td>
+            <td>6GB RAM, 64 slots</td>
+            <td class="price-cell">€14.99/mo</td>
+          </tr>
+          <tr>
+            <td>🔫 Rust Server</td>
+            <td>16GB RAM, 100 slots</td>
+            <td class="price-cell">€19.99/mo</td>
+          </tr>
+          <tr>
+            <td>🦖 ARK: Survival</td>
+            <td>12GB RAM, 20 slots</td>
+            <td class="price-cell">€17.99/mo</td>
+          </tr>
+          <tr>
+            <td>💬 Discord Bot Hosting</td>
+            <td>1 vCPU, 24/7 uptime</td>
+            <td class="price-cell">€2.99/mo</td>
+          </tr>
+          <tr>
+            <td>🐧 Custom VPS (Linux)</td>
+            <td>2vCPU, 4GB RAM, 50GB NVMe</td>
+            <td class="price-cell">€9.99/mo</td>
+          </tr>
+          <tr>
+            <td>🏰 Dedicated Server</td>
+            <td>Full hardware, unlimited slots</td>
+            <td class="price-cell">€39.99/mo</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.8rem; color: #8899aa;">All plans include a free subdomain, daily backups and a setup fee of €0 for the first month.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.2rem;">
+        <a href="mailto:abelsoftware123@hotmail.com" class="cta-btn btn-green"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="payments.html" class="cta-btn"><i class="fas fa-shopping-cart"></i> Order a Server</a>
+      </div>
+    </div>
+
+    <!-- HOSTING FEATURES -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-shield-alt"></i>
+        <h2>Why Host With Us</h2>
+      </div>
+      <img src="serverroom.jpg" alt="Server Hardware" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;" onerror="this.style.display='none'">
+      <p>Every server runs on enterprise-grade NVMe hardware with round-the-clock monitoring, so your players (or your bot) stay online.</p>
+      <ul class="feature-list">
+        <li>⚡ Instant setup, online within 5 minutes</li>
+        <li>🛡️ Free DDoS protection on every plan</li>
+        <li>💾 Automatic daily backups, 7-day retention</li>
+        <li>🔧 Full FTP/SFTP & control panel access</li>
+        <li>📈 99.9% uptime guarantee</li>
+        <li>🕒 24/7 support via chat and email</li>
+      </ul>
+      <a href="payments.html" class="cta-btn btn-purple"><i class="fas fa-terminal"></i> View All Plans</a>
+    </div>
+
+    <!-- SERVER BUNDLE PROMO (full width) -->
+    <div class="card full-width">
+      <div class="promo-section">
+        <h3><i class="fas fa-fire" style="color: #ff6a00;"></i> NEW: Ultimate Server Bundle! <span style="color: #ff6a00;">€49,99/mo</span></h3>
+        <p>One server, every game. 32GB RAM, unlimited player slots, free domain & SSL, priority DDoS protection and 24/7 white-glove support. Switch between Minecraft, Rust, ARK, FiveM and more without renting separately. Launching: 2026</p>
+
+        <div class="promo-perks">
+          <span>32GB RAM</span>
+          <span>Unlimited slots</span>
+          <span>Free domain</span>
+          <span>Priority support</span>
+          <span>Multi-game switching</span>
+        </div>
+
+        <img src="serverbundle.jpg" alt="Server Bundle" class="promo-image" onerror="this.style.display='none'">
+
+        <a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> Order the Bundle</a>
+      </div>
+    </div>
+
+  </div> <!-- /page-grid -->
+
+  <p class="footer-note">© 2026 Abelsoftware123 — All rights reserved. Prices exclude VAT where applicable.</p>
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Customer Service</span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('prices')">💰 Prices</button>
+      <button class="quick-btn" onclick="quickReply('payments')">💳 Payments</button>
+      <button class="quick-btn" onclick="quickReply('contact')">📧 Contact</button>
+      <button class="quick-btn" onclick="quickReply('help')">❓ Help</button>
+    </div>
+    <div id="messages">
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Welcome to Abelsoftware123 Server Hosting! I am your AI Assistant. How can I help you today?
+        <span class="msg-time">Just now</span>
+      </div>
+    </div>
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+</div> <!-- /page-wrapper -->
+
+<script>
+  // ===== SESSION DATE =====
+  document.getElementById('currentDate').textContent = new Date().toLocaleString();
+
+  // ===== CHAT WIDGET =====
+  function toggleChat() {
+    document.getElementById('chat-container').classList.toggle('open');
+  }
+
+  function appendMessage(text, sender) {
+    const messages = document.getElementById('messages');
+    const msg = document.createElement('div');
+    msg.className = 'msg ' + (sender === 'user' ? 'user-msg' : 'bot-msg');
+    if (sender === 'bot') {
+      msg.innerHTML = '<i class="fas fa-robot" style="margin-right: 0.3rem;"></i> ' + text +
+        '<span class="msg-time">Just now</span>';
+    } else {
+      msg.innerHTML = text + '<span class="msg-time">Just now</span>';
+    }
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function botReply(topic) {
+    let reply = "I'm not sure about that yet, but feel free to email abelsoftware123@hotmail.com!";
+    if (topic === 'prices') {
+      reply = "Our server plans start at €2.99/mo for Discord bot hosting, €4.99/mo for a Minecraft Starter server, and go up to our €49,99/mo Ultimate Server Bundle. Check the 'Server Plans' card above for the full list!";
+    } else if (topic === 'payments') {
+      reply = "You can order and pay for any server plan on our <strong>Payments</strong> page. We support card and PayPal payments.";
+    } else if (topic === 'contact') {
+      reply = "You can reach us anytime at abelsoftware123@hotmail.com — we usually reply within 24 hours.";
+    } else if (topic === 'help') {
+      reply = "I can help with server pricing, payments, setup times and uptime guarantees. Tap one of the quick buttons above, or just type your question!";
+    }
+    setTimeout(() => appendMessage(reply, 'bot'), 400);
+  }
+
+  function quickReply(topic) {
+    const labels = {
+      prices: '💰 Prices',
+      payments: '💳 Payments',
+      contact: '📧 Contact',
+      help: '❓ Help'
+    };
+    appendMessage(labels[topic] || topic, 'user');
+    botReply(topic);
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    appendMessage(text, 'user');
+    input.value = '';
+
+    const lower = text.toLowerCase();
+    let topic = 'help';
+    if (lower.includes('price') || lower.includes('prijs') || lower.includes('cost') || lower.includes('kost')) {
+      topic = 'prices';
+    } else if (lower.includes('pay') || lower.includes('betal')) {
+      topic = 'payments';
+    } else if (lower.includes('contact') || lower.includes('email') || lower.includes('mail')) {
+      topic = 'contact';
+    }
+    botReply(topic);
+  }
+</script>
+</body>
+</html>
