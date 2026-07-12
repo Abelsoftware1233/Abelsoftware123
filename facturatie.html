@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>All-In-One Business Suite · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .lang-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0,242,255,0.25);
+      border-radius: 40px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #8899aa;
+      padding: 0.4rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lang-btn.active {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 16px rgba(0,242,255,0.4);
+    }
+
+    /* Default: Dutch hidden, English shown (display handled per-element below with !important) */
+    [data-lang="nl"] { display: none !important; }
+    body.lang-nl [data-lang="en"] { display: none !important; }
+    body.lang-nl [data-lang="nl"] { display: revert !important; }
+    body.lang-nl [data-lang="nl"].hero-checks { display: flex !important; }
+
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== NAV ===== */
+    .main-nav { margin: 1.2rem 0 2rem; }
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 2.5rem 1rem 3rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      padding: 5px 18px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #8cdbff 60%, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+    }
+
+    .hero p.lead {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      color: #c8d6e5;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    .hero-checks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem 1.4rem;
+      max-width: 720px;
+      margin: 0 auto 2.2rem;
+      list-style: none;
+    }
+
+    .hero-checks li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.98rem;
+      color: #d0dcee;
+      font-weight: 500;
+    }
+
+    .hero-checks i {
+      color: #00ff88;
+      font-size: 1.1rem;
+      filter: drop-shadow(0 0 8px rgba(0,255,136,0.5));
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00ff44, #00cc33);
+      border: none;
+      color: #0b0d10;
+      padding: 0.9rem 2.6rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.02rem;
+      text-decoration: none;
+      box-shadow: 0 4px 25px rgba(0, 255, 68, 0.4);
+      transition: 0.25s;
+      letter-spacing: 0.5px;
+      border: 1px solid #00ff44aa;
+      text-align: center;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #33ff66, #00dd44);
+      box-shadow: 0 6px 45px rgba(0, 255, 68, 0.6);
+      color: #000;
+    }
+
+    .cta-gray-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #444, #333);
+      border: none;
+      color: #fff;
+      padding: 0.9rem 2.6rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.02rem;
+      text-decoration: none;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.5px;
+      border: 1px solid #555;
+      text-align: center;
+    }
+
+    .cta-gray-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #555, #444);
+      box-shadow: 0 6px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .micro-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: #6b7d8f;
+      letter-spacing: 0.2px;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-title {
+      text-align: center;
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #93a5b8;
+      max-width: 640px;
+      margin: 0 auto 2.2rem;
+      font-size: 0.98rem;
+    }
+
+    /* ===== GRID ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .page-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .page-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+      .full-width { grid-column: 1 / -1; }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-header i {
+      font-size: 1.7rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h3 {
+      color: #eaf6ff;
+      font-weight: 600;
+      font-size: 1.08rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: #b7c6d8;
+      font-size: 0.9rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+    }
+
+    .feature-list li::before {
+      content: "⚡";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    /* ===== SPEED SECTION (dark banner) ===== */
+    .speed-banner {
+      margin-top: 3rem;
+      border-radius: 2rem;
+      padding: 2.6rem 1.6rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, rgba(0,242,255,0.12), transparent 60%), #0e1319;
+      border: 1px solid rgba(0, 242, 255, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speed-banner h2 {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .speed-banner p {
+      max-width: 620px;
+      margin: 0 auto 1.4rem;
+      color: #b7c6d8;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .speed-tagline {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #00f2ff;
+      letter-spacing: 0.3px;
+      margin-bottom: 1.6rem;
+      text-shadow: 0 0 20px rgba(0,242,255,0.3);
+    }
+
+    /* ===== PRICE BOX ===== */
+    .price-box {
+      background: rgba(18, 22, 30, 0.6);
+      padding: 1.8rem;
+      border-radius: 1.4rem;
+      border: 1px dashed rgba(0, 242, 255, 0.3);
+      text-align: center;
+      margin-top: 2rem;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .price-tag {
+      color: #fff;
+      font-weight: 900;
+      font-size: 2.6rem;
+      display: inline-block;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .price-sub {
+      color: #7c8ea0;
+      font-size: 0.85rem;
+      margin-left: 0.4rem;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-item {
+      background: rgba(18, 22, 30, 0.6);
+      border: 1px solid rgba(0, 242, 255, 0.1);
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .faq-item h4 {
+      color: #d6f5ff;
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-item h4 i { color: #00f2ff; font-size: 0.9rem; }
+
+    .faq-item p {
+      color: #a9bbcd;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 1rem; border-radius: 1.8rem; }
+      .brand-title { font-size: 1.4rem; }
+      .brand-sub { font-size: 0.7rem; display: block; margin-left: 0; }
+      .main-nav a { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+      .card { padding: 1.2rem; }
+      .neon-btn { padding: 0.3rem 0.8rem; font-size: 0.65rem; }
+      .price-tag { font-size: 2rem; }
+      .hero { padding: 1.5rem 0.5rem 2rem; }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar { flex-direction: column; align-items: flex-start; }
+      .header-actions { width: 100%; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Premium Software Solutions</span>
+    </div>
+    <div class="header-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-nl" onclick="setLang('nl')">NL</button>
+      </div>
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> <span data-lang="en">Register</span><span data-lang="nl">Registreren</span></a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> <span data-lang="en">Log in</span><span data-lang="nl">Inloggen</span></a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="nl">Home</span></a></li>
+      <li><a href="chatbot.html"><span data-lang="en">Order Chatbot</span><span data-lang="nl">Chatbot Bestellen</span></a></li>
+      <li><a href="advertentie.html"><span data-lang="en">Advertising</span><span data-lang="nl">Adverteren</span></a></li>
+      <li><a href="company.html"><span data-lang="en">Company</span><span data-lang="nl">Bedrijf</span></a></li>
+      <li><a href="payments.html"><span data-lang="en">Payments</span><span data-lang="nl">Betalingen</span></a></li>
+      <li><a href="apps.html"><span data-lang="en">Apps List</span><span data-lang="nl">Apps Lijst</span></a></li>
+      <li><a href="hacktools.html"><span data-lang="en">Cybersecurity & Offensive Security</span><span data-lang="nl">Cybersecurity & Offensive Security</span></a></li>
+      <li><a href="ai.html"><span data-lang="en">AI Software</span><span data-lang="nl">AI Software</span></a></li>
+      <li><a href="website.html"><span data-lang="en">Order Website</span><span data-lang="nl">Website Bestellen</span></a></li>
+      <li><a href="domain.html"><span data-lang="en">Order Domain</span><span data-lang="nl">Domein Bestellen</span></a></li>
+      <li><a href="emulator.html"><span data-lang="en">Emulator</span><span data-lang="nl">Emulator</span></a></li>
+      <li><a href="music.html"><span data-lang="en">Music Studio</span><span data-lang="nl">Music Studio</span></a></li>
+      <li><a href="server.html"><span data-lang="en">(Game)Servers for Rent</span><span data-lang="nl">(Game)Servers Huren</span></a></li>
+      <li><a href="business-suite.html" class="active"><span data-lang="en">Business Suite</span><span data-lang="nl">Bedrijfssoftware</span></a></li>
+      <li><a href="reviews.html"><span data-lang="en">Reviews</span><span data-lang="nl">Reviews</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <span class="hero-badge"><i class="fas fa-bolt"></i> <span data-lang="en">All-In-One Business Software</span><span data-lang="nl">Alles-in-één Bedrijfssoftware</span></span>
+
+    <h1 data-lang="en">Invoicing, CRM, Time Tracking &amp; Payroll — In One System</h1>
+    <h1 data-lang="nl">Facturatie, CRM, Urenregistratie &amp; Loonverwerking — In Eén Systeem</h1>
+
+    <p class="lead" data-lang="en">
+      Stop juggling scattered apps and messy spreadsheets. Take full control of your
+      business administration and win back hours every single week with one connected
+      platform built for growing companies.
+    </p>
+    <p class="lead" data-lang="nl">
+      Geen gedoe meer met losse apps of rommelige spreadsheets. Krijg de volledige
+      controle over je bedrijfsadministratie en bespaar elke week uren tijd met één
+      centraal systeem, gebouwd voor groeiende bedrijven.
+    </p>
+
+    <ul class="hero-checks" data-lang="en">
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Clear, organized invoicing</li>
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Smart customer management</li>
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Effortless time tracking</li>
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Automated payroll processing</li>
+    </ul>
+    <ul class="hero-checks" data-lang="nl">
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Overzichtelijke facturatie</li>
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Slim klantenbeheer</li>
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Eenvoudige urenregistratie</li>
+      <li class="hero-check-item"><i class="fas fa-circle-check"></i> Geautomatiseerde verloning</li>
+    </ul>
+
+    <p data-lang="en" style="color:#c8d6e5; font-size:1.02rem; margin-bottom:1.6rem;">See for yourself how simple running your business can be.</p>
+    <p data-lang="nl" style="color:#c8d6e5; font-size:1.02rem; margin-bottom:1.6rem;">Ervaar zelf hoe makkelijk het runnen van je bedrijf kan zijn.</p>
+
+    <div class="btn-group">
+      <a href="payments.html" class="cta-btn"><i class="fas fa-rocket"></i> <span data-lang="en">Get Started Now</span><span data-lang="nl">Start Nu Direct</span></a>
+      <a href="mailto:abelsoftware123@hotmail.com" class="cta-gray-btn"><i class="fas fa-envelope"></i> <span data-lang="en">Contact Sales</span><span data-lang="nl">Neem Contact Op</span></a>
+    </div>
+    <p class="micro-note" data-lang="en">No more juggling separate tools. One dashboard. Full control.</p>
+    <p class="micro-note" data-lang="nl">Geen losse tools meer. Eén dashboard. Volledige controle.</p>
+  </section>
+
+  <!-- ===== FEATURE GRID ===== -->
+  <h2 class="section-title" data-lang="en">Everything Your Business Needs, Connected</h2>
+  <h2 class="section-title" data-lang="nl">Alles Wat Je Bedrijf Nodig Heeft, Verbonden</h2>
+  <p class="section-sub" data-lang="en">Four core processes, one platform — built to eliminate double work and manual errors.</p>
+  <p class="section-sub" data-lang="nl">Vier kernprocessen, één platform — gebouwd om dubbel werk en fouten te elimineren.</p>
+
+  <div class="page-grid cols-4">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h3><span data-lang="en">Invoicing</span><span data-lang="nl">Facturatie</span></h3>
+      </div>
+      <p data-lang="en">Create, send, and track professional invoices in seconds. Automatic reminders keep your cash flow healthy.</p>
+      <p data-lang="nl">Maak, verstuur en volg professionele facturen binnen enkele seconden. Automatische herinneringen houden je cashflow gezond.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-users"></i>
+        <h3>CRM</h3>
+      </div>
+      <p data-lang="en">Keep every customer, deal, and conversation organized in one smart, searchable overview.</p>
+      <p data-lang="nl">Houd elke klant, deal en conversatie overzichtelijk bij in één slim, doorzoekbaar overzicht.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-clock"></i>
+        <h3><span data-lang="en">Time Tracking</span><span data-lang="nl">Urenregistratie</span></h3>
+      </div>
+      <p data-lang="en">Log hours per project or employee in a couple of taps — no more forgotten timesheets.</p>
+      <p data-lang="nl">Registreer uren per project of medewerker in een paar tikken — nooit meer vergeten urenstaten.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-money-check-dollar"></i>
+        <h3><span data-lang="en">Payroll</span><span data-lang="nl">Loonverwerking</span></h3>
+      </div>
+      <p data-lang="en">Turn tracked hours directly into automated, accurate payroll runs — no manual calculations.</p>
+      <p data-lang="nl">Zet geregistreerde uren direct om in geautomatiseerde, nauwkeurige loonruns — zonder handmatig rekenwerk.</p>
+    </div>
+  </div>
+
+  <!-- ===== SPEED BANNER ===== -->
+  <div class="speed-banner">
+    <span class="hero-badge"><i class="fas fa-gauge-high"></i> <span data-lang="en">Speed &amp; Efficiency</span><span data-lang="nl">Snelheid &amp; Efficiëntie</span></span>
+
+    <h2 data-lang="en">Run Your Entire Business From One Dashboard</h2>
+    <h2 data-lang="nl">Run Je Hele Bedrijf Vanuit Eén Dashboard</h2>
+
+    <p data-lang="en">
+      Still losing hours to invoices, timesheets, and payroll every week? Bring all
+      your core processes together in one powerful all-in-one business platform —
+      built to save time, cut errors, and help you grow faster.
+    </p>
+    <p data-lang="nl">
+      Ben jij nog steeds uren kwijt aan facturen, urenregistratie en uitbetalingen?
+      Breng al je kernprocessen samen in onze krachtige alles-in-één bedrijfssoftware —
+      gebouwd om tijd te besparen, fouten te verminderen en je sneller te laten groeien.
+    </p>
+
+    <div class="speed-tagline" data-lang="en">✨ Save time. Reduce errors. Grow faster.</div>
+    <div class="speed-tagline" data-lang="nl">✨ Bespaar tijd. Verminder fouten. Groei sneller.</div>
+
+    <div class="btn-group">
+      <a href="payments.html" class="cta-btn"><i class="fas fa-user-plus"></i> <span data-lang="en">Create Your Account</span><span data-lang="nl">Maak Je Account Aan</span></a>
+    </div>
+  </div>
+
+  <!-- ===== WHY US ===== -->
+  <h2 class="section-title" style="margin-top: 3rem;" data-lang="en">Why Companies Choose Our Suite</h2>
+  <h2 class="section-title" style="margin-top: 3rem;" data-lang="nl">Waarom Bedrijven Voor Onze Software Kiezen</h2>
+  <p class="section-sub" data-lang="en">Built by developers who understand real business workflows — not a bloated generic tool.</p>
+  <p class="section-sub" data-lang="nl">Gebouwd door developers die echte bedrijfsprocessen begrijpen — geen opgeblazen generieke tool.</p>
+
+  <div class="page-grid cols-2">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-shield-halved"></i>
+        <h3><span data-lang="en">Secure &amp; Reliable</span><span data-lang="nl">Veilig &amp; Betrouwbaar</span></h3>
+      </div>
+      <p data-lang="en">Your financial and customer data is handled with the same security standards used across all Abelsoftware123 products.</p>
+      <p data-lang="nl">Je financiële en klantgegevens worden behandeld volgens dezelfde beveiligingsstandaarden als al onze Abelsoftware123-producten.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-plug"></i>
+        <h3><span data-lang="en">Fully Integrated</span><span data-lang="nl">Volledig Geïntegreerd</span></h3>
+      </div>
+      <p data-lang="en">Hours flow into payroll, customers flow into invoices — no exporting, importing, or duplicate data entry.</p>
+      <p data-lang="nl">Uren stromen automatisch door naar loonverwerking, klanten naar facturen — geen export, import of dubbele invoer.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-mobile-screen"></i>
+        <h3><span data-lang="en">Works Everywhere</span><span data-lang="nl">Werkt Overal</span></h3>
+      </div>
+      <p data-lang="en">A responsive dashboard that works smoothly on desktop, tablet, and mobile — manage your business on the go.</p>
+      <p data-lang="nl">Een responsive dashboard dat soepel werkt op desktop, tablet en mobiel — beheer je bedrijf onderweg.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-headset"></i>
+        <h3><span data-lang="en">Direct Support</span><span data-lang="nl">Directe Ondersteuning</span></h3>
+      </div>
+      <p data-lang="en">Get help straight from the team that builds the software — no ticket queues, no call centers.</p>
+      <p data-lang="nl">Krijg hulp rechtstreeks van het team dat de software bouwt — geen ticketwachtrijen, geen callcenters.</p>
+    </div>
+  </div>
+
+  <!-- ===== PRICE ===== -->
+  <div class="price-box">
+    <div>
+      <span class="price-tag" data-lang="en">Get a Quote</span>
+      <span class="price-tag" data-lang="nl">Vraag een Offerte Aan</span>
+    </div>
+    <p data-lang="en" style="color:#9fb2c5; font-size: 0.9rem; margin-top: 0.6rem;">Pricing depends on team size and required modules. Contact us for a tailored offer.</p>
+    <p data-lang="nl" style="color:#9fb2c5; font-size: 0.9rem; margin-top: 0.6rem;">De prijs is afhankelijk van teamgrootte en gewenste modules. Neem contact op voor een offerte op maat.</p>
+    <a href="payments.html" class="cta-btn" style="display: block; text-align: center; margin-top: 1.2rem;">
+      <i class="fas fa-shopping-cart"></i> <span data-lang="en">Request Pricing</span><span data-lang="nl">Prijs Aanvragen</span>
+    </a>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <h2 class="section-title" style="margin-top: 3rem;" data-lang="en">Frequently Asked Questions</h2>
+  <h2 class="section-title" style="margin-top: 3rem;" data-lang="nl">Veelgestelde Vragen</h2>
+
+  <div style="max-width: 800px; margin: 0 auto; width: 100%;">
+    <div class="faq-item">
+      <h4 data-lang="en"><i class="fas fa-circle-question"></i> Can I migrate my existing invoices and customers?</h4>
+      <h4 data-lang="nl"><i class="fas fa-circle-question"></i> Kan ik mijn bestaande facturen en klanten migreren?</h4>
+      <p data-lang="en">Yes, we help you import your existing data so you can start using the full system right away without losing history.</p>
+      <p data-lang="nl">Ja, wij helpen je bestaande gegevens te importeren, zodat je direct met het volledige systeem kunt werken zonder je geschiedenis te verliezen.</p>
+    </div>
+    <div class="faq-item">
+      <h4 data-lang="en"><i class="fas fa-circle-question"></i> Is this suitable for freelancers and small teams?</h4>
+      <h4 data-lang="nl"><i class="fas fa-circle-question"></i> Is dit geschikt voor zzp'ers en kleine teams?</h4>
+      <p data-lang="en">Absolutely. The system scales from a single freelancer to larger teams that need multi-user time tracking and payroll.</p>
+      <p data-lang="nl">Zeker. Het systeem schaalt mee, van een enkele zzp'er tot grotere teams die urenregistratie en loonverwerking voor meerdere gebruikers nodig hebben.</p>
+    </div>
+    <div class="faq-item">
+      <h4 data-lang="en"><i class="fas fa-circle-question"></i> Do I need separate software for payroll?</h4>
+      <h4 data-lang="nl"><i class="fas fa-circle-question"></i> Heb ik aparte software nodig voor loonverwerking?</h4>
+      <p data-lang="en">No — payroll is built directly into the platform and connects automatically with tracked hours, so nothing needs to be entered twice.</p>
+      <p data-lang="nl">Nee — loonverwerking zit direct in het platform en koppelt automatisch aan geregistreerde uren, zodat je nooit iets dubbel hoeft in te voeren.</p>
+    </div>
+    <div class="faq-item">
+      <h4 data-lang="en"><i class="fas fa-circle-question"></i> How is the software delivered and hosted?</h4>
+      <h4 data-lang="nl"><i class="fas fa-circle-question"></i> Hoe wordt de software geleverd en gehost?</h4>
+      <p data-lang="en">We deploy and manage the platform for you, so you can focus on your business instead of maintaining infrastructure.</p>
+      <p data-lang="nl">Wij zetten het platform voor je op en beheren het, zodat jij je kunt richten op je bedrijf in plaats van op infrastructuurbeheer.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-note">
+    <span data-lang="en">&copy; 2026 Abelsoftware123 — All rights reserved. Chamber of Commerce (KvK) number: 42090960 · Tax ID (VAT): NL 005488351B30</span>
+    <span data-lang="nl">&copy; 2026 Abelsoftware123 — Alle rechten voorbehouden. KvK-nummer: 42090960 · BTW-nummer: NL 005488351B30</span>
+  </div>
+
+</div>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.remove('lang-nl', 'lang-en');
+    document.body.classList.add('lang-' + lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+    localStorage.setItem('abelsoftware_lang', lang);
+  }
+
+  (function () {
+    const saved = localStorage.getItem('abelsoftware_lang');
+    if (saved === 'nl') {
+      setLang('nl');
+    }
+  })();
+</script>
+</body>
+</html>
