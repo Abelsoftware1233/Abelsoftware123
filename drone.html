@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Drone Fotografie Abel123 · 4K Luchtfotografie</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      margin-left: 0.25rem;
+    }
+
+    .lang-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0,242,255,0.25);
+      border-radius: 40px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #8899aa;
+      padding: 0.4rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lang-btn.active {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 16px rgba(0,242,255,0.4);
+    }
+
+    [data-lang="en"] { display: none !important; }
+    body.lang-en [data-lang="nl"] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: revert !important; }
+
+    /* ===== NAVIGATION ===== */
+    .main-nav {
+      margin: 0.4rem 0 2rem;
+      width: 100%;
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+    }
+
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 2.2rem 1rem 2.6rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      padding: 5px 18px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 5vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #8cdbff 60%, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.1rem;
+      text-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+    }
+
+    .hero p.lead {
+      max-width: 680px;
+      margin: 0 auto 1.8rem;
+      color: #c8d6e5;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .hero-checks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      list-style: none;
+    }
+
+    .hero-checks li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+      font-weight: 500;
+    }
+
+    .hero-checks i {
+      color: #00ff88;
+      filter: drop-shadow(0 0 8px rgba(0,255,136,0.5));
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: linear-gradient(145deg, #00ff44, #00cc33);
+      border: 1px solid #00ff44aa;
+      color: #0b0d10;
+      padding: 0.9rem 2.4rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.02rem;
+      text-decoration: none;
+      box-shadow: 0 4px 25px rgba(0, 255, 68, 0.4);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 45px rgba(0, 255, 68, 0.6);
+    }
+
+    /* ===== IMAGE ===== */
+    .hero-image-wrap {
+      max-width: 720px;
+      margin: 0 auto 2.4rem;
+      border-radius: 1.6rem;
+      overflow: hidden;
+      border: 1px solid rgba(0,242,255,0.2);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #93a5b8;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      font-size: 0.96rem;
+    }
+
+    /* ===== GRID ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .page-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-header i {
+      font-size: 1.7rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h3 {
+      color: #eaf6ff;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      color: #b7c6d8;
+      font-size: 0.9rem;
+    }
+
+    /* ===== PRICE BOX ===== */
+    .price-box {
+      max-width: 480px;
+      margin: 2.4rem auto 0;
+      background: rgba(18, 22, 30, 0.6);
+      padding: 2rem;
+      border-radius: 1.6rem;
+      border: 1px solid #00f2ff88;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0,242,255,0.15);
+    }
+
+    .price-box .hero-badge {
+      margin-bottom: 1rem;
+    }
+
+    .price-tag {
+      display: block;
+      color: #fff;
+      font-weight: 900;
+      font-size: 3.4rem;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      margin-bottom: 0.3rem;
+    }
+
+    .price-sub {
+      color: #7c8ea0;
+      font-size: 0.85rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      text-align: left;
+      max-width: 340px;
+      margin: 0 auto 1.4rem;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.7rem;
+      font-size: 0.94rem;
+      color: #d0dcee;
+    }
+
+    .feature-list li::before {
+      content: "⚡";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-size: 1.05rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 1rem; border-radius: 1.8rem; }
+      .brand-title { font-size: 1.35rem; }
+      .price-tag { font-size: 2.6rem; }
+      .card { padding: 1.2rem; }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-helicopter brand-icon"></i>
+      <span class="brand-title">Drone Fotografie Abel123</span>
+      <span class="brand-sub" data-lang="nl">· 4K Luchtfotografie</span>
+      <span class="brand-sub" data-lang="en">· 4K Aerial Photography</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-nl" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html"><span data-lang="nl">Home</span><span data-lang="en">Home</span></a></li>
+      <li><a href="drone.html" class="active"><span data-lang="nl">Dronefotografie</span><span data-lang="en">Drone Photography</span></a></li>
+      <li><a href="chatbot.html"><span data-lang="nl">Chatbot Bestellen</span><span data-lang="en">Order Chatbot</span></a></li>
+      <li><a href="advertentie.html"><span data-lang="nl">Adverteren</span><span data-lang="en">Advertising</span></a></li>
+      <li><a href="company.html"><span data-lang="nl">Bedrijf</span><span data-lang="en">Company</span></a></li>
+      <li><a href="payments.html"><span data-lang="nl">Betalingen</span><span data-lang="en">Payments</span></a></li>
+      <li><a href="apps.html"><span data-lang="nl">Apps Lijst</span><span data-lang="en">Apps List</span></a></li>
+      <li><a href="hacktools.html"><span data-lang="nl">Cybersecurity &amp; Offensive Security</span><span data-lang="en">Cybersecurity &amp; Offensive Security</span></a></li>
+      <li><a href="ai.html"><span data-lang="nl">AI Software</span><span data-lang="en">AI Software</span></a></li>
+      <li><a href="website.html"><span data-lang="nl">Website Bestellen</span><span data-lang="en">Order Website</span></a></li>
+      <li><a href="domain.html"><span data-lang="nl">Domein Bestellen</span><span data-lang="en">Order Domain</span></a></li>
+      <li><a href="facturatie.html"><span data-lang="nl">Bedrijfssoftware</span><span data-lang="en">Business Suite</span></a></li>
+      <li><a href="emulator.html"><span data-lang="nl">Emulator</span><span data-lang="en">Emulator</span></a></li>
+      <li><a href="music.html"><span data-lang="nl">Music Studio</span><span data-lang="en">Music Studio</span></a></li>
+      <li><a href="server.html"><span data-lang="nl">(Game)Servers Huren</span><span data-lang="en">(Game)Servers for Rent</span></a></li>
+      <li><a href="reviews.html"><span data-lang="nl">Reviews</span><span data-lang="en">Reviews</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <span class="hero-badge" data-lang="nl"><i class="fas fa-certificate"></i> Gecertificeerd EU-Vliegbewijs A1/A3</span>
+    <span class="hero-badge" data-lang="en"><i class="fas fa-certificate"></i> Certified EU Drone License A1/A3</span>
+
+    <h1 data-lang="nl">Professionele Dronefotografie in 4K</h1>
+    <h1 data-lang="en">Professional Drone Photography in 4K</h1>
+
+    <p class="lead" data-lang="nl">
+      Ik maak haarscherpe 4K-luchtbeelden die de uitstraling van jachten, panden en
+      evenementen perfect tot hun recht laten komen. Als startend ondernemer bied ik
+      een scherp tarief zonder in te leveren op kwaliteit.
+    </p>
+    <p class="lead" data-lang="en">
+      I capture crystal-clear 4K aerial footage that perfectly showcases yachts,
+      properties, and events. As a starting entrepreneur, I offer a competitive rate
+      without compromising on quality.
+    </p>
+
+    <ul class="hero-checks" data-lang="nl">
+      <li><i class="fas fa-circle-check"></i> Officieel EU-vliegbewijs A1/A3</li>
+      <li><i class="fas fa-circle-check"></i> Professionele 4K-apparatuur</li>
+      <li><i class="fas fa-circle-check"></i> Flexibel voor het beste licht</li>
+      <li><i class="fas fa-circle-check"></i> Snel inzetbaar</li>
+    </ul>
+    <ul class="hero-checks" data-lang="en">
+      <li><i class="fas fa-circle-check"></i> Official EU drone license A1/A3</li>
+      <li><i class="fas fa-circle-check"></i> Professional 4K equipment</li>
+      <li><i class="fas fa-circle-check"></i> Flexible for the best light</li>
+      <li><i class="fas fa-circle-check"></i> Available on short notice</li>
+    </ul>
+
+    <a href="mailto:abelsoftware123@hotmail.com?subject=Dronefotografie%20Aanvraag&body=Hallo%2C%0A%0AIk%20ben%20geinteresseerd%20in%20dronefotografie.%0A%0ALocatie%3A%0AGewenste%20datum%3A%0A" class="cta-btn" data-lang="nl">
+      <i class="fas fa-envelope"></i> Mail voor een Offerte
+    </a>
+    <a href="mailto:abelsoftware123@hotmail.com?subject=Drone%20Photography%20Request&body=Hi%2C%0A%0AI%20am%20interested%20in%20drone%20photography.%0A%0ALocation%3A%0APreferred%20date%3A%0A" class="cta-btn" data-lang="en">
+      <i class="fas fa-envelope"></i> Email for a Quote
+    </a>
+  </section>
+
+  <!-- ===== WHY ME ===== -->
+  <h2 class="section-title" data-lang="nl">Waarom Met Mij Samenwerken?</h2>
+  <h2 class="section-title" data-lang="en">Why Work With Me?</h2>
+  <p class="section-sub" data-lang="nl">Gecertificeerd, resultaatgericht en met oog voor het perfecte moment.</p>
+  <p class="section-sub" data-lang="en">Certified, results-driven, and focused on capturing the perfect moment.</p>
+
+  <div class="page-grid cols-3">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-certificate"></i>
+        <h3 data-lang="nl">Gecertificeerd</h3>
+        <h3 data-lang="en">Certified</h3>
+      </div>
+      <p data-lang="nl">Ik vlieg volgens de geldende EU-regelgeving, met een officieel A1/A3-vliegbewijs.</p>
+      <p data-lang="en">I fly in accordance with current EU regulations, holding an official A1/A3 drone license.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-euro-sign"></i>
+        <h3 data-lang="nl">Scherp Tarief</h3>
+        <h3 data-lang="en">Competitive Rate</h3>
+      </div>
+      <p data-lang="nl">Als startend ondernemer bouw ik mijn portfolio op — daardoor krijg jij een zeer scherpe prijs.</p>
+      <p data-lang="en">As a starting entrepreneur building my portfolio, you get a very competitive price.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-bullseye"></i>
+        <h3 data-lang="nl">Resultaatgericht</h3>
+        <h3 data-lang="en">Results-Driven</h3>
+      </div>
+      <p data-lang="nl">Ik werk flexibel om het beste moment te pakken — juiste belichting en compositie staan voorop.</p>
+      <p data-lang="en">I work flexibly to capture the best moment — proper lighting and composition come first.</p>
+    </div>
+  </div>
+
+  <!-- ===== PRICE ===== -->
+  <div class="price-box">
+    <span class="hero-badge" data-lang="nl"><i class="fas fa-video"></i> 4K Luchtfotografie</span>
+    <span class="hero-badge" data-lang="en"><i class="fas fa-video"></i> 4K Aerial Photography</span>
+
+    <span class="price-tag">€250</span>
+    <p class="price-sub" data-lang="nl">inclusief btw</p>
+    <p class="price-sub" data-lang="en">including VAT</p>
+
+    <ul class="feature-list" data-lang="nl">
+      <li>Haarscherpe 4K-beelden</li>
+      <li>Gecertificeerde piloot (EU A1/A3)</li>
+      <li>Flexibele planning voor het beste weer</li>
+      <li>Snel beschikbaar</li>
+    </ul>
+    <ul class="feature-list" data-lang="en">
+      <li>Crystal-clear 4K footage</li>
+      <li>Certified pilot (EU A1/A3)</li>
+      <li>Flexible scheduling for the best weather</li>
+      <li>Available on short notice</li>
+    </ul>
+
+    <a href="mailto:abelsoftware123@hotmail.com?subject=Dronefotografie%20Aanvraag&body=Hallo%2C%0A%0AIk%20ben%20geinteresseerd%20in%20dronefotografie.%0A%0ALocatie%3A%0AGewenste%20datum%3A%0A" class="cta-btn" style="width: 100%;" data-lang="nl">
+      <i class="fas fa-envelope"></i> Mail voor een Offerte
+    </a>
+    <a href="mailto:abelsoftware123@hotmail.com?subject=Drone%20Photography%20Request&body=Hi%2C%0A%0AI%20am%20interested%20in%20drone%20photography.%0A%0ALocation%3A%0APreferred%20date%3A%0A" class="cta-btn" style="width: 100%;" data-lang="en">
+      <i class="fas fa-envelope"></i> Email for a Quote
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-note">
+    <span data-lang="nl">&copy; 2026 Drone Fotografie Abel123 — Alle rechten voorbehouden.</span>
+    <span data-lang="en">&copy; 2026 Drone Fotografie Abel123 — All rights reserved.</span>
+  </div>
+
+</div>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.remove('lang-nl', 'lang-en');
+    document.body.classList.add('lang-' + lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+    localStorage.setItem('drone_lang', lang);
+  }
+  (function () {
+    const saved = localStorage.getItem('drone_lang');
+    if (saved === 'en') setLang('en');
+  })();
+</script>
+</body>
+</html>
