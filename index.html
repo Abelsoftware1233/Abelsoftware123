@@ -721,19 +721,23 @@
     </ul>
   </nav>
 
-  <!-- ===== PAGE GRID ===== -->
-  <div class="page-grid">
+<!-- ===== PAGE GRID ===== -->
+<div class="page-grid">
 
-    <!-- WELCOME CARD (full width) -->
-    <div class="card full-width" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
-      <img src="logoo.jpg" alt="Logo" class="welcome-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect fill=%22%231a1f2a%22 width=%22120%22 height=%22120%22/%3E%3Ctext x=%2230%22 y=%2270%22 fill=%22%2300f2ff%22 font-size=%2240%22%3E🤖%3C/text%3E%3C/svg%3E'">
-      <div style="flex: 1;">
-        <h1 style="margin: 0; font-size: 1.5rem; color: #eaeef2;">Welcome to Abelsoftware123</h1>
-        <span class="badge-role"><i class="fas fa-user"></i> System Guest</span>
-        <p class="session-info">Session Active: <span id="currentDate"></span></p>
-      </div>
+  <!-- WELCOME CARD (bovenin over de volle breedte) -->
+  <div class="card full-width" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
+    <img src="logoo.jpg" alt="Logo" class="welcome-avatar" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect fill=%22%231a1f2a%22 width=%22120%22 height=%22120%22/%3E%3Ctext x=%2230%22 y=%2270%22 fill=%22%2300f2ff%22 font-size=%2240%22%3E🤖%3C/text%3E%3C/svg%3E'">
+    <div style="flex: 1;">
+      <h1 style="margin: 0; font-size: 1.5rem; color: #eaeef2;">Welcome to Abelsoftware123</h1>
+      <span class="badge-role"><i class="fas fa-user"></i> System Guest</span>
+      <p class="session-info">Session Active: <span id="currentDate"></span></p>
     </div>
-<!-- OUR RATES -->
+  </div>
+
+  <!-- SHOWCASE GRID (Hier zetten we alle 2x2 / 2 naast elkaar kaarten in) -->
+  <div class="showcase-grid">
+
+    <!-- 1. OUR RATES -->
     <div class="card">
       <div class="card-header">
         <i class="fas fa-coins"></i>
@@ -750,88 +754,71 @@
       </ul>
       <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.2rem;">
         <a href="mailto:abelsoftware123@hotmail.com" class="cta-btn btn-green"><i class="fas fa-envelope"></i> Contact Us</a>
-        <a href="https://www.dropbox.com/scl/fi/a9tpseja4rl4bwvyi3zhn/14957_Abelsoftware123.apk?rlkey=a8adc63ij6lwjjqb3molzj3ho&st=2tzo72xl&dl=0" class="cta-btn"><i class="fas fa-download"></i> Download Abelsoftware123 Android App</a>
+        <a href="https://www.dropbox.com/scl/fi/a9tpseja4rl4bwvyi3zhn/14957_Abelsoftware123.apk?rlkey=a8adc63ij6lwjjqb3molzj3ho&st=2tzo72xl&dl=0" class="cta-btn"><i class="fas fa-download"></i> Download App</a>
       </div>
-    <div class="payment-methods">
+      <div class="payment-methods">
         <div class="payment-methods-label"><i class="fas fa-shield-alt"></i> We accept:</div>
         <div class="payment-icons">
           <span class="pay-badge"><i class="fab fa-paypal" style="color:#00457C;"></i> PayPal</span>
           <span class="pay-badge"><i class="fab fa-cc-visa" style="color:#1A1F71;"></i> Visa</span>
           <span class="pay-badge"><i class="fab fa-cc-mastercard" style="color:#EB001B;"></i> Mastercard</span>
-          <span class="pay-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Wero_logo.svg/512px-Wero_logo.svg.png" alt="Wero" onerror="this.style.display='none'"> Wero</span>
           <span class="pay-badge"><i class="fab fa-google-pay" style="color:#4285F4;"></i> Google Pay</span>
-          <span class="pay-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bancontact_logo.svg/512px-Bancontact_logo.svg.png" alt="Bancontact" onerror="this.style.display='none'"> Bancontact</span>
-          <span class="pay-badge"><i class="fas fa-university" style="color:#00f2ff;"></i> Pay by Bank</span>
         </div>
       </div>
     </div>
 
-    <!-- SHOWCASE: Cybersecurity / Business Suite / Drone — twee aan twee -->
-    <div class="showcase-grid">
-
-      <!-- Cybersecurity & Offensive Security -->
-      <div class="card">
-        <div class="card-header">
-          <i class="fas fa-shield-alt"></i>
-          <h2>Cybersecurity &amp; AI</h2>
-        </div>
-        <img src="bedrijf.jpg" alt="Matrix" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-        <p>Explore the future of AI and Cybersecurity. Our tools are designed for security purposes. Verken de toekomst van AI en cybersecurity. Onze tools zijn ontworpen voor beveiligingsdoeleinden.</p>
-        <a href="hacktools.html" class="cta-btn" style="background: linear-gradient(145deg, #8800ff, #6600cc); border-color: #8800ffaa; box-shadow: 0 4px 20px rgba(136, 0, 255, 0.3);">
-          <i class="fas fa-terminal"></i> View Cybersecurity & Offensive Security
-        </a>
+    <!-- 2. Cybersecurity & Offensive Security -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-shield-alt"></i>
+        <h2>Cybersecurity &amp; AI</h2>
       </div>
+      <img src="bedrijf.jpg" alt="Matrix" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+      <p>Explore the future of AI and Cybersecurity. Our tools are designed for security purposes.</p>
+      <a href="hacktools.html" class="cta-btn" style="background: linear-gradient(145deg, #8800ff, #6600cc); border-color: #8800ffaa; box-shadow: 0 4px 20px rgba(136, 0, 255, 0.3);">
+        <i class="fas fa-terminal"></i> View Cybersecurity
+      </a>
+    </div>
 
-      <!-- Business Suite: Invoicing, CRM, Time Tracking & Payroll -->
-      <div class="card">
-        <div class="card-header">
-          <i class="fas fa-file-invoice-dollar"></i>
-          <h2>Business Suite</h2>
-        </div>
-        <img src="bedrijf.jpg" alt="Business Suite" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-        <p>Invoicing, CRM, time tracking, and payroll — all in one system. Take full control of your business administration and save hours every week.
-Run Je Hele Bedrijf Vanuit Eén Dashboard
-Ben jij nog steeds uren kwijt aan facturen, urenregistratie en uitbetalingen? Breng al je kernprocessen samen in onze krachtige alles-in-één bedrijfssoftware — gebouwd om tijd te besparen, fouten te verminderen en je sneller te laten groeien.
-
-✨ Bespaar tijd. Verminder fouten. Groei sneller.</p>
-        <a href="facturatie.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
-          <i class="fas fa-rocket"></i> View Business Suite
-        </a>
+    <!-- 3. Business Suite -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h2>Business Suite</h2>
       </div>
+      <img src="bedrijf.jpg" alt="Business Suite" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+      <p>Invoicing, CRM, time tracking, and payroll — all in one system.</p>
+      <a href="facturatie.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
+        <i class="fas fa-rocket"></i> View Business Suite
+      </a>
+    </div>
 
-      <!-- Drone Fotografie: 4K Aerial Photography -->
-      <div class="card">
-        <div class="card-header">
-          <i class="fas fa-helicopter"></i>
-          <h2>Drone Fotografie</h2>
-        </div>
-        <img src="drone.jpg" alt="Drone Fotografie" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-        <p data-lang="en">Professional 4K aerial photography with a certified pilot (EU A1/A3). Perfect for yachts, properties, and events.</p>
-<p data-lang="nl">Professionele 4K-luchtfotografie met een gecertificeerde piloot (EU A1/A3). Perfect voor jachten, panden en evenementen.</p>
-        <a href="drone.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
-          <i class="fas fa-rocket"></i> <span data-lang="en">View Drone Photography</span>
-        </a>
-   <a href="https://youtu.be/cIWg3e02npM?feature=shared" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
-          <i class="fas fa-rocket"></i> <span data-lang="nl">Watch Promo Video</span>
-        </a>
+    <!-- 4. Drone Fotografie -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-helicopter"></i>
+        <h2>Drone Fotografie</h2>
       </div>
+      <img src="drone.jpg" alt="Drone Fotografie" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+      <p>Professional 4K aerial photography with a certified pilot (EU A1/A3).</p>
+      <a href="drone.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
+        <i class="fas fa-rocket"></i> View Drone Photography
+      </a>
+    </div>
 
-      <!-- PSP GAMING PORTABLE (volle breedte, gecentreerd) -->
-      <div class="card full-width">
-        <div class="psp-section">
-          <h3><i class="fas fa-fire" style="color: #ff6a00;"></i> NEW: PSP Gaming Portable! <span style="color: #ff6a00;">€149,99</span></h3>
-          <p>The iconic PSP with 10.000+ games now available on our Payments page. Play any console in one handheld. PlayStation-GBA-Nintendo series-Gamecube and many more. Release date: 2026</p>
-
-          <img src="psp.jpg" alt="PSP Console" class="psp-image" onerror="this.style.display='none'">
-
-          <a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> View PSP Offers</a>
-        </div>
+    <!-- 5. PSP GAMING PORTABLE (Blijft onderin over de volle breedte) -->
+    <div class="card full-width">
+      <div class="psp-section">
+        <h3><i class="fas fa-fire" style="color: #ff6a00;"></i> NEW: PSP Gaming Portable! <span style="color: #ff6a00;">€149,99</span></h3>
+        <p>The iconic PSP with 10.000+ games now available on our Payments page.</p>
+        <img src="psp.jpg" alt="PSP Console" class="psp-image" onerror="this.style.display='none'">
+        <a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> View PSP Offers</a>
       </div>
+    </div>
 
-    </div> <!-- /showcase-grid -->
+  </div> <!-- /showcase-grid -->
 
-  </div> <!-- /page-grid -->
-
+</div> <!-- /page-grid -->
   <!-- ===== CHAT LAUNCHER ===== -->
   <div id="chat-launcher" onclick="toggleChat()">
     <i class="fas fa-comment-dots"></i>
