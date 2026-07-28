@@ -548,14 +548,6 @@
       { id: 'YJUU798QTPPHY', name: 'Flying Dutchman (Android)', price: '€2.50', premium: false }
     ];
 
-    // Extra products from original buttons array
-    const extraIds = ['W49JHNAVYYF7W', '2SHNHYH29BZW4'];
-    extraIds.forEach(id => {
-      if (!productList.find(p => p.id === id)) {
-        productList.push({ id, name: 'WMWario Extra Pack', price: '€4.99', premium: false });
-      }
-    });
-
     // ===== RENDER GRID =====
     const grid = document.getElementById('productGrid');
     grid.innerHTML = '';
