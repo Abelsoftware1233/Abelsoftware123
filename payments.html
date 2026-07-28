@@ -580,7 +580,7 @@
       card.appendChild(priceDiv);
       card.appendChild(btnContainer);
 
-      // Extra Wero/Mollie-betaallinks per prijsklasse
+      // Extra Wero/Stripes-betaallinks per prijsklasse
       const weroByPrice = {
         '€149.99': 'https://buy.stripe.com/eVq4gs4ty8sRh19eND6Zy00',
         '€9.99': 'https://buy.stripe.com/5kQdR28JOeRfeT1bBr6Zy03',
@@ -589,9 +589,9 @@
         '€49.99': 'https://buy.stripe.com/aFabIU2lq24t9yH5d36Zy04',
         '€14.99': 'https://buy.stripe.com/dRmcMYgcgdNb9yH34V6Zy05',
         '€2.50': 'https://buy.stripe.com/4gM7sE2lq9wVdOXdJz6Zy07',
-        '€1.50': 'https://payment-links.mollie.com/payment/kU66Ls5txZFrQq8YYBrZE',
-        '€2.00': 'https://payment-links.mollie.com/payment/U6CGpjaVsxukvVRtND4Kf',
-        '€2.99': 'https://payment-links.mollie.com/payment/wAm5aJpxmzYXRJwJxzPTw'
+        '€1.50': 'https://buy.stripe.com/eVq14g3pugZn7qz6h76Zy0a',
+        '€2.00': 'https://buy.stripe.com/9B6eV62lqgZn3aj6h76Zy09',
+        '€2.99': 'https://buy.stripe.com/14A9AM2lq6kJ26f34V6Zy08'
       };
       const weroUrl = weroByPrice[item.price] || null;
       if (weroUrl) {
