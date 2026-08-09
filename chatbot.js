@@ -74,8 +74,8 @@ class BasicBot {
                 "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen",
 
                 "prijzen": {
-                    en: "We keep it fair: Games start at €4.99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €150 license. AI chatbot with API Key is €1500. Advertising on my games and apps starts at €50 to €300 each month. Quality made with love! 💸",
-                    nl: "We houden het eerlijk: Games vanaf €4,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of software DJI-drone) vanaf een licentie van €150. AI-chatbot met API-sleutel voor €1500. Adverteren op me games en apps begint tussen de €50 en €300 per maand. Kwaliteit gemaakt met liefde! 💸"
+                    en: "We keep it fair: Games start at €1.50/€9,99, websites and apps start at €200, and domain names start at €50. Standard chatbots are €1000. AI Software (face recognition or DJI drone) starts at a €150 license. AI chatbot with API Key is €1500. Advertising on my games and apps starts at €50 to €300 each month. Quality made with love! 💸",
+                    nl: "We houden het eerlijk: Games vanaf €1,50/€9,99, websites en apps vanaf €200, en domeinnamen vanaf €50. Standaard chatbots voor €1000. AI Software (gezichtsherkenning of software DJI-drone) vanaf een licentie van €150. AI-chatbot met API-sleutel voor €1500. Adverteren op me games en apps begint tussen de €50 en €300 per maand. Kwaliteit gemaakt met liefde! 💸"
                 },
                 "prices": "prijzen", "pricing": "prijzen",
 
