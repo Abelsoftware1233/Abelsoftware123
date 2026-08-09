@@ -598,7 +598,7 @@
   <nav class="main-nav">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="drone.html">Drone Fotografie</a></li>
+<li><a href="drone.html">Drone Fotografie</a></li>
       <li><a href="chatbot.html">Order Chatbot</a></li>
       <li><a href="advertentie.html">Advertising & Reclame</a></li>
       <li><a href="company.html">Company</a></li>
@@ -608,9 +608,9 @@
       <li><a href="ai.html">AI Software</a></li>
       <li><a href="website.html">Order Website & App</a></li>
       <li><a href="domain.html">Order Domain/Domein Registration</a></li>
-      <li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
+<li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
       <li><a href="music.html" class="active">Media & Apps</a></li>
-      <li><a href="server.html">(Game)Servers for Rent</a></li>
+<li><a href="server.html">(Game)Servers for Rent</a></li>
       <li><a href="reviews.html">Reviews</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
     </ul>
@@ -683,9 +683,7 @@
 
     <!-- AFBEELDINGEN -->
       <div class="image-container">
-        <!-- AANGEPAST: class "Emulator-Preview" veranderd in "studio-preview" en tweede foto toegevoegd -->
-        <img src="emulator.jpg" alt="Abel123 Games Emulator 1" class="studio-preview" onerror="this.style.display='none'">
-        <img src="emulator2.png" alt="Abel123 Games Emulator 2" class="studio-preview" onerror="this.style.display='none'">
+        <img src="emulator.jpg" alt="Abel123 Games Emulator" class="Emulator-Preview" onerror="this.style.display='none'">
       </div>
       
       <!-- TITEL -->
@@ -708,13 +706,47 @@
       <!-- KNOP -->
       <div style="text-align: center;">
         <a href="payments.html" class="cta-btn">
-          <i class="fas fa-shopping-cart"></i> ORDER & Download NOW
+          <i class="fas fa-shopping-cart"></i> ORDER DIRECTLY
         </a>
       </div>
 
       <p style="margin-top: 1.2rem; font-size: 0.7rem; color: #3a4a5a; text-align: center;">
         <i class="fas fa-info-circle"></i> Mario is a trademark of Nintendo. Collection contains fan-made hacks for research.
       </p>
+    </div>
+
+    <!-- ===== CONVERTER CARD (full width) ===== -->
+    <div class="card full-width">
+      <span class="badge-role"><i class="fas fa-file-audio"></i> PREMIUM CONVERTER</span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-file-audio"></i>
+        <h2>Abel123 MP3 Converter</h2>
+      </div>
+      
+      <p>Abel123 Video to MP3 &amp; MP4 Converter</p>
+
+      <!-- AFBEELDINGEN -->
+      <div class="image-container">
+        <img src="converter.jpg" alt="Abel123 Converter Preview 1" class="studio-preview" onerror="this.style.display='none'">
+        <img src="converter2.jpg" alt="Abel123 Converter Preview 2" class="studio-preview" onerror="this.style.display='none'">
+      </div>
+      
+      <p>Best Abel123 Video converter of all time, fast conversion and high quality sound and music.</p>
+
+      <!-- PRIJS -->
+      <div style="margin: 1.5rem 0;">
+        <span class="price-label">PRICE (EUR)</span>
+        <span class="price-tag">€ 2,99</span>
+      </div>
+
+      <!-- KNOP -->
+      <div style="text-align: center;">
+        <a href="payments.html" class="cta-btn">
+          <i class="fas fa-shopping-cart"></i> BUY NOW
+        </a>
+      </div>
+
     </div>
 
   </div> <!-- /page-grid -->
@@ -770,13 +802,6 @@
     }
   }
 
-  // Added missing quickReply function
-  function quickReply(topic) {
-    const input = document.getElementById('chat-input');
-    input.value = "Tell me about " + topic;
-    sendMessage();
-  }
-
   function sendMessage() {
     const input = document.getElementById('chat-input');
     const msg = input.value.trim();
@@ -824,14 +849,7 @@
         response = "Sorry, I'm having trouble connecting. Please try again later. 🙏";
       }
 
-      // Append bot message to the DOM
-      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right: 0.3rem;"></i> ' + response + '<span class="msg-time">Just now</span>';
-      messages.appendChild(botDiv);
-      messages.scrollTop = messages.scrollHeight;
-      
-    }, 600); // 600ms timeout for a realistic typing delay
-  }
-</script>
+    </script>
 
 </body>
 </html>
