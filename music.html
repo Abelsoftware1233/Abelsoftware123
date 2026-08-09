@@ -598,7 +598,7 @@
   <nav class="main-nav">
     <ul>
       <li><a href="index.html">Home</a></li>
-<li><a href="drone.html">Drone Fotografie</a></li>
+      <li><a href="drone.html">Drone Fotografie</a></li>
       <li><a href="chatbot.html">Order Chatbot</a></li>
       <li><a href="advertentie.html">Advertising & Reclame</a></li>
       <li><a href="company.html">Company</a></li>
@@ -608,9 +608,9 @@
       <li><a href="ai.html">AI Software</a></li>
       <li><a href="website.html">Order Website & App</a></li>
       <li><a href="domain.html">Order Domain/Domein Registration</a></li>
-<li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
+      <li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
       <li><a href="music.html" class="active">Media & Apps</a></li>
-<li><a href="server.html">(Game)Servers for Rent</a></li>
+      <li><a href="server.html">(Game)Servers for Rent</a></li>
       <li><a href="reviews.html">Reviews</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
     </ul>
@@ -683,7 +683,9 @@
 
     <!-- AFBEELDINGEN -->
       <div class="image-container">
-        <img src="emulator.jpg" alt="Abel123 Games Emulator" class="Emulator-Preview" onerror="this.style.display='none'">
+        <!-- AANGEPAST: class "Emulator-Preview" veranderd in "studio-preview" en tweede foto toegevoegd -->
+        <img src="emulator.jpg" alt="Abel123 Games Emulator 1" class="studio-preview" onerror="this.style.display='none'">
+        <img src="watermarked_img_17683406710540279649.png" alt="Abel123 Games Emulator 2" class="studio-preview" onerror="this.style.display='none'">
       </div>
       
       <!-- TITEL -->
@@ -768,6 +770,13 @@
     }
   }
 
+  // Added missing quickReply function
+  function quickReply(topic) {
+    const input = document.getElementById('chat-input');
+    input.value = "Tell me about " + topic;
+    sendMessage();
+  }
+
   function sendMessage() {
     const input = document.getElementById('chat-input');
     const msg = input.value.trim();
@@ -815,6 +824,13 @@
         response = "Sorry, I'm having trouble connecting. Please try again later. 🙏";
       }
 
+      // Append bot message to the DOM
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right: 0.3rem;"></i> ' + response + '<span class="msg-time">Just now</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+      
+    }, 600); // 600ms timeout for a realistic typing delay
+  }
 </script>
 
 </body>
