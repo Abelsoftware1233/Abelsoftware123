@@ -683,7 +683,9 @@
 
     <!-- AFBEELDINGEN -->
       <div class="image-container">
-        <img src="emulator.jpg" alt="Abel123 Games Emulator" class="Emulator-Preview" onerror="this.style.display='none'">
+        <!-- AANGEPAST: class "Emulator-Preview" veranderd in "studio-preview" en tweede foto toegevoegd -->
+        <img src="emulator.jpg" alt="Abel123 Games Emulator 1" class="studio-preview" onerror="this.style.display='none'">
+        <img src="emulator2.png" alt="Abel123 Games Emulator 2" class="studio-preview" onerror="this.style.display='none'">
       </div>
       
       <!-- TITEL -->
@@ -802,6 +804,13 @@
     }
   }
 
+  // Added missing quickReply function
+  function quickReply(topic) {
+    const input = document.getElementById('chat-input');
+    input.value = "Tell me about " + topic;
+    sendMessage();
+  }
+
   function sendMessage() {
     const input = document.getElementById('chat-input');
     const msg = input.value.trim();
@@ -849,7 +858,14 @@
         response = "Sorry, I'm having trouble connecting. Please try again later. 🙏";
       }
 
-    </script>
+      // Append bot message to the DOM
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right: 0.3rem;"></i> ' + response + '<span class="msg-time">Just now</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+      
+    }, 600); // 600ms timeout for a realistic typing delay
+  }
+</script>
 
 </body>
 </html>
