@@ -169,22 +169,32 @@
       }
     }
 
-    /* ===== SHOWCASE SUB-GRID (Cybersecurity / Business Suite / Drone) ===== */
+    /* ===== SHOWCASE SUB-GRID (Masonry-style for perfect vertical stacking) ===== */
     .showcase-grid {
       grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 2.2rem;
     }
 
     @media (min-width: 768px) {
       .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
+        flex-direction: row;
+        align-items: flex-start;
       }
     }
 
-    .showcase-grid .card {
+    .showcase-column {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .showcase-column .card {
       margin: 0;
+      width: 100%;
     }
 
     /* ===== PAYMENT METHODS ===== */
@@ -702,7 +712,7 @@
   <nav class="main-nav">
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
-<li><a href="drone.html">Drone Fotografie</a></li>
+      <li><a href="drone.html">Drone Fotografie</a></li>
       <li><a href="chatbot.html">Order Chatbot</a></li>
       <li><a href="advertentie.html">Advertising & Reclame</a></li>
       <li><a href="company.html">Company/Bedrijf Info</a></li>
@@ -712,11 +722,11 @@
       <li><a href="ai.html">AI Software</a></li>
       <li><a href="website.html">Order Website & App</a></li>
       <li><a href="domain.html">Order Domain/Domein Registration</a></li>
-<li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
+      <li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
       <li><a href="music.html">Media & Apps</a></li>
-<li><a href="server.html">(Game)Servers for Rent</a></li>
+      <li><a href="server.html">(Game)Servers for Rent</a></li>
       <li><a href="reviews.html">Reviews</a></li>
-<li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
     </ul>
   </nav>
 
@@ -733,105 +743,115 @@
     </div>
   </div>
 
-  <!-- SHOWCASE GRID (Hier zetten we alle 2x2 / 2 naast elkaar kaarten in) -->
+  <!-- SHOWCASE GRID (Flex Columns for perfect tight stacking) -->
   <div class="showcase-grid">
 
-    <!-- 1. OUR RATES -->
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-coins"></i>
-        <h2>Our Rates</h2>
-      </div>
-      <ul class="feature-list">
-        <li>🎤 <strong>Music Studio Software:</strong> <span class="price-tag">€14.99</span></li>
-        <li>💻 <strong>Abel123 Appsmaker Software:</strong> <span class="price-tag">€49.99</span></li>
-        <li>🎮 <strong>Games:</strong> Starting at and max <span class="price-tag">€1.50-€30</span></li>
-        <li>🌐 <strong>Websites & Apps:</strong> Starting at <span class="price-tag">€200</span></li>
-        <li>🤖 <strong>Standard Chatbots:</strong> From <span class="price-tag">€1000</span></li>
-        <li>🛰️ <strong>AI Software License:</strong> <span class="price-tag">€150-€850</span></li>
-        <li>🔑 <strong>AI Chatbot (API Integrated):</strong> <span class="price-tag">€1500</span></li>
-      </ul>
-      <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.2rem;">
-        <a href="mailto:abelsoftware123@hotmail.com" class="cta-btn btn-green"><i class="fas fa-envelope"></i> Contact Us</a>
-        <a href="https://play.google.com/store/apps/details?id=com.abelsoftware123.app&pcampaignid=web_share" class="cta-btn"><i class="fas fa-download"></i>Free Download Abelsoftware123 App on Google Playstore</a>
-      </div>
-      <div class="payment-methods">
-        <div class="payment-methods-label"><i class="fas fa-shield-alt"></i> We accept:</div>
-        <div class="payment-icons">
-          <span class="pay-badge"><i class="fas fa-wallet" style="color:#0052FF;"></i> Wero, formely iDEAL</span>
-          <span class="pay-badge"><i class="fab fa-paypal" style="color:#00457C;"></i> PayPal</span>
-          <span class="pay-badge"><i class="fab fa-cc-visa" style="color:#1A1F71;"></i> Visa</span>
-          <span class="pay-badge"><i class="fab fa-cc-mastercard" style="color:#EB001B;"></i> Mastercard</span>
-          <span class="pay-badge"><i class="fab fa-google-pay" style="color:#4285F4;"></i> Google Pay</span>
+    <!-- LINKER KOLOM -->
+    <div class="showcase-column">
+      
+      <!-- 1. OUR RATES -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-coins"></i>
+          <h2>Our Rates</h2>
+        </div>
+        <ul class="feature-list">
+          <li>🎤 <strong>Music Studio Software:</strong> <span class="price-tag">€14.99</span></li>
+          <li>💻 <strong>Abel123 Appsmaker Software:</strong> <span class="price-tag">€49.99</span></li>
+          <li>🎮 <strong>Games:</strong> Starting at and max <span class="price-tag">€1.50-€30</span></li>
+          <li>🌐 <strong>Websites & Apps:</strong> Starting at <span class="price-tag">€200</span></li>
+          <li>🤖 <strong>Standard Chatbots:</strong> From <span class="price-tag">€1000</span></li>
+          <li>🛰️ <strong>AI Software License:</strong> <span class="price-tag">€150-€850</span></li>
+          <li>🔑 <strong>AI Chatbot (API Integrated):</strong> <span class="price-tag">€1500</span></li>
+        </ul>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.2rem;">
+          <a href="mailto:abelsoftware123@hotmail.com" class="cta-btn btn-green"><i class="fas fa-envelope"></i> Contact Us</a>
+          <a href="https://play.google.com/store/apps/details?id=com.abelsoftware123.app&pcampaignid=web_share" class="cta-btn"><i class="fas fa-download"></i>Free Download Abelsoftware123 App on Google Playstore</a>
+        </div>
+        <div class="payment-methods">
+          <div class="payment-methods-label"><i class="fas fa-shield-alt"></i> We accept:</div>
+          <div class="payment-icons">
+            <span class="pay-badge"><i class="fas fa-wallet" style="color:#0052FF;"></i> Wero, formely iDEAL</span>
+            <span class="pay-badge"><i class="fab fa-paypal" style="color:#00457C;"></i> PayPal</span>
+            <span class="pay-badge"><i class="fab fa-cc-visa" style="color:#1A1F71;"></i> Visa</span>
+            <span class="pay-badge"><i class="fab fa-cc-mastercard" style="color:#EB001B;"></i> Mastercard</span>
+            <span class="pay-badge"><i class="fab fa-google-pay" style="color:#4285F4;"></i> Google Pay</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 2. Abel123 Playstore -->
-    <div class="card">
-      <div class="card-header">
-        <i class="fab fa-google-play"></i>
-        <h2>Abel123 Playstore</h2>
+      <!-- 3. Cybersecurity & Offensive Security -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-shield-alt"></i>
+          <h2>Cybersecurity &amp; AI</h2>
+        </div>
+        <img src="cybertool.jpg" alt="Matrix" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+        <p>Explore the future of AI and Cybersecurity. Our tools are designed for security purposes.<-->Verken de toekomst van kunstmatige intelligentie en cybersecurity. Onze tools zijn ontworpen voor beveiligingsdoeleinden.</p>
+        <a href="hacktools.html" class="cta-btn" style="background: linear-gradient(145deg, #8800ff, #6600cc); border-color: #8800ffaa; box-shadow: 0 4px 20px rgba(136, 0, 255, 0.3);">
+          <i class="fas fa-terminal"></i> View Cybersecurity
+        </a>
       </div>
-      <img src="playstore.jpg" alt="Abel123 Playstore" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-      <p>Our official apps are on their way to the Abel123 Play Store. Stay tuned for the newest Games and Apps.<-->Onze officiële apps zijn onderweg naar de Abel123 Play Store. Blijf op de hoogte voor de nieuwste games en apps.</p>
-      <a href="https://1024terabox.com/s/15lLQ9X6dlLHa7IgviC051A" class="cta-btn" style="background: linear-gradient(145deg, #00c2ff, #0088cc); border-color: #00c2ffaa; box-shadow: 0 4px 20px rgba(0, 194, 255, 0.3);">
-        <i class="fab fa-google-play"></i> Download Free Abel123 Playstore 
-      </a>
-    </div>
 
-    <!-- 3. Cybersecurity & Offensive Security -->
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-shield-alt"></i>
-        <h2>Cybersecurity &amp; AI</h2>
+      <!-- 5. Drone Fotografie -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-helicopter"></i>
+          <h2>Drone Fotografie</h2>
+        </div>
+        <img src="drone.jpg" alt="Drone Fotografie" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+        <p>Professional 4K aerial photography with a certified pilot (EU A1/A3).<-->Professionele 4K luchtfotografie met een gecertificeerde piloot (EU A1/A3)</p>
+        <a href="drone.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
+          <i class="fas fa-rocket"></i> View Drone Photography
+        </a>
+        <a href="https://youtu.be/JrW95pTWiUg?is=VuuPAgYPeZ595aN2" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
+          <i class="fas fa-rocket"></i> <span data-lang="en">View/Bekijk Promo Video</span>
+        </a>
       </div>
-      <img src="cybertool.jpg" alt="Matrix" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-      <p>Explore the future of AI and Cybersecurity. Our tools are designed for security purposes.<-->Verken de toekomst van kunstmatige intelligentie en cybersecurity. Onze tools zijn ontworpen voor beveiligingsdoeleinden.</p>
-      <a href="hacktools.html" class="cta-btn" style="background: linear-gradient(145deg, #8800ff, #6600cc); border-color: #8800ffaa; box-shadow: 0 4px 20px rgba(136, 0, 255, 0.3);">
-        <i class="fas fa-terminal"></i> View Cybersecurity
-      </a>
-    </div>
 
-    <!-- 4. Business Suite -->
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-file-invoice-dollar"></i>
-        <h2>Business Suite</h2>
+    </div> <!-- /showcase-column (Links) -->
+
+
+    <!-- RECHTER KOLOM -->
+    <div class="showcase-column">
+
+      <!-- 2. Abel123 Playstore -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fab fa-google-play"></i>
+          <h2>Abel123 Playstore</h2>
+        </div>
+        <img src="playstore.jpg" alt="Abel123 Playstore" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+        <p>Our official apps are on their way to the Abel123 Play Store. Stay tuned for the newest Games and Apps.<-->Onze officiële apps zijn onderweg naar de Abel123 Play Store. Blijf op de hoogte voor de nieuwste games en apps.</p>
+        <a href="https://1024terabox.com/s/15lLQ9X6dlLHa7IgviC051A" class="cta-btn" style="background: linear-gradient(145deg, #00c2ff, #0088cc); border-color: #00c2ffaa; box-shadow: 0 4px 20px rgba(0, 194, 255, 0.3);">
+          <i class="fab fa-google-play"></i> Download Free Abel123 Playstore 
+        </a>
       </div>
-      <img src="bedrijf.jpg" alt="Business Suite" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-      <p>Invoicing, CRM, time tracking, and payroll — all in one system.<-->Facturatie, CRM, urenregistratie en loonadministratie — alles in één geïntegreerd systeem om jouw bedrijfsstromen moeiteloos te stroomlijnen.</p>
-      <a href="facturatie.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
-        <i class="fas fa-rocket"></i> View Business Suite
-      </a>
-    </div>
 
-    <!-- 5. Drone Fotografie -->
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-helicopter"></i>
-        <h2>Drone Fotografie</h2>
+      <!-- 6. Abel123 PSP GAMING PORTABLE (Nu direct onder de Playstore) -->
+      <div class="card">
+        <div class="psp-section">
+          <h3><i class="fas fa-fire" style="color: #ff6a00;"></i> NEW: PSP Gaming Portable! <span style="color: #ff6a00;">€149,99</span></h3>
+          <p>The iconic Abel123 PSP with 10.000+ games now available on our Payments page.<-->De iconische PSP met meer dan 10.000 games is nu beschikbaar op onze betaalpagina.</p>
+          <img src="psp.jpg" alt="PSP Console" class="psp-image" onerror="this.style.display='none'">
+          <a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> View PSP Offers</a>
+        </div>
       </div>
-      <img src="drone.jpg" alt="Drone Fotografie" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
-      <p>Professional 4K aerial photography with a certified pilot (EU A1/A3).<-->Professionele 4K luchtfotografie met een gecertificeerde piloot (EU A1/A3)</p>
-      <a href="drone.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
-        <i class="fas fa-rocket"></i> View Drone Photography
-      </a>
-    <a href="https://youtu.be/JrW95pTWiUg?is=VuuPAgYPeZ595aN2" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
-        <i class="fas fa-rocket"></i> <span data-lang="en">View/Bekijk Promo Video</span>
-      </a>
-    </div>
 
-
-    <!-- 6. Abel123 PSP GAMING PORTABLE -->
-    <div class="card">
-      <div class="psp-section">
-        <h3><i class="fas fa-fire" style="color: #ff6a00;"></i> NEW: PSP Gaming Portable! <span style="color: #ff6a00;">€149,99</span></h3>
-        <p>The iconic Abel123 PSP with 10.000+ games now available on our Payments page.<-->De iconische PSP met meer dan 10.000 games is nu beschikbaar op onze betaalpagina.</p>
-        <img src="psp.jpg" alt="PSP Console" class="psp-image" onerror="this.style.display='none'">
-        <a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> View PSP Offers</a>
+      <!-- 4. Business Suite -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <h2>Business Suite</h2>
+        </div>
+        <img src="bedrijf.jpg" alt="Business Suite" style="width:100%; border-radius: 1rem; border: 1px solid #00f2ff33; margin-bottom: 1rem;">
+        <p>Invoicing, CRM, time tracking, and payroll — all in one system.<-->Facturatie, CRM, urenregistratie en loonadministratie — alles in één geïntegreerd systeem om jouw bedrijfsstromen moeiteloos te stroomlijnen.</p>
+        <a href="facturatie.html" class="cta-btn" style="background: linear-gradient(145deg, #00ff44, #00cc33); border-color: #00ff44aa; box-shadow: 0 4px 20px rgba(0, 255, 68, 0.3);">
+          <i class="fas fa-rocket"></i> View Business Suite
+        </a>
       </div>
-    </div>
+
+    </div> <!-- /showcase-column (Rechts) -->
 
   </div> <!-- /showcase-grid -->
 
