@@ -176,18 +176,19 @@
       font-size: 0.9rem;
     }
 
-    /* ===== PRODUCT GRID - MOBILE FIRST ===== */
+        /* ===== PRODUCT GRID ===== */
     .product-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      align-items: start;
       margin-top: 20px;
     }
 
     .paypal-card {
       background: #181818;
       border-radius: 18px;
-      padding: 16px 14px 14px;
+      padding: 18px 16px;
       border: 1px solid #2a2a2a;
       transition: 0.2s ease;
       display: flex;
@@ -231,7 +232,6 @@
       width: 100%;
     }
 
-    /* PayPal iframe / button inside container - force proper sizing */
     .paypal-button-container iframe,
     .paypal-button-container div {
       max-width: 100% !important;
@@ -249,12 +249,8 @@
       background: #14222a;
     }
 
-    /* ===== TABLET & DESKTOP ===== */
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
     @media (min-width: 480px) {
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-      }
       body {
         padding: 0 16px;
       }
@@ -263,23 +259,8 @@
       }
     }
 
-    @media (min-width: 768px) {
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-      }
-      .paypal-card {
-        padding: 20px 16px 16px;
-      }
-      .paypal-card .product-name {
-        font-size: 1rem;
-        min-height: 3rem;
-      }
-    }
-
     @media (min-width: 1024px) {
       .product-grid {
-        grid-template-columns: repeat(4, 1fr);
         gap: 24px;
       }
       .paypal-card {
@@ -287,10 +268,6 @@
       }
       .paypal-card .product-name {
         font-size: 1.05rem;
-        min-height: 3.2rem;
-      }
-      .paypal-card .price-tag {
-        font-size: 1.4rem;
       }
     }
 
