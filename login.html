@@ -24,73 +24,24 @@
 <section class="content-section">
     <h2>🔒 Log In</h2>
     <div id="loginError" class="error-msg">❌ Gebruikersnaam of wachtwoord onjuist</div>
-    <form id="loginForm">
+    <form id="loginForm" action="/perform_login" method="POST">
         <label>Username</label>
-        <input type="text" id="username" placeholder="Enter username" required>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
         <label>Password</label>
-        <input type="password" id="password" placeholder="••••••••" required>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
         <button type="submit">Log In</button>
     </form>
     <p style="text-align:center;">No account? <a href="registreer.html">Register here</a></p>
-</form>
     <p style="text-align:center;">No Entry? <a href="forgot-password.html">Forgot Password</a></p>
-</form>
-<p style="text-align:center;">Back to Homepage?<a href="index.html">Click Here</a></p>
+    <p style="text-align:center;">Back to Homepage?<a href="index.html">Click Here</a></p>
 </section>
 
-<script src="database.js"></script>
-<script src="admin-script.js"></script>
-
 <script>
-    // 1. VOORKOM KICK-LOOP:
-    // We wissen de sessie ZODRA de pagina laadt, zodat admin-script.js niet direct kickt.
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const errorDiv = document.getElementById('loginError');
-        errorDiv.style.display = 'none';
-
-        const userInp = document.getElementById('username').value.trim();
-        const passInp = document.getElementById('password').value;
-
-        // 2. MASTER LOGIN CHECK (Altijd prioriteit)
-        if (userInp.toLowerCase() === "admin" && passInp === "admin1501") {
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', JSON.stringify({
-                username: "System Admin", 
-                role: "Admin"
-            }));
-            window.location.replace('admin.html');
-            return;
-        }
-
-        // 3. DATABASE CHECK (Via getStoredUsers uit admin-script.js)
-        // We gebruiken de functie getStoredUsers() omdat die ook de generator bevat
-        const users = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
-        const found = users.find(u => 
-            u.username.toLowerCase() === userInp.toLowerCase() && 
-            u.password === passInp
-        );
-
-        if (found) {
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', JSON.stringify({
-                username: found.username, 
-                role: found.role
-            }));
-            
-            // Redirect naar juiste pagina
-            if (found.role.toLowerCase() === 'admin') {
-                window.location.replace('admin.html');
-            } else {
-                window.location.replace('profiel.html');
-            }
-        } else {
-            errorDiv.style.display = 'block';
-        }
-    });
+    // Toont een foutmelding als Spring Security terugstuurt naar login.html?error=true
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error') === 'true') {
+        document.getElementById('loginError').style.display = 'block';
+    }
 </script>
 </body>
 </html>
