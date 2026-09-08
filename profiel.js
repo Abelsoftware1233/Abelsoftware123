@@ -36,7 +36,7 @@
         try {
             const response = await fetch('/api/user/profile', {
                 method: 'GET',
-                credentials: 'include' // stuurt de sessie-cookie mee
+                credentials: 'include'
             });
 
             if (response.status === 401 || response.status === 403) {
@@ -102,7 +102,7 @@
 
     /**
      * Stuurt de wijzigingen naar de backend (PUT /api/user/profile)
-     * i.p.v. naar localStorage.
+     * i.p.v. naar localStorage. Veldnamen matchen UpdateProfileRequest.java.
      */
     async function handleProfileUpdate(event) {
         event.preventDefault();
@@ -121,16 +121,14 @@
             return;
         }
 
-        // Let op: veldnamen moeten matchen met je UpdateProfileRequest.java DTO
         const payload = {
             email: elements.emailField.value,
             firstName: elements.firstNameField.value,
-            lastName: elements.lastNameField.value,
-            profilePictureUrl: elements.profilePreview.src
+            lastName: elements.lastNameField.value
         };
 
         if (newPass !== "") {
-            payload.password = newPass;
+            payload.newPassword = newPass;
         }
 
         try {
