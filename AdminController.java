@@ -1,40 +1,92 @@
 package com.abelsoftware123.registratie.controller;
 
 import com.abelsoftware123.registratie.model.User;
-import com.abelsoftware123.registratie.repository.UserRepository;
+import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService userService;
 
-    // 1. Haal alle gebruikers op voor de tabel in admin.html
+    @Autowired
+    public AdminController(UserService userService) {
+        this.userService = userService;
+    }
+
+    /**
+     * Alle gebruikers ophalen (voor de tabel in admin.html)
+     */
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userRepository.findAll());
+        return ResponseEntity.ok(userService.findAllUsers());
     }
 
-    // 2. Verwijder een gebruiker
+    /**
+     * Nieuwe gebruiker aanmaken vanuit het admin-paneel
+     */
+    @PostMapping("/users")
+    public ResponseEntity<?> createUser(@RequestBody Map<String, String> request) {
+        try {
+            userService.createUserByAdmin(
+                request.get("username"),
+                request.get("email"),
+                request.get("password"),
+                request.get("role")
+            );
+            return ResponseEntity.ok(Map.of("message", "Gebruiker aangemaakt."));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    /**
+     * Gebruiker bewerken (username, email, rol)
+     */
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody Map<String, String> request) {
+        try {
+            userService.updateUserByAdmin(
+                id,
+                request.get("username"),
+                request.get("email"),
+                request.get("role")
+            );
+            return ResponseEntity.ok(Map.of("message", "Gebruiker bijgewerkt."));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    /**
+     * Gebruiker verwijderen
+     */
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        try {
+            userService.deleteUserById(id);
+            return ResponseEntity.ok(Map.of("message", "Gebruiker verwijderd."));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 
-    // 3. Maak een gebruiker Admin (Extra functie!)
-    @PutMapping("/users/{id}/make-admin")
-    public ResponseEntity<?> makeAdmin(@PathVariable Long id) {
-        return userRepository.findById(id).map(user -> {
-            user.setRole("ROLE_ADMIN");
-            userRepository.save(user);
-            return ResponseEntity.ok().build();
-        }).orElse(ResponseEntity.notFound().build());
+    /**
+     * Wachtwoord resetten - retourneert het nieuwe wachtwoord
+     */
+    @PostMapping("/users/{id}/reset-password")
+    public ResponseEntity<?> resetPassword(@PathVariable Long id) {
+        try {
+            String newPassword = userService.resetPassword(id);
+            return ResponseEntity.ok(Map.of("newPassword", newPassword));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 }
