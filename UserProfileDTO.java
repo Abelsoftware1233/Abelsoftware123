@@ -6,6 +6,7 @@ public class UserProfileDTO {
     private String email;
     private String firstName;
     private String lastName;
+    private String profilePictureUrl;
 
     // Getters en Setters
 
@@ -39,5 +40,13 @@ public class UserProfileDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
     }
 }
