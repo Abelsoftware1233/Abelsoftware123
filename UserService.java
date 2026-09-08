@@ -87,7 +87,6 @@ public class UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
 
-        // Wachtwoord alleen bijwerken als het veld is ingevuld
         if (request.getNewPassword() != null && !request.getNewPassword().isEmpty()) {
             if (request.getNewPassword().length() < 8) {
                  throw new RuntimeException("Nieuw wachtwoord moet minimaal 8 tekens lang zijn.");
@@ -96,5 +95,64 @@ public class UserService {
         }
         
         userRepository.save(user);
+    }
+
+    /**
+     * 6. GEBRUIKER AANMAKEN DOOR ADMIN
+     */
+    public void createUserByAdmin(String username, String email, String password, String role) {
+        if (username == null || username.length() < 3 || password == null || password.length() < 8) {
+            throw new RuntimeException("Gebruikersnaam min. 3 tekens, wachtwoord min. 8.");
+        }
+
+        if (userRepository.findByUsername(username).isPresent() || userRepository.findByEmail(email).isPresent()) {
+            throw new RuntimeException("Gebruikersnaam of e-mail al in gebruik.");
+        }
+
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setEmail(email);
+        newUser.setPasswordHash(passwordEncoder.encode(password));
+        newUser.setRole(normalizeRole(role));
+
+        userRepository.save(newUser);
+    }
+
+    /**
+     * 7. GEBRUIKER BIJWERKEN DOOR ADMIN
+     */
+    public void updateUserByAdmin(Long id, String username, String email, String role) {
+        User user = userRepository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
+
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setRole(normalizeRole(role));
+
+        userRepository.save(user);
+    }
+
+    /**
+     * 8. WACHTWOORD RESETTEN DOOR ADMIN
+     * Genereert een nieuw willekeurig wachtwoord en retourneert het (zodat de admin het kan doorgeven).
+     */
+    public String resetPassword(Long id) {
+        User user = userRepository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
+
+        String newPassword = "Echo" + (1000 + (int) (Math.random() * 9000));
+        user.setPasswordHash(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        return newPassword;
+    }
+
+    /**
+     * Helper: zorgt dat rollen altijd correct als ROLE_XXX worden opgeslagen
+     */
+    private String normalizeRole(String role) {
+        if (role == null) return "ROLE_USER";
+        String upper = role.toUpperCase();
+        return upper.startsWith("ROLE_") ? upper : "ROLE_" + upper;
     }
 }
