@@ -72,25 +72,20 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
-        dto.setProfilePictureUrl(user.getProfilePictureUrl()); // Zorg dat dit in je DTO staat!
+        dto.setProfilePictureUrl(user.getProfilePictureUrl());
         return dto;
     }
 
     /**
-     * 5. PROFIEL BIJWERKEN (Nu met Foto ondersteuning)
+     * 5. PROFIEL BIJWERKEN
      */
-    public void updateUserProfile(String username, UpdateProfileRequest request, String photoUrl) {
+    public void updateUserProfile(String username, UpdateProfileRequest request) {
         User user = userRepository.findByUsername(username)
                                 .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
         
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-
-        // Alleen de foto bijwerken als er een nieuwe is geüpload
-        if (photoUrl != null) {
-            user.setProfilePictureUrl(photoUrl);
-        }
 
         // Wachtwoord alleen bijwerken als het veld is ingevuld
         if (request.getNewPassword() != null && !request.getNewPassword().isEmpty()) {
