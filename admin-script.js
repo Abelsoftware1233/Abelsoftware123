@@ -1,40 +1,15 @@
 /**
- * Echo AI - Ultimate Admin Management System
- * Version: 2.8 (Compact Layout Integration)
- * Owner: Abelsoftware123
+ * Echo AI - Admin Management System V3.0 (Backend-connected)
+ * Praat nu met /api/admin/* endpoints i.p.v. localStorage
  */
 
-// --- 1. TOEGANGSCONTROLE ---
-function checkAccess() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const isPageAdmin = window.location.pathname.includes('admin.html');
-    
-    if (isPageAdmin) {
-        if (!isLoggedIn || !currentUser) return false;
-        const usernameLow = currentUser.username.toLowerCase();
-        const roleLow = (currentUser.role || "").toLowerCase();
-        return (usernameLow === 'abelsoftware123' || usernameLow === 'admin' || roleLow === 'admin');
-    }
-    return true;
-}
-
-if (!checkAccess()) {
-    alert("Toegang geweigerd: Je hebt niet de juiste rechten.");
-    window.location.href = 'login.html';
-}
-
-// Global variables voor paginering
 let currentPage = 1;
 const rowsPerPage = 10;
+let allUsers = [];
 
-document.addEventListener('DOMContentLoaded', function() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const adminNameElement = document.getElementById('adminName');
-    
-    if (adminNameElement && currentUser) {
-        adminNameElement.textContent = currentUser.username;
-    }
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadAdminInfo();
+    await loadUsers();
 
     const searchInput = document.getElementById('userSearch');
     if (searchInput) {
@@ -43,45 +18,48 @@ document.addEventListener('DOMContentLoaded', function() {
             renderUsers(e.target.value.toLowerCase());
         });
     }
-    if (document.getElementById('userTableBody')) {
-        renderUsers();
-    }
 });
 
-// --- 2. DATABASE LOGICA ---
-function getStoredUsers() {
-    const permanentUsers = (typeof getPermanentUsers === 'function') ? getPermanentUsers() : [];
-    let savedUsers = localStorage.getItem('echo_users');
-    let localUsers = savedUsers ? JSON.parse(savedUsers) : [];
-
-    let combinedUsers = [...permanentUsers];
-    localUsers.forEach(lUser => {
-        if (!combinedUsers.some(pUser => pUser.username.toLowerCase() === lUser.username.toLowerCase())) {
-            combinedUsers.push(lUser);
+/**
+ * Haalt het eigen profiel op om de naam boven in de sidebar te tonen
+ */
+async function loadAdminInfo() {
+    try {
+        const response = await fetch('/api/user/profile', { credentials: 'include' });
+        if (response.status === 401 || response.status === 403) {
+            window.location.href = 'login.html';
+            return;
         }
-    });
-
-    if (combinedUsers.length <= 5) {
-        const vNamen = ["Gerlinde", "Noah", "Gabriel", "Michaël", "Finn", "Levi", "Britney", "Mila", "Faisel", "Yasmina", "Nora", "Hugo", "Jessica", "Tessa", "Evelien", "Luca", "Xavi", "Bibi", "Lotte", "Halim", "Hakim", "Mohammed", "Ali", "Sem", "Sophie", "Bram", "Daan", "Milan", "Zoe"];
-        const domains = ["outlook.com", "gmail.com", "hotmail.com", "live.nl", "protonmail.com"];
-
-        for (let i = combinedUsers.length + 1; i <= 500; i++) {
-            const v = vNamen[Math.floor(Math.random() * vNamen.length)];
-            const d = domains[Math.floor(Math.random() * domains.length)];
-            combinedUsers.push({
-                id: i,
-                username: `${v}${i}`,
-                email: `${v.toLowerCase()}${i}@${d}`,
-                role: 'User',
-                password: "echo123"
-            });
-        }
-        localStorage.setItem('echo_users', JSON.stringify(combinedUsers));
+        const user = await response.json();
+        const adminNameElement = document.getElementById('adminName');
+        if (adminNameElement) adminNameElement.textContent = user.username;
+    } catch (error) {
+        console.error("Fout bij laden admin info:", error);
     }
-    return combinedUsers;
 }
 
-// --- 3. MODAL FUNCTIES ---
+/**
+ * Haalt alle gebruikers op bij de backend
+ */
+async function loadUsers() {
+    try {
+        const response = await fetch('/api/admin/users', { credentials: 'include' });
+
+        if (response.status === 401 || response.status === 403) {
+            alert("Toegang geweigerd: Je hebt niet de juiste rechten.");
+            window.location.href = 'login.html';
+            return;
+        }
+
+        allUsers = await response.json();
+        renderUsers();
+    } catch (error) {
+        console.error("Fout bij laden gebruikers:", error);
+        addLog("❌ Fout bij laden gebruikers van server.");
+    }
+}
+
+// --- MODAL FUNCTIES ---
 window.openAddUserModal = () => {
     const modal = document.getElementById('addUserModal');
     if (modal) modal.style.display = 'block';
@@ -98,13 +76,12 @@ window.closeAddUserModal = () => {
 };
 
 window.openEditModal = (id) => {
-    const users = getStoredUsers();
-    const user = users.find(u => u.id === id);
+    const user = allUsers.find(u => u.id === id);
     if (user) {
         document.getElementById('editUserId').value = user.id;
         document.getElementById('editUsername').value = user.username;
         document.getElementById('editEmail').value = user.email;
-        document.getElementById('editRole').value = user.role;
+        document.getElementById('editRole').value = user.role.replace('ROLE_', '');
         document.getElementById('editUserModal').style.display = 'block';
     }
 };
@@ -114,8 +91,9 @@ window.closeEditModal = () => {
     if (modal) modal.style.display = 'none';
 };
 
-// --- 4. CORE ACTIES ---
-window.saveNewUser = function() {
+// --- CORE ACTIES (nu via fetch naar de backend) ---
+
+window.saveNewUser = async function() {
     const username = document.getElementById('newUsername').value;
     const email = document.getElementById('newEmail').value;
     const password = document.getElementById('newPassword').value;
@@ -123,62 +101,94 @@ window.saveNewUser = function() {
 
     if (!username || !email || !password) return alert("Vul alle velden in.");
 
-    let users = getStoredUsers();
-    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
-    users.push({ id: newId, username, email, password, role });
-    localStorage.setItem('echo_users', JSON.stringify(users));
-    addLog(`Nieuwe gebruiker aangemaakt: ${username}`);
-    closeAddUserModal();
-    renderUsers(); 
+    try {
+        const response = await fetch('/api/admin/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ username, email, password, role })
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Aanmaken mislukt.');
+
+        addLog(`Nieuwe gebruiker aangemaakt: ${username}`);
+        closeAddUserModal();
+        await loadUsers();
+    } catch (error) {
+        alert("❌ " + error.message);
+    }
 };
 
-window.saveEditUser = function() {
+window.saveEditUser = async function() {
     const id = parseInt(document.getElementById('editUserId').value);
-    let users = getStoredUsers();
-    const index = users.findIndex(u => u.id === id);
+    const username = document.getElementById('editUsername').value;
+    const email = document.getElementById('editEmail').value;
+    const role = document.getElementById('editRole').value;
 
-    if (index !== -1) {
-        users[index].username = document.getElementById('editUsername').value;
-        users[index].email = document.getElementById('editEmail').value;
-        users[index].role = document.getElementById('editRole').value;
-        localStorage.setItem('echo_users', JSON.stringify(users));
+    try {
+        const response = await fetch(`/api/admin/users/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ username, email, role })
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Bijwerken mislukt.');
+
         addLog(`Gebruiker gewijzigd (ID: ${id})`);
         closeEditModal();
-        renderUsers();
+        await loadUsers();
+    } catch (error) {
+        alert("❌ " + error.message);
     }
 };
 
-window.resetPassword = function(id) {
-    const newPass = "Echo" + Math.floor(1000 + Math.random() * 9000);
-    if (confirm(`Wachtwoord herstellen naar: ${newPass}?`)) {
-        let users = getStoredUsers();
-        const index = users.findIndex(u => u.id === id);
-        if (index !== -1) {
-            users[index].password = newPass;
-            localStorage.setItem('echo_users', JSON.stringify(users));
-            addLog(`Wachtwoord gereset voor ID: ${id}`);
-            alert("Wachtwoord succesvol gewijzigd naar: " + newPass);
-        }
+window.resetPassword = async function(id) {
+    if (!confirm("Wachtwoord van deze gebruiker resetten?")) return;
+
+    try {
+        const response = await fetch(`/api/admin/users/${id}/reset-password`, {
+            method: 'POST',
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Resetten mislukt.');
+
+        addLog(`Wachtwoord gereset voor ID: ${id}`);
+        alert("Wachtwoord succesvol gewijzigd naar: " + data.newPassword);
+    } catch (error) {
+        alert("❌ " + error.message);
     }
 };
 
-window.deleteUser = function(id) {
-    if (id === 1 || id === 2) return alert("Systeembeveiliging: Eigenaar kan niet verwijderd worden.");
-    if (confirm('Gebruiker definitief verwijderen?')) {
-        let savedUsers = localStorage.getItem('echo_users');
-        let localUsers = savedUsers ? JSON.parse(savedUsers) : [];
-        localUsers = localUsers.filter(user => user.id !== id);
-        localStorage.setItem('echo_users', JSON.stringify(localUsers));
+window.deleteUser = async function(id) {
+    if (!confirm('Gebruiker definitief verwijderen?')) return;
+
+    try {
+        const response = await fetch(`/api/admin/users/${id}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Verwijderen mislukt.');
+
         addLog(`Gebruiker verwijderd (ID: ${id})`);
-        renderUsers();
+        await loadUsers();
+    } catch (error) {
+        alert("❌ " + error.message);
     }
 };
 
-// --- 5. RENDER & STATS (Compacte versie voor Foto 2) ---
+// --- RENDER & STATS ---
+
 function updateStats(users) {
-    if(document.getElementById('totalUsersCount')) document.getElementById('totalUsersCount').textContent = users.length;
-    const adminCount = users.filter(u => (u.role || "").toLowerCase() === 'admin' || u.id === 1 || u.id === 2).length;
-    if(document.getElementById('adminCount')) document.getElementById('adminCount').textContent = adminCount;
+    if (document.getElementById('totalUsersCount')) document.getElementById('totalUsersCount').textContent = users.length;
+    const adminCount = users.filter(u => (u.role || "").toUpperCase().includes('ADMIN')).length;
+    if (document.getElementById('adminCount')) document.getElementById('adminCount').textContent = adminCount;
 }
 
 function addLog(message) {
@@ -191,13 +201,12 @@ function addLog(message) {
 }
 
 function renderUsers(filter = '') {
-    const users = getStoredUsers();
-    updateStats(users);
+    updateStats(allUsers);
     const tableBody = document.getElementById('userTableBody');
     if (!tableBody) return;
-    tableBody.innerHTML = ''; 
+    tableBody.innerHTML = '';
 
-    const filteredUsers = users.filter(user => 
+    const filteredUsers = allUsers.filter(user =>
         (user.username || "").toLowerCase().includes(filter) || (user.email || "").toLowerCase().includes(filter)
     );
 
@@ -206,23 +215,20 @@ function renderUsers(filter = '') {
     const start = (currentPage - 1) * rowsPerPage;
     const paginatedUsers = filteredUsers.slice(start, start + rowsPerPage);
 
-        paginatedUsers.forEach(user => {
-        const isOwner = (user.id === 1 || user.id === 2);
-        
+    paginatedUsers.forEach(user => {
+        const roleDisplay = (user.role || "ROLE_USER").replace('ROLE_', '');
         tableBody.innerHTML += `
             <tr>
                 <td>${user.id}</td>
-                <td>${user.username} ${isOwner ? '⭐' : ''}</td>
+                <td>${user.username}</td>
                 <td>${user.email}</td>
-                <td><span class="badge ${(user.role || "User").toLowerCase()}">${user.role}</span></td>
+                <td><span class="badge ${roleDisplay.toLowerCase()}">${roleDisplay}</span></td>
                 <td>
-                    ${!isOwner ? `
-                        <div class="btn-group">
-                            <button class="btn-edit" onclick="openEditModal(${user.id})">Edit</button>
-                            <button class="btn-reset" onclick="resetPassword(${user.id})">Reset</button>
-                            <button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>
-                        </div>
-                    ` : `<span style="color:#00f0ff; font-weight:bold; font-size:11px;">OWNER</span>`}
+                    <div class="btn-group">
+                        <button class="btn-edit" onclick="openEditModal(${user.id})">Edit</button>
+                        <button class="btn-reset" onclick="resetPassword(${user.id})">Reset</button>
+                        <button class="btn-delete" onclick="deleteUser(${user.id})">Delete</button>
+                    </div>
                 </td>
             </tr>
         `;
@@ -231,13 +237,12 @@ function renderUsers(filter = '') {
     renderPaginationControls(filteredUsers.length);
 }
 
-// --- 6. PAGINERING & LOGOUT ---
 function renderPaginationControls(totalItems) {
     const container = document.getElementById('pagination');
     if (!container) return;
     const totalPages = Math.ceil(totalItems / rowsPerPage);
     let html = `<button class="btn-page" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">«</button>`;
-    
+
     for (let i = 1; i <= totalPages; i++) {
         if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
             html += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
@@ -245,7 +250,7 @@ function renderPaginationControls(totalItems) {
             html += `<span style="color:#00f0ff">...</span>`;
         }
     }
-    
+
     html += `<button class="btn-page" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">»</button>`;
     container.innerHTML = html;
 }
@@ -255,8 +260,11 @@ window.changePage = (page) => {
     renderUsers(document.getElementById('userSearch')?.value.toLowerCase() || '');
 };
 
-window.performLogout = function() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
+window.performLogout = async function() {
+    try {
+        await fetch('/perform_logout', { method: 'POST', credentials: 'include' });
+    } catch (e) {
+        console.error("Fout bij uitloggen:", e);
+    }
     window.location.href = 'login.html';
 };
