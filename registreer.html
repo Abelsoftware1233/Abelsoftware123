@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Abelsoftware123</title>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() { emailjs.init("RoeA9BgwLyBeUbv5i"); })();
@@ -43,85 +43,9 @@
         <button type="submit">Register Now</button>
     </form>
     <p style="text-align:center;">Do you have an account? <a href="login.html" style="color:#00f0ff;">Login here</a></p>
-</form>
-<p style="text-align:center;">Back to Homepage?<a href="index.html">Click Here</a></p>
+    <p style="text-align:center;">Back to Homepage?<a href="index.html">Click Here</a></p>
 </section>
 
-<script src="database.js"></script>
-<script src="admin-script.js"></script>
-
-<script>
-    // 1. EXTRA BEVEILIGING: Wis oude sessies zodat je niet gekickt wordt tijdens registreren
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-
-    document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const status = document.getElementById('statusMessage');
-        const user = document.getElementById('username').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const pass = document.getElementById('password').value;
-        const confirm = document.getElementById('password_confirm').value;
-
-        // Reset status
-        status.style.display = "none";
-
-        // 2. CONTROLES
-        if (user.toLowerCase() === 'admin' || user.toLowerCase() === 'abel_admin') {
-            status.textContent = "❌ Naam gereserveerd voor systeem."; 
-            status.className = "error"; 
-            status.style.display = "block"; 
-            return;
-        }
-        
-        if (pass !== confirm) {
-            status.textContent = "❌ Password Not The Same."; 
-            status.className = "error"; 
-            status.style.display = "block"; 
-            return;
-        }
-
-        // 3. OPSLAAN (Check of gebruiker al bestaat via getStoredUsers)
-        const allUsers = (typeof getStoredUsers === 'function') ? getStoredUsers() : [];
-        const exists = allUsers.some(u => u.username.toLowerCase() === user.toLowerCase() || u.email.toLowerCase() === email.toLowerCase());
-
-        if (exists) {
-            status.textContent = "❌ Username or e-mail already exists."; 
-            status.className = "error"; 
-            status.style.display = "block"; 
-            return;
-        }
-
-        // Nieuwe gebruiker toevoegen aan de lokale lijst
-        let localUsers = JSON.parse(localStorage.getItem('echo_users')) || [];
-        localUsers.push({ 
-            username: user, 
-            email: email, 
-            password: pass, 
-            role: 'User', 
-            id: Date.now() 
-        });
-        localStorage.setItem('echo_users', JSON.stringify(localUsers));
-
-        // 4. EMAILJS
-        try {
-            await emailjs.send('service_uyi3cur', 'template_ctg1y99', { 
-                username: user, 
-                email: email,
-                notes: "Nieuwe registratie Echo AI"
-            });
-        } catch (err) {
-            console.log("Email notificatie kon niet verzonden worden.");
-        }
-
-        status.textContent = "✅ Succes! You will send to login..."; 
-        status.className = "success"; 
-        status.style.display = "block";
-
-        setTimeout(() => { 
-            window.location.replace('login.html'); 
-        }, 2000);
-    });
-</script>
+<script src="registreer-script.js"></script>
 </body>
 </html>
