@@ -31,6 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 showStatus("✅ Account aangemaakt! Je wordt doorgestuurd naar login...", "success");
 
+                // EmailJS notificatie sturen na succesvolle registratie
+                // (mag falen zonder de registratie zelf te blokkeren)
+                try {
+                    await emailjs.send('service_uyi3cur', 'template_ctg1y99', {
+                        username: username,
+                        email: email,
+                        notes: "Nieuwe registratie Echo AI"
+                    });
+                } catch (emailError) {
+                    console.log("Email notificatie kon niet verzonden worden.", emailError);
+                }
+
                 setTimeout(() => {
                     window.location.href = 'login.html';
                 }, 2000);
