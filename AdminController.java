@@ -1,7 +1,5 @@
-package com.abelsoftware123.registratie.controller;
+package com.abelsoftware123.registratie;
 
-import com.abelsoftware123.registratie.model.User;
-import com.abelsoftware123.registratie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +18,11 @@ public class AdminController {
         this.userService = userService;
     }
 
-    /**
-     * Alle gebruikers ophalen (voor de tabel in admin.html)
-     */
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.findAllUsers());
     }
 
-    /**
-     * Nieuwe gebruiker aanmaken vanuit het admin-paneel
-     */
     @PostMapping("/users")
     public ResponseEntity<?> createUser(@RequestBody Map<String, String> request) {
         try {
@@ -46,9 +38,6 @@ public class AdminController {
         }
     }
 
-    /**
-     * Gebruiker bewerken (username, email, rol)
-     */
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody Map<String, String> request) {
         try {
@@ -64,9 +53,6 @@ public class AdminController {
         }
     }
 
-    /**
-     * Gebruiker verwijderen
-     */
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         try {
@@ -77,9 +63,6 @@ public class AdminController {
         }
     }
 
-    /**
-     * Wachtwoord resetten - retourneert het nieuwe wachtwoord
-     */
     @PostMapping("/users/{id}/reset-password")
     public ResponseEntity<?> resetPassword(@PathVariable Long id) {
         try {
