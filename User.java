@@ -1,9 +1,9 @@
-package com.abelsoftware123.registratie.model;
+package com.abelsoftware123.registratie;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users") 
+@Table(name = "users")
 public class User {
 
     @Id
@@ -19,19 +19,13 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    // Wordt gebruikt door Spring Security (bijv. ROLE_USER)
     @Column(nullable = false)
-    private String role = "ROLE_USER"; 
+    private String role = "ROLE_USER";
 
-    // Profiel velden
     private String firstName;
     private String lastName;
-    
-    // Veld voor de profielfoto (slaat de bestandsnaam of URL op)
     private String profilePictureUrl;
 
-    // --- CONSTRUCTORS ---
-    
     public User() {}
 
     public User(String username, String email, String passwordHash) {
@@ -41,15 +35,12 @@ public class User {
         this.role = "ROLE_USER";
     }
 
-    // --- GETTERS EN SETTERS ---
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
-    // CRUCIAAL VOOR LOGIN: Spring Security zoekt naar getPassword()
     public String getPassword() { return this.passwordHash; }
 
     public String getPasswordHash() { return passwordHash; }
