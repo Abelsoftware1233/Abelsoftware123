@@ -1,9 +1,5 @@
-package com.abelsoftware123.registratie.service;
+package com.abelsoftware123.registratie;
 
-import com.abelsoftware123.registratie.dto.UpdateProfileRequest;
-import com.abelsoftware123.registratie.dto.UserProfileDTO;
-import com.abelsoftware123.registratie.model.User;
-import com.abelsoftware123.registratie.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,37 +18,25 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    /**
-     * 1. REGISTRATIE
-     */
     public void registerNewUser(String username, String email, String password) {
         if (username == null || username.length() < 3 || password == null || password.length() < 8) {
             throw new RuntimeException("Gebruikersnaam min. 3 tekens, wachtwoord min. 8.");
         }
-        
         if (userRepository.findByUsername(username).isPresent() || userRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("Gebruikersnaam of e-mail al in gebruik.");
         }
-        
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setPasswordHash(passwordEncoder.encode(password));
-        newUser.setRole("ROLE_USER"); 
-        
+        newUser.setRole("ROLE_USER");
         userRepository.save(newUser);
     }
 
-    /**
-     * 2. ALLE GEBRUIKERS OPHALEN
-     */
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
-    /**
-     * 3. GEBRUIKER VERWIJDEREN
-     */
     public void deleteUserById(Long id) {
         if (!userRepository.existsById(id)) {
             throw new RuntimeException("Gebruiker niet gevonden.");
@@ -60,13 +44,9 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    /**
-     * 4. PROFIEL OPHALEN (Inclusief Foto URL)
-     */
     public UserProfileDTO getUserProfile(String username) {
         User user = userRepository.findByUsername(username)
                                 .orElseThrow(() -> new RuntimeException("Profiel niet gevonden."));
-        
         UserProfileDTO dto = new UserProfileDTO();
         dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());
@@ -76,80 +56,54 @@ public class UserService {
         return dto;
     }
 
-    /**
-     * 5. PROFIEL BIJWERKEN
-     */
     public void updateUserProfile(String username, UpdateProfileRequest request) {
         User user = userRepository.findByUsername(username)
                                 .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
-        
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-
         if (request.getNewPassword() != null && !request.getNewPassword().isEmpty()) {
             if (request.getNewPassword().length() < 8) {
                  throw new RuntimeException("Nieuw wachtwoord moet minimaal 8 tekens lang zijn.");
             }
             user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
         }
-        
         userRepository.save(user);
     }
 
-    /**
-     * 6. GEBRUIKER AANMAKEN DOOR ADMIN
-     */
     public void createUserByAdmin(String username, String email, String password, String role) {
         if (username == null || username.length() < 3 || password == null || password.length() < 8) {
             throw new RuntimeException("Gebruikersnaam min. 3 tekens, wachtwoord min. 8.");
         }
-
         if (userRepository.findByUsername(username).isPresent() || userRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("Gebruikersnaam of e-mail al in gebruik.");
         }
-
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setPasswordHash(passwordEncoder.encode(password));
         newUser.setRole(normalizeRole(role));
-
         userRepository.save(newUser);
     }
 
-    /**
-     * 7. GEBRUIKER BIJWERKEN DOOR ADMIN
-     */
     public void updateUserByAdmin(Long id, String username, String email, String role) {
         User user = userRepository.findById(id)
                                 .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
-
         user.setUsername(username);
         user.setEmail(email);
         user.setRole(normalizeRole(role));
-
         userRepository.save(user);
     }
 
-    /**
-     * 8. WACHTWOORD RESETTEN DOOR ADMIN
-     * Genereert een nieuw willekeurig wachtwoord en retourneert het (zodat de admin het kan doorgeven).
-     */
     public String resetPassword(Long id) {
         User user = userRepository.findById(id)
                                 .orElseThrow(() -> new RuntimeException("Gebruiker niet gevonden."));
-
         String newPassword = "Echo" + (1000 + (int) (Math.random() * 9000));
         user.setPasswordHash(passwordEncoder.encode(newPassword));
         userRepository.save(user);
-
         return newPassword;
     }
 
-    /**
-     * Helper: zorgt dat rollen altijd correct als ROLE_XXX worden opgeslagen
-     */
     private String normalizeRole(String role) {
         if (role == null) return "ROLE_USER";
         String upper = role.toUpperCase();
