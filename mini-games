@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title data-en="Downloads Games · Abelsoftware123" data-nl="Downloads Games · Abelsoftware123">Downloads Games · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10; color: #eaeef2; line-height: 1.5;
+      min-height: 100vh; padding: 1rem; display: flex;
+      flex-direction: column; align-items: center;
+    }
+
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px; width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem; padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2); transition: all 0.2s;
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; gap: 1rem 0.5rem; }
+    .brand-group { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-icon { font-size: 2rem; color: #00f2ff; filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5)); }
+    .brand-title {
+      font-size: 1.8rem; font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent; letter-spacing: -0.02em; text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    /* ===== LANGUAGE SWITCH ===== */
+    .lang-switch { display: flex; gap: 0.4rem; }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.03); color: #b0c8dd; border: 1px solid rgba(0, 242, 255, 0.25);
+      padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; transition: 0.2s; backdrop-filter: blur(2px);
+    }
+    .lang-btn:hover { border-color: #00f2ff; color: #fff; }
+    .lang-btn.active { background: rgba(0, 242, 255, 0.18); border-color: #00f2ff; color: #fff; box-shadow: 0 0 12px rgba(0, 242, 255, 0.35); }
+
+    /* ===== NAVIGATION ===== */
+    .main-nav { margin: 1.2rem 0 2rem; }
+    .main-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; list-style: none; }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03); color: #b0c8dd; padding: 0.5rem 1.2rem;
+      border-radius: 40px; font-size: 0.85rem; font-weight: 500; text-decoration: none;
+      border: 1px solid transparent; transition: 0.2s; backdrop-filter: blur(2px);
+    }
+    .main-nav a:hover { background: rgba(0, 242, 255, 0.12); border-color: #00f2ff66; color: #fff; }
+    .main-nav a.active { background: rgba(0, 242, 255, 0.18); border-color: #00f2ff; color: #fff; font-weight: 600; }
+
+    /* ===== GRID LAYOUT ===== */
+    .page-grid { display: grid; grid-template-columns: 1fr; gap: 2.2rem; margin-top: 1rem; }
+    @media (min-width: 768px) { .page-grid { grid-template-columns: repeat(2, 1fr); } .full-width { grid-column: 1 / -1; } }
+    @media (min-width: 1024px) { .page-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem; padding: 1.8rem 1.6rem; border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); transition: transform 0.25s ease, box-shadow 0.3s;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40; }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .card-header i { font-size: 1.8rem; color: #00f2ff; filter: drop-shadow(0 0 8px #00f2ff88); }
+    .card h2 {
+      font-size: 1.3rem; font-weight: 600; background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .card p { color: #c8d6e5; font-size: 0.9rem; margin-bottom: 1.2rem; flex-grow: 1; }
+
+    .badge-role {
+      display: inline-block; margin-bottom: 0.8rem; padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1); border: 1px solid #00f2ff; color: #00f2ff;
+      border-radius: 20px; font-size: 0.7rem; text-transform: uppercase; align-self: flex-start;
+    }
+    .badge-role.gold { background: rgba(255, 200, 0, 0.1); border-color: #ffcf40; color: #ffcf40; }
+
+    /* ===== BUTTONS ===== */
+    .cta-btn {
+      display: inline-block; background: linear-gradient(145deg, #00f2ff, #0099ff);
+      border: none; color: #0b0d10; padding: 0.7rem 1.5rem; border-radius: 40px;
+      font-weight: 700; font-size: 0.9rem; text-decoration: none; text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 242, 255, 0.4); transition: 0.25s; width: 100%;
+    }
+    .cta-btn:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(0, 242, 255, 0.6); color: #000; }
+    .btn-group { display: flex; gap: 0.5rem; flex-direction: column; }
+
+    /* ===== CHAT WIDGET ===== */
+    #chat-launcher {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; background: #00f2ff;
+      width: 60px; height: 60px; border-radius: 30px; display: flex; justify-content: center;
+      align-items: center; font-size: 2rem; color: #0b0d10; box-shadow: 0 0 30px #00f2ffaa;
+      border: none; cursor: pointer; z-index: 1000; transition: 0.3s; animation: float 4s ease-in-out infinite;
+    }
+    #chat-launcher:hover { transform: scale(1.1); box-shadow: 0 0 50px #00f2ff; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    #chat-container {
+      position: fixed; bottom: 90px; right: 20px; width: 340px; height: 480px;
+      background: #1a1f2a; border: 2px solid #00f2ff; border-radius: 1.2rem;
+      display: none; flex-direction: column; overflow: hidden; z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+    #chat-container.open { display: flex; }
+    #chat-header { background: #00f2ff; color: #0b0d10; padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; font-weight: 700; }
+    #chat-header button { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+    #messages { flex: 1; padding: 1rem; overflow-y: auto; background: #12161f; display: flex; flex-direction: column; gap: 0.5rem; }
+    .msg { max-width: 85%; padding: 0.5rem 0.9rem; border-radius: 0.8rem; font-size: 0.85rem; line-height: 1.4; word-wrap: break-word; }
+    .bot-msg { background: #252e3f; color: #b0f0ff; align-self: flex-start; border: 1px solid #00f2ff44; border-bottom-left-radius: 0.2rem; }
+    .user-msg { background: #00f2ff; color: #0b0d10; align-self: flex-end; border-bottom-right-radius: 0.2rem; }
+    .msg-time { font-size: 0.6rem; opacity: 0.5; margin-top: 0.2rem; display: block; }
+
+    .chat-quick-buttons { display: flex; gap: 0.3rem; padding: 0.5rem; background: #0e121c; justify-content: center; flex-wrap: wrap;}
+    .quick-btn { background: #1a1f2a; border: 1px solid #2a3344; color: #b0c8dd; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem; cursor: pointer; }
+    .quick-btn:hover { border-color: #00f2ff; color: #00f2ff; }
+
+    #input-area { display: flex; padding: 0.6rem; background: #1a1f2a; border-top: 1px solid #2a3344; gap: 0.5rem; }
+    #input-area input { flex: 1; padding: 0.5rem 0.8rem; border-radius: 30px; border: 1px solid #2a3344; background: #0b0d10; color: #eaeef2; outline: none; }
+    #input-area button { background: #00f2ff; border: none; border-radius: 30px; padding: 0.5rem 1rem; color: #0b0d10; font-weight: bold; cursor: pointer; }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-gamepad brand-icon"></i>
+      <span class="brand-title">Downloads Games</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">🇳🇱 NL</button>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="payments.html" data-en="Payments" data-nl="Betalingen">Payments/Betalingen Games & PSP</a></li>
+      <li><a href="website.html" data-en="Order Website & App" data-nl="Mobiele Games Emulator">Mobile Games Emulator</a></li>
+      <li><a href="profiel.html" data-en="My Profile" data-nl="Mijn Profiel">My Profile</a></li>
+      <li><a href="mini-games.html" class="active" data-en="Downloads Games" data-nl="Downloads Games">Downloads Games</a></li>
+    </ul>
+  </nav>
+
+  <div class="card full-width" style="margin-bottom: 2rem; text-align: center;">
+    <div class="card-header" style="justify-content: center;">
+      <i class="fas fa-download"></i>
+      <h2 data-en="Available Game Downloads" data-nl="Beschikbare Game Downloads">Available Game Downloads</h2>
+    </div>
+    <p data-en="Download our newest Games and Apps directly below. PC Games do not require installation to play. Make sure you have Terabox or Dropbox installed for mobile downloads." data-nl="Download hieronder onze nieuwste Games en Apps. PC-games hebben geen installatie nodig om te spelen. Zorg dat je Terabox of Dropbox geïnstalleerd hebt voor mobiele downloads.">Download our newest Games and Apps directly below. PC Games do not require installation to play. Make sure you have Terabox or Dropbox installed for mobile downloads.</p>
+  </div>
+
+  <div class="page-grid">
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-kiwi-bird"></i>
+        <h2>Fluppy Burd Blocks</h2>
+      </div>
+      <p data-en="The best old school classic from the 2010s, re-released in the year 2025!" data-nl="De beste oldschool klassieker uit de jaren 2010, opnieuw uitgebracht in 2025!">The best old school classic from the 2010s, re-released in the year 2025!</p>
+      <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gem"></i>
+        <h2>WMWario Crush Saga</h2>
+      </div>
+      <p data-en="Best puzzle game of the year 2025. With many possibilities and features. The game for young and old." data-nl="Beste puzzelgame van het jaar 2025. Met veel mogelijkheden en functies. De game voor jong en oud.">Best puzzle game of the year 2025. With many possibilities and features. The game for young and old.</p>
+      <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-bolt"></i>
+        <h2>Kross and Zero</h2>
+      </div>
+      <p data-en="Kross and Zero, re-released in 2025 with a futuristic design." data-nl="Kross and Zero, opnieuw uitgebracht in 2025 met een futuristisch ontwerp.">Kross and Zero, re-released in 2025 with a futuristic design.</p>
+      <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-coins"></i>
+        <h2>WMWario Slotpipes</h2>
+      </div>
+      <p data-en="A complete gamble slot machine game, best gamble game of the year 2025." data-nl="Een complete gokgame gokkast, beste gokgame van het jaar 2025.">A complete gamble slot machine game, best gamble game of the year 2025.</p>
+      <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-bullseye"></i>
+        <h2>YF Arrows</h2>
+      </div>
+      <p data-en="Best arrow and bow game of the year 2025." data-nl="Beste pijl-en-boog game van het jaar 2025.">Best arrow and bow game of the year 2025.</p>
+      <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&st=058p9guv&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-icons"></i>
+        <h2>Slotmoji</h2>
+      </div>
+      <p data-en="Best gamble game of the year 2026, full of funny emojis." data-nl="Beste gokgame van het jaar 2026, vol grappige emoji&#x27;s.">Best gamble game of the year 2026, full of funny emojis.</p>
+      <a href="https://www.dropbox.com/scl/fi/izywurlhbrvmcdzat6tpg/_SlotMoji_19141773.apk?rlkey=cqgzkldieeyg51au3u3qkcny6&st=4430u5pl&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-ship"></i>
+        <h2>Flying Dutchman</h2>
+      </div>
+      <p data-en="The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades." data-nl="De leukste goudkoorts-game van het jaar 2025-2026 met veel power-ups en andere upgrades.">The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades.</p>
+      <a href="https://www.dropbox.com/scl/fi/zdgqu2yma6ld1szvojqs7/_Flying_Dutchman_19177548.apk?rlkey=87y4e3yifn8wr9lsyc4plifw6&st=lretx7nw&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>  </div> <!-- /page-grid -->
+</div>
+
+<!-- ===== CHAT LAUNCHER ===== -->
+<div id="chat-launcher" onclick="window.toggleChat()">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- ===== CHAT CONTAINER ===== -->
+<div id="chat-container">
+  <div id="chat-header">
+    <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> <span data-en="AI Assistant" data-nl="AI-assistent">AI Assistant</span></span>
+    <button onclick="window.toggleChat()"><i class="fas fa-times" style="color:#0b0d10"></i></button>
+  </div>
+  <div class="chat-quick-buttons">
+    <button class="quick-btn" onclick="window.handleQuickReply('prices')">💸 <span data-en="Prices" data-nl="Prijzen">Prices</span></button>
+    <button class="quick-btn" onclick="window.handleQuickReply('payments')">💶 <span data-en="Payments" data-nl="Betalingen">Payments</span></button>
+    <button class="quick-btn" onclick="window.handleQuickReply('contact')">🧑‍💻 <span data-en="Contact" data-nl="Contact">Contact</span></button>
+  </div>
+  <div id="messages">
+    <div class="msg bot-msg">
+      <i class="fas fa-robot" style="margin-right: 0.3rem;"></i>
+      <span data-en="Welcome to Abelsoftware123 AI Assistant! How can I help you today?" data-nl="Welkom bij de Abelsoftware123 AI-assistent! Waarmee kan ik je vandaag helpen?">Welcome to Abelsoftware123 AI Assistant! How can I help you today?</span>
+    </div>
+  </div>
+  <div id="input-area">
+    <input type="text" id="chat-input" data-en-placeholder="Ask something..." data-nl-placeholder="Vraag iets..." placeholder="Ask something..." onkeypress="if(event.key==='Enter') window.askBot()">
+    <button onclick="window.askBot()" data-en="Send" data-nl="Verstuur">Send</button>
+  </div>
+</div>
+
+<script src="chatbot.js"></script>
+<script>
+  // Echo AI Logic Integration
+  let echo = null;
+
+  window.toggleChat = function() {
+      const chat = document.getElementById("chat-container");
+      chat.classList.toggle('open');
+
+      if (chat.classList.contains('open')) {
+          if (!echo && typeof BasicBot !== 'undefined') {
+              echo = new BasicBot();
+              console.log("Echo AI is now online!");
+          } else if (typeof BasicBot === 'undefined') {
+              console.error("Error: chatbot.js is not loaded properly or BasicBot class is missing.");
+          }
+      }
+  };
+
+  window.handleQuickReply = function(keyword) {
+      const input = document.getElementById("chat-input");
+      if (input) {
+          input.value = keyword;
+          window.askBot();
+      }
+  };
+
+  window.askBot = async function() {
+      const input = document.getElementById("chat-input");
+      const container = document.getElementById("messages");
+      const text = input.value.trim();
+
+      if (!text || !echo) return;
+
+      // Add User Message
+      container.innerHTML += `
+        <div class="msg user-msg">
+          ${text}
+          <span class="msg-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+        </div>`;
+
+      input.value = "";
+      container.scrollTop = container.scrollHeight;
+
+      try {
+          const response = await echo.chat(text);
+          setTimeout(() => {
+              container.innerHTML += `
+                <div class="msg bot-msg">
+                  <i class="fas fa-robot" style="margin-right:0.3rem;"></i> ${response}
+                  <span class="msg-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                </div>`;
+              container.scrollTop = container.scrollHeight;
+          }, 400);
+      } catch (err) {
+          console.error("Error in Echo chat:", err);
+      }
+  };
+
+  window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
+
+  // ===== LANGUAGE SWITCH (EN default / NL toggle) =====
+  window.setLang = function(lang) {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+          var text = lang === 'nl' ? el.getAttribute('data-nl') : el.getAttribute('data-en');
+          if (text !== null) {
+              if (el.tagName === 'TITLE') {
+                  document.title = text;
+              } else {
+                  el.textContent = text;
+              }
+          }
+      });
+      document.querySelectorAll('[data-en-placeholder]').forEach(function(el) {
+          var ph = lang === 'nl' ? el.getAttribute('data-nl-placeholder') : el.getAttribute('data-en-placeholder');
+          if (ph !== null) el.setAttribute('placeholder', ph);
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.setAttribute('lang', lang);
+      try { localStorage.setItem('site-lang', lang); } catch (e) {}
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+      var saved = 'en';
+      try { saved = localStorage.getItem('site-lang') || 'en'; } catch (e) {}
+      window.setLang(saved);
+  });
+</script>
+
+</body>
+</html>
