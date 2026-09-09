@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>Downloads Games · Abelsoftware123</title>
+  <title data-en="Downloads Games · Abelsoftware123" data-nl="Downloads Games · Abelsoftware123">Downloads Games · Abelsoftware123</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* ===== RESET & BASE ===== */
@@ -34,6 +34,16 @@
       -webkit-background-clip: text; background-clip: text;
       color: transparent; letter-spacing: -0.02em; text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
     }
+
+    /* ===== LANGUAGE SWITCH ===== */
+    .lang-switch { display: flex; gap: 0.4rem; }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.03); color: #b0c8dd; border: 1px solid rgba(0, 242, 255, 0.25);
+      padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; transition: 0.2s; backdrop-filter: blur(2px);
+    }
+    .lang-btn:hover { border-color: #00f2ff; color: #fff; }
+    .lang-btn.active { background: rgba(0, 242, 255, 0.18); border-color: #00f2ff; color: #fff; box-shadow: 0 0 12px rgba(0, 242, 255, 0.35); }
 
     /* ===== NAVIGATION ===== */
     .main-nav { margin: 1.2rem 0 2rem; }
@@ -126,23 +136,27 @@
       <i class="fas fa-gamepad brand-icon"></i>
       <span class="brand-title">Downloads Games</span>
     </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">🇳🇱 NL</button>
+    </div>
   </div>
 
   <nav class="main-nav">
     <ul>
-      <li><a href="payments.html">Payments</a></li>
-      <li><a href="emulator.html">Mobile Games Emulator</a></li>
-      <li><a href="profiel.html">My Profile</a></li>
-      <li><a href="profiel-games.html" class="active">Downloads Games</a></li>
+      <li><a href="payments.html" data-en="Payments" data-nl="Betalingen">Payments</a></li>
+      <li><a href="emulator.html" data-en="Mobile Games Emulator" data-nl="Mobiele Games Emulator">Mobile Games Emulator</a></li>
+      <li><a href="profiel.html" data-en="My Profile" data-nl="Mijn Profiel">My Profile</a></li>
+      <li><a href="profiel-games.html" class="active" data-en="Downloads Games" data-nl="Downloads Games">Downloads Games</a></li>
     </ul>
   </nav>
 
   <div class="card full-width" style="margin-bottom: 2rem; text-align: center;">
     <div class="card-header" style="justify-content: center;">
       <i class="fas fa-download"></i>
-      <h2>Available Game Downloads</h2>
+      <h2 data-en="Available Game Downloads" data-nl="Beschikbare Game Downloads">Available Game Downloads</h2>
     </div>
-    <p>Download hieronder onze nieuwste Games en Apps. PC-games hebben geen installatie nodig om te spelen. Zorg dat je Terabox of Dropbox geïnstalleerd hebt voor mobiele downloads.</p>
+    <p data-en="Download our newest Games and Apps directly below. PC Games do not require installation to play. Make sure you have Terabox or Dropbox installed for mobile downloads." data-nl="Download hieronder onze nieuwste Games en Apps. PC-games hebben geen installatie nodig om te spelen. Zorg dat je Terabox of Dropbox geïnstalleerd hebt voor mobiele downloads.">Download our newest Games and Apps directly below. PC Games do not require installation to play. Make sure you have Terabox or Dropbox installed for mobile downloads.</p>
   </div>
 
   <div class="page-grid">
@@ -153,7 +167,7 @@
         <i class="fas fa-desktop"></i>
         <h2>Abel Game Launcher</h2>
       </div>
-      <p>Met de Abel Game Launcher heb je toegang tot al onze games op één plek. Bedankt voor je aankoop. Jouw downloadknoppen zijn nu ontgrendeld. Alleen PC-games: klik op download en speel direct zonder installatie (Windows/Apple/Android/Chromebook).</p>
+      <p data-en="With the Abel Game Launcher you have access to all our games in one place. Thank you for your purchase. Your download buttons are now unlocked. For PC games only: click download and play instantly, no installation needed (Windows/Apple/Android/Chromebook)." data-nl="Met de Abel Game Launcher heb je toegang tot al onze games op één plek. Bedankt voor je aankoop. Jouw downloadknoppen zijn nu ontgrendeld. Alleen PC-games: klik op download en speel direct zonder installatie (Windows/Apple/Android/Chromebook).">With the Abel Game Launcher you have access to all our games in one place. Thank you for your purchase. Your download buttons are now unlocked. For PC games only: click download and play instantly, no installation needed (Windows/Apple/Android/Chromebook).</p>
       <div class="btn-group">
         <a href="https://terabox.com/s/your-link-here" class="cta-btn" target="_blank"><i class="fas fa-cloud-download-alt"></i> Download via Terabox</a>
         <a href="https://www.dropbox.com/your-link-here" class="cta-btn" style="background: linear-gradient(145deg, #0061ff, #00a4ff); color: white;" target="_blank"><i class="fab fa-dropbox"></i> Download via Dropbox</a>
@@ -166,7 +180,7 @@
         <i class="fas fa-desktop"></i>
         <h2>Abel123 Game Launcher</h2>
       </div>
-      <p>Toegang tot alle games met onbeperkte speeluren.</p>
+      <p data-en="Access to all games with unlimited play hours." data-nl="Toegang tot alle games met onbeperkte speeluren.">Access to all games with unlimited play hours.</p>
       <a href="https://1024terabox.com/s/1SRaE3KtvI6NIpDRMY3aWyA" class="cta-btn" download><i class="fas fa-download"></i> Download Launcher</a>
     </div>
 
@@ -176,7 +190,7 @@
         <i class="fas fa-gamepad"></i>
         <h2>Super Abel123 World 6</h2>
       </div>
-      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <p data-en="Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App." data-nl="Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.">Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App.</p>
       <a href="https://1024terabox.com/s/1OE_Dha66BxEt8TJzxPShqQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -186,8 +200,8 @@
         <i class="fas fa-gamepad"></i>
         <h2>Super Abel123 World 5</h2>
       </div>
-      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
-      <a href="https://1024terabox.com/s/1p_DaDQsamKjPIAdekYPoMg" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+      <p data-en="Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App." data-nl="Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.">Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App.</p>
+      <a href="https://1024terabox.com/s/1Hc6uG2dydbd8Ee74p5xM3g" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
     <div class="card">
@@ -196,7 +210,7 @@
         <i class="fas fa-gamepad"></i>
         <h2>Super Abel123 World 4</h2>
       </div>
-      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <p data-en="Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App." data-nl="Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.">Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App.</p>
       <a href="https://1024terabox.com/s/1INMt625l_Xe94vq7IqB0aQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -206,7 +220,7 @@
         <i class="fas fa-gamepad"></i>
         <h2>Super Abel123 World 3</h2>
       </div>
-      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <p data-en="Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App." data-nl="Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.">Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App.</p>
       <a href="https://1024terabox.com/s/1Yv3W9qQ8wfFTML0flmAtDQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -216,7 +230,7 @@
         <i class="fas fa-gamepad"></i>
         <h2>Super Abel123 World 2</h2>
       </div>
-      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <p data-en="Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App." data-nl="Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.">Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App.</p>
       <a href="https://1024terabox.com/s/1qvSV6ynTy7LQpnXhF6Ur8Q" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -226,7 +240,7 @@
         <i class="fas fa-gamepad"></i>
         <h2>Super Abel123 World 1</h2>
       </div>
-      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <p data-en="Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App." data-nl="Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.">Best Super Abel123 World adventure game of the year. Survive and win the adventure. Android App.</p>
       <a href="https://1024terabox.com/s/1nn0rZDs8Q0a9y3Srbgb0wg" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -236,7 +250,7 @@
         <i class="fas fa-bomb"></i>
         <h2>Abel123 Demolition Game</h2>
       </div>
-      <p>Beste Demolition Game voor jong en oud, blaas het gebouw op in een groot avontuur. Vernietig en win het avontuur. Android App.</p>
+      <p data-en="Best Demolition Game for young and old, blow up the building in a big adventure. Destroy and win the adventure. Android App." data-nl="Beste Demolition Game voor jong en oud, blaas het gebouw op in een groot avontuur. Vernietig en win het avontuur. Android App.">Best Demolition Game for young and old, blow up the building in a big adventure. Destroy and win the adventure. Android App.</p>
       <a href="https://1024terabox.com/s/1B9lcOnBRFJNBEAxnxZ53jQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -244,9 +258,9 @@
       <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
       <div class="card-header">
         <i class="fas fa-tools"></i>
-        <h2>WMWario 90's Matrix Builder</h2>
+        <h2>WMWario 90&#x27;s Matrix Builder</h2>
       </div>
-      <p>Beste WMWario 90's-Builder-Matrix-Year 2030-Dimension Android Crazy Mario Game en Thema's! Game van het jaar! Android App.</p>
+      <p data-en="Best WMWario 90&#x27;s-Builder-Matrix-Year 2030-Dimension Android Crazy Mario Game and Themes! Game of the year! Android App." data-nl="Beste WMWario 90&#x27;s-Builder-Matrix-Year 2030-Dimension Android Crazy Mario Game en Thema&#x27;s! Game van het jaar! Android App.">Best WMWario 90&#x27;s-Builder-Matrix-Year 2030-Dimension Android Crazy Mario Game and Themes! Game of the year! Android App.</p>
       <a href="https://1024terabox.com/s/1s-EN6K0KK5KF-um42FJKMA" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -256,7 +270,7 @@
         <i class="fas fa-rocket"></i>
         <h2>Mars Climb Spacer</h2>
       </div>
-      <p>Rijd met de Mars Rover over Mars, vernietig je voertuig niet. Beste racegame. Android App.</p>
+      <p data-en="Drive the Mars Rover across Mars, don&#x27;t destroy your vehicle. Best racing game. Android App." data-nl="Rijd met de Mars Rover over Mars, vernietig je voertuig niet. Beste racegame. Android App.">Drive the Mars Rover across Mars, don&#x27;t destroy your vehicle. Best racing game. Android App.</p>
       <a href="https://1024terabox.com/s/11xzT_vBqleIWS4u1e1HXSQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -266,7 +280,7 @@
         <i class="fas fa-moon"></i>
         <h2>Moon Climb Spacer</h2>
       </div>
-      <p>Rijd met de Moon Lander over de hele maan, vernietig je voertuig niet. Beste racegame. Android App.</p>
+      <p data-en="Drive the Moon Lander across the whole moon, don&#x27;t destroy your vehicle. Best racing game. Android App." data-nl="Rijd met de Moon Lander over de hele maan, vernietig je voertuig niet. Beste racegame. Android App.">Drive the Moon Lander across the whole moon, don&#x27;t destroy your vehicle. Best racing game. Android App.</p>
       <a href="https://1024terabox.com/s/1cqvtv-JCMrD34768eyiOhw" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -274,9 +288,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario &amp; Luigi 3D Happy World Online</h2>
+        <h2>WMWario &amp; Luigi 3D Happy World Online</h2>
       </div>
-      <p>Beste Mario World Online met Luigi, een 3D avonturengame van het jaar 2026. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World Online with Luigi, a 3D adventure game of the year 2026. PC and Laptop only." data-nl="Beste WMWario World Online met Luigi, een 3D avonturengame van het jaar 2026. Alleen voor PC en Laptop.">Best WMWario World Online with Luigi, a 3D adventure game of the year 2026. PC and Laptop only.</p>
       <a href="https://ipodtouch0218.itch.io/nsmb-mariovsluigi" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -284,9 +298,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Super M World</h2>
+        <h2>WMWario Super M World</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/super-mario-for-snes.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -294,9 +308,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario New Strange M Bros</h2>
+        <h2>WMWario New Strange M Bros</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/new-strange-mario-bros.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -304,9 +318,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario M Bros World 2</h2>
+        <h2>WMWario M Bros World 2</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/smb-part-2.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -314,9 +328,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-star"></i>
-        <h2>Mario Super M Allstars Edition</h2>
+        <h2>WMWario Super M Allstars Edition</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! 5 Crazy Mario Games and Themes bundled together. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! 5 Crazy Mario Games and Themes bundled together. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/super-mario-all-stars.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -324,9 +338,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-crown"></i>
-        <h2>Mario Super M Princess Rescue</h2>
+        <h2>WMWario Super M Princess Rescue</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/smw-princess-rescue.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -334,9 +348,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Super M Land 2</h2>
+        <h2>WMWario Super M Land 2</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/super-mario-land-2-dx.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -344,9 +358,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Super M Banzai World</h2>
+        <h2>WMWario Super M Banzai World</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/banzai-mario-world.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -354,9 +368,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Super M Land 1</h2>
+        <h2>WMWario Super M Land 1</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! Crazy Mario Game and Themes with many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/super-mario-land-dx.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -364,9 +378,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-hat-wizard"></i>
-        <h2>Mario Happy World Fantasy</h2>
+        <h2>WMWario Happy World Fantasy</h2>
       </div>
-      <p>Beste Mario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World 2026 adventure game of the year 2026! With many worlds and maps. PC and Laptop only." data-nl="Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.">Best WMWario World 2026 adventure game of the year 2026! With many worlds and maps. PC and Laptop only.</p>
       <a href="https://www.smbgames.be/super-mario-for-snes.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -374,9 +388,9 @@
       <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
       <div class="card-header">
         <i class="fas fa-mobile-alt"></i>
-        <h2>Mario The Game</h2>
+        <h2>WMWario The Game</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026 op Android App.</p>
+      <p data-en="Best adventure game of the year 2025-2026 on Android App." data-nl="Beste avonturengame van het jaar 2025-2026 op Android App.">Best adventure game of the year 2025-2026 on Android App.</p>
       <a href="https://www.dropbox.com/scl/fi/kan1xfr4plcfy8flmnbmt/_Happy_Mario_19141767.apk?rlkey=pm42mvizbqckncrqc6dp18k4n&st=rou7d80m&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -384,9 +398,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Happy World 12</h2>
+        <h2>WMWario Happy World 12</h2>
       </div>
-      <p>Beste Mario World avonturengame van het jaar 2025-2026. Alleen voor PC en Laptop.</p>
+      <p data-en="Best WMWario World adventure game of the year 2025-2026. PC and Laptop only." data-nl="Beste WMWario World avonturengame van het jaar 2025-2026. Alleen voor PC en Laptop.">Best WMWario World adventure game of the year 2025-2026. PC and Laptop only.</p>
       <a href="https://tylerreichle.github.io/mario_js/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -394,9 +408,9 @@
       <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Happy World 11</h2>
+        <h2>WMWario Happy World 11</h2>
       </div>
-      <p>Beste Mario 64 avonturengame van het jaar 2025-2026 op PC en Laptop.</p>
+      <p data-en="Best WMWario 64 adventure game of the year 2025-2026 on PC and Laptop." data-nl="Beste WMWario 64 avonturengame van het jaar 2025-2026 op PC en Laptop.">Best WMWario 64 adventure game of the year 2025-2026 on PC and Laptop.</p>
       <a href="https://manscod.github.io/other/sm64/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -404,9 +418,9 @@
       <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Happy World 10</h2>
+        <h2>WMWario Happy World 10</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.</p>
+      <p data-en="Best adventure game of the year 2025-2026. Complete with many features. The game for young and old." data-nl="Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.">Best adventure game of the year 2025-2026. Complete with many features. The game for young and old.</p>
       <a href="https://js-dos.com/mario/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -414,9 +428,9 @@
       <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Happy World 9</h2>
+        <h2>WMWario Happy World 9</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.</p>
+      <p data-en="Best adventure game of the year 2025-2026. Complete with many features. The game for young and old." data-nl="Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.">Best adventure game of the year 2025-2026. Complete with many features. The game for young and old.</p>
       <a href="https://openhtml5games.github.io/games-mirror/dist/mariohtml5/main.html" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -424,9 +438,9 @@
       <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Happy World 8</h2>
+        <h2>WMWario Happy World 8</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. Android App &amp; PC/Laptop.</p>
+      <p data-en="Best adventure game of the year 2025-2026. Complete with many features. Android App &amp; PC/Laptop." data-nl="Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. Android App &amp; PC/Laptop.">Best adventure game of the year 2025-2026. Complete with many features. Android App &amp; PC/Laptop.</p>
       <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-8/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -434,9 +448,9 @@
       <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
       <div class="card-header">
         <i class="fas fa-brain"></i>
-        <h2>Mario Happy World 6</h2>
+        <h2>WMWario Happy World 6</h2>
       </div>
-      <p>Beste memory game van het jaar 2025-2026. Compleet met veel memory-functies. De game voor jong en oud.</p>
+      <p data-en="Best memory game of the year 2025-2026. Complete with many memory features. The game for young and old." data-nl="Beste memory game van het jaar 2025-2026. Compleet met veel memory-functies. De game voor jong en oud.">Best memory game of the year 2025-2026. Complete with many memory features. The game for young and old.</p>
       <a href="https://www.dropbox.com/scl/fi/4wozjesimdqpsu5iu0pdt/11817_MarioMemory.apk?rlkey=eo2sozgcrocqdqy88xhz1tj7o&st=7q6bpbpc&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -444,9 +458,9 @@
       <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
       <div class="card-header">
         <i class="fas fa-ghost"></i>
-        <h2>Mario Happy World 4</h2>
+        <h2>WMWario Happy World 4</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026, Ghost House World. Android App &amp; PC/Laptop Webserver Game.</p>
+      <p data-en="Best adventure game of the year 2025-2026, Ghost House World. Android App &amp; PC/Laptop Webserver Game." data-nl="Beste avonturengame van het jaar 2025-2026, Ghost House World. Android App &amp; PC/Laptop Webserver Game.">Best adventure game of the year 2025-2026, Ghost House World. Android App &amp; PC/Laptop Webserver Game.</p>
       <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-4-/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -454,9 +468,9 @@
       <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
       <div class="card-header">
         <i class="fas fa-hammer"></i>
-        <h2>Mario Happy World 3</h2>
+        <h2>WMWario Happy World 3</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026 met levels en level-editors, maak je eigen levels. Android App &amp; PC/Laptop Webserver Game.</p>
+      <p data-en="Best adventure game of the year 2025-2026 with levels and level editors, create your own levels. Android App &amp; PC/Laptop Webserver Game." data-nl="Beste avonturengame van het jaar 2025-2026 met levels en level-editors, maak je eigen levels. Android App &amp; PC/Laptop Webserver Game.">Best adventure game of the year 2025-2026 with levels and level editors, create your own levels. Android App &amp; PC/Laptop Webserver Game.</p>
       <a href="https://www.dropbox.com/scl/fi/x52eqtgflyaazrgdrivw1/11814_MarioMaker.apk?rlkey=zj8vvrnra595fqhc62x4qrhxo&st=oh80fd4k&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -464,9 +478,9 @@
       <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
       <div class="card-header">
         <i class="fas fa-gamepad"></i>
-        <h2>Mario Happy World 2</h2>
+        <h2>WMWario Happy World 2</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026 met levels en level-editors, maak je eigen levels. Android App &amp; PC/Laptop Webserver Game.</p>
+      <p data-en="Best adventure game of the year 2025-2026 with levels and level editors, create your own levels. Android App &amp; PC/Laptop Webserver Game." data-nl="Beste avonturengame van het jaar 2025-2026 met levels en level-editors, maak je eigen levels. Android App &amp; PC/Laptop Webserver Game.">Best adventure game of the year 2025-2026 with levels and level editors, create your own levels. Android App &amp; PC/Laptop Webserver Game.</p>
       <a href="https://www.dropbox.com/scl/fi/byynm5jk90n2vzqu7ng86/11815_MarioWorld.apk?rlkey=it3mmosp8muexzpa6blyq5bgm&st=t99suy1d&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -474,9 +488,9 @@
       <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
       <div class="card-header">
         <i class="fas fa-chess-rook"></i>
-        <h2>Mario Happy World 1</h2>
+        <h2>WMWario Happy World 1</h2>
       </div>
-      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.</p>
+      <p data-en="Best adventure game of the year 2025-2026. Complete with many features. The game for young and old." data-nl="Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.">Best adventure game of the year 2025-2026. Complete with many features. The game for young and old.</p>
       <a href="https://www.dropbox.com/scl/fi/p9ssn0f8ilz0ww6lb6ysh/11812_MarioCastle.apk?rlkey=mxoezkvht57jc1p3uxbcfztm3&st=q05uri66&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -486,7 +500,7 @@
         <i class="fas fa-kiwi-bird"></i>
         <h2>Fluppy Burd Blocks</h2>
       </div>
-      <p>De beste oldschool klassieker uit de jaren 2010, opnieuw uitgebracht in 2025!</p>
+      <p data-en="The best old school classic from the 2010s, re-released in the year 2025!" data-nl="De beste oldschool klassieker uit de jaren 2010, opnieuw uitgebracht in 2025!">The best old school classic from the 2010s, re-released in the year 2025!</p>
       <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -496,7 +510,7 @@
         <i class="fas fa-gem"></i>
         <h2>WMWario Crush Saga</h2>
       </div>
-      <p>Beste puzzelgame van het jaar 2025. Met veel mogelijkheden en functies. De game voor jong en oud.</p>
+      <p data-en="Best puzzle game of the year 2025. With many possibilities and features. The game for young and old." data-nl="Beste puzzelgame van het jaar 2025. Met veel mogelijkheden en functies. De game voor jong en oud.">Best puzzle game of the year 2025. With many possibilities and features. The game for young and old.</p>
       <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -506,7 +520,7 @@
         <i class="fas fa-bolt"></i>
         <h2>Kross and Zero</h2>
       </div>
-      <p>Kross and Zero, opnieuw uitgebracht in 2025 met een futuristisch ontwerp.</p>
+      <p data-en="Kross and Zero, re-released in 2025 with a futuristic design." data-nl="Kross and Zero, opnieuw uitgebracht in 2025 met een futuristisch ontwerp.">Kross and Zero, re-released in 2025 with a futuristic design.</p>
       <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -516,7 +530,7 @@
         <i class="fas fa-coins"></i>
         <h2>WMWario Slotpipes</h2>
       </div>
-      <p>Een complete gokgame gokkast, beste gokgame van het jaar 2025.</p>
+      <p data-en="A complete gamble slot machine game, best gamble game of the year 2025." data-nl="Een complete gokgame gokkast, beste gokgame van het jaar 2025.">A complete gamble slot machine game, best gamble game of the year 2025.</p>
       <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -526,7 +540,7 @@
         <i class="fas fa-bullseye"></i>
         <h2>YF Arrows</h2>
       </div>
-      <p>Beste pijl-en-boog game van het jaar 2025.</p>
+      <p data-en="Best arrow and bow game of the year 2025." data-nl="Beste pijl-en-boog game van het jaar 2025.">Best arrow and bow game of the year 2025.</p>
       <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&st=058p9guv&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -536,7 +550,7 @@
         <i class="fas fa-icons"></i>
         <h2>Slotmoji</h2>
       </div>
-      <p>Beste gokgame van het jaar 2026, vol grappige emoji's.</p>
+      <p data-en="Best gamble game of the year 2026, full of funny emojis." data-nl="Beste gokgame van het jaar 2026, vol grappige emoji&#x27;s.">Best gamble game of the year 2026, full of funny emojis.</p>
       <a href="https://www.dropbox.com/scl/fi/izywurlhbrvmcdzat6tpg/_SlotMoji_19141773.apk?rlkey=cqgzkldieeyg51au3u3qkcny6&st=4430u5pl&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>
 
@@ -546,7 +560,7 @@
         <i class="fas fa-ship"></i>
         <h2>Flying Dutchman</h2>
       </div>
-      <p>De leukste goudkoorts-game van het jaar 2025-2026 met veel power-ups en andere upgrades.</p>
+      <p data-en="The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades." data-nl="De leukste goudkoorts-game van het jaar 2025-2026 met veel power-ups en andere upgrades.">The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades.</p>
       <a href="https://www.dropbox.com/scl/fi/zdgqu2yma6ld1szvojqs7/_Flying_Dutchman_19177548.apk?rlkey=87y4e3yifn8wr9lsyc4plifw6&st=lretx7nw&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
     </div>  </div> <!-- /page-grid -->
 </div>
@@ -559,23 +573,23 @@
 <!-- ===== CHAT CONTAINER ===== -->
 <div id="chat-container">
   <div id="chat-header">
-    <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Assistant</span>
+    <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> <span data-en="AI Assistant" data-nl="AI-assistent">AI Assistant</span></span>
     <button onclick="window.toggleChat()"><i class="fas fa-times" style="color:#0b0d10"></i></button>
   </div>
   <div class="chat-quick-buttons">
-    <button class="quick-btn" onclick="window.handleQuickReply('prices')">💸 Prices</button>
-    <button class="quick-btn" onclick="window.handleQuickReply('payments')">💶 Payments</button>
-    <button class="quick-btn" onclick="window.handleQuickReply('contact')">🧑‍💻 Contact</button>
+    <button class="quick-btn" onclick="window.handleQuickReply('prices')">💸 <span data-en="Prices" data-nl="Prijzen">Prices</span></button>
+    <button class="quick-btn" onclick="window.handleQuickReply('payments')">💶 <span data-en="Payments" data-nl="Betalingen">Payments</span></button>
+    <button class="quick-btn" onclick="window.handleQuickReply('contact')">🧑‍💻 <span data-en="Contact" data-nl="Contact">Contact</span></button>
   </div>
   <div id="messages">
     <div class="msg bot-msg">
       <i class="fas fa-robot" style="margin-right: 0.3rem;"></i>
-      Welcome to Abelsoftware123 AI Assistant! How can I help you today?
+      <span data-en="Welcome to Abelsoftware123 AI Assistant! How can I help you today?" data-nl="Welkom bij de Abelsoftware123 AI-assistent! Waarmee kan ik je vandaag helpen?">Welcome to Abelsoftware123 AI Assistant! How can I help you today?</span>
     </div>
   </div>
   <div id="input-area">
-    <input type="text" id="chat-input" placeholder="Ask something..." onkeypress="if(event.key==='Enter') window.askBot()">
-    <button onclick="window.askBot()">Send</button>
+    <input type="text" id="chat-input" data-en-placeholder="Ask something..." data-nl-placeholder="Vraag iets..." placeholder="Ask something..." onkeypress="if(event.key==='Enter') window.askBot()">
+    <button onclick="window.askBot()" data-en="Send" data-nl="Verstuur">Send</button>
   </div>
 </div>
 
@@ -639,8 +653,36 @@
   };
 
   window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
+
+  // ===== LANGUAGE SWITCH (EN default / NL toggle) =====
+  window.setLang = function(lang) {
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+          var text = lang === 'nl' ? el.getAttribute('data-nl') : el.getAttribute('data-en');
+          if (text !== null) {
+              if (el.tagName === 'TITLE') {
+                  document.title = text;
+              } else {
+                  el.textContent = text;
+              }
+          }
+      });
+      document.querySelectorAll('[data-en-placeholder]').forEach(function(el) {
+          var ph = lang === 'nl' ? el.getAttribute('data-nl-placeholder') : el.getAttribute('data-en-placeholder');
+          if (ph !== null) el.setAttribute('placeholder', ph);
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.setAttribute('lang', lang);
+      try { localStorage.setItem('site-lang', lang); } catch (e) {}
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+      var saved = 'en';
+      try { saved = localStorage.getItem('site-lang') || 'en'; } catch (e) {}
+      window.setLang(saved);
+  });
 </script>
 
 </body>
 </html>
-
