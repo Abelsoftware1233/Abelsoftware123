@@ -1,547 +1,646 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Downloads- Abelsoftware123 backup page</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* CSS voor de neonblauwe knoppen en hun positionering */
-        header {
-            position: relative; /* Zorg ervoor dat de header een positioneringscontext is */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Downloads Games · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10; color: #eaeef2; line-height: 1.5;
+      min-height: 100vh; padding: 1rem; display: flex;
+      flex-direction: column; align-items: center;
+    }
 
-        .header-controls {
-            position: absolute; /* Absolute positionering in de header */
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px; 
-            z-index: 10; 
-        }
-        
-        .neon-blue-button {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            color: #fff; /* Witte tekst */
-           3 background-color: transparent; /* Transparante achtergrond */
-            /* Neon blauw effect */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 40px rgba(0, 255, 255, 0.5); /* Buitenste gloed */
-            border: 2px solid #00FFFF; /* Neon blauwe rand */
-            transition: all 0.3s ease-in-out;
-        }
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px; width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem; padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2); transition: all 0.2s;
+    }
 
-        .neon-blue-button:hover {
-            background-color: #00FFFF;
-            color: #000; /* Zwarte tekst bij hover */
-            box-shadow: 0 0 5px #00FFFF, 
-                        0 0 10px #00FFFF, 
-                        0 0 20px #00FFFF, 
-                        0 0 60px #00FFFF; /* Heldere gloed bij hover */
-        }
-    /* --- CHATBOT STIJLEN MET ANIMATIE --- */
-        #chat-launcher { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 65px; height: 55px; background: #00ffff; 
-            border-radius: 18px; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; box-shadow: 0 0 15px #00ffff; 
-            z-index: 1001; font-size: 30px; border: none;
-            animation: float 3s ease-in-out infinite;
-        }
-        #chat-launcher::after {
-            content: ""; position: absolute; bottom: -8px; right: 12px;
-            border-width: 12px 12px 0 0; border-style: solid;
-            border-color: #00ffff transparent transparent transparent;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; gap: 1rem 0.5rem; }
+    .brand-group { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-icon { font-size: 2rem; color: #00f2ff; filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5)); }
+    .brand-title {
+      font-size: 1.8rem; font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent; letter-spacing: -0.02em; text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
 
-        #chat-container { 
-            position: fixed; bottom: 90px; right: 20px; 
-            width: 320px; height: 520px; background: #2a2a2a; 
-            border: 2px solid #00ffff; border-radius: 15px; 
-            display: none; flex-direction: column; overflow: hidden; 
-            z-index: 1000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
-        }
-        #chat-header { background: #00ffff; color: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background: #1a1a1a; }
-        .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; font-size: 14px; word-wrap: break-word; }
-        .bot-msg { background: #333; color: #00ffff; align-self: flex-start; border: 1px solid #00ffff; }
-        .user-msg { background: #00ffff; color: #000; align-self: flex-end; }
-        .mode-selector { padding: 5px; background: #111; display: flex; justify-content: center; gap: 5px; border-bottom: 1px solid #444; }
-        .quick-btn { background: transparent; border: 1px solid #00ffff; color: #00ffff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 11px; }
-        #input-area { display: flex; padding: 10px; background: #2a2a2a; border-top: 1px solid #444; }
-        #input-area input { flex: 1; background: #1a1a1a; border: 1px solid #444; color: white; padding: 8px; outline: none; border-radius: 5px; }
-        #input-area button { background: none; border: none; color: #00ffff; cursor: pointer; font-weight: bold; margin-left: 5px; }
-    </style>
+    /* ===== NAVIGATION ===== */
+    .main-nav { margin: 1.2rem 0 2rem; }
+    .main-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; list-style: none; }
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03); color: #b0c8dd; padding: 0.5rem 1.2rem;
+      border-radius: 40px; font-size: 0.85rem; font-weight: 500; text-decoration: none;
+      border: 1px solid transparent; transition: 0.2s; backdrop-filter: blur(2px);
+    }
+    .main-nav a:hover { background: rgba(0, 242, 255, 0.12); border-color: #00f2ff66; color: #fff; }
+    .main-nav a.active { background: rgba(0, 242, 255, 0.18); border-color: #00f2ff; color: #fff; font-weight: 600; }
+
+    /* ===== GRID LAYOUT ===== */
+    .page-grid { display: grid; grid-template-columns: 1fr; gap: 2.2rem; margin-top: 1rem; }
+    @media (min-width: 768px) { .page-grid { grid-template-columns: repeat(2, 1fr); } .full-width { grid-column: 1 / -1; } }
+    @media (min-width: 1024px) { .page-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem; padding: 1.8rem 1.6rem; border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); transition: transform 0.25s ease, box-shadow 0.3s;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40; }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .card-header i { font-size: 1.8rem; color: #00f2ff; filter: drop-shadow(0 0 8px #00f2ff88); }
+    .card h2 {
+      font-size: 1.3rem; font-weight: 600; background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .card p { color: #c8d6e5; font-size: 0.9rem; margin-bottom: 1.2rem; flex-grow: 1; }
+
+    .badge-role {
+      display: inline-block; margin-bottom: 0.8rem; padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1); border: 1px solid #00f2ff; color: #00f2ff;
+      border-radius: 20px; font-size: 0.7rem; text-transform: uppercase; align-self: flex-start;
+    }
+    .badge-role.gold { background: rgba(255, 200, 0, 0.1); border-color: #ffcf40; color: #ffcf40; }
+
+    /* ===== BUTTONS ===== */
+    .cta-btn {
+      display: inline-block; background: linear-gradient(145deg, #00f2ff, #0099ff);
+      border: none; color: #0b0d10; padding: 0.7rem 1.5rem; border-radius: 40px;
+      font-weight: 700; font-size: 0.9rem; text-decoration: none; text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 242, 255, 0.4); transition: 0.25s; width: 100%;
+    }
+    .cta-btn:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(0, 242, 255, 0.6); color: #000; }
+    .btn-group { display: flex; gap: 0.5rem; flex-direction: column; }
+
+    /* ===== CHAT WIDGET ===== */
+    #chat-launcher {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; background: #00f2ff;
+      width: 60px; height: 60px; border-radius: 30px; display: flex; justify-content: center;
+      align-items: center; font-size: 2rem; color: #0b0d10; box-shadow: 0 0 30px #00f2ffaa;
+      border: none; cursor: pointer; z-index: 1000; transition: 0.3s; animation: float 4s ease-in-out infinite;
+    }
+    #chat-launcher:hover { transform: scale(1.1); box-shadow: 0 0 50px #00f2ff; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    #chat-container {
+      position: fixed; bottom: 90px; right: 20px; width: 340px; height: 480px;
+      background: #1a1f2a; border: 2px solid #00f2ff; border-radius: 1.2rem;
+      display: none; flex-direction: column; overflow: hidden; z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+    #chat-container.open { display: flex; }
+    #chat-header { background: #00f2ff; color: #0b0d10; padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; font-weight: 700; }
+    #chat-header button { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+    #messages { flex: 1; padding: 1rem; overflow-y: auto; background: #12161f; display: flex; flex-direction: column; gap: 0.5rem; }
+    .msg { max-width: 85%; padding: 0.5rem 0.9rem; border-radius: 0.8rem; font-size: 0.85rem; line-height: 1.4; word-wrap: break-word; }
+    .bot-msg { background: #252e3f; color: #b0f0ff; align-self: flex-start; border: 1px solid #00f2ff44; border-bottom-left-radius: 0.2rem; }
+    .user-msg { background: #00f2ff; color: #0b0d10; align-self: flex-end; border-bottom-right-radius: 0.2rem; }
+    .msg-time { font-size: 0.6rem; opacity: 0.5; margin-top: 0.2rem; display: block; }
+
+    .chat-quick-buttons { display: flex; gap: 0.3rem; padding: 0.5rem; background: #0e121c; justify-content: center; flex-wrap: wrap;}
+    .quick-btn { background: #1a1f2a; border: 1px solid #2a3344; color: #b0c8dd; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem; cursor: pointer; }
+    .quick-btn:hover { border-color: #00f2ff; color: #00f2ff; }
+
+    #input-area { display: flex; padding: 0.6rem; background: #1a1f2a; border-top: 1px solid #2a3344; gap: 0.5rem; }
+    #input-area input { flex: 1; padding: 0.5rem 0.8rem; border-radius: 30px; border: 1px solid #2a3344; background: #0b0d10; color: #eaeef2; outline: none; }
+    #input-area button { background: #00f2ff; border: none; border-radius: 30px; padding: 0.5rem 1rem; color: #0b0d10; font-weight: bold; cursor: pointer; }
+  </style>
 </head>
 <body>
-<header> 
-        
-    <h1>🕹️🎮Downloads Games🎮🕹️</h1>
-    <p>Download our newest GAMES and Apps here.</p>
-    
-    <nav>
-        <ul>
-            <li><a href="payments.html">Payments</a></li>
-<li><a 
-href="emulator.html">Mobile Games Emulator</a></li>
-<li><a 
-href="profiel.html">My Profile</a></li>
-        </ul>
-      </nav>
-</header>
-<main>
-    <section class="downloads-content">
-        <h2>Available Downloads</h2>
-        <p>Below you will find a list of software you can download directly:</p>
+<div class="page-wrapper">
 
-        <div class="app-item">
-            <h3>🎮Abel Game Launcher🎮</h3>
-            <p>With the Abel Game Launcher, you have access to all our games in one place. Thank You for Purchase the game. You can download your App/Game below. your download buttons for your game is now unlocked.  Only PC Games click on the download button and you can play without installation. (Supports Apple/Windows/Android chromebook)</p>
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-gamepad brand-icon"></i>
+      <span class="brand-title">Downloads Games</span>
+    </div>
+  </div>
 
+  <nav class="main-nav">
+    <ul>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="emulator.html">Mobile Games Emulator</a></li>
+      <li><a href="profiel.html">My Profile</a></li>
+      <li><a href="profiel-games.html" class="active">Downloads Games</a></li>
+    </ul>
+  </nav>
 
-<!-- Terabox Section -->
-<p>Download via Terabox (Please make sure you have the Terabox app installed from the Play Store first):</p>
-<a href="https://terabox.com/s/your-link-here" target="_blank">
-  <button>Download via Terabox</button>
-</a>
+  <div class="card full-width" style="margin-bottom: 2rem; text-align: center;">
+    <div class="card-header" style="justify-content: center;">
+      <i class="fas fa-download"></i>
+      <h2>Available Game Downloads</h2>
+    </div>
+    <p>Download hieronder onze nieuwste Games en Apps. PC-games hebben geen installatie nodig om te spelen. Zorg dat je Terabox of Dropbox geïnstalleerd hebt voor mobiele downloads.</p>
+  </div>
 
-<br><br>
+  <div class="page-grid">
 
-<!-- Dropbox Section -->
-<p>Download via Dropbox (Please make sure you have the Dropbox app installed from the Play Store first):</p>
-<a href="https://www.dropbox.com/your-link-here" target="_blank">
-  <button>Download via Dropbox</button>
-</a>
-
-
-<div class="app-item">
-            <h3>1.Abel123 Game Launcher</h3>          
-<acces to all games unlimited games and play hours.</p>
-<a href="https://1024terabox.com/s/1SRaE3KtvI6NIpDRMY3aWyA" download>
-                <button>Download Abel123 Game Launcher- The Game Launcher</button>
-            </a>
-        </div>
-
-             <div class="app-item">
-            <h3>Super Abel123 World 6 Game App</h3>          
-<p>best Super Abel123 World adventure game of the year. survive and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1OE_Dha66BxEt8TJzxPShqQ
-" download>
-                <button>Download Super Abel123 World 6 The Game Launcher</button>
-            </a>
-        </div>        
-
-            <div class="app-item">
-            <h3>Super Abel123 World 5 Game App</h3>          
-<p>best Super Abel123 World adventure game of the year. survive and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1Hc6uG2dydbd8Ee74p5xM3g
-" download>
-                <button>Download Super Abel123 World 5 The Game Launcher</button>
-            </a>
-        </div>        
-
-            <div class="app-item">
-            <h3>Super Abel123 World 4 Game App</h3>          
-<p>best Super Abel123 World adventure game of the year. survive and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1INMt625l_Xe94vq7IqB0aQ
-" download>
-                <button>Download Super Abel123 World 4 The Game Launcher</button>
-            </a>
-        </div>        
-
-            <div class="app-item">
-            <h3>Super Abel123 World 3 Game App</h3>          
-<p>best Super Abel123 World adventure game of the year. survive and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1Yv3W9qQ8wfFTML0flmAtDQ
-" download>
-                <button>Download Super Abel123 World 3 The Game Launcher</button>
-            </a>
-        </div>        
-
-<div class="app-item">
-            <h3>Super Abel123 World 2 Game App</h3>          
-<p>best Super Abel123 World adventure game of the year. survive and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1qvSV6ynTy7LQpnXhF6Ur8Q
-" download>
-                <button>Download Super Abel123 World 2 The Game Launcher</button>
-            </a>
-        </div>            
-
-<div class="app-item">
-            <h3>Super Abel123 World 1 Game App</h3>          
-<p>best Super Abel123 World adventure game of the year. survive and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1nn0rZDs8Q0a9y3Srbgb0wg
-" download>
-                <button>Download Super Abel123 1 World The Game Launcher</button>
-            </a>
-        </div>
-
-<div class="app-item">
-            <h3>Abel123 Demolition Game Game App</h3>          
-<p>best Demolition Game for young and old blow the building and a big adventure game of the year. destroy and win the adventure. Android App</p>
-<a href="https://1024terabox.com/s/1B9lcOnBRFJNBEAxnxZ53jQ
-" download>
-                <button>Download Abel123 Demolition The Game Launcher</button>
-            </a>
-        </div>
-
-<div class="app-item">
-            <h3>WMWario 90's -Matrix-Builder-Dimension-Year 2030 Android App</h3>          
-<p>best WMWario 90s-Builder-Matrix-Year 2030-Dimension Android Crazy Mario Game and Themes! game of the year!Android App.</p>
-<a href="https://1024terabox.com/s/1s-EN6K0KK5KF-um42FJKMA" download>
-                <button>Download WmWario 90's-Matrix-Builder-Dimension-2030 The Game Launcher</button>
-            </a>
-        </div>
-
-
-<div class="app-item">
-            <h3>Mars Climb Spacer the App Android </h3>          
-<Drive with the Mars Rover across mars, dont destroy your vehicle. best racing game.</p>
-<a href="https://1024terabox.com/s/11xzT_vBqleIWS4u1e1HXSQ" download>
-                <button>Download Mars Climb Spacer- The Game Launcher</button>
-            </a>
-        </div>
-
-<div class="app-item">
-            <h3>Moon Climb Spacer the App Android </h3>          
-<Drive with the Moon Lander across the whole moon, dont destroy your vehicle. best racing game.</p>
-<a href="https://1024terabox.com/s/1cqvtv-JCMrD34768eyiOhw" download>
-                <button>Download Moon Climb Spacer- The Game Launcher</button>
-            </a>
-        </div>
-
-<div class="app-item">
-            <h3>WMWario & Luigi 3D Happy World Online Only for PC/Laptop</h3>          
-<p>best WMWario World Online with Luigi, an 3D adventure game of the year 2026 Only for PC and Laptop Game</p>
-<a href="https://ipodtouch0218.itch.io/nsmb-mariovsluigi" download>
-                <button>Download WmWario & Luigi 3D Happy World Online The Game Launcher</button>
-            </a>
-        </div>
-
-            <div class="app-item">
-            <h3>WMWario Super M World (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1 Crazy Mario Game and Themes from broś to world with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/super-mario-for-snes.php" download>
-                <button>Download WmWario World Super M World 2026 The Game Launcher</button>
-            </a>
-        </div>
-            
-<div class="app-item">
-            <h3>WMWario New strange M Bros (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1 Crazy Mario Game and Themes from broś to world with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/new-strange-mario-bros.php" download>
-                <button>Download WmWario World  Strange M Bros 2026 The Game Launcher</button>
-            </a>
-        </div>
-                    <div class="app-item">
-            <h3>WMWario M Bros World 2 2026 Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1 Crazy Mario Game and Themes from broś to world with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/smb-part-2.php" download>
-                <button>Download WmWario World Bros 2 2026 The Game Launcher</button>
-            </a>
-        </div>
-
-                   <div class="app-item">
-            <h3>WMWario Super M Allstars Edition (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 5  Crazy Mario Games and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/super-mario-all-stars.php" download>
-                <button>Download WmWario World 2026 Super M Allstars The Game Launcher</button>
-            </a>
-        </div>
-
-                       <div class="app-item">
-            <h3>WMWario  Super M Princess Rescue (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/smw-princess-rescue.php" download>
-                <button>Download WmWario World Super M Princess Rescue 2026 The Game Launcher</button>
-            </a>
-        </div>
-               <div class="app-item">
-            <h3>WMWario Super M Land 2 (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/super-mario-land-2-dx.php" download>
-                <button>Download WmWario World Super M Land 2 The Game Launcher</button>
-            </a>
-        </div>
-
-              <div class="app-item">
-            <h3>WMWario Super M Banzai World (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/banzai-mario-world.php" download>
-                <button>Download WmWario World Super M Banzai World The Game Launcher</button>
-            </a>
-        </div>
-
-                 <div class="app-item">
-            <h3>WMWario Super M Land 1 (2026) Only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! 1  Crazy Mario Game and Themes from broś to worlds with many worlds and maps. Android App & PC/Laptop Game</p>
-<a href="https://www.smbgames.be/super-mario-land-dx.php" download>
-                <button>Download WmWario World Super M Land 1 The Game Launcher</button>
-            </a>
-        </div>
-
-           <div class="app-item">
-            <h3>WMWario Happy World Fantasy only for PC/Laptop</h3>          
-<p>best WMWario World 2026 adventure game of the year 2026! with many worlds and maps. Only for PC and Laptop Game</p>
-<a href="https://www.smbgames.be/super-mario-for-snes.php" download>
-                <button>Download WmWario Hapy World Fantasy The Game Launcher</button>
-            </a>
-        </div>
-
-            <div class="app-item">
-            <h3>WMWario The Game Android App</h3>          
-<p>best adventure game of the year 2025-2026 on Android App</p>
-<a href="https://www.dropbox.com/scl/fi/kan1xfr4plcfy8flmnbmt/_Happy_Mario_19141767.apk?rlkey=pm42mvizbqckncrqc6dp18k4n&st=rou7d80m&dl=0" download>
-                <button>Download WmWario The Game Launcher</button>
-            </a>
-</div>
-            <div class="app-item">
-            <h3>WMWario Happy World 12 Only for PC/Laptop</h3>          
-<p>best WMWario World adventure game of the year 2025-2026 Only for PC and Laptop Game</p>
-<a href="https://tylerreichle.github.io/mario_js/" download>
-                <button>Download WmWario Hapy World 12 The Game Launcher</button>
-            </a>
-        </div>
-            
-     <div class="app-item">
-            <h3>WMWario Happy World 11 Only for PC and Laptop</h3>          
-<p>best WMWario 64 adventure game of the year 2025-2026 on PC and Laptop</p>
-<a href="https://manscod.github.io/other/sm64/" download>
-                <button>Download WmWario Hapy World 11 The Game Launcher</button>
-            </a>
-        </div>
-            
-<div class="app-item">
-            <h3>WMWario Happy World 10 only for PC/Laptop</h3>
-            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
-            <a href="https://js-dos.com/mario/" download>
-                <button>Download WMWario Happy World 10 The Game Launcher</button>
-            </a>
-</div>   
-            
-<div class="app-item">
-            <h3>WMWario Happy World 9 only for PC/Laptop Webserver Game!</h3>
-            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
-            <a href="https://openhtml5games.github.io/games-mirror/dist/mariohtml5/main.html" download>
-                <button>Download WMWario Happy World 9 The Game Launcher</button>
-            </a>
-</div>   
-            <div class="app-item">
-            <h3>WMWario Happy World 8 The Android App and PC/Laptop Game!</h3>
-            <p>best adventure game of the year 2025-2026.  Complete with many features. the game for young and old</p>
-            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-8/" download>
-                <button>Download WMWario Happy World 8 The Game Launcher</button>
-            </a>
-        </div>
-
-            
-            <div class="app-item">
-            <h3>WMWario Happy World 6 PC/Laptop Webserver Game!</h3>
-            <p>best memory game of the year 2025-2026.  Complete with many memory features. the game for young and old</p>
-            <a href="https://www.dropbox.com/scl/fi/4wozjesimdqpsu5iu0pdt/11817_MarioMemory.apk?rlkey=eo2sozgcrocqdqy88xhz1tj7o&st=7q6bpbpc&dl=0" download>
-                <button>Download WMWario Happy World 6 The Game Launcher</button>
-            </a>
-        </div>
-
-      <div class="app-item">
-            <h3>WMWario Happy World 4 Android App. Also on PC/Laptop Webserver Game!</h3>
-            <p>best adventure game of the year 2025-2026 Ghost House World.  Complete with many features. the game for young and old</p>
-            <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-4-/" download>
-                <button>Download WMWario Happy World 4 The Game Launcher</button>
-            </a>
-        </div>
-
-     <div class="app-item">
-            <h3>WMWario Happy World 3 Android App. Also on PC/Laptop Webserver Game!</h3>
-            <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
-            <a href="https://www.dropbox.com/scl/fi/x52eqtgflyaazrgdrivw1/11814_MarioMaker.apk?rlkey=zj8vvrnra595fqhc62x4qrhxo&st=oh80fd4k&dl=0" download>
-                <button>Download WMWario Happy World 3 The Game Launcher</button>
-            </a>
-        </div>
-
-<div class="app-item">
-            <h3>WMWario Happy World 2 Android App & PC/Laptop Webserver Game</h3>
-            <p>best adventure game of the year 2025-2026 with levels and level editors, you can create your own levels. complete with many features. the game for young and old</p>
-            <a href="https://www.dropbox.com/scl/fi/byynm5jk90n2vzqu7ng86/11815_MarioWorld.apk?rlkey=it3mmosp8muexzpa6blyq5bgm&st=t99suy1d&dl=0" download>
-                <button>Download WMWario Happy World 2 The Game Launcher</button>
-            </a>
-        </div>
-        
-        <div class="app-item">
-            <h3>WMWario Happy World 1 Android App & PC/Laptop Webserver Game</h3>
-            <p>best adventure game of the year 2025-2026,Complete with many features. the game for young and old</p>
-            <a href="https://www.dropbox.com/scl/fi/p9ssn0f8ilz0ww6lb6ysh/11812_MarioCastle.apk?rlkey=mxoezkvht57jc1p3uxbcfztm3&st=q05uri66&dl=0" download>
-                <button>Download WMWario Happy World 1 The Game Launcher</button>
-            </a>
-        </div>
-            
-        <div class="app-item">
-            <h3>Fluppy Burd Blocks The Game (Android App)</h3>
-            <p>Fluppy Burd Blocks The Game, The Best old school classic from the 2010s, re-released in the year 2025!</p>
-            <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" download>
-                <button>Download Fluppy Burd Blocks The Game Launcher</button>
-            </a>
-        </div>
-        
-        <div class="app-item">
-            <h3>WMWario Crush Saga The Game (Android App)</h3>
-            <p>best puzzle game of the year 2025. with many possibilities and features, this is the game for young and old.</p>
-            <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" download>
-                <button>Download WMWario Crush Saga The Game Launcher</button>
-            </a>
-        </div>
-        
-        <div class="app-item">
-            <h3>Kross and Zero The Game (Android App)</h3>
-            <p>Kross and Zero re-released in 2025 with a futuristic design.</p>
-            <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" download>
-                <button>Download Kross and Zero The Game Launcher</button>
-            </a>
-        </div>
-        
-<div class="app-item">
-            <h3>WMWario Slotpipes (Android App)</h3>
-            <p>A complete gamble game slot machine, best gamble game of the year 2025.</p>
-            <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" download>
-                <button>Download WMWario Slotpipes The Game Launcher</button>
-            </a>
-        </div>
-
-        <div class="app-item">
-            <h3>YF Arrows The Game (Android App)</h3>
-            <p>Best arrow and bow game of the year 2025.</p>
-            <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&st=058p9guv&dl=0" download>
-                <button>Download YF Arrows The Game Launcher</button>
-            </a>
-        </div>
-
-        <div class="app-item">
-            <h3>Slotmoji The Game (Android App)</h3>
-            <p>Best gamble game of the year 2026, full of funny emoji</p>
-            <a href="https://www.dropbox.com/scl/fi/izywurlhbrvmcdzat6tpg/_SlotMoji_19141773.apk?rlkey=cqgzkldieeyg51au3u3qkcny6&st=4430u5pl&dl=0" download>
-                <button>Download Slotmoji The Game Launcher</button>
-            </a>
-        </div>
-
-        <div class="app-item">
-            <h3>Flying Dutchman The Game (Android App)</h3>
-            <p>The most fun gold rush game of the year 2025-2026 with many power ups and other upgrades.</p>    
-            <a href="https://www.dropbox.com/scl/fi/zdgqu2yma6ld1szvojqs7/_Flying_Dutchman_19177548.apk?rlkey=87y4e3yifn8wr9lsyc4plifw6&st=lretx7nw&dl=0" download>
-                <button>Download Flying Dutchman The Game Launcher</button>
-            </a>
-        </div>
-    </section>
-</main>
-    <button id="chat-launcher" onclick="window.toggleChat()">💬</button>
-
-    <div id="chat-container">
-        <div id="chat-header">
-            <span>🤖 AI Assistent 🤖</span>
-            <span style="cursor:pointer" onclick="window.toggleChat()">✕</span>
-        </div>
-        <div class="mode-selector">
-    <button class="quick-btn" onclick="handleQuickReply('prices')">💸 Prices 💸</button>
-    <button class="quick-btn" onclick="handleQuickReply('payments')">💶 Payments 💶</button>
-    <button class="quick-btn" onclick="handleQuickReply('contact')">🧑‍💻 Contact 🧑‍💻</button>
-</div>
-
-        <div id="messages">
-            <div class="msg bot-msg">Welcome by Abelsoftware123 AI Assistent! How can i help you?</div>
-        </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Vraag iets..." onkeypress="window.handleKey(event)">
-            <button onclick="window.askBot()">➤</button>
-        </div>
+    <div class="card">
+      <span class="badge-role gold"><i class="fas fa-rocket"></i> MAIN HUB</span>
+      <div class="card-header">
+        <i class="fas fa-desktop"></i>
+        <h2>Abel Game Launcher</h2>
+      </div>
+      <p>Met de Abel Game Launcher heb je toegang tot al onze games op één plek. Bedankt voor je aankoop. Jouw downloadknoppen zijn nu ontgrendeld. Alleen PC-games: klik op download en speel direct zonder installatie (Windows/Apple/Android/Chromebook).</p>
+      <div class="btn-group">
+        <a href="https://terabox.com/s/your-link-here" class="cta-btn" target="_blank"><i class="fas fa-cloud-download-alt"></i> Download via Terabox</a>
+        <a href="https://www.dropbox.com/your-link-here" class="cta-btn" style="background: linear-gradient(145deg, #0061ff, #00a4ff); color: white;" target="_blank"><i class="fab fa-dropbox"></i> Download via Dropbox</a>
+      </div>
     </div>
 
-    <script src="chatbot.js"></script>
+    <div class="card">
+      <span class="badge-role gold"><i class="fas fa-rocket"></i> MAIN HUB</span>
+      <div class="card-header">
+        <i class="fas fa-desktop"></i>
+        <h2>Abel123 Game Launcher</h2>
+      </div>
+      <p>Toegang tot alle games met onbeperkte speeluren.</p>
+      <a href="https://1024terabox.com/s/1SRaE3KtvI6NIpDRMY3aWyA" class="cta-btn" download><i class="fas fa-download"></i> Download Launcher</a>
+    </div>
 
-    <script>
-        let echo = null;
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Super Abel123 World 6</h2>
+      </div>
+      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1OE_Dha66BxEt8TJzxPShqQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-        window.toggleChat = function() {
-            const chat = document.getElementById("chat-container");
-            const launcher = document.getElementById("chat-launcher");
-            
-            // Wissel tussen tonen en verbergen
-            if (chat.style.display === "flex") {
-                chat.style.display = "none";
-                launcher.style.animation = "float 3s ease-in-out infinite";
-            } else {
-                chat.style.display = "flex";
-                launcher.style.animation = "none";
-                
-                // Initialiseer je bot uit chatbot.js als dat nog niet gedaan is
-                if (!echo && typeof BasicBot !== 'undefined') {
-                    echo = new BasicBot();
-                    console.log("Echo AI is nu online!");
-                } else if (typeof BasicBot === 'undefined') {
-                    console.error("Fout: chatbot.js is niet goed geladen of BasicBot klasse ontbreekt.");
-                }
-            }
-        };
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Super Abel123 World 5</h2>
+      </div>
+      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1Hc6uG2dydbd8Ee74p5xM3g" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-        window.handleKey = (e) => { if(e.key === "Enter") window.askBot(); };
-window.handleQuickReply = function(keyword) {
-    const input = document.getElementById("user-input");
-    
-    if (input) {
-        // 1. Zet de tekst in het vakje
-        input.value = keyword;
-        
-        // 2. Roep de bestaande askBot functie aan om het te versturen
-        window.askBot();
-    }
-};
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Super Abel123 World 4</h2>
+      </div>
+      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1INMt625l_Xe94vq7IqB0aQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-        window.askBot = async function() {
-            const input = document.getElementById("user-input");
-            const container = document.getElementById("messages");
-            const text = input.value.trim();
-            if (!text || !echo) return;
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Super Abel123 World 3</h2>
+      </div>
+      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1Yv3W9qQ8wfFTML0flmAtDQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-            container.innerHTML += `<div class="msg user-msg">${text}</div>`;
-            input.value = "";
-            container.scrollTop = container.scrollHeight;
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Super Abel123 World 2</h2>
+      </div>
+      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1qvSV6ynTy7LQpnXhF6Ur8Q" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-            try {
-                const response = await echo.chat(text);
-                setTimeout(() => {
-                    container.innerHTML += `<div class="msg bot-msg">${response}</div>`;
-                    container.scrollTop = container.scrollHeight;
-                }, 400);
-            } catch (err) { console.error("Fout in Echo chat:", err); }
-        };
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Super Abel123 World 1</h2>
+      </div>
+      <p>Beste Super Abel123 World avonturengame van het jaar. Overleef en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1nn0rZDs8Q0a9y3Srbgb0wg" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-        window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-bomb"></i>
+        <h2>Abel123 Demolition Game</h2>
+      </div>
+      <p>Beste Demolition Game voor jong en oud, blaas het gebouw op in een groot avontuur. Vernietig en win het avontuur. Android App.</p>
+      <a href="https://1024terabox.com/s/1B9lcOnBRFJNBEAxnxZ53jQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
 
-        // Rode knoppen logica
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.galant-red-button'); 
-            const sections = document.querySelectorAll('.content-section');
-            function showSection(id) {
-                sections.forEach(s => s.style.display = 'none');
-                const target = document.getElementById(id);
-                if(target) target.style.display = 'block';
-            }
-            buttons.forEach(btn => btn.addEventListener('click', function() {
-                showSection(this.dataset.contenttarget + '-content');
-            }));
-        });
-    </script>
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-tools"></i>
+        <h2>WMWario 90's Matrix Builder</h2>
+      </div>
+      <p>Beste WMWario 90's-Builder-Matrix-Year 2030-Dimension Android Crazy Mario Game en Thema's! Game van het jaar! Android App.</p>
+      <a href="https://1024terabox.com/s/1s-EN6K0KK5KF-um42FJKMA" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-rocket"></i>
+        <h2>Mars Climb Spacer</h2>
+      </div>
+      <p>Rijd met de Mars Rover over Mars, vernietig je voertuig niet. Beste racegame. Android App.</p>
+      <a href="https://1024terabox.com/s/11xzT_vBqleIWS4u1e1HXSQ" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-moon"></i>
+        <h2>Moon Climb Spacer</h2>
+      </div>
+      <p>Rijd met de Moon Lander over de hele maan, vernietig je voertuig niet. Beste racegame. Android App.</p>
+      <a href="https://1024terabox.com/s/1cqvtv-JCMrD34768eyiOhw" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario &amp; Luigi 3D Happy World Online</h2>
+      </div>
+      <p>Beste WMWario World Online met Luigi, een 3D avonturengame van het jaar 2026. Alleen voor PC en Laptop.</p>
+      <a href="https://ipodtouch0218.itch.io/nsmb-mariovsluigi" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Super M World</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/super-mario-for-snes.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario New Strange M Bros</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/new-strange-mario-bros.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario M Bros World 2</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/smb-part-2.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-star"></i>
+        <h2>WMWario Super M Allstars Edition</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/super-mario-all-stars.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-crown"></i>
+        <h2>WMWario Super M Princess Rescue</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/smw-princess-rescue.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Super M Land 2</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/super-mario-land-2-dx.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Super M Banzai World</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/banzai-mario-world.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Super M Land 1</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/super-mario-land-dx.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-hat-wizard"></i>
+        <h2>WMWario Happy World Fantasy</h2>
+      </div>
+      <p>Beste WMWario World 2026 avonturengame van het jaar 2026! Met veel werelden en kaarten. Alleen voor PC en Laptop.</p>
+      <a href="https://www.smbgames.be/super-mario-for-snes.php" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-mobile-alt"></i>
+        <h2>WMWario The Game</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026 op Android App.</p>
+      <a href="https://www.dropbox.com/scl/fi/kan1xfr4plcfy8flmnbmt/_Happy_Mario_19141767.apk?rlkey=pm42mvizbqckncrqc6dp18k4n&st=rou7d80m&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Happy World 12</h2>
+      </div>
+      <p>Beste WMWario World avonturengame van het jaar 2025-2026. Alleen voor PC en Laptop.</p>
+      <a href="https://tylerreichle.github.io/mario_js/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-laptop"></i> PC / LAPTOP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Happy World 11</h2>
+      </div>
+      <p>Beste WMWario 64 avonturengame van het jaar 2025-2026 op PC en Laptop.</p>
+      <a href="https://manscod.github.io/other/sm64/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Happy World 10</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.</p>
+      <a href="https://js-dos.com/mario/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Happy World 9</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.</p>
+      <a href="https://openhtml5games.github.io/games-mirror/dist/mariohtml5/main.html" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Happy World 8</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. Android App &amp; PC/Laptop.</p>
+      <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-8/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-brain"></i>
+        <h2>WMWario Happy World 6</h2>
+      </div>
+      <p>Beste memory game van het jaar 2025-2026. Compleet met veel memory-functies. De game voor jong en oud.</p>
+      <a href="https://www.dropbox.com/scl/fi/4wozjesimdqpsu5iu0pdt/11817_MarioMemory.apk?rlkey=eo2sozgcrocqdqy88xhz1tj7o&st=7q6bpbpc&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fas fa-globe"></i> WEBSERVER GAME</span>
+      <div class="card-header">
+        <i class="fas fa-ghost"></i>
+        <h2>WMWario Happy World 4</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026, Ghost House World. Android App &amp; PC/Laptop Webserver Game.</p>
+      <a href="https://abelsoftware1233.github.io/WMWario-Happy-World-4-/" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-hammer"></i>
+        <h2>WMWario Happy World 3</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026 met levels en level-editors, maak je eigen levels. Android App &amp; PC/Laptop Webserver Game.</p>
+      <a href="https://www.dropbox.com/scl/fi/x52eqtgflyaazrgdrivw1/11814_MarioMaker.apk?rlkey=zj8vvrnra595fqhc62x4qrhxo&st=oh80fd4k&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>WMWario Happy World 2</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026 met levels en level-editors, maak je eigen levels. Android App &amp; PC/Laptop Webserver Game.</p>
+      <a href="https://www.dropbox.com/scl/fi/byynm5jk90n2vzqu7ng86/11815_MarioWorld.apk?rlkey=it3mmosp8muexzpa6blyq5bgm&st=t99suy1d&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-chess-rook"></i>
+        <h2>WMWario Happy World 1</h2>
+      </div>
+      <p>Beste avonturengame van het jaar 2025-2026. Compleet met veel functies. De game voor jong en oud.</p>
+      <a href="https://www.dropbox.com/scl/fi/p9ssn0f8ilz0ww6lb6ysh/11812_MarioCastle.apk?rlkey=mxoezkvht57jc1p3uxbcfztm3&st=q05uri66&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-kiwi-bird"></i>
+        <h2>Fluppy Burd Blocks</h2>
+      </div>
+      <p>De beste oldschool klassieker uit de jaren 2010, opnieuw uitgebracht in 2025!</p>
+      <a href="https://www.dropbox.com/scl/fi/40kn5utwu1p8ftkyrm4s2/_Fluppy_Burd_19061879.apk?rlkey=94owyg5u74a3pnc7nn8wyu7rn&st=nzhbql19&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-gem"></i>
+        <h2>WMWario Crush Saga</h2>
+      </div>
+      <p>Beste puzzelgame van het jaar 2025. Met veel mogelijkheden en functies. De game voor jong en oud.</p>
+      <a href="https://www.dropbox.com/scl/fi/47fcjs5boqiae3dgxwth2/_Mario_Crush_Saga_19141849.apk?rlkey=5aik55xeyiv8dc5i539b57ew9&st=8igejlvi&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-bolt"></i>
+        <h2>Kross and Zero</h2>
+      </div>
+      <p>Kross and Zero, opnieuw uitgebracht in 2025 met een futuristisch ontwerp.</p>
+      <a href="https://www.dropbox.com/scl/fi/5kpp4byt9f8xegcb59uil/_Kross_and_Zero_19141907.apk?rlkey=brjpym3ljs2q1n5b6yl6v7yje&st=0nwb5xvi&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-coins"></i>
+        <h2>WMWario Slotpipes</h2>
+      </div>
+      <p>Een complete gokgame gokkast, beste gokgame van het jaar 2025.</p>
+      <a href="https://www.dropbox.com/scl/fi/qaei0cihicjtqrddyn0zk/_Mario_Slotpipes_19196763.apk?rlkey=w40bbvtslupppfi7jk1nh9asx&st=s8i2t2db&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-bullseye"></i>
+        <h2>YF Arrows</h2>
+      </div>
+      <p>Beste pijl-en-boog game van het jaar 2025.</p>
+      <a href="https://www.dropbox.com/scl/fi/fkq29r1nmnth4d09c1e8i/_YF_Arrows_19063837.apk?rlkey=z01n3iib6nw2i04p660r0opoq&st=058p9guv&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-icons"></i>
+        <h2>Slotmoji</h2>
+      </div>
+      <p>Beste gokgame van het jaar 2026, vol grappige emoji's.</p>
+      <a href="https://www.dropbox.com/scl/fi/izywurlhbrvmcdzat6tpg/_SlotMoji_19141773.apk?rlkey=cqgzkldieeyg51au3u3qkcny6&st=4430u5pl&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>
+
+    <div class="card">
+      <span class="badge-role"><i class="fab fa-android"></i> ANDROID APP</span>
+      <div class="card-header">
+        <i class="fas fa-ship"></i>
+        <h2>Flying Dutchman</h2>
+      </div>
+      <p>De leukste goudkoorts-game van het jaar 2025-2026 met veel power-ups en andere upgrades.</p>
+      <a href="https://www.dropbox.com/scl/fi/zdgqu2yma6ld1szvojqs7/_Flying_Dutchman_19177548.apk?rlkey=87y4e3yifn8wr9lsyc4plifw6&st=lretx7nw&dl=0" class="cta-btn" download><i class="fas fa-download"></i> Download</a>
+    </div>  </div> <!-- /page-grid -->
+</div>
+
+<!-- ===== CHAT LAUNCHER ===== -->
+<div id="chat-launcher" onclick="window.toggleChat()">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- ===== CHAT CONTAINER ===== -->
+<div id="chat-container">
+  <div id="chat-header">
+    <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Assistant</span>
+    <button onclick="window.toggleChat()"><i class="fas fa-times" style="color:#0b0d10"></i></button>
+  </div>
+  <div class="chat-quick-buttons">
+    <button class="quick-btn" onclick="window.handleQuickReply('prices')">💸 Prices</button>
+    <button class="quick-btn" onclick="window.handleQuickReply('payments')">💶 Payments</button>
+    <button class="quick-btn" onclick="window.handleQuickReply('contact')">🧑‍💻 Contact</button>
+  </div>
+  <div id="messages">
+    <div class="msg bot-msg">
+      <i class="fas fa-robot" style="margin-right: 0.3rem;"></i>
+      Welcome to Abelsoftware123 AI Assistant! How can I help you today?
+    </div>
+  </div>
+  <div id="input-area">
+    <input type="text" id="chat-input" placeholder="Ask something..." onkeypress="if(event.key==='Enter') window.askBot()">
+    <button onclick="window.askBot()">Send</button>
+  </div>
+</div>
+
+<script src="chatbot.js"></script>
+<script>
+  // Echo AI Logic Integration
+  let echo = null;
+
+  window.toggleChat = function() {
+      const chat = document.getElementById("chat-container");
+      chat.classList.toggle('open');
+
+      if (chat.classList.contains('open')) {
+          if (!echo && typeof BasicBot !== 'undefined') {
+              echo = new BasicBot();
+              console.log("Echo AI is now online!");
+          } else if (typeof BasicBot === 'undefined') {
+              console.error("Error: chatbot.js is not loaded properly or BasicBot class is missing.");
+          }
+      }
+  };
+
+  window.handleQuickReply = function(keyword) {
+      const input = document.getElementById("chat-input");
+      if (input) {
+          input.value = keyword;
+          window.askBot();
+      }
+  };
+
+  window.askBot = async function() {
+      const input = document.getElementById("chat-input");
+      const container = document.getElementById("messages");
+      const text = input.value.trim();
+
+      if (!text || !echo) return;
+
+      // Add User Message
+      container.innerHTML += `
+        <div class="msg user-msg">
+          ${text}
+          <span class="msg-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+        </div>`;
+
+      input.value = "";
+      container.scrollTop = container.scrollHeight;
+
+      try {
+          const response = await echo.chat(text);
+          setTimeout(() => {
+              container.innerHTML += `
+                <div class="msg bot-msg">
+                  <i class="fas fa-robot" style="margin-right:0.3rem;"></i> ${response}
+                  <span class="msg-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                </div>`;
+              container.scrollTop = container.scrollHeight;
+          }, 400);
+      } catch (err) {
+          console.error("Error in Echo chat:", err);
+      }
+  };
+
+  window.changeBotMode = (mode) => { if(echo) echo.mood = mode; };
+</script>
+
 </body>
 </html>
-
 
