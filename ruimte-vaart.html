@@ -462,6 +462,74 @@
       }
     }
 
+    /* ===== FEATURE PHOTO CARD (image + button below) ===== */
+    .photo-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.6rem;
+      overflow: hidden;
+      border: 1px solid rgba(0, 242, 255, 0.25);
+      background: rgba(18, 22, 30, 0.7);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .photo-card-body {
+      padding: 1.4rem 1.5rem 1.6rem;
+      text-align: center;
+    }
+
+    .photo-card-body h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .photo-card-body p {
+      font-size: 0.85rem;
+      color: #b0c8dd;
+      line-height: 1.4;
+      margin-bottom: 0.15rem;
+    }
+
+    .photo-card-body p.nl-line {
+      font-size: 0.78rem;
+      color: #8899aa;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .photo-card-body .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(145deg, #0057ff, #00d4ff 60%, #00fff0);
+      color: #fff;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(0, 87, 255, 0.45);
+      transition: 0.2s;
+    }
+
+    .photo-card-body .cta-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 10px 30px rgba(0, 87, 255, 0.6);
+    }
+
     /* ===== APP GALLERY (download-to-use images) ===== */
     .app-gallery {
       display: flex;
@@ -893,16 +961,17 @@
     </a>
   </div>
 
-  <!-- ===== 3D BUTTON GRID ===== -->
-  <div class="button-grid">
-
-    <a href="https://ruimte.abelsoftware123.com" target="_blank" rel="noopener" class="space-btn btn-tracking">
-      <i class="fas fa-satellite-dish icon"></i>
+  <!-- ===== FEATURED CARD: LIVE SATELLITE TRACKING ===== -->
+  <div class="photo-card">
+    <img src="satteliet.jpg" alt="Satelliet / Satellite Tracking">
+    <div class="photo-card-body">
       <h3>Live Satellite Tracking</h3>
       <p>EN — Real-time tracking of satellites orbiting Earth.</p>
       <p class="nl-line">NL — Live tracking van satellieten in een baan om de aarde.</p>
-    </a>
-
+      <a href="https://ruimte.abelsoftware123.com" target="_blank" rel="noopener" class="cta-btn">
+        <i class="fas fa-satellite-dish"></i> Open Live Tracking
+      </a>
+    </div>
   </div>
 
   <!-- ===== APP GALLERY (download to unlock) ===== -->
