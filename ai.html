@@ -25,6 +25,10 @@
       align-items: center;
     }
 
+    /* ===== LANGUAGE TOGGLE VISIBILITY ===== */
+    body:not(.lang-nl) .lang-nl { display: none; }
+    body.lang-nl .lang-en { display: none; }
+
     /* ===== LUXE ADVERTISEMENT CONTAINER ===== */
     .advertentie-wrapper {
       max-width: 1300px;
@@ -110,6 +114,19 @@
       color: #0b0d10;
       box-shadow: 0 0 30px #00f2ff;
       transform: scale(1.02);
+    }
+
+    /* ===== LANGUAGE TOGGLE BUTTON ===== */
+    .lang-toggle-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1.5px solid #8cdbff88;
+      color: #eaf7ff;
+    }
+
+    .lang-toggle-btn:hover {
+      background: #8cdbff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #8cdbffaa;
     }
 
     /* ===== NAVIGATION - FULL LIST ===== */
@@ -376,6 +393,18 @@
 
     .launch-app-btn i {
       font-size: 1rem;
+    }
+
+    /* Vet button uses a slightly different accent so it doesn't look identical to Abel's */
+    .launch-app-btn.vet-btn {
+      background: linear-gradient(145deg, #7fe9a0, #1f9d5c);
+      border: 1px solid #7fe9a0aa;
+      box-shadow: 0 4px 20px rgba(127, 233, 160, 0.3);
+    }
+
+    .launch-app-btn.vet-btn:hover {
+      background: linear-gradient(145deg, #a6ffc2, #2fbf74);
+      box-shadow: 0 6px 40px rgba(127, 233, 160, 0.5);
     }
 
     /* ===== RESPONSIVE FINE-TUNE ===== */
@@ -653,18 +682,29 @@
     <div class="brand-group">
       <i class="fas fa-robot brand-icon"></i>
       <span class="brand-title">AI Software Store</span>
-      <span class="brand-sub">· Advanced Autonomous</span>
+      <span class="brand-sub">
+        · <span class="lang-en">Advanced Autonomous</span><span class="lang-nl">Geavanceerd Autonoom</span>
+      </span>
     </div>
     <div class="header-actions">
-      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register</a>
-      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in</a>
+      <button id="lang-toggle" class="neon-btn lang-toggle-btn" onclick="toggleLanguage()">
+        <i class="fas fa-language"></i> <span id="lang-toggle-label">NL</span>
+      </button>
+      <a href="registreer.html" class="neon-btn">
+        <i class="fas fa-user-plus"></i>
+        <span class="lang-en">Register</span><span class="lang-nl">Registreren</span>
+      </a>
+      <a href="login.html" class="neon-btn">
+        <i class="fas fa-sign-in-alt"></i>
+        <span class="lang-en">Log in</span><span class="lang-nl">Inloggen</span>
+      </a>
     </div>
   </div>
 
   <!-- ===== NAVIGATION - FULL LIST ===== -->
   <nav class="main-nav">
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html"><span class="lang-en">Home</span><span class="lang-nl">Home</span></a></li>
       <li><a href="drone.html">Drone Fotografie NL</a></li>
       <li><a href="chatbot.html">Order Chatbot</a></li>
       <li><a href="advertentie.html">Advertising & Reclame</a></li>
@@ -678,7 +718,7 @@
       <li><a href="facturatie.html" class="href=">Business/Zakelijke Tools</a></li>
       <li><a href="music.html">Media & Apps</a></li>
       <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="privacy.html"><span class="lang-en">Privacy Policy</span><span class="lang-nl">Privacybeleid</span></a></li>
     </ul>
   </nav>
 
@@ -691,11 +731,14 @@
         <i class="fas fa-microchip"></i>
         <h2>Abel123 AI</h2>
         <span style="margin-left: auto; background: #00f2ff22; padding: 0.2rem 1rem; border-radius: 40px; font-size: 0.75rem; border: 1px solid #00f2ff55;">
-          <i class="fas fa-circle" style="color: #44ff88; font-size: 0.5rem;"></i> Connected
+          <i class="fas fa-circle" style="color: #44ff88; font-size: 0.5rem;"></i>
+          <span class="lang-en">Connected</span><span class="lang-nl">Verbonden</span>
         </span>
       </div>
-      <p><strong>EN:</strong> Machine Learning models with Chat function, Image generator and Face recognition. The AI detects markers across the entire internet and Social Media platforms.</p>
-      <p><strong>NL:</strong> Machine Learning-modellen met chatfunctie, afbeeldingsgenerator en gezichtsherkenning. De AI detecteert markers over het volledige internet en op Social Media-platforms.</p>
+      <p>
+        <span class="lang-en">Machine Learning models with Chat function, Image generator and Face recognition. The AI detects markers across the entire internet and Social Media platforms.</span>
+        <span class="lang-nl">Machine Learning-modellen met chatfunctie, afbeeldingsgenerator en gezichtsherkenning. De AI detecteert markers over het volledige internet en op Social Media-platforms.</span>
+      </p>
 
       <!-- ===== AFBEELDING: ai123.jpg ===== -->
       <!-- Bug: bij een ontbrekende/verkeerde afbeelding zorgde onerror="this.style.display='none'"
@@ -705,23 +748,32 @@
            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'abel-image-fallback',innerHTML:'<i class=\'fas fa-microchip\'></i>'}))">
 
       <div style="display: flex; gap: 0.8rem; margin-top: 0.3rem; flex-wrap: wrap;">
-        <span class="chat-badge"><i class="fas fa-comment"></i> Chat</span>
-        <span class="chat-badge"><i class="fas fa-image"></i> Image</span>
-        <span class="chat-badge"><i class="fas fa-user"></i> Face</span>
+        <span class="chat-badge"><i class="fas fa-comment"></i> <span class="lang-en">Chat</span><span class="lang-nl">Chat</span></span>
+        <span class="chat-badge"><i class="fas fa-image"></i> <span class="lang-en">Image</span><span class="lang-nl">Afbeelding</span></span>
+        <span class="chat-badge"><i class="fas fa-user"></i> <span class="lang-en">Face</span><span class="lang-nl">Gezicht</span></span>
       </div>
 
-      <!-- ===== NIEUWE KNOP: GA NAAR ABEL123 AI ===== -->
+      <!-- ===== KNOP: GA NAAR ABEL123 AI ===== -->
       <a href="https://abelsoftware1233.github.io/Abel123-AI-the-App/" target="_blank" rel="noopener" class="launch-app-btn">
-        <i class="fas fa-external-link-alt"></i> Ga naar Abel123 AI
+        <i class="fas fa-external-link-alt"></i>
+        <span class="lang-en">Go to Abel123 AI</span><span class="lang-nl">Ga naar Abel123 AI</span>
       </a>
 
       <div class="abel-meta">
         <span><i class="fas fa-clock"></i> 15:18 &nbsp; 09:19</span>
-        <span><i class="fas fa-terminal"></i> sys: Abel123 AI online. Stel een vraag.</span>
-        <span><i class="fas fa-chevron-circle-right"></i> Type a message...</span>
+        <span>
+          <i class="fas fa-terminal"></i>
+          <span class="lang-en">sys: Abel123 AI online. Ask a question.</span>
+          <span class="lang-nl">sys: Abel123 AI online. Stel een vraag.</span>
+        </span>
+        <span>
+          <i class="fas fa-chevron-circle-right"></i>
+          <span class="lang-en">Type a message...</span><span class="lang-nl">Typ een bericht...</span>
+        </span>
       </div>
       <div class="chat-indicator" style="background: #2a3344; padding: 0.4rem 1rem; border-radius: 40px; display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: #b0c8dd; border: 1px solid #00f2ff33; margin-top: 0.8rem;">
-        <span class="online-dot" style="display: inline-block; width: 8px; height: 8px; background: #44ff88; border-radius: 50%; box-shadow: 0 0 12px #44ff88;"></span> Abel123 AI · active
+        <span class="online-dot" style="display: inline-block; width: 8px; height: 8px; background: #44ff88; border-radius: 50%; box-shadow: 0 0 12px #44ff88;"></span>
+        Abel123 AI · <span class="lang-en">active</span><span class="lang-nl">actief</span>
         <i class="fas fa-ellipsis-h" style="margin-left: 0.5rem;"></i>
       </div>
     </div>
@@ -736,10 +788,8 @@
         </span>
       </div>
       <p>
-        <strong>NL:</strong> Multimodale AI-triagemodule voor huisdieren. Combineert symptoomanalyse, beeldherkenning (huid/vacht/oor en röntgen) en een AI Scribe die automatisch SOAP-verslagen genereert &mdash; voor huisdiereigenaren die willen weten wat er aan de hand is, en dierenartsen die sneller tot een onderbouwde diagnose willen komen.
-      </p>
-      <p>
-        <strong>EN:</strong> A multimodal AI triage module for pets. Combines a symptom checker, computer vision image analysis (skin/coat/ear and X-rays) and an AI Scribe that auto-generates SOAP notes &mdash; for pet owners who want to know what's going on, and vets who want to reach a well-supported diagnosis faster.
+        <span class="lang-nl">Multimodale AI-triagemodule voor huisdieren. Combineert symptoomanalyse, beeldherkenning (huid/vacht/oor en röntgen) en een AI Scribe die automatisch SOAP-verslagen genereert &mdash; voor huisdiereigenaren die willen weten wat er aan de hand is, en dierenartsen die sneller tot een onderbouwde diagnose willen komen.</span>
+        <span class="lang-en">A multimodal AI triage module for pets. Combines a symptom checker, computer vision image analysis (skin/coat/ear and X-rays) and an AI Scribe that auto-generates SOAP notes &mdash; for pet owners who want to know what's going on, and vets who want to reach a well-supported diagnosis faster.</span>
       </p>
 
       <!-- Twee screenshots naast elkaar in mini-grid -->
@@ -751,19 +801,29 @@
       </div>
 
       <div style="display: flex; gap: 0.8rem; margin-top: 0.3rem; flex-wrap: wrap;">
-        <span class="chat-badge"><i class="fas fa-stethoscope"></i> Symptoom-Checker</span>
+        <span class="chat-badge"><i class="fas fa-stethoscope"></i> <span class="lang-en">Symptom Checker</span><span class="lang-nl">Symptoom-Checker</span></span>
         <span class="chat-badge"><i class="fas fa-camera"></i> Computer Vision</span>
         <span class="chat-badge"><i class="fas fa-file-medical-alt"></i> AI Scribe (SOAP)</span>
-        <span class="chat-badge"><i class="fas fa-id-card"></i> Patiëntregistratie</span>
+        <span class="chat-badge"><i class="fas fa-id-card"></i> <span class="lang-en">Patient Registration</span><span class="lang-nl">Patiëntregistratie</span></span>
       </div>
+
+      <!-- ===== KNOP: GA NAAR VETPULSE AI ===== -->
+      <a href="https://abelsoftware1233.github.io/AI-Dierenarts-V2.0/" target="_blank" rel="noopener" class="launch-app-btn vet-btn">
+        <i class="fas fa-external-link-alt"></i>
+        <span class="lang-en">Go to VetPulse AI</span><span class="lang-nl">Ga naar VetPulse AI</span>
+      </a>
 
       <div class="abel-meta">
-        <span><i class="fas fa-microchip"></i> 4 AI-modules actief</span>
-        <span><i class="fas fa-bolt"></i> &lt;30s gemiddelde triagetijd</span>
-        <span><i class="fas fa-clock"></i> 24/7 beschikbaar</span>
+        <span><i class="fas fa-microchip"></i> <span class="lang-en">4 AI modules active</span><span class="lang-nl">4 AI-modules actief</span></span>
+        <span><i class="fas fa-bolt"></i> <span class="lang-en">&lt;30s average triage time</span><span class="lang-nl">&lt;30s gemiddelde triagetijd</span></span>
+        <span><i class="fas fa-clock"></i> <span class="lang-en">24/7 available</span><span class="lang-nl">24/7 beschikbaar</span></span>
       </div>
 
-      <div class="disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer: VetPulse AI biedt ondersteunende triage-informatie en vervangt geen diagnose door een gediplomeerd dierenarts. / VetPulse AI provides supportive triage information and does not replace a diagnosis by a licensed veterinarian.</div>
+      <div class="disclaimer">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span class="lang-en">Disclaimer: VetPulse AI provides supportive triage information and does not replace a diagnosis by a licensed veterinarian.</span>
+        <span class="lang-nl">Disclaimer: VetPulse AI biedt ondersteunende triage-informatie en vervangt geen diagnose door een gediplomeerd dierenarts.</span>
+      </div>
     </div>
 
     <!-- AI Face Recognition -->
@@ -772,12 +832,25 @@
         <i class="fas fa-user-check"></i>
         <h2>AI Face Recognition</h2>
       </div>
-      <p>Computer Vision combined with local SQLite databases to match faces against indexed collections. Perfect for security and identification systems.</p>
+      <p>
+        <span class="lang-en">Computer Vision combined with local SQLite databases to match faces against indexed collections. Perfect for security and identification systems.</span>
+        <span class="lang-nl">Computer Vision gecombineerd met lokale SQLite-databases om gezichten te matchen met geïndexeerde collecties. Perfect voor beveiligings- en identificatiesystemen.</span>
+      </p>
       <ul class="feature-list">
-        <li>Compatible with Kali Linux, Android, and Python3.</li>
-        <li>Local database for maximum privacy and speed.</li>
+        <li>
+          <span class="lang-en">Compatible with Kali Linux, Android, and Python3.</span>
+          <span class="lang-nl">Compatibel met Kali Linux, Android en Python3.</span>
+        </li>
+        <li>
+          <span class="lang-en">Local database for maximum privacy and speed.</span>
+          <span class="lang-nl">Lokale database voor maximale privacy en snelheid.</span>
+        </li>
       </ul>
-      <div class="disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer: Intended for educational use. Always comply with GDPR/AVG regulations.</div>
+      <div class="disclaimer">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span class="lang-en">Disclaimer: Intended for educational use. Always comply with GDPR regulations.</span>
+        <span class="lang-nl">Disclaimer: Uitsluitend bedoeld voor educatief gebruik. Voldoe altijd aan de AVG-regelgeving.</span>
+      </div>
     </div>
 
     <!-- AI Drone Swarm -->
@@ -786,12 +859,27 @@
         <i class="fas fa-drone"></i>
         <h2>AI Drone Swarm</h2>
       </div>
-      <h3><i class="fas fa-project-diagram" style="color: #00f2ff; margin-right: 0.4rem;"></i> Decentralized Coordination</h3>
-      <p>Advanced swarm intelligence algorithms allowing dozens of drones to act as a single unit without a central command post.</p>
+      <h3>
+        <i class="fas fa-project-diagram" style="color: #00f2ff; margin-right: 0.4rem;"></i>
+        <span class="lang-en">Decentralized Coordination</span><span class="lang-nl">Gedecentraliseerde Coördinatie</span>
+      </h3>
+      <p>
+        <span class="lang-en">Advanced swarm intelligence algorithms allowing dozens of drones to act as a single unit without a central command post.</span>
+        <span class="lang-nl">Geavanceerde swarm-intelligentie-algoritmes waarmee tientallen drones als één eenheid kunnen optreden zonder centrale commandopost.</span>
+      </p>
       <ul class="feature-list">
-        <li>Resilient against jamming and individual unit failure.</li>
-        <li>Autonomous mission execution through Swarm Intelligence.</li>
-        <li>Custom decentralized control algorithms.</li>
+        <li>
+          <span class="lang-en">Resilient against jamming and individual unit failure.</span>
+          <span class="lang-nl">Bestand tegen storing en uitval van individuele eenheden.</span>
+        </li>
+        <li>
+          <span class="lang-en">Autonomous mission execution through Swarm Intelligence.</span>
+          <span class="lang-nl">Autonome missie-uitvoering door middel van Swarm Intelligence.</span>
+        </li>
+        <li>
+          <span class="lang-en">Custom decentralized control algorithms.</span>
+          <span class="lang-nl">Aangepaste gedecentraliseerde besturingsalgoritmes.</span>
+        </li>
       </ul>
     </div>
 
@@ -801,8 +889,14 @@
         <i class="fas fa-cogs"></i>
         <h2>Custom AI Development</h2>
       </div>
-      <p>We build brand new, autonomous AI software tailored to your specific requirements. From Search & Rescue systems to life-saving face recognition for missing persons.</p>
-      <a href="chatbot.html" class="cta-btn"><i class="fas fa-robot"></i> View Chatbot Solutions</a>
+      <p>
+        <span class="lang-en">We build brand new, autonomous AI software tailored to your specific requirements. From Search & Rescue systems to life-saving face recognition for missing persons.</span>
+        <span class="lang-nl">Wij bouwen gloednieuwe, autonome AI-software op maat van uw specifieke eisen. Van Search & Rescue-systemen tot levensreddende gezichtsherkenning voor vermiste personen.</span>
+      </p>
+      <a href="chatbot.html" class="cta-btn">
+        <i class="fas fa-robot"></i>
+        <span class="lang-en">View Chatbot Solutions</span><span class="lang-nl">Bekijk Chatbot-oplossingen</span>
+      </a>
       <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
         <span style="background: #1f2a38; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.7rem; color: #b0d0e8;"><i class="fas fa-check-circle" style="color: #00f2ff;"></i> end-to-end</span>
         <span style="background: #1f2a38; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.7rem; color: #b0d0e8;"><i class="fas fa-shield-alt" style="color: #00f2ff;"></i> privacy by design</span>
@@ -822,34 +916,67 @@
     <div id="chat-header">
       <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> Abel123 AI</span>
       <span class="online-status">
-        <span class="dot"></span> Connected
+        <span class="dot"></span> <span class="lang-en">Connected</span><span class="lang-nl">Verbonden</span>
       </span>
       <button class="close-btn" onclick="toggleChat()">✕</button>
     </div>
     <div id="messages">
       <div class="msg bot-msg">
-        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> Abel123 AI online. Stel een vraag.
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i>
+        <span class="lang-en">Abel123 AI online. Ask a question.</span>
+        <span class="lang-nl">Abel123 AI online. Stel een vraag.</span>
         <span class="msg-time">00:00:00</span>
       </div>
     </div>
     <div class="chat-quick-buttons">
-      <button class="quick-btn" onclick="quickMessage('Hallo')">👋 Hallo</button>
-      <button class="quick-btn" onclick="quickMessage('Wie ben je?')">🤖 Wie ben je?</button>
-      <button class="quick-btn" onclick="quickMessage('Wat kun je doen?')">⚡ Wat kun je doen?</button>
+      <button class="quick-btn" data-msg-en="Hello" data-msg-nl="Hallo" onclick="quickMessageBtn(this)">
+        👋 <span class="lang-en">Hello</span><span class="lang-nl">Hallo</span>
+      </button>
+      <button class="quick-btn" data-msg-en="Who are you?" data-msg-nl="Wie ben je?" onclick="quickMessageBtn(this)">
+        🤖 <span class="lang-en">Who are you?</span><span class="lang-nl">Wie ben je?</span>
+      </button>
+      <button class="quick-btn" data-msg-en="What can you do?" data-msg-nl="Wat kun je doen?" onclick="quickMessageBtn(this)">
+        ⚡ <span class="lang-en">What can you do?</span><span class="lang-nl">Wat kun je doen?</span>
+      </button>
     </div>
     <div id="input-area">
       <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
-      <button onclick="sendMessage()">Send</button>
+      <button onclick="sendMessage()"><span class="lang-en">Send</span><span class="lang-nl">Verzenden</span></button>
     </div>
   </div>
 
   <div class="footer-note">
-    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · AI Software Store &nbsp;|&nbsp; Advanced Autonomous Solutions - Chamber of Commerce (KvK) number: 42090960 ​Tax ID (VAT): NL 005488351B30
+    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · AI Software Store &nbsp;|&nbsp;
+    <span class="lang-en">Advanced Autonomous Solutions</span><span class="lang-nl">Geavanceerde Autonome Oplossingen</span>
+    - Chamber of Commerce (KvK) number: 42090960 ​Tax ID (VAT): NL 005488351B30
   </div>
 
 </div> <!-- /advertentie-wrapper -->
 
 <script>
+  // ===== LANGUAGE TOGGLE =====
+  let currentLang = 'en';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('lang-nl', lang === 'nl');
+    document.documentElement.lang = lang;
+    document.getElementById('lang-toggle-label').textContent = lang === 'en' ? 'NL' : 'EN';
+    const input = document.getElementById('chat-input');
+    if (input) {
+      input.placeholder = lang === 'nl' ? 'Typ een bericht...' : 'Type a message...';
+    }
+  }
+
+  function toggleLanguage() {
+    setLanguage(currentLang === 'en' ? 'nl' : 'en');
+  }
+
+  // Initialize on load (defaults to English)
+  document.addEventListener('DOMContentLoaded', function () {
+    setLanguage('en');
+  });
+
   // ===== CHAT FUNCTIONALITY =====
   function toggleChat() {
     const container = document.getElementById('chat-container');
@@ -863,39 +990,49 @@
     const input = document.getElementById('chat-input');
     const msg = input.value.trim();
     if (!msg) return;
+    postUserMessage(msg);
+    input.value = '';
+  }
 
+  function quickMessageBtn(btn) {
+    const msg = currentLang === 'nl' ? btn.dataset.msgNl : btn.dataset.msgEn;
+    postUserMessage(msg);
+  }
+
+  function postUserMessage(msg) {
     const messages = document.getElementById('messages');
 
     // User message
     const userDiv = document.createElement('div');
     userDiv.className = 'msg user-msg';
-    userDiv.innerHTML = msg + '<span class="msg-time">Just now</span>';
+    userDiv.innerHTML = msg + '<span class="msg-time">' + (currentLang === 'nl' ? 'Zojuist' : 'Just now') + '</span>';
     messages.appendChild(userDiv);
-
-    input.value = '';
     messages.scrollTop = messages.scrollHeight;
 
     // Bot response (after 0.8s delay)
     setTimeout(() => {
       const botDiv = document.createElement('div');
       botDiv.className = 'msg bot-msg';
-      const responses = [
+      const responsesEN = [
         'That\'s a great question! Let me think about that... 🤔',
         'I\'m Abel123 AI, your autonomous assistant. How can I help you today?',
         'I can help with chat, image generation, face recognition, and more!',
         'Interesting! Tell me more about that.',
         'I\'m always learning. What would you like to know?'
       ];
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + randomResponse + '<span class="msg-time">Just now</span>';
+      const responsesNL = [
+        'Goede vraag! Daar denk ik even over na... 🤔',
+        'Ik ben Abel123 AI, je autonome assistent. Waarmee kan ik je vandaag helpen?',
+        'Ik kan helpen met chat, afbeeldingen genereren, gezichtsherkenning en meer!',
+        'Interessant! Vertel me daar meer over.',
+        'Ik leer voortdurend bij. Wat wil je weten?'
+      ];
+      const pool = currentLang === 'nl' ? responsesNL : responsesEN;
+      const randomResponse = pool[Math.floor(Math.random() * pool.length)];
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + randomResponse + '<span class="msg-time">' + (currentLang === 'nl' ? 'Zojuist' : 'Just now') + '</span>';
       messages.appendChild(botDiv);
       messages.scrollTop = messages.scrollHeight;
     }, 800);
-  }
-
-  function quickMessage(text) {
-    document.getElementById('chat-input').value = text;
-    sendMessage();
   }
 
   // Close chat with Escape key
