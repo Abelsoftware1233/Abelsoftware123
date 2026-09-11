@@ -348,6 +348,36 @@
       color: #00f2ff;
     }
 
+    /* ===== LAUNCH APP BUTTON ===== */
+    .launch-app-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(145deg, #00d4e6, #0088aa);
+      border: 1px solid #00f2ffaa;
+      color: #0b0d10;
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 0.8rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+    }
+
+    .launch-app-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #00f2ff, #00aacc);
+      box-shadow: 0 6px 40px #00f2ff66;
+      color: #000;
+    }
+
+    .launch-app-btn i {
+      font-size: 1rem;
+    }
+
     /* ===== RESPONSIVE FINE-TUNE ===== */
     @media (max-width: 600px) {
       .advertentie-wrapper {
@@ -679,6 +709,11 @@
         <span class="chat-badge"><i class="fas fa-image"></i> Image</span>
         <span class="chat-badge"><i class="fas fa-user"></i> Face</span>
       </div>
+
+      <!-- ===== NIEUWE KNOP: GA NAAR ABEL123 AI ===== -->
+      <a href="https://abelsoftware1233.github.io/Abel123-AI-the-App/" target="_blank" rel="noopener" class="launch-app-btn">
+        <i class="fas fa-external-link-alt"></i> Ga naar Abel123 AI
+      </a>
 
       <div class="abel-meta">
         <span><i class="fas fa-clock"></i> 15:18 &nbsp; 09:19</span>
