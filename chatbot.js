@@ -68,8 +68,8 @@ class BasicBot {
                 "license": "licentie", "full version": "licentie",
 
                 "betalen": {
-                    en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal here: www.abelsoftware123.com/payments.html Your support keeps me running!",
-                    nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal op: www.abelsoftware123.com/payments.html Jouw steun houdt mij draaiende!"
+                    en: "Ready for the real deal? 💰 You can safely buy our apps and games via PayPal here: www.abelsoftware123.com/payments Your support keeps me running!",
+                    nl: "Klaar voor het echte werk? 💰 Je kunt onze apps en games veilig kopen via PayPal op: www.abelsoftware123.com/payments Jouw steun houdt mij draaiende!"
                 },
                 "payment": "betalen", "pay": "betalen", "kopen": "betalen", "buy": "betalen",
 
@@ -94,28 +94,28 @@ class BasicBot {
                     nl: "Bezoek onze officiële homepage voor op maat gemaakte websites en apps met de nieuwste technologieën: www.abelsoftware123.com/website.html 🌐"
                 },
                 "hacktools": {
-                    en: "Visit our official homepage for the full hacktools experience: www.abelsoftware123.com/hacktools.html 🧑‍💻",
-                    nl: "Bezoek onze officiële homepage voor de volledige hacktools ervaring: www.abelsoftware123.com/hacktools.html 🧑‍💻",
+                    en: "Visit our official homepage for the full hacktools experience: www.abelsoftware123.com/hacktools 🧑‍💻",
+                    nl: "Bezoek onze officiële homepage voor de volledige hacktools ervaring: www.abelsoftware123.com/hacktools 🧑‍💻",
                 },
                 "domein": {
-                    en: "Visit our official homepage for the full domain (.com/.nl/.be) order experience: www.abelsoftware123.com/domain.html 🧑‍💻",
-                    nl: "Bezoek onze officiële homepage voor de volledige domain (.com/.nl/.be) ervaring: www.abelsoftware123.com/domain.html 🧑‍💻"
+                    en: "Visit our official homepage for the full domain (.com/.nl/.be) order experience: www.abelsoftware123.com/domain 🧑‍💻",
+                    nl: "Bezoek onze officiële homepage voor de volledige domain (.com/.nl/.be) ervaring: www.abelsoftware123.com/domain 🧑‍💻"
                 },
                 "apps": {
-                    en: "Visit our official homepage for the full apps order experience: www.abelsoftware123.com/apps.html 🕹️",
-                    nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps.html 🕹️"
+                    en: "Visit our official homepage for the full apps order experience: www.abelsoftware123.com/apps 🕹️",
+                    nl: "Bezoek onze officiële homepage voor de volledige apps ervaring: www.abelsoftware123.com/apps 🕹️"
                 },
                 "chatbot": {
-                    en: "Visit our official homepage for the full (AI) chatbots order experience: www.abelsoftware123.com/chatbot.html 🤖",
-                    nl: "Bezoek onze officiële homepage voor de volledige (AI) chatbot ervaring: www.abelsoftware123.com/chatbot.html 🤖"
+                    en: "Visit our official homepage for the full (AI) chatbots order experience: www.abelsoftware123.com/chatbot 🤖",
+                    nl: "Bezoek onze officiële homepage voor de volledige (AI) chatbot ervaring: www.abelsoftware123.com/chatbot 🤖"
                 },
                 "advertising": {
-                    en: "Visit our official homepage for the advertising on games order experience: www.abelsoftware123.com/advertentie.html 💸",
-                    nl: "Bezoek onze officiële homepage voor de adverteren in games ervaring: www.abelsoftware123.com/advertentie.html 💸"
+                    en: "Visit our official homepage for the advertising on games order experience: www.abelsoftware123.com/advertentie 💸",
+                    nl: "Bezoek onze officiële homepage voor de adverteren in games ervaring: www.abelsoftware123.com/advertentie 💸"
                 },
                 "download": {
-                    en: "Visit our official homepage for the full apps and games collection: www.abelsoftware123.com/payments.html 🎮",
-                    nl: "Bezoek onze officiële homepage voor de volledige apps en games collectie: www.abelsoftware123.com/payments.html 🎮"
+                    en: "Visit our official homepage for the full apps and games collection: www.abelsoftware123.com/payments 🎮",
+                    nl: "Bezoek onze officiële homepage voor de volledige apps en games collectie: www.abelsoftware123.com/payments 🎮"
                 },
                 "hackgame": {
                     en: "INITIALIZING HACK SESSION... 📟 System: Enter the 4-digit bypass code (1000-9999). You have 15 seconds! Type: 'code [number]'",
