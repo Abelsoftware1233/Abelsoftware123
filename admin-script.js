@@ -5,23 +5,55 @@
  */
 
 // --- 1. TOEGANGSCONTROLE ---
-function checkAccess() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const isPageAdmin = window.location.pathname.includes('admin.html');
-    
-    if (isPageAdmin) {
-        if (!isLoggedIn || !currentUser) return false;
-        const usernameLow = currentUser.username.toLowerCase();
-        const roleLow = (currentUser.role || "").toLowerCase();
-        return (usernameLow === 'abelsoftware123' || usernameLow === 'admin' || roleLow === 'admin');
+// De admin-pagina is bereikbaar als /admin, /admin/ en /admin.html.
+// Alle drie moeten vergrendeld zijn.
+const IS_ADMIN_PAGE = /\/admin(\.html)?\/?$/i.test(window.location.pathname);
+const ADMIN_SESSION_KEY = 'adminSession';
+const ADMIN_SESSION_MAX_MS = 60 * 60 * 1000; // sessie verloopt na 1 uur
+
+// Verberg de pagina meteen, zodat er niets zichtbaar is voordat de check klaar is
+if (IS_ADMIN_PAGE) document.documentElement.style.display = 'none';
+
+// Een admin-sessie geldt alleen in dit tabblad en verdwijnt als je de browser/tab sluit
+function hasValidAdminSession() {
+    try {
+        const s = JSON.parse(sessionStorage.getItem(ADMIN_SESSION_KEY));
+        return !!s && s.ok === true && (Date.now() - s.time) < ADMIN_SESSION_MAX_MS;
+    } catch (e) {
+        return false;
     }
-    return true;
 }
 
-if (!checkAccess()) {
-    alert("Toegang geweigerd: Je hebt niet de juiste rechten.");
-    window.location.href = 'login.html';
+function checkAccess() {
+    if (!IS_ADMIN_PAGE) return true;
+
+    let currentUser = null;
+    try { currentUser = JSON.parse(localStorage.getItem('currentUser')); } catch (e) {}
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (!isLoggedIn || !currentUser) return false;
+    if (!hasValidAdminSession()) return false;   // verplicht opnieuw inloggen
+
+    const usernameLow = (currentUser.username || '').toLowerCase();
+    const roleLow = (currentUser.role || '').toLowerCase();
+    return (usernameLow === 'abelsoftware123' || usernameLow === 'admin' || roleLow === 'admin');
+}
+
+function denyAdminAccess() {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    window.location.replace('login.html');
+}
+
+if (IS_ADMIN_PAGE) {
+    if (checkAccess()) {
+        document.documentElement.style.display = '';
+    } else {
+        denyAdminAccess();
+    }
+    // Terug-knop of bfcache mag het dashboard ook niet opnieuw tonen
+    window.addEventListener('pageshow', function () {
+        if (!checkAccess()) denyAdminAccess();
+    });
 }
 
 // Global variables voor paginering
@@ -258,5 +290,6 @@ window.changePage = (page) => {
 window.performLogout = function() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    window.location.replace('login.html');
 };
