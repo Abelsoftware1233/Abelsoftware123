@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Reviews · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== DUTCH (NL) TEXT UNDER ENGLISH ===== */
+    .nl {
+      display: block;
+      color: #7fc4d8;
+      font-size: 0.88em;
+      font-weight: 400;
+      font-style: normal;
+      margin-top: 0.25rem;
+      letter-spacing: 0;
+      text-shadow: none;
+    }
+
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .neon-btn .nl {
+      color: inherit;
+      opacity: 0.75;
+      font-size: 0.85em;
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+      display: block;
+      text-align: center;
+    }
+
+    .main-nav a .nl {
+      font-size: 0.85em;
+      color: #6fa9bd;
+      margin-top: 0.1rem;
+    }
+
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+
+    .main-nav a:hover .nl,
+    .main-nav a.active .nl {
+      color: #bfeaf5;
+    }
+
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== REVIEWS SECTION ===== */
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .reviews-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .reviews-header h2 .nl {
+      font-size: 0.6em;
+      font-weight: 600;
+      background: none;
+      -webkit-text-fill-color: #7fc4d8;
+      color: #7fc4d8;
+    }
+
+    .reviews-header p {
+      color: #8899aa;
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+
+    .reviews-header p.nl {
+      color: #6fa9bd;
+      font-size: 0.85rem;
+      margin-top: 0.1rem;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #00f2ff40;
+      border-color: #00f2ff44;
+    }
+
+    .stars {
+      color: #ffd700;
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-style: italic;
+      color: #c8d6e5;
+      line-height: 1.6;
+      font-size: 0.92rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .review-text::before {
+      content: '"';
+      color: #00f2ff;
+      font-size: 1.2rem;
+    }
+
+    .review-text::after {
+      content: '"';
+      color: #00f2ff;
+      font-size: 1.2rem;
+    }
+
+    /* Dutch version of the review, directly under the English one */
+    .review-text-nl {
+      color: #8fc3d4;
+      font-size: 0.88rem;
+      border-top: 1px dashed rgba(0, 242, 255, 0.2);
+      padding-top: 0.7rem;
+      margin-top: -0.2rem;
+    }
+
+    .review-author {
+      color: #00f2ff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .review-author i {
+      font-size: 0.7rem;
+      opacity: 0.6;
+    }
+
+    .review-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      padding: 0.15rem 0.7rem;
+      border-radius: 20px;
+      background: #00f2ff11;
+      border: 1px solid #00f2ff33;
+      color: #8899aa;
+      margin-top: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .review-tag .nl {
+      color: #6fa9bd;
+      font-size: 1em;
+      margin-top: 0;
+    }
+
+    /* ===== SECTION TITLES INSIDE GRID ===== */
+    .review-section-title {
+      grid-column: 1 / -1 !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #ffffff !important;
+      background: linear-gradient(90deg, rgba(0, 242, 255, 0.02), rgba(0, 242, 255, 0.16), rgba(0, 242, 255, 0.02));
+      border: 1px solid rgba(0, 242, 255, 0.35);
+      border-radius: 1.2rem;
+      padding: 0.9rem 1.2rem;
+      margin: 1.8rem 0 0.2rem;
+      text-shadow: 0 0 18px rgba(0, 242, 255, 0.45);
+    }
+
+    .review-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .review-section-title .nl {
+      font-size: 0.65em;
+      font-weight: 600;
+      color: #9fdcec !important;
+      text-shadow: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+      .reviews-header h2 {
+        font-size: 1.5rem;
+      }
+      .review-card {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    .footer-note h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #8899aa;
+    }
+
+    .footer-note h3 .nl {
+      color: #6fa9bd;
+      font-size: 0.9em;
+      margin-top: 0.15rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub">· Premium Software Solutions
+        <span class="nl">· Premium softwareoplossingen</span>
+      </span>
+    </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> Register <span class="nl">Registreren</span></a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> Log in <span class="nl">Inloggen</span></a>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home <span class="nl">Home</span></a></li>
+      <li><a href="ai.html">AI Software <span class="nl">AI-software</span></a></li>
+      <li><a href="hacktools.html">Cybersecurity &amp; Offensive Security <span class="nl">Cyberbeveiliging &amp; Offensieve beveiliging</span></a></li>
+      <li><a href="payments.html">Payments Games &amp; Apps <span class="nl">Betalingen Games &amp; Apps</span></a></li>
+      <li><a href="website.html">Order Website &amp; App &amp; Domain <span class="nl">Website, app &amp; domein bestellen</span></a></li>
+      <li><a href="ruimte-vaart.html">Space Technology <span class="nl">Ruimtevaarttechnologie</span></a></li>
+      <li><a href="music.html">Media-Apps &amp; Entertainment <span class="nl">Media-apps &amp; entertainment</span></a></li>
+      <li><a href="advertentie.html">Advertising &amp; Our Partners <span class="nl">Adverteren &amp; onze partners</span></a></li>
+      <li><a href="company.html">Company Contact &amp; Info <span class="nl">Bedrijf, contact &amp; info</span></a></li>
+      <li><a href="drone.html">Drone Photography NL <span class="nl">Dronefotografie NL</span></a></li>
+      <li><a href="facturatie.html">Business Tools <span class="nl">Zakelijke tools</span></a></li>
+      <li><a href="chatbot.html">Order Chatbot <span class="nl">Chatbot bestellen</span></a></li>
+      <li><a href="apps.html">Apps List <span class="nl">Lijst met apps</span></a></li>
+      <li><a href="reviews.html" class="active">Reviews <span class="nl">Reviews</span></a></li>
+      <li><a href="privacy.html">Privacy Policy <span class="nl">Privacybeleid</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== REVIEWS SECTION ===== -->
+  <div class="reviews-header">
+    <h2><i class="fas fa-star" style="color: #ffd700; font-size: 1.8rem;"></i> Client Reviews &amp; Trust
+      <span class="nl">Klantreviews &amp; vertrouwen</span>
+    </h2>
+    <p>What our customers say about Abelsoftware123</p>
+    <p class="nl">Wat onze klanten zeggen over Abelsoftware123</p>
+  </div>
+
+  <div class="review-grid">
+
+    <!-- ===== Abel123 AI · GPU 8.8 ===== -->
+    <div class="review-section-title">🧠 Abel123 AI · GPU 8.8
+      <span class="nl">Abel123 AI · GPU 8.8</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The Abel123 AI model is truly all-knowing. We use it to make our business far more visible and well known online. In no time, the AI generates complete, persuasive copy for our entire website and marketing campaigns. Our revenue and brand awareness have grown enormously as a result!</p>
+      <p class="review-text review-text-nl">Het Abel123 AI-model is werkelijk een allesweter. We zetten het in om ons bedrijf veel beter zichtbaar en bekender te maken online. Binnen no-time genereert de AI complete, wervende teksten voor onze hele website en marketingcampagnes. Onze omzet en merkbekendheid zijn hierdoor enorm gegroeid!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Bas van der Meer <span class="review-tag">E-commerce Manager<span class="nl">E-commercemanager</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">I was amazed by the coding skills of Abel123 AI. The model not only wrote a complete, error-free website for my company in a single afternoon, but also helps me daily with writing complex scripts. It's like having a top developer and marketer in one assistant!</p>
+      <p class="review-text review-text-nl">Ik stond versteld van de codeerkwaliteiten van Abel123 AI. Het model schreef niet alleen binnen een middag een complete, foutloze website voor mijn bedrijf, maar helpt me ook dagelijks met het schrijven van ingewikkelde scripts. Het is alsof je een topontwikkelaar en marketeer in één assistent hebt!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Daan Bakker <span class="review-tag">Entrepreneur &amp; Founder<span class="nl">Ondernemer &amp; Founder</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">If you want to put your business on the map quickly, you have to try this AI model from Abel123. It truly knows the answer to every question and generates high-converting website copy and blogs at lightning speed. It has helped us enormously to take our brand awareness to the next level.</p>
+      <p class="review-text review-text-nl">Als je jouw bedrijf snel op de kaart wilt zetten, moet je dit AI-model van Abel123 proberen. Het kent werkelijk op elke vraag het antwoord en genereert supersnel converterende websiteteksten en blogs. Het heeft ons enorm geholpen om onze merkbekendheid naar het volgende niveau te tillen.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Anouk de Wit <span class="review-tag">Growth Marketer<span class="nl">Growth marketeer</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">The coding functionality of Abel123 AI saves our team an enormous amount of time. From clean HTML/CSS for websites to complex backend functionality: the AI generates clean, well-structured code. And when we get stuck on a business matter, the AI model immediately offers the right strategy!</p>
+      <p class="review-text review-text-nl">De codeer-functionaliteit van Abel123 AI bespaart ons team gigantisch veel tijd. Van strakke HTML/CSS voor websites tot complexe backend-functionaliteiten: de AI genereert schone, goed gestructureerde code. En als we zakelijk ergens niet uitkomen, weet het AI-model meteen de juiste strategie te bieden!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Thijs van Leeuwen <span class="review-tag">Full-stack Developer<span class="nl">Full-stack developer</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">With the help of Abel123 AI, our business has become much better known in the region in a short time. The model wrote the entire text for our new website and helps us daily with smart business insights. A great AI tool that every business can benefit from!</p>
+      <p class="review-text review-text-nl">Met de hulp van Abel123 AI is ons bedrijf in korte tijd veel bekender geworden in de regio. Het model heeft de volledige tekst voor onze nieuwe website geschreven en helpt ons dagelijks met slimme zakelijke inzichten. Geweldige AI-tool waar elk bedrijf van kan profiteren!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Femke Visser <span class="review-tag">SME Owner<span class="nl">MKB-eigenaar</span></span></span>
+    </div>
+
+    <!-- ===== Cybersecurity &amp; Pentest Tools ===== -->
+    <div class="review-section-title">🛡️ Cybersecurity &amp; Pentest Tools
+      <span class="nl">Cybersecurity- &amp; pentesttools</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">The Abel123 Subdomain Scanner is really lightning fast and finds subdomains that other well-known scanners often miss. Together with the rest of the pentest tools, it forms a rock-solid suite for our reconnaissance phase. Indispensable for every security professional!</p>
+      <p class="review-text review-text-nl">De Abel123 Subdomain Scanner is echt razendsnel en vindt subdomeinen die andere bekende scanners vaak over het hoofd zien. Samen met de rest van de pentest-tools vormt dit een ijzersterke suite voor onze reconnaissance-fase. Onmisbaar voor elke security professional!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Tim V. <span class="review-tag">Ethical Hacker / Pentester<span class="nl">Ethisch hacker / Pentester</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Since we started using Abel123's cybersecurity tools for our periodic audits, we save hours of manual work. The Password Hasher and encryption tools work smoothly and reliably. Abel123 truly delivers top-quality security software!</p>
+      <p class="review-text review-text-nl">Sinds we de cybersecurity tools van Abel123 gebruiken voor onze periodieke audits, besparen we uren aan handmatig werk. De Password Hasher en encryptietools werken super strak en betrouwbaar. Abel123 levert hiermee echt topkwaliteit beveiligingssoftware!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Sanne de Jong <span class="review-tag">Lead Security Engineer<span class="nl">Lead security engineer</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★☆☆</div>
+      <p class="review-text">As a consultant I run security tests every day. Abel123's pentest tools are extremely clear, powerful and deliver accurate results without hassle. The subdomain scanner immediately gives a clear overview of the client's attack surface. Great!</p>
+      <p class="review-text review-text-nl">Als consultant voer ik dagelijks beveiligingstests uit. De pentest tools van Abel123 zijn ontzettend overzichtelijk, krachtig en leveren nauwkeurige resultaten zonder gedoe. De subdomain scanner geeft direct een helder overzicht van het attack surface van de klant. Klasse!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Marco B. <span class="review-tag">Cybersecurity Consultant<span class="nl">Cybersecurity-consultant</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The combination of handy utilities like the Abel123 Password Hasher and the extensive network and recon scanners makes this a very complete toolset. It's neatly built, works lightning fast and does exactly what it should. 5 stars!</p>
+      <p class="review-text review-text-nl">De combinatie van handige utilities zoals de Abel123 Password Hasher en de uitgebreide netwerk- en recon-scanners maakt dit een heel complete toolset. Het is overzichtelijk gebouwd, werkt razendsnel en doet precies wat het moet doen. 5 sterren!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Kevin R. <span class="review-tag">SOC Analyst<span class="nl">SOC-analist</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">We use the Abel123 Subdomain Scanner and security tools to continuously monitor our own infrastructure for forgotten subdomains or weak spots. It gives great peace of mind to know we have this kind of professional tooling at hand.</p>
+      <p class="review-text review-text-nl">We gebruiken de Abel123 Subdomain Scanner en security tools om onze eigen infrastructuur continu te monitoren op vergeten subdomeinen of zwakke plekken. Het geeft enorm veel rust om te weten dat we dit soort professionele tooling achter de hand hebben.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Laura M. <span class="review-tag">System Administrator<span class="nl">Systeembeheerder</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The hacktools are top-tier. Everything is clean, easy to install, and the tutorials explain exactly how to use them safely.</p>
+      <p class="review-text review-text-nl">De hacktools zijn van topniveau. Alles is schoon, makkelijk te installeren en de handleidingen leggen precies uit hoe je ze veilig gebruikt.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> 'Ghost' <span class="review-tag">Software &amp; Tools User<span class="nl">Gebruiker van software &amp; tools</span></span></span>
+    </div>
+
+    <!-- ===== Chatbot ===== -->
+    <div class="review-section-title">🤖 Chatbot
+      <span class="nl">Chatbot</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The AI Chatbot I ordered has completely transformed my workflow. It's smart, fast, and exactly what I needed for my support desk.</p>
+      <p class="review-text review-text-nl">De AI-chatbot die ik heb besteld heeft mijn werkproces volledig veranderd. Hij is slim, snel en precies wat ik nodig had voor mijn supportdesk.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Alex R. <span class="review-tag">AI Chatbot Client<span class="nl">AI-chatbotklant</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The AI integration in our customer service is performing beyond expectations. The chatbot understands complex queries and learns very fast.</p>
+      <p class="review-text review-text-nl">De AI-integratie in onze klantenservice presteert boven verwachting. De chatbot begrijpt complexe vragen en leert heel snel.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Sophie W. <span class="review-tag">Support Manager<span class="nl">Supportmanager</span></span></span>
+    </div>
+
+    <!-- ===== Websites, Domains &amp; Hosting ===== -->
+    <div class="review-section-title">🌐 Websites, Domains &amp; Hosting
+      <span class="nl">Websites, domeinen &amp; hosting</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Abelsoftware123 handled my domain registration and custom website design. The neon aesthetic is exactly what I wanted!</p>
+      <p class="review-text review-text-nl">Abelsoftware123 heeft mijn domeinregistratie en maatwerk-websiteontwerp verzorgd. De neonstijl is precies wat ik wilde!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Maria G. <span class="review-tag">Web Design Client<span class="nl">Webdesignklant</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Great experience with the web hosting. My site is lightning fast and the uptime has been 100% so far. Highly recommended for small business owners.</p>
+      <p class="review-text review-text-nl">Geweldige ervaring met de webhosting. Mijn site is razendsnel en de uptime is tot nu toe 100%. Een aanrader voor kleine ondernemers.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Thomas D. <span class="review-tag">E-commerce Owner<span class="nl">E-commerce-eigenaar</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The neon design for my portfolio turned out amazing. I get daily compliments on the unique visual style of my website.</p>
+      <p class="review-text review-text-nl">Het neonontwerp voor mijn portfolio is geweldig geworden. Ik krijg dagelijks complimenten over de unieke visuele stijl van mijn website.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Elena M. <span class="review-tag">Graphic Designer<span class="nl">Grafisch ontwerper</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Fast domain transfer and excellent SEO advice. Abelsoftware123 truly thinks along with the growth of your company.</p>
+      <p class="review-text review-text-nl">Snelle domeinverhuizing en uitstekend SEO-advies. Abelsoftware123 denkt echt mee met de groei van je bedrijf.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Mark S. <span class="review-tag">Start-up Founder<span class="nl">Start-upoprichter</span></span></span>
+    </div>
+
+    <!-- ===== Advertising &amp; Marketing ===== -->
+    <div class="review-section-title">📣 Advertising &amp; Marketing
+      <span class="nl">Adverteren &amp; marketing</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Professional advertising services. My app visibility increased significantly after a short campaign with this team.</p>
+      <p class="review-text review-text-nl">Professionele advertentiediensten. De zichtbaarheid van mijn app nam aanzienlijk toe na een korte campagne met dit team.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Liam V. <span class="review-tag">Advertising Partner<span class="nl">Advertentiepartner</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The marketing strategy they implemented for my webshop increased my conversion rate by 40%. A very professional team.</p>
+      <p class="review-text review-text-nl">De marketingstrategie die ze voor mijn webshop hebben toegepast verhoogde mijn conversie met 40%. Een zeer professioneel team.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Jasper H. <span class="review-tag">Entrepreneur<span class="nl">Ondernemer</span></span></span>
+    </div>
+
+    <!-- ===== Games &amp; Game Keys ===== -->
+    <div class="review-section-title">🎮 Games &amp; Game Keys
+      <span class="nl">Games &amp; gamekeys</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Instant delivery on the game keys! I was playing within minutes after my purchase. Great prices compared to other stores.</p>
+      <p class="review-text review-text-nl">Directe levering van de gamekeys! Ik was binnen een paar minuten na mijn aankoop aan het spelen. Goede prijzen vergeleken met andere winkels.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Jordan T. <span class="review-tag">Game Store Customer<span class="nl">Klant gamewinkel</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Finally a reliable source for game keys. The activation code was visible in my dashboard instantly. No hassle, just great prices.</p>
+      <p class="review-text review-text-nl">Eindelijk een betrouwbare bron voor gamekeys. De activatiecode stond direct zichtbaar in mijn dashboard. Geen gedoe, gewoon goede prijzen.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Rick V. <span class="review-tag">Gamer<span class="nl">Gamer</span></span></span>
+    </div>
+
+    <!-- ===== Emulators, Apps &amp; Games ===== -->
+    <div class="review-section-title">📱 Emulators, Apps &amp; Games
+      <span class="nl">Emulators, apps &amp; games</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">Finally a mobile emulator that doesn't lag. Perfect for testing my apps and playing heavy games on my PC.</p>
+      <p class="review-text review-text-nl">Eindelijk een mobiele emulator die niet lagt. Perfect om mijn apps te testen en zware games op mijn pc te spelen.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Michael B. <span class="review-tag">Emulator User<span class="nl">Emulatorgebruiker</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">I've been using the emulator for development for a week now, and it's by far the most stable environment I've tested so far.</p>
+      <p class="review-text review-text-nl">Ik gebruik de emulator nu een week voor ontwikkeling en het is veruit de stabielste omgeving die ik tot nu toe heb getest.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Anouk T. <span class="review-tag">App Developer<span class="nl">Appontwikkelaar</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Top-notch Android Apps and PC Laptop Games for months of fun and gaming pleasure. The integration with my existing phone and games was seamless.</p>
+      <p class="review-text review-text-nl">Top Android-apps en pc/laptop-games voor maanden speelplezier. De integratie met mijn bestaande telefoon en games verliep naadloos.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> 'GameNerd Andy' <span class="review-tag">Games Analyst<span class="nl">Game-analist</span></span></span>
+    </div>
+
+    <!-- ===== Software &amp; Automation Tools ===== -->
+    <div class="review-section-title">⚙️ Software &amp; Automation Tools
+      <span class="nl">Software &amp; automatiseringstools</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The automation tools from Abelsoftware123 have saved our team hours of manual work. The code is efficient and extremely well-documented.</p>
+      <p class="review-text review-text-nl">De automatiseringstools van Abelsoftware123 hebben ons team uren handmatig werk bespaard. De code is efficiënt en uitstekend gedocumenteerd.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Sarah L. <span class="review-tag">Software Developer<span class="nl">Softwareontwikkelaar</span></span></span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">The custom scripts work perfectly. Had a minor issue during setup, but support responded within the hour and fixed it immediately.</p>
+      <p class="review-text review-text-nl">De aangepaste scripts werken perfect. Er was een klein probleem tijdens de installatie, maar de support reageerde binnen een uur en loste het meteen op.</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Kevin J. <span class="review-tag">Tech Enthusiast<span class="nl">Techliefhebber</span></span></span>
+    </div>
+
+    <!-- ===== Drone Photography Reviews ===== -->
+    <div class="review-section-title">🚁 Drone Photography Reviews
+      <span class="nl">Reviews voor Drone Fotografie</span>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Had beautiful drone photos made for a new construction project. The compositions and 4K sharpness are truly top quality! You notice right away that professional equipment is used with a great eye for detail. Definitely worth repeating!</p>
+      <p class="review-text review-text-nl">Prachtige dronefoto's laten maken voor een nieuw bouwproject. De composities en 4K-scherpte zijn echt van topkwaliteit! Je merkt direct dat er met professionele apparatuur en veel oog voor detail gewerkt wordt. Zeker voor herhaling vatbaar!</p>
+      <span class="review-author"><i class="fas fa-user-circle"></i> Jeroen de Bruijn <span class="review-tag">Real Estate &amp; Property Development<span class="nl">Vastgoed &amp; Projectontwikkeling</span></span></span>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER / COMPANY INFO ===== -->
+  <div class="footer-note">
+    <h3>Chamber of Commerce (KvK) number: 42090960 &nbsp;|&nbsp; Tax ID (VAT): NL 005488351B30
+      <span class="nl">Kamer van Koophandel (KvK)-nummer: 42090960 &nbsp;|&nbsp; BTW-nummer: NL 005488351B30</span>
+    </h3>
+  </div>
+
+</div>
+
+<!-- ===== CHAT LAUNCHER ===== -->
+<div id="chat-launcher" onclick="toggleChat()">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- ===== CHAT CONTAINER ===== -->
+<div id="chat-container">
+  <div id="chat-header">
+    <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> AI Assistant / AI-assistent</span>
+    <button class="close-btn" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-quick-buttons">
+    <button class="quick-btn" onclick="quickReply('Products')">📦 Products / Producten</button>
+    <button class="quick-btn" onclick="quickReply('Pricing')">💰 Pricing / Prijzen</button>
+    <!-- >>> Your original message was cut off at this point (<button class="quick ...).
+         Paste the rest of your original chat code here: remaining quick buttons,
+         #messages, #input-area and the <script> with toggleChat() / quickReply(). -->
+  </div>
+</div>
+
+</body>
+</html>
