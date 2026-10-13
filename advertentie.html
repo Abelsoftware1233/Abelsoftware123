@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Advertising · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== LANGUAGE SWITCH ===== */
+    .lang-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .lang-switch {
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #2a3344;
+      border-radius: 40px;
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+
+    .lang-switch button {
+      background: transparent;
+      border: none;
+      color: #8899aa;
+      padding: 0.35rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lang-switch button.active {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 15px rgba(0,242,255,0.4);
+    }
+
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+      display: block;
+      text-align: center;
+    }
+
+    .main-nav a .nl {
+      display: block;
+      font-size: 0.85em;
+      color: #6fa9bd;
+      margin-top: 0.1rem;
+    }
+
+    .main-nav a:hover .nl,
+    .main-nav a.active .nl {
+      color: #bfeaf5;
+    }
+
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    .feature-list li {
+      padding-left: 1.8rem;
+      position: relative;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      color: #d0dcee;
+      line-height: 1.6;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      color: #00f2ff;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-shadow: 0 0 10px #00f2ff88;
+    }
+
+    .feature-list li strong {
+      color: #eaeef2;
+    }
+
+    /* ===== PRICING TABLE ===== */
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+    }
+
+    .pricing-table th {
+      background: #1a1f2a;
+      color: #00f2ff;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid #00f2ff33;
+    }
+
+    .pricing-table td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #1f2a38;
+      color: #c8d6e5;
+      font-size: 0.9rem;
+    }
+
+    .pricing-table tr:hover td {
+      background: #1a1f2a;
+    }
+
+    .pricing-table .price-tag {
+      color: #00ff44;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .pricing-table .ad-type {
+      font-weight: 600;
+      color: #eaeef2;
+    }
+
+    .header-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 1.2rem;
+      border: 1px solid #00f2ff33;
+      margin-bottom: 0.5rem;
+      background: #1a1f2a;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00d4e6, #0088aa);
+      border: none;
+      color: #0b0d10;
+      padding: 0.8rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid #00f2ffaa;
+      text-align: center;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #00f2ff, #00aacc);
+      box-shadow: 0 6px 40px #00f2ff66;
+      color: #000;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .ad-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .stat-item {
+      background: #12161f;
+      padding: 1rem;
+      border-radius: 0.8rem;
+      text-align: center;
+      border: 1px solid #1f2a38;
+      transition: 0.3s;
+    }
+
+    .stat-item:hover {
+      border-color: #00f2ff44;
+      background: #1a1f2a;
+    }
+
+    .stat-item .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #00f2ff;
+      display: block;
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.8rem;
+      color: #8899aa;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .pricing-table th,
+      .pricing-table td {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.8rem;
+      }
+      .ad-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stat-item .stat-number {
+        font-size: 1.5rem;
+      }
+      .header-image {
+        max-height: 120px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .ad-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    /* ===== PARTNER SHOWCASE CARD ===== */
+    .partner-showcase-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 1.2rem;
+      border: 1px solid #00f2ff33;
+      margin-bottom: 1.2rem;
+      background: #1a1f2a;
+    }
+
+    @media (min-width: 768px) {
+      .partner-showcase-img {
+        height: 280px;
+      }
+    }
+
+    .partner-showcase-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .partner-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.8rem 0 1rem;
+    }
+
+    .partner-tag {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1px solid #00f2ff44;
+      color: #8cdbff;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== OUR PARTNERS GRID ===== */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .partner-card {
+      background: #12161f;
+      border: 1px solid #1f2a38;
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.25s;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-4px);
+      border-color: #00f2ff66;
+      background: #171d29;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6), 0 0 0 1px #00f2ff30;
+    }
+
+    .partner-logo-wrap {
+      width: 100%;
+      height: 110px;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: #0b0d10;
+      border: 1px solid #1f2a38;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .partner-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 0.4rem;
+    }
+
+    .partner-card-name {
+      font-weight: 700;
+      color: #eaeef2;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .partner-card-desc {
+      font-size: 0.8rem;
+      color: #8899aa;
+      line-height: 1.5;
+    }
+
+    .partner-visit {
+      margin-top: 0.3rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #00f2ff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub" data-en="· Grow Your Brand" data-nl="· Laat je merk groeien">· Grow Your Brand</span>
+    </div>
+    <div class="header-actions">
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> <span data-en="Client Login" data-nl="Klantlogin">Client Login</span></a>
+    </div>
+  </div>
+
+  <!-- LANGUAGE SWITCH -->
+  <div class="lang-bar">
+    <div class="lang-switch">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-nl" onclick="setLang('nl')">NL</button>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home <span class="nl">Home</span></a></li>
+      <li><a href="ai.html">AI Software <span class="nl">AI-software</span></a></li>
+      <li><a href="hacktools.html">Cybersecurity &amp; Offensive Security <span class="nl">Cyberbeveiliging &amp; Offensieve beveiliging</span></a></li>
+      <li><a href="payments.html">Payments Games &amp; Apps <span class="nl">Betalingen Games &amp; Apps</span></a></li>
+      <li><a href="website.html">Order Website &amp; App &amp; Domain <span class="nl">Website, app &amp; domein bestellen</span></a></li>
+      <li><a href="ruimte-vaart.html">Space Technology <span class="nl">Ruimtevaarttechnologie</span></a></li>
+      <li><a href="music.html">Media-Apps &amp; Entertainment <span class="nl">Media-apps &amp; entertainment</span></a></li>
+      <li><a href="advertentie.html" class="active">Advertising &amp; Our Partners <span class="nl">Adverteren &amp; onze partners</span></a></li>
+      <li><a href="company.html">Company Contact &amp; Info <span class="nl">Bedrijf, contact &amp; info</span></a></li>
+      <li><a href="drone.html">Drone Photography NL <span class="nl">Dronefotografie NL</span></a></li>
+      <li><a href="facturatie.html">Business Tools <span class="nl">Zakelijke tools</span></a></li>
+      <li><a href="chatbot.html">Order Chatbot <span class="nl">Chatbot bestellen</span></a></li>
+      <li><a href="apps.html">Apps List <span class="nl">Lijst met apps</span></a></li>
+      <li><a href="reviews.html">Reviews <span class="nl">Reviews</span></a></li>
+      <li><a href="privacy.html">Privacy Policy <span class="nl">Privacybeleid</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
+
+    <!-- HEADER IMAGE + WHY PARTNER (full width) -->
+    <div class="card full-width">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjFabVfJl9DkoiNbxDb-OD_yfvGM4EJaU9VSB-dDltKfAb4EztKu0hLNI7&s=10" alt="Digital Marketing" class="header-image" onerror="this.style.display='none'">
+      
+      <span class="badge-role"><i class="fas fa-bullhorn"></i> <span data-en="ADVERTISE WITH US" data-nl="ADVERTEER BIJ ONS">ADVERTISE WITH US</span></span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-chart-line"></i>
+        <h2 data-en="Why Partner With Us?" data-nl="Waarom met ons samenwerken?">Why Partner With Us?</h2>
+      </div>
+      
+      <p style="text-align: center;"><span data-en="Reach thousands of tech-savvy users and gamers daily. Our tools, like " data-nl="Bereik dagelijks duizenden technisch onderlegde gebruikers en gamers. Onze tools, zoals ">Reach thousands of tech-savvy users and gamers daily. Our tools, like </span><strong style="color: #00f2ff;">Echo AI</strong><span data-en=", and our extensive game library provide unique placement opportunities for your brand." data-nl=", en onze uitgebreide gamebibliotheek bieden unieke plaatsingsmogelijkheden voor jouw merk.">, and our extensive game library provide unique placement opportunities for your brand.</span></p>
+
+      <ul class="feature-list" style="max-width: 500px; margin: 0 auto;">
+        <li><strong><span data-en="High Engagement:" data-nl="Hoge betrokkenheid:">High Engagement:</span></strong> <span data-en="Average session time of 15+ minutes." data-nl="Gemiddelde sessieduur van 15+ minuten.">Average session time of 15+ minutes.</span></li>
+        <li><strong><span data-en="Global Visibility:" data-nl="Wereldwijde zichtbaarheid:">Global Visibility:</span></strong> <span data-en="Users from all across the globe." data-nl="Gebruikers van over de hele wereld.">Users from all across the globe.</span></li>
+        <li><strong><span data-en="Native Integration:" data-nl="Native integratie:">Native Integration:</span></strong> <span data-en="Clean, professional ad placements." data-nl="Strakke, professionele advertentieplaatsingen.">Clean, professional ad placements.</span></li>
+      </ul>
+    </div>
+
+    <!-- ADVERTISING PACKAGES -->
+    <div class="card full-width">
+      <div class="card-header">
+        <i class="fas fa-boxes"></i>
+        <h2 data-en="Advertising Packages" data-nl="Advertentiepakketten">Advertising Packages</h2>
+      </div>
+
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th data-en="Ad Type" data-nl="Advertentietype">Ad Type</th>
+            <th data-en="Placement" data-nl="Plaatsing">Placement</th>
+            <th data-en="Monthly Price" data-nl="Maandprijs">Monthly Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ad-type" data-en="Banner Ad" data-nl="Banneradvertentie">Banner Ad</td>
+            <td data-en="Footer/Header in Apps" data-nl="Footer/header in apps">Footer/Header in Apps</td>
+            <td class="price-tag">€49.99</td>
+          </tr>
+          <tr>
+            <td class="ad-type" data-en="Interstitial Video" data-nl="Interstitial-video">Interstitial Video</td>
+            <td data-en="Between Game Levels" data-nl="Tussen gamelevels">Between Game Levels</td>
+            <td class="price-tag">€149.99</td>
+          </tr>
+          <tr>
+            <td class="ad-type" data-en="AI Shoutout" data-nl="AI-shoutout">AI Shoutout</td>
+            <td data-en="Echo AI Interface" data-nl="Echo AI-interface">Echo AI Interface</td>
+            <td class="price-tag">€99.99</td>
+          </tr>
+          <tr>
+            <td class="ad-type" data-en="Featured Partner" data-nl="Uitgelichte partner">Featured Partner</td>
+            <td data-en="Main Menu + Socials" data-nl="Hoofdmenu + socials">Main Menu + Socials</td>
+            <td class="price-tag">€299.99</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="btn-group">
+        <a href="mailto:ads@abelsoftware123.com" class="cta-btn">
+          <i class="fas fa-envelope"></i> <span data-en="Secure Your Spot" data-nl="Reserveer je plek">Secure Your Spot</span>
+        </a>
+      </div>
+
+    <!-- AD STATS (full width) -->
+    <div class="card full-width">
+      <div class="card-header">
+        <i class="fas fa-users"></i>
+        <h2 data-en="Reach &amp; Engagement" data-nl="Bereik &amp; betrokkenheid">Reach &amp; Engagement</h2>
+      </div>
+
+      <div class="ad-stats">
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label" data-en="Average Session Minutes" data-nl="Gemiddelde sessieduur (min.)">Average Session Minutes</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10K+</span>
+          <span class="stat-label" data-en="Daily Active Users" data-nl="Dagelijkse actieve gebruikers">Daily Active Users</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label" data-en="Countries Reached" data-nl="Bereikte landen">Countries Reached</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label" data-en="Uptime Guarantee" data-nl="Uptimegarantie">Uptime Guarantee</span>
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 0.85rem; color: #8899aa;">
+        <i class="fas fa-info-circle" style="color: #00f2ff;"></i> <span data-en="All campaigns are tracked with real-time analytics. Chamber of Commerce (KvK) number: 42090960 Tax ID (VAT): NL 005488351B30" data-nl="Alle campagnes worden gevolgd met realtime analytics. Kamer van Koophandel (KvK)-nummer: 42090960 BTW-nummer: NL 005488351B30">All campaigns are tracked with real-time analytics. Chamber of Commerce (KvK) number: 42090960 
+​Tax ID (VAT): NL 005488351B30</span>
+    </div>
+      </p>
+    </div>
+
+    <!-- FEATURED PARTNER SHOWCASE: GAMEMANIAK -->
+    <div class="card full-width">
+      <img src="gamemaniak.jpg" alt="Gamemaniak.nl" class="partner-showcase-img" onerror="this.style.display='none'">
+
+      <span class="badge-role"><i class="fas fa-star"></i> <span data-en="FEATURED PARTNER" data-nl="UITGELICHTE PARTNER">FEATURED PARTNER</span></span>
+
+      <div class="card-header">
+        <i class="fas fa-gamepad"></i>
+        <h2>Gamemaniak.nl</h2>
+      </div>
+
+      <div class="partner-showcase-body">
+        <p data-en="Our featured retail partner in retro gaming hardware. Gamemaniak.nl supplies brand-new consoles and accessories, each unit individually checked before shipping." data-nl="Onze featured retail-partner in retro gaming hardware. Gamemaniak.nl levert gloednieuwe consoles en accessoires, elk toestel individueel gecontroleerd voor verzending.">Our featured retail partner in retro gaming hardware. Gamemaniak.nl supplies brand-new consoles and accessories, each unit individually checked before shipping.</p>
+
+        <div class="partner-tags">
+          <span class="partner-tag"><i class="fas fa-check-circle"></i> <span data-en="New &amp; Tested" data-nl="Nieuw &amp; Getest">New &amp; Tested</span></span>
+          <span class="partner-tag"><i class="fas fa-truck"></i> <span data-en="Free shipping from €100" data-nl="Gratis verzending v.a. €100">Free shipping from €100</span></span>
+          <span class="partner-tag"><i class="fas fa-shield-alt"></i> <span data-en="30-day warranty" data-nl="30 dagen garantie">30-day warranty</span></span>
+        </div>
+
+        <div class="btn-group" style="justify-content: flex-start; margin-top: 0.5rem;">
+          <a href="https://www.gamemaniak.nl" target="_blank" rel="noopener" class="cta-btn">
+            <i class="fas fa-external-link-alt"></i> <span data-en="Visit Gamemaniak.nl" data-nl="Bezoek Gamemaniak.nl">Visit Gamemaniak.nl</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUR PARTNERS GRID -->
+    <div class="card full-width">
+      <div class="card-header">
+        <i class="fas fa-handshake"></i>
+        <h2 data-en="Our Partners" data-nl="Onze partners">Our Partners</h2>
+      </div>
+
+      <div class="partners-grid">
+        <a href="https://www.gamemaniak.nl" target="_blank" rel="noopener" class="partner-card">
+          <div class="partner-logo-wrap">
+            <img src="gamemaniak.jpg" alt="Gamemaniak.nl">
+          </div>
+          <span class="partner-card-name">Gamemaniak.nl</span>
+          <span class="partner-card-desc" data-en="Retro gaming consoles &amp; accessories" data-nl="Retro gaming consoles &amp; accessoires">Retro gaming consoles &amp; accessories</span>
+          <span class="partner-visit"><span data-en="Visit site" data-nl="Bezoek site">Visit site</span> <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+
+  </div> <!-- /page-grid -->
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> <span data-en="AI Assistant" data-nl="AI-assistent">AI Assistant</span></span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('Banner')">📋 <span data-en="Banner" data-nl="Banner">Banner</span></button>
+      <button class="quick-btn" onclick="quickReply('Video')">🎬 <span data-en="Video" data-nl="Video">Video</span></button>
+      <button class="quick-btn" onclick="quickReply('AI Shoutout')">🤖 <span data-en="AI Shoutout" data-nl="AI-shoutout">AI Shoutout</span></button>
+      <button class="quick-btn" onclick="quickReply('Featured')">⭐ <span data-en="Featured" data-nl="Uitgelicht">Featured</span></button>
+    </div>
+    <div id="messages">
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> <span data-en="Interested in advertising? I can help!" data-nl="Interesse in adverteren? Ik help je graag!">Interested in advertising? I can help!</span>
+        <span class="msg-time" data-en="Just now" data-nl="Zojuist">Just now</span>
+      </div>
+    </div>
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Ask about ads..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()" data-en="Send" data-nl="Verzenden">Send</button>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · <span data-en="Premium AI Software, Games &amp; Development" data-nl="Premium AI-software, games &amp; ontwikkeling">Premium AI Software, Games &amp; Development</span>
+  </div>
+
+</div> <!-- /page-wrapper -->
+
+<script>
+  // ===== LANGUAGE SWITCH =====
+  var currentLang = 'en';
+  function t(en, nl) { return currentLang === 'nl' ? nl : en; }
+
+  function setLang(lang) {
+    document.querySelectorAll('[data-en]').forEach(function(el) {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+    document.documentElement.lang = lang;
+    currentLang = lang;
+    var chatInput = document.getElementById('chat-input');
+    if (chatInput) chatInput.placeholder = (lang === 'nl') ? 'Vraag over advertenties...' : 'Ask about ads...';
+    localStorage.setItem('abelsoftware_lang', lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var saved = localStorage.getItem('abelsoftware_lang');
+    if (saved === 'nl') setLang('nl');
+  });
+</script>
+
+<script>
+  // ===== CHAT FUNCTIONS (uses chatbot.js) =====
+  let botInstance = null;
+
+  function toggleChat() {
+    const container = document.getElementById('chat-container');
+    container.classList.toggle('open');
+    if (container.classList.contains('open')) {
+      document.getElementById('chat-input').focus();
+      // Initialize bot if not yet done
+      if (!botInstance && typeof BasicBot !== 'undefined') {
+        botInstance = new BasicBot();
+      }
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById('messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user-msg';
+    userDiv.innerHTML = msg + '<span class="msg-time">' + t('Just now', 'Zojuist') + '</span>';
+    messages.appendChild(userDiv);
+
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Get bot response from chatbot.js
+    setTimeout(async () => {
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot-msg';
+      
+      let response = t("I'm still learning. Please ask me about our advertising packages! 📢", "Ik leer nog. Vraag me gerust naar onze advertentiepakketten! 📢");
+      
+      try {
+        if (botInstance && typeof botInstance.chat === 'function') {
+          response = await botInstance.chat(msg);
+        } else if (typeof BasicBot !== 'undefined') {
+          botInstance = new BasicBot();
+          response = await botInstance.chat(msg);
+        } else {
+          // Fallback responses if chatbot.js is not loaded
+          const fallback = (currentLang === 'nl') ? [
+            "Goede vraag! Daar denk ik even over na... 🤔",
+            "Onze banneradvertenties starten vanaf €49,99 per maand! 📋",
+            "Interstitial-videoadvertenties kosten €149,99 per maand! 🎬",
+            "De AI-shoutout in Echo AI kost €99,99! 🤖",
+            "Het Featured Partner-pakket kost €299,99 met volledige zichtbaarheid! ⭐",
+            "Neem contact op via ads@abelsoftware123.com voor boekingen! 📧"
+          ] : [
+            "That's a great question! Let me think about that... 🤔",
+            "Our Banner Ads start at €49.99 per month! 📋",
+            "Interstitial Video ads are €149.99 monthly! 🎬",
+            "The AI Shoutout in Echo AI costs €99.99! 🤖",
+            "Featured Partner package is €299.99 with full visibility! ⭐",
+            "Contact us at ads@abelsoftware123.com for bookings! 📧"
+          ];
+          response = fallback[Math.floor(Math.random() * fallback.length)];
+        }
+      } catch (err) {
+        console.error('Chat error:', err);
+        response = t("Sorry, I'm having trouble connecting. Please try again later. 🙏", "Sorry, er is een verbindingsprobleem. Probeer het later opnieuw. 🙏");
+      }
+      
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + response + '<span class="msg-time">' + t('Just now', 'Zojuist') + '</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+    }, 500);
+  }
+
+  function quickReply(text) {
+    document.getElementById('chat-input').value = text;
+    sendMessage();
+  }
+
+  // Escape to close chat
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const container = document.getElementById('chat-container');
+      if (container.classList.contains('open')) {
+        container.classList.remove('open');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
