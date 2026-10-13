@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Company · Abelsoftware123</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0d10;
+      color: #eaeef2;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== LUXE CONTAINER ===== */
+    .page-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      background: radial-gradient(circle at 20% 30%, #171b22, #0c0e12 80%);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(0, 242, 255, 0.15);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    /* ===== HEADER / TOPBAR ===== */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1rem 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 12px rgba(0, 242, 255, 0.5));
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a0f0ff, #00f2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.25);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #8899aa;
+      letter-spacing: 0.3px;
+      font-weight: 400;
+      margin-left: 0.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .neon-btn {
+      background: rgba(0, 242, 255, 0.08);
+      border: 1.5px solid #00f2ff;
+      color: #e0f9ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(0, 242, 255, 0.2);
+      transition: 0.2s;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .neon-btn:hover {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== LANGUAGE SWITCH ===== */
+    .lang-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .lang-switch {
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #2a3344;
+      border-radius: 40px;
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+
+    .lang-switch button {
+      background: transparent;
+      border: none;
+      color: #8899aa;
+      padding: 0.35rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lang-switch button.active {
+      background: #00f2ff;
+      color: #0b0d10;
+      box-shadow: 0 0 15px rgba(0,242,255,0.4);
+    }
+
+    /* ===== NAVIGATION - FULL LIST ===== */
+    .main-nav {
+      margin: 1.2rem 0 2rem;
+    }
+
+    .main-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.6rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      background: rgba(255, 255, 255, 0.03);
+      color: #b0c8dd;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      backdrop-filter: blur(2px);
+      letter-spacing: 0.2px;
+      display: block;
+      text-align: center;
+    }
+
+    .main-nav a .nl {
+      display: block;
+      font-size: 0.85em;
+      color: #6fa9bd;
+      margin-top: 0.1rem;
+    }
+
+    .main-nav a:hover .nl,
+    .main-nav a.active .nl {
+      color: #bfeaf5;
+    }
+
+    .main-nav a:hover {
+      background: rgba(0, 242, 255, 0.12);
+      border-color: #00f2ff66;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.15);
+    }
+
+    .main-nav a.active {
+      background: rgba(0, 242, 255, 0.18);
+      border-color: #00f2ff;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(0, 242, 255, 0.2);
+    }
+
+    /* ===== GRID LAYOUT ===== */
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .page-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(18, 22, 30, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      height: fit-content;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px #00f2ff40;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header i {
+      font-size: 2.2rem;
+      color: #00f2ff;
+      filter: drop-shadow(0 0 8px #00f2ff88);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #d6f5ff, #8cdbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .card h3 {
+      color: #c0d8ee;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0.8rem 0 0.5rem;
+    }
+
+    .card p {
+      color: #c8d6e5;
+      font-size: 0.98rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .badge-role {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      padding: 4px 16px;
+      background: rgba(0, 242, 255, 0.1);
+      border: 1px solid #00f2ff;
+      color: #00f2ff;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .company-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 1.2rem;
+      border: 2px solid #00f2ff44;
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+      transition: 0.3s;
+      background: #1a1f2a;
+      display: block;
+      margin: 0.8rem auto;
+    }
+
+    .company-image:hover {
+      transform: scale(1.02);
+      border-color: #00f2ff;
+      box-shadow: 0 0 50px rgba(0, 242, 255, 0.25);
+    }
+
+    .education-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    .education-list li {
+      background: #12161f;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.6rem;
+      border-radius: 0.8rem;
+      border-left: 3px solid #00f2ff;
+      transition: 0.3s;
+      font-size: 0.95rem;
+      color: #d0dcee;
+    }
+
+    .education-list li:hover {
+      background: #1a1f2a;
+      transform: translateX(5px);
+      border-left-color: #66f5ff;
+    }
+
+    .education-list li strong {
+      color: #eaeef2;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #00f2ff, #00aacc);
+      border: none;
+      color: #0b0d10;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid #00f2ffaa;
+      text-align: center;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #66f5ff, #00ccdd);
+      box-shadow: 0 6px 40px #00f2ff66;
+      color: #000;
+    }
+
+    .cta-dark-btn {
+      display: inline-block;
+      background: linear-gradient(145deg, #333, #222);
+      border: none;
+      color: #eaeef2;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid #444;
+      text-align: center;
+    }
+
+    .cta-dark-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(145deg, #444, #333);
+      box-shadow: 0 6px 35px rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+
+    .contact-info {
+      background: #12161f;
+      padding: 1.2rem;
+      border-radius: 1rem;
+      border: 1px dashed #00f2ff33;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .contact-info i {
+      color: #00f2ff;
+      margin-right: 0.5rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 1rem;
+        border-radius: 1.8rem;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .brand-sub {
+        font-size: 0.7rem;
+        display: block;
+        margin-left: 0;
+      }
+      .main-nav a {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .neon-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .company-image {
+        max-width: 100%;
+      }
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ===== CHAT FLOATING BUTTON ===== */
+    #chat-launcher {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #00f2ff;
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #0b0d10;
+      box-shadow: 0 0 30px #00f2ffaa;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: 0.3s;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #chat-launcher:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px #00f2ff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ===== CHAT CONTAINER ===== */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 480px;
+      background: #1a1f2a;
+      border: 2px solid #00f2ff;
+      border-radius: 1.2rem;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    #chat-container.open {
+      display: flex;
+    }
+
+    #chat-header {
+      background: #00f2ff;
+      color: #0b0d10;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    #chat-header .close-btn {
+      background: none;
+      border: none;
+      color: #0b0d10;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    #chat-header .close-btn:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #12161f;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .bot-msg {
+      background: #252e3f;
+      color: #b0f0ff;
+      align-self: flex-start;
+      border: 1px solid #00f2ff44;
+      border-bottom-left-radius: 0.2rem;
+    }
+
+    .user-msg {
+      background: #00f2ff;
+      color: #0b0d10;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.2rem;
+    }
+
+    .msg-time {
+      font-size: 0.6rem;
+      opacity: 0.5;
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 0.6rem 0.8rem;
+      background: #1a1f2a;
+      border-top: 1px solid #2a3344;
+      gap: 0.5rem;
+    }
+
+    #input-area input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 30px;
+      border: 1px solid #2a3344;
+      background: #0b0d10;
+      color: #eaeef2;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    #input-area input:focus {
+      border-color: #00f2ff;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+    }
+
+    #input-area button {
+      background: #00f2ff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      color: #0b0d10;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+    }
+
+    #input-area button:hover {
+      background: #66f5ff;
+      box-shadow: 0 0 20px #00f2ff66;
+    }
+
+    .chat-quick-buttons {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.3rem 0.8rem 0.5rem;
+      flex-wrap: wrap;
+      background: #0e121c;
+      border-top: 1px solid #1a1f2a;
+      justify-content: center;
+    }
+
+    .quick-btn {
+      background: #1a1f2a;
+      border: 1px solid #2a3344;
+      color: #b0c8dd;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+      border-color: #00f2ff;
+      color: #00f2ff;
+      background: #00f2ff11;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #5a6f84;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #1f2a38;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="top-bar">
+    <div class="brand-group">
+      <i class="fas fa-robot brand-icon"></i>
+      <span class="brand-title">Abelsoftware123</span>
+      <span class="brand-sub" data-en="· Our History, Vision &amp; Innovation" data-nl="· Onze geschiedenis, visie &amp; innovatie">· Our History, Vision &amp; Innovation</span>
+    </div>
+    <div class="header-actions">
+      <a href="registreer.html" class="neon-btn"><i class="fas fa-user-plus"></i> <span data-en="Register" data-nl="Registreren">Register</span></a>
+      <a href="login.html" class="neon-btn"><i class="fas fa-sign-in-alt"></i> <span data-en="Log in" data-nl="Inloggen">Log in</span></a>
+    </div>
+  </div>
+
+  <!-- LANGUAGE SWITCH -->
+  <div class="lang-bar">
+    <div class="lang-switch">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-nl" onclick="setLang('nl')">NL</button>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION - FULL LIST ===== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home <span class="nl">Home</span></a></li>
+      <li><a href="ai.html">AI Software <span class="nl">AI-software</span></a></li>
+      <li><a href="hacktools.html">Cybersecurity &amp; Offensive Security <span class="nl">Cyberbeveiliging &amp; Offensieve beveiliging</span></a></li>
+      <li><a href="payments.html">Payments Games &amp; Apps <span class="nl">Betalingen Games &amp; Apps</span></a></li>
+      <li><a href="website.html">Order Website &amp; App &amp; Domain <span class="nl">Website, app &amp; domein bestellen</span></a></li>
+      <li><a href="ruimte-vaart.html">Space Technology <span class="nl">Ruimtevaarttechnologie</span></a></li>
+      <li><a href="music.html">Media-Apps &amp; Entertainment <span class="nl">Media-apps &amp; entertainment</span></a></li>
+      <li><a href="advertentie.html">Advertising &amp; Our Partners <span class="nl">Adverteren &amp; onze partners</span></a></li>
+      <li><a href="company.html" class="active">Company Contact &amp; Info <span class="nl">Bedrijf, contact &amp; info</span></a></li>
+      <li><a href="drone.html">Drone Photography NL <span class="nl">Dronefotografie NL</span></a></li>
+      <li><a href="facturatie.html">Business Tools <span class="nl">Zakelijke tools</span></a></li>
+      <li><a href="chatbot.html">Order Chatbot <span class="nl">Chatbot bestellen</span></a></li>
+      <li><a href="apps.html">Apps List <span class="nl">Lijst met apps</span></a></li>
+      <li><a href="reviews.html">Reviews <span class="nl">Reviews</span></a></li>
+      <li><a href="privacy.html">Privacy Policy <span class="nl">Privacybeleid</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PAGE GRID ===== -->
+  <div class="page-grid">
+
+    <!-- COMPANY HISTORY (full width) -->
+    <div class="card full-width">
+      <span class="badge-role"><i class="fas fa-building"></i> <span data-en="SINCE 2024" data-nl="SINDS 2024">SINCE 2024</span></span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-building"></i>
+        <h2 data-en="Our Company History" data-nl="Onze bedrijfsgeschiedenis">Our Company History</h2>
+      </div>
+      
+      <p data-en="Since our founding in 2024, Abelsoftware123 has grown into a leader in the software industry. We are proud of our commitment to innovation and customer satisfaction. Located in the Netherlands, we serve clients globally with cutting-edge tech solutions. Follow Us on Instagram Abelsoftware123-----&amp; Discord https://discord.gg/AVg8ghf3A ----- Location: Zwolle (Overijssel) The Netherlands" data-nl="Sinds onze oprichting in 2024 is Abelsoftware123 uitgegroeid tot een leider in de softwarebranche. We zijn trots op onze toewijding aan innovatie en klanttevredenheid. Gevestigd in Nederland bedienen we klanten wereldwijd met geavanceerde technologische oplossingen. Volg ons op Instagram Abelsoftware123-----&amp; Discord https://discord.gg/AVg8ghf3A ----- Locatie: Zwolle (Overijssel) Nederland">Since our founding in 2024, Abelsoftware123 has grown into a leader in the software industry. We are proud of our commitment to innovation and customer satisfaction. Located in the Netherlands, we serve clients globally with cutting-edge tech solutions. Follow Us on Instagram Abelsoftware123-----& Discord https://discord.gg/AVg8ghf3A ----- Location: Zwolle (Overijssel) The Netherlands</p>
+<img src="auto.jpg" alt="bedrijfauto" class="company-image" onerror="this.style.display='none'">
+
+
+      
+      <h3><i class="fas fa-gamepad" style="color: #00f2ff;"></i> <span data-en="Abel123 PSP Gaming Portable For Sale!" data-nl="Abel123 PSP Gaming Handheld te koop!">Abel123 PSP Gaming Portable For Sale!</span></h3>
+      <p data-en="Our flagship hardware product: A portable console with 10.000+ games pre-installed. From any console (PlayStation - Nintendo - Game Boy and many more console brands). Supports custom new brand games with an SD card. With a futuristic design. Available now in our webshop via PayPal." data-nl="Ons paradepaardje onder de hardware: een draagbare console met 10.000+ vooraf geïnstalleerde games. Van alle consoles (PlayStation - Nintendo - Game Boy en nog veel meer merken). Ondersteunt eigen nieuwe games via een SD-kaart. Met een futuristisch design. Nu verkrijgbaar in onze webshop via PayPal.">Our flagship hardware product: A portable console with 10.000+ games pre-installed. From any console (PlayStation - Nintendo - Game Boy and many more console brands). Supports custom new brand games with an SD card. With a futuristic design. Available now in our webshop via PayPal.</p>
+      
+      <img src="psp.jpg" alt="PSP Console" class="company-image" onerror="this.style.display='none'">
+<a href="payments.html" class="cta-btn btn-orange"><i class="fas fa-shopping-cart"></i> <span data-en="BUY Abel123 PSP 10k GAMES NOW" data-nl="KOOP NU DE Abel123 PSP 10K GAMES">BUY Abel123 PSP 10k GAMES NOW</span></a>
+      </div>
+
+<!-- ===== ABEL GAME LAUNCHER CARD (full width) ===== -->
+    <div class="card full-width" style="text-align: center;">
+      <span class="badge-role"><i class="fas fa-gamepad"></i> <span data-en="GAME ACCESS" data-nl="GAMETOEGANG">GAME ACCESS</span></span>
+      
+      <div class="card-header" style="justify-content: center;">
+        <i class="fas fa-gamepad"></i>
+        <h2>Abel123 Game Launcher</h2>
+      </div>
+      
+      <p style="text-align: center; color: #8899aa;" data-en="Unlimited access to all games in one Android App." data-nl="Onbeperkte toegang tot alle games in één Android-app.">Unlimited access to all games in one Android App.</p>
+
+      <!-- AFBEELDINGEN - Gecentreerd -->
+      <div class="image-container" style="justify-content: center; margin: 1rem 0;">
+        <img src="launcher.jpg" alt="Abel123 Game Launcher" class="company-image" style="max-width: 320px; display: block; margin: 0 auto; border-radius: 1rem; border: 2px solid #00f2ff44;" onerror="this.style.display='none'">
+      </div>
+
+      <!-- PRIJS EN KNOP - Direct onder de afbeelding en gecentreerd -->
+      <div style="margin: 1rem 0;">
+        <span class="price-label" data-en="ONE TIME PAYMENT" data-nl="EENMALIGE BETALING">ONE TIME PAYMENT</span>
+        <span class="price-tag">€ 9.99</span>
+      </div>
+
+      <a href="payments.html" class="cta-btn btn-purple">
+        <i class="fas fa-shopping-cart"></i> <span data-en="BUY &amp; DOWNLOAD NOW (LIFETIME ENTRY)" data-nl="KOOP &amp; DOWNLOAD NU (LEVENSLANGE TOEGANG)">BUY & DOWNLOAD NOW (LIFETIME ENTRY)</span>
+      </a>
+
+      <p style="margin-top: 1.2rem; font-size: 0.7rem; color: #5a6f84; text-align: center;">
+        <i class="fas fa-info-circle"></i> <span data-en="Direct access to your extensive emulation library via one central app." data-nl="Directe toegang tot je uitgebreide emulatiebibliotheek via één centrale app.">Direct access to your extensive emulation library via one central app.</span>
+      </p>
+    </div>
+    </div>
+
+    <!-- EDUCATIONAL LEARNING -->
+    <div class="card full-width">
+      <div class="card-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h2 data-en="Educational Learning" data-nl="Educatieve opleidingen">Educational Learning</h2>
+      </div>
+      <p data-en="Enhance your skills with our specialized cybersecurity courses:" data-nl="Verbeter je vaardigheden met onze gespecialiseerde cybersecurity-cursussen:">Enhance your skills with our specialized cybersecurity courses:</p>
+      
+      <ul class="education-list">
+        <li><strong><span data-en="Ethical Hacking Course:" data-nl="Ethical Hacking-cursus:">Ethical Hacking Course:</span></strong> <span data-en="From Beginner to Professional levels." data-nl="Van beginner tot professional niveau.">From Beginner to Professional levels.</span></li>
+        <li><strong><span data-en="Cyber Defence Security:" data-nl="Cyber Defence Security:">Cyber Defence Security:</span></strong> <span data-en="Tailored training for modern security threats." data-nl="Opleiding op maat voor moderne beveiligingsdreigingen.">Tailored training for modern security threats.</span></li>
+      </ul>
+      
+      <div class="contact-info">
+        <i class="fas fa-envelope"></i> <span data-en="Contact us abelsoftware123@hotmail.com for curriculum details and registration." data-nl="Neem contact met ons op via abelsoftware123@hotmail.com voor details over het lesprogramma en inschrijving.">Contact us abelsoftware123@hotmail.com for curriculum details and registration.</span>
+      </div>
+   
+<h3 data-en="Chamber of Commerce (KvK) number: 42090960 Tax ID (VAT): NL 005488351B30" data-nl="Kamer van Koophandel (KvK)-nummer: 42090960 BTW-nummer: NL 005488351B30">Chamber of Commerce (KvK) number: 42090960 Tax ID (VAT): NL 005488351B30</h3>
+ </div>
+
+  </div> <!-- /page-grid -->
+
+  <!-- ===== CHAT LAUNCHER ===== -->
+  <div id="chat-launcher" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
+  <!-- ===== CHAT CONTAINER ===== -->
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i> <span data-en="AI Assistant" data-nl="AI-assistent">AI Assistant</span></span>
+      <button class="close-btn" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="quickReply('Company')">🏢 <span data-en="Company" data-nl="Bedrijf">Company</span></button>
+      <button class="quick-btn" onclick="quickReply('Products')">📦 <span data-en="Products" data-nl="Producten">Products</span></button>
+      <button class="quick-btn" onclick="quickReply('Courses')">🎓 <span data-en="Courses" data-nl="Cursussen">Courses</span></button>
+      <button class="quick-btn" onclick="quickReply('Contact')">📧 <span data-en="Contact" data-nl="Contact">Contact</span></button>
+    </div>
+    <div id="messages">
+      <div class="msg bot-msg">
+        <i class="fas fa-robot" style="margin-right: 0.3rem;"></i> <span data-en="Welcome! How can I help you today?" data-nl="Welkom! Waarmee kan ik je vandaag helpen?">Welcome! How can I help you today?</span>
+        <span class="msg-time" data-en="Just now" data-nl="Zojuist">Just now</span>
+      </div>
+    </div>
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Ask something..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()" data-en="Send" data-nl="Verzenden">Send</button>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-lock" style="opacity: 0.3;"></i> Abelsoftware123 · <span data-en="Premium AI Software, Games &amp; Development" data-nl="Premium AI-software, games &amp; ontwikkeling">Premium AI Software, Games &amp; Development</span>
+  </div>
+
+</div> <!-- /page-wrapper -->
+
+<script>
+  // ===== LANGUAGE SWITCH =====
+  var currentLang = 'en';
+  function t(en, nl) { return currentLang === 'nl' ? nl : en; }
+
+  function setLang(lang) {
+    document.querySelectorAll('[data-en]').forEach(function(el) {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+    document.documentElement.lang = lang;
+    currentLang = lang;
+    var chatInput = document.getElementById('chat-input');
+    if (chatInput) chatInput.placeholder = (lang === 'nl') ? 'Stel een vraag...' : 'Ask something...';
+    localStorage.setItem('abelsoftware_lang', lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var saved = localStorage.getItem('abelsoftware_lang');
+    if (saved === 'nl') setLang('nl');
+  });
+</script>
+
+<script>
+  // ===== CHAT FUNCTIONS (uses chatbot.js) =====
+  let botInstance = null;
+
+  function toggleChat() {
+    const container = document.getElementById('chat-container');
+    container.classList.toggle('open');
+    if (container.classList.contains('open')) {
+      document.getElementById('chat-input').focus();
+      // Initialize bot if not yet done
+      if (!botInstance && typeof BasicBot !== 'undefined') {
+        botInstance = new BasicBot();
+      }
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById('messages');
+    
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user-msg';
+    userDiv.innerHTML = msg + '<span class="msg-time">' + t('Just now', 'Zojuist') + '</span>';
+    messages.appendChild(userDiv);
+
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Get bot response from chatbot.js
+    setTimeout(async () => {
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot-msg';
+      
+      let response = t("I'm still learning. Please ask me about our company! 🏢", "Ik leer nog. Stel me gerust vragen over ons bedrijf! 🏢");
+      
+      try {
+        if (botInstance && typeof botInstance.chat === 'function') {
+          response = await botInstance.chat(msg);
+        } else if (typeof BasicBot !== 'undefined') {
+          botInstance = new BasicBot();
+          response = await botInstance.chat(msg);
+        } else {
+          // Fallback responses if chatbot.js is not loaded
+          const fallback = (currentLang === 'nl') ? [
+            "Goede vraag! Daar denk ik even over na... 🤔",
+            "Wij zijn Abelsoftware123, opgericht in 2024 in Nederland! 🇳🇱",
+            "Wij bieden AI-software, games, apps, hacktools en meer! 🚀",
+            "Bekijk onze PSP-gamehandheld met 10.000+ games! 🎮",
+            "Wij bieden cursussen Ethical Hacking en Cyber Defence aan! 🎓",
+            "Neem contact met ons op via abelsoftware123@hotmail.com 📧"
+          ] : [
+            "That's a great question! Let me think about that... 🤔",
+            "We are Abelsoftware123, founded in 2024 in the Netherlands! 🇳🇱",
+            "We offer AI Software, Games, Apps, Hacktools and more! 🚀",
+            "Check out our PSP Gaming Portable with 10.000+ games! 🎮",
+            "We offer Ethical Hacking and Cyber Defence courses! 🎓",
+            "Contact us at abelsoftware123@hotmail.com 📧"
+          ];
+          response = fallback[Math.floor(Math.random() * fallback.length)];
+        }
+      } catch (err) {
+        console.error('Chat error:', err);
+        response = t("Sorry, I'm having trouble connecting. Please try again later. 🙏", "Sorry, er is een verbindingsprobleem. Probeer het later opnieuw. 🙏");
+      }
+      
+      botDiv.innerHTML = '<i class="fas fa-robot" style="margin-right:0.3rem;"></i> ' + response + '<span class="msg-time">' + t('Just now', 'Zojuist') + '</span>';
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+    }, 500);
+  }
+
+  function quickReply(text) {
+    document.getElementById('chat-input').value = text;
+    sendMessage();
+  }
+
+  // Escape to close chat
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const container = document.getElementById('chat-container');
+      if (container.classList.contains('open')) {
+        container.classList.remove('open');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
