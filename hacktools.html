@@ -894,12 +894,108 @@
 
   </div> <!-- /page-grid -->
 
-  <!-- ===== CHAT LAUNCHER ===== -->
+   <!-- ===== CHAT LAUNCHER ===== -->
   <div id="chat-launcher" onclick="toggleChat()">
     <i class="fas fa-comment-dots"></i>
   </div>
-
+ 
   <!-- ===== CHAT CONTAINER ===== -->
   <div id="chat-container">
     <div id="chat-header">
-      <span><i class="fas fa-robot" style="margin-right: 0.4r
+      <span><i class="fas fa-robot" style="margin-right: 0.4rem;"></i>Abel123 Assistant</span>
+      <button class="close-btn" onclick="toggleChat()" aria-label="Sluiten"><i class="fas fa-times"></i></button>
+    </div>
+ 
+    <div id="messages"></div>
+ 
+    <div class="chat-quick-buttons">
+      <button class="quick-btn" onclick="sendQuickMessage('Wat doen jullie?')">Wat doen jullie?</button>
+      <button class="quick-btn" onclick="sendQuickMessage('Beveiligingsaudit')">Beveiligingsaudit</button>
+      <button class="quick-btn" onclick="sendQuickMessage('Hacktools')">Hacktools</button>
+      <button class="quick-btn" onclick="sendQuickMessage('Contact')">Contact</button>
+    </div>
+ 
+    <div id="input-area">
+      <input type="text" id="chat-input" placeholder="Typ je vraag..." autocomplete="off">
+      <button onclick="sendMessage()" aria-label="Versturen"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+ 
+  <!-- ===== CHATBOT LOGIC ===== -->
+  <script src="chatbot.js"></script>
+  <script>
+    let chatWelcomed = false;
+ 
+    function toggleChat() {
+      const container = document.getElementById('chat-container');
+      container.classList.toggle('open');
+      if (container.classList.contains('open') && !chatWelcomed) {
+        chatWelcomed = true;
+        addBotMessage('Hoi! Ik ben de Abel123 assistent. Waar kan ik je mee helpen? · Hi, I\'m the Abel123 assistant, how can I help?');
+      }
+    }
+ 
+    function nowTime() {
+      const d = new Date();
+      return d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+    }
+ 
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.innerText = str;
+      return div.innerHTML;
+    }
+ 
+    function addUserMessage(text) {
+      const messages = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.className = 'msg user-msg';
+      div.innerHTML = escapeHtml(text) + '<span class="msg-time">' + nowTime() + '</span>';
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+ 
+    function addBotMessage(text) {
+      const messages = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.className = 'msg bot-msg';
+      div.innerHTML = escapeHtml(text) + '<span class="msg-time">' + nowTime() + '</span>';
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+ 
+    function sendQuickMessage(text) {
+      document.getElementById('chat-input').value = text;
+      sendMessage();
+    }
+ 
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      addUserMessage(text);
+      input.value = '';
+ 
+      // Antwoorden komen uit chatbot.js (functie getBotReply)
+      let reply;
+      try {
+        reply = (typeof getBotReply === 'function')
+          ? getBotReply(text)
+          : 'Sorry, de chatbot-service kon niet geladen worden. Mail ons gerust rechtstreeks!';
+      } catch (e) {
+        reply = 'Er ging iets mis bij het ophalen van een antwoord. Probeer het later opnieuw.';
+      }
+ 
+      setTimeout(() => addBotMessage(reply), 300);
+    }
+ 
+    document.getElementById('chat-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+ 
+</div> <!-- /page-wrapper -->
+</body>
+</html>
+ 
+ 
